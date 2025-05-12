@@ -42388,15 +42388,15 @@ var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
     this.saveToLocalStorage();
   }
   getScoreClass(score) {
-    if (score === "X" || score === 10)
+    if (score === "X" || score === 10 || score === 9)
       return "has-background-warning has-text-black";
-    if (score === 9 || score === 8)
+    if (score === 7 || score === 8)
       return "has-background-danger has-text-white";
-    if (score === 7 || score === 6)
+    if (score === 5 || score === 6)
       return "has-background-link has-text-white";
-    if (score === 5 || score === 4)
+    if (score === 3 || score === 4)
       return "has-background-black has-text-white";
-    if (score === 3 || score === 2 || score === 1)
+    if (score === 2 || score === 1)
       return "has-background-white has-text-black";
     if (score === "M")
       return "has-background-grey-dark has-text-white";
