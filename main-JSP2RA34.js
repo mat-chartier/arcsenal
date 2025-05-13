@@ -35625,29 +35625,6 @@ function provideRouterInitializer() {
 // node_modules/@angular/router/fesm2022/router.mjs
 var VERSION4 = new Version("19.2.10");
 
-// src/app/pages/gold-game/gold-game.component.ts
-var GoldGameComponent = class _GoldGameComponent {
-  static \u0275fac = function GoldGameComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _GoldGameComponent)();
-  };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _GoldGameComponent, selectors: [["app-gold-game"]], decls: 2, vars: 0, template: function GoldGameComponent_Template(rf, ctx) {
-    if (rf & 1) {
-      \u0275\u0275elementStart(0, "p");
-      \u0275\u0275text(1, "A venir...");
-      \u0275\u0275elementEnd();
-    }
-  }, encapsulation: 2 });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(GoldGameComponent, [{
-    type: Component,
-    args: [{ selector: "app-gold-game", imports: [], template: "<p>A venir...</p>\n" }]
-  }], null, null);
-})();
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(GoldGameComponent, { className: "GoldGameComponent", filePath: "src/app/pages/gold-game/gold-game.component.ts", lineNumber: 9 });
-})();
-
 // node_modules/@angular/forms/fesm2022/forms.mjs
 var BaseControlValueAccessor = class _BaseControlValueAccessor {
   _renderer;
@@ -42094,6 +42071,462 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
+// src/app/pages/gold-game/gold-game.component.ts
+function GoldGameComponent_div_5_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 6)(1, "h2", 7);
+    \u0275\u0275text(2, "Param\xE8tres");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "div", 8)(4, "label", 9);
+    \u0275\u0275text(5, "Fl\xE8ches par vol\xE9e :");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(6, "div", 10)(7, "p", 11)(8, "button", 12);
+    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_8_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.decrementFleches());
+    });
+    \u0275\u0275text(9, "-");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(10, "p", 11);
+    \u0275\u0275element(11, "input", 13);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(12, "p", 11)(13, "button", 12);
+    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_13_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.incrementFleches());
+    });
+    \u0275\u0275text(14, "+");
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275elementStart(15, "div", 8)(16, "label", 9);
+    \u0275\u0275text(17, "Nombre de vol\xE9es :");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(18, "div", 10)(19, "p", 11)(20, "button", 12);
+    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_20_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.decrementVolees());
+    });
+    \u0275\u0275text(21, "-");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(22, "p", 11);
+    \u0275\u0275element(23, "input", 13);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(24, "p", 11)(25, "button", 12);
+    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_25_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.incrementVolees());
+    });
+    \u0275\u0275text(26, "+");
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275elementStart(27, "div", 8)(28, "label", 9);
+    \u0275\u0275text(29, "Zone de r\xE9ussite :");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(30, "div", 10)(31, "p", 11)(32, "button", 12);
+    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_32_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.decrementZone());
+    });
+    \u0275\u0275text(33, "-");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(34, "p", 11);
+    \u0275\u0275element(35, "input", 13);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(36, "p", 11)(37, "button", 12);
+    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_37_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.incrementZone());
+    });
+    \u0275\u0275text(38, "+");
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275elementStart(39, "div", 14)(40, "button", 15);
+    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_40_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.startGame());
+    });
+    \u0275\u0275text(41, "D\xE9marrer");
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275advance(11);
+    \u0275\u0275property("value", ctx_r1.nbFlechesParVolee);
+    \u0275\u0275advance(12);
+    \u0275\u0275property("value", ctx_r1.nbVolees);
+    \u0275\u0275advance(12);
+    \u0275\u0275property("value", ctx_r1.zoneReussite);
+  }
+}
+function GoldGameComponent_div_6_tr_13_span_4_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 22);
+    \u0275\u0275text(1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const s_r3 = ctx.$implicit;
+    const ctx_r1 = \u0275\u0275nextContext(3);
+    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(s_r3));
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate(s_r3);
+  }
+}
+function GoldGameComponent_div_6_tr_13_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "tr")(1, "td");
+    \u0275\u0275text(2);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "td");
+    \u0275\u0275template(4, GoldGameComponent_div_6_tr_13_span_4_Template, 2, 2, "span", 21);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(5, "td");
+    \u0275\u0275text(6);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const vol_r4 = ctx.$implicit;
+    const i_r5 = ctx.index;
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(i_r5 + 1);
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngForOf", vol_r4.details);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(vol_r4.score);
+  }
+}
+function GoldGameComponent_div_6_tr_14_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "tr")(1, "td", 23);
+    \u0275\u0275text(2, "Total");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "td");
+    \u0275\u0275text(4);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance(4);
+    \u0275\u0275textInterpolate(ctx_r1.getTotalScore());
+  }
+}
+function GoldGameComponent_div_6_span_15_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span");
+    \u0275\u0275text(1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate1("(", ctx_r1.getZonePercent(), " % en zone)");
+  }
+}
+function GoldGameComponent_div_6_div_18_span_4_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 22);
+    \u0275\u0275text(1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const s_r6 = ctx.$implicit;
+    const ctx_r1 = \u0275\u0275nextContext(3);
+    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(s_r6));
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate(s_r6);
+  }
+}
+function GoldGameComponent_div_6_div_18_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div")(1, "h2", 17);
+    \u0275\u0275text(2);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "div");
+    \u0275\u0275template(4, GoldGameComponent_div_6_div_18_span_4_Template, 2, 2, "span", 21);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate2("Vol\xE9e ", ctx_r1.currentVoleeIndex + 1, " / ", ctx_r1.nbVolees, "");
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngForOf", ctx_r1.currentVolee);
+  }
+}
+function GoldGameComponent_div_6_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 16)(1, "h2", 17);
+    \u0275\u0275text(2, "Vol\xE9es pass\xE9es");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "table", 18)(4, "thead")(5, "tr")(6, "th");
+    \u0275\u0275text(7, "Vol\xE9e");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(8, "th");
+    \u0275\u0275text(9, "D\xE9tails");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(10, "th");
+    \u0275\u0275text(11, "Score");
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(12, "tbody");
+    \u0275\u0275template(13, GoldGameComponent_div_6_tr_13_Template, 7, 3, "tr", 19)(14, GoldGameComponent_div_6_tr_14_Template, 5, 1, "tr", 20);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275template(15, GoldGameComponent_div_6_span_15_Template, 2, 1, "span", 20);
+    \u0275\u0275element(16, "br")(17, "br");
+    \u0275\u0275template(18, GoldGameComponent_div_6_div_18_Template, 5, 3, "div", 20);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275advance(13);
+    \u0275\u0275property("ngForOf", ctx_r1.historiqueVolees);
+    \u0275\u0275advance();
+    \u0275\u0275property("ngIf", ctx_r1.historiqueVolees.length > 0);
+    \u0275\u0275advance();
+    \u0275\u0275property("ngIf", ctx_r1.historiqueVolees.length > 0);
+    \u0275\u0275advance(3);
+    \u0275\u0275property("ngIf", ctx_r1.gameStarted && !ctx_r1.gameFinished);
+  }
+}
+function GoldGameComponent_div_7_div_2_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r7 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 27)(1, "button", 28);
+    \u0275\u0275listener("click", function GoldGameComponent_div_7_div_2_Template_button_click_1_listener() {
+      const value_r8 = \u0275\u0275restoreView(_r7).$implicit;
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.addScore(value_r8));
+    });
+    \u0275\u0275text(2);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const value_r8 = ctx.$implicit;
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(value_r8));
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate1(" ", value_r8, " ");
+  }
+}
+function GoldGameComponent_div_7_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 24)(1, "div", 25);
+    \u0275\u0275template(2, GoldGameComponent_div_7_div_2_Template, 3, 2, "div", 26);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngForOf", ctx_r1.scoreValues);
+  }
+}
+var GoldGameComponent = class _GoldGameComponent {
+  localStorageItemName = "GoldGame";
+  nbFlechesParVolee = 7;
+  nbVolees = 6;
+  zoneReussite = 7;
+  gameStarted = false;
+  gameFinished = false;
+  currentVolee = [];
+  currentVoleeIndex = 0;
+  historiqueVolees = [];
+  // Clavier
+  scoreValues = [
+    "X",
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1,
+    "M"
+  ];
+  startGame() {
+    this.gameStarted = true;
+    this.currentVolee = [];
+    this.currentVoleeIndex = 0;
+    this.historiqueVolees = [];
+  }
+  resetGame() {
+    this.gameStarted = false;
+    this.gameFinished = false;
+    this.nbFlechesParVolee = 7;
+    this.nbVolees = 6;
+    this.currentVolee = [];
+    this.historiqueVolees = [];
+    localStorage.removeItem(this.localStorageItemName);
+  }
+  addScore(score) {
+    if (this.currentVolee.length < this.nbFlechesParVolee) {
+      this.currentVolee.push(score);
+      if (this.currentVolee.length === this.nbFlechesParVolee) {
+        this.saveCurrentVolee();
+      }
+    }
+  }
+  saveCurrentVolee() {
+    const score = this.calculateScore(this.currentVolee);
+    this.historiqueVolees.push({
+      details: [...this.currentVolee],
+      score
+    });
+    this.currentVolee = [];
+    this.currentVoleeIndex++;
+    if (this.currentVoleeIndex >= this.nbVolees) {
+      this.gameFinished = true;
+      console.log("game finished");
+    }
+    this.saveToLocalStorage();
+  }
+  getScoreClass(score) {
+    if (score === "X" || score === 10 || score === 9)
+      return "has-background-warning has-text-black";
+    if (score === 7 || score === 8)
+      return "has-background-danger has-text-white";
+    if (score === 5 || score === 6)
+      return "has-background-link has-text-white";
+    if (score === 3 || score === 4)
+      return "has-background-black has-text-white";
+    if (score === 2 || score === 1)
+      return "has-background-white has-text-black";
+    if (score === "M")
+      return "has-background-grey-dark has-text-white";
+    return "";
+  }
+  calculateScore(scores) {
+    return scores.reduce((total, s) => {
+      if (s == "M")
+        s = 0;
+      if (s == "X")
+        s = 11;
+      if (s == this.zoneReussite)
+        return total;
+      if (s == this.zoneReussite + 1)
+        return total + 1;
+      if (s > this.zoneReussite + 1)
+        return total + 2;
+      return total - 1;
+    }, 0);
+  }
+  getTotalScore() {
+    let total = 0;
+    this.historiqueVolees.forEach((hist) => {
+      total += hist.score;
+    });
+    return total;
+  }
+  getZonePercent() {
+    return Math.trunc(this.historiqueVolees.reduce((total, hist) => {
+      return total + hist.details.reduce((count, score) => {
+        if (score == "M")
+          score = 0;
+        if (score == "X")
+          score = 10;
+        if (score >= this.zoneReussite)
+          return count + 1;
+        return count;
+      }, 0);
+    }, 0) / (this.currentVoleeIndex * this.nbFlechesParVolee) * 100);
+  }
+  incrementFleches() {
+    this.nbFlechesParVolee++;
+  }
+  decrementFleches() {
+    if (this.nbFlechesParVolee > 7) {
+      this.nbFlechesParVolee--;
+    }
+  }
+  incrementVolees() {
+    this.nbVolees++;
+  }
+  decrementVolees() {
+    if (this.nbVolees > 1) {
+      this.nbVolees--;
+    }
+  }
+  incrementZone() {
+    if (this.zoneReussite < 10) {
+      this.zoneReussite++;
+    }
+  }
+  decrementZone() {
+    if (this.zoneReussite > 1) {
+      this.zoneReussite--;
+    }
+  }
+  saveToLocalStorage() {
+    const data = {
+      nbFlechesParVolee: this.nbFlechesParVolee,
+      nbVolees: this.nbVolees,
+      zoneReussite: this.zoneReussite,
+      currentVolee: this.currentVolee,
+      currentVoleeIndex: this.currentVoleeIndex,
+      historiqueVollees: this.historiqueVolees
+    };
+    localStorage.setItem(this.localStorageItemName, JSON.stringify(data));
+  }
+  loadFromLocalStorage() {
+    const saved = localStorage.getItem(this.localStorageItemName);
+    if (saved) {
+      const data = JSON.parse(saved);
+      this.nbFlechesParVolee = data.nbFlechesParVolee;
+      this.nbVolees = data.nbVolees;
+      this.zoneReussite = data.zoneReussite;
+      this.currentVolee = data.currentVolee;
+      this.currentVoleeIndex = data.currentVoleeIndex;
+      this.historiqueVolees = data.historiqueVollees;
+      this.gameStarted = true;
+      this.gameFinished = this.currentVoleeIndex >= this.nbVolees;
+    }
+  }
+  ngOnInit() {
+    this.loadFromLocalStorage();
+  }
+  static \u0275fac = function GoldGameComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _GoldGameComponent)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _GoldGameComponent, selectors: [["app-tir-compte-double"]], decls: 8, vars: 3, consts: [[1, "box", "is-flex", "is-justify-content-space-between", "is-align-items-center", "mb-2"], [1, "title"], [1, "button", "is-danger", 3, "click"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], ["class", "keyboard", 4, "ngIf"], [1, "box"], [1, "title", "is-4"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "keyboard"], [1, "columns", "is-multiline", "is-mobile", "is-gapless"], ["class", "column is-one-third", 4, "ngFor", "ngForOf"], [1, "column", "is-one-third"], [1, "button", "is-fullwidth", "custom-key", 3, "click", "ngClass"]], template: function GoldGameComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275elementStart(0, "div", 0)(1, "h1", 1);
+      \u0275\u0275text(2, "Gold Game");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(3, "button", 2);
+      \u0275\u0275listener("click", function GoldGameComponent_Template_button_click_3_listener() {
+        return ctx.resetGame();
+      });
+      \u0275\u0275text(4, "Recommencer");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275template(5, GoldGameComponent_div_5_Template, 42, 3, "div", 3)(6, GoldGameComponent_div_6_Template, 19, 4, "div", 4)(7, GoldGameComponent_div_7_Template, 3, 1, "div", 5);
+    }
+    if (rf & 2) {
+      \u0275\u0275advance(5);
+      \u0275\u0275property("ngIf", !ctx.gameStarted);
+      \u0275\u0275advance();
+      \u0275\u0275property("ngIf", ctx.gameStarted);
+      \u0275\u0275advance();
+      \u0275\u0275property("ngIf", ctx.gameStarted && !ctx.gameFinished);
+    }
+  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}.yellow[_ngcontent-%COMP%]{background-color:gold;color:#000}.red[_ngcontent-%COMP%]{background-color:#ff4136;color:#fff}.blue[_ngcontent-%COMP%]{background-color:#0074d9;color:#fff}.black[_ngcontent-%COMP%]{background-color:#111;color:#fff}.white[_ngcontent-%COMP%]{background-color:#fff;color:#000;border:1px solid #ccc}table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(GoldGameComponent, [{
+    type: Component,
+    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule], template: '<div\n  class="box is-flex is-justify-content-space-between is-align-items-center mb-2"\n>\n  <h1 class="title">Gold Game</h1>\n  <button class="button is-danger" (click)="resetGame()">Recommencer</button>\n</div>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Zone de r\xE9ussite :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementZone()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="zoneReussite" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementZone()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Score</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVolees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span\n            *ngFor="let s of vol.details"\n            class="tag m-1"\n            [ngClass]="getScoreClass(s)"\n            >{{ s }}</span\n          >\n        </td>\n        <td>{{ vol.score }}</td>\n      </tr>\n      <tr *ngIf="historiqueVolees.length > 0">\n       <td colspan="2">Total</td> \n       <td>{{getTotalScore()}}</td>\n      </tr>\n    </tbody>\n  </table>\n  <span *ngIf="historiqueVolees.length > 0">({{getZonePercent()}} % en zone)</span>\n  <br/>\n  <br/>\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span\n        *ngFor="let s of currentVolee"\n        class="tag m-1"\n        [ngClass]="getScoreClass(s)"\n        >{{ s }}</span\n      >\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<div *ngIf="gameStarted && !gameFinished" class="keyboard">\n  <div class="columns is-multiline is-mobile is-gapless">\n    <div *ngFor="let value of scoreValues" class="column is-one-third">\n      <button\n        class="button is-fullwidth custom-key"\n        [ngClass]="getScoreClass(value)"\n        (click)="addScore(value)"\n      >\n        {{ value }}\n      </button>\n    </div>\n  </div>\n</div>\n', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}.yellow{background-color:gold;color:#000}.red{background-color:#ff4136;color:#fff}.blue{background-color:#0074d9;color:#fff}.black{background-color:#111;color:#fff}.white{background-color:#fff;color:#000;border:1px solid #ccc}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
+  }], null, null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(GoldGameComponent, { className: "GoldGameComponent", filePath: "src/app/pages/gold-game/gold-game.component.ts", lineNumber: 12 });
+})();
+
 // src/app/pages/tir-compte-double/tir-compte-double.component.ts
 function TirCompteDoubleComponent_div_5_Template(rf, ctx) {
   if (rf & 1) {
@@ -42357,6 +42790,7 @@ var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
     this.nbVolees = 6;
     this.currentVolee = [];
     this.historiqueVollees = [];
+    localStorage.removeItem("tirCompteDoubleGame");
   }
   addScore(score) {
     if (this.currentVolee.length < this.nbFlechesParVolee) {
