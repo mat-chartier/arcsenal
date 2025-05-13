@@ -1,0 +1,40 @@
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="#">
+      <strong>ArcSenal</strong>
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" (click)="toggleNavbar()">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasic" class="navbar-menu" [ngClass]="{'is-active': isNavbarActive}">
+    <div class="navbar-start">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Outils
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" target="_blank" href="https://mat-chartier.github.io/simplevideocoach/">Video avec délai</a>
+          <hr class="navbar-divider"/>
+          <a class="navbar-item" target="_blank" href="https://mat-chartier.github.io/tube-cutter-length-calculator/">Réglage du Coupe-tube</a>
+        </div>
+      </div>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Jeux
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" routerLink="/gold-game" routerLinkActive="is-active" (click)="closeNavbar()">Gold Game</a>
+          <a class="navbar-item" routerLink="/tir-compte-double" routerLinkActive="is-active" (click)="closeNavbar()">Tir compté double</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
