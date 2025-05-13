@@ -1,1 +1,123 @@
-<p>A venir...</p>
+<div
+  class="box is-flex is-justify-content-space-between is-align-items-center mb-2"
+>
+  <h1 class="title">Gold Game</h1>
+  <button class="button is-danger" (click)="resetGame()">Recommencer</button>
+</div>
+
+<div class="box" *ngIf="!gameStarted">
+  <h2 class="title is-4">Paramètres</h2>
+
+  <div class="field mb-4">
+    <label class="label">Flèches par volée :</label>
+    <div class="field has-addons is-justify-content-center">
+      <p class="control">
+        <button class="button is-small" (click)="decrementFleches()">-</button>
+      </p>
+      <p class="control">
+        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px;">
+      </p>
+      <p class="control">
+        <button class="button is-small" (click)="incrementFleches()">+</button>
+      </p>
+    </div>
+  </div>
+
+  <div class="field mb-4">
+    <label class="label">Nombre de volées :</label>
+    <div class="field has-addons is-justify-content-center">
+      <p class="control">
+        <button class="button is-small" (click)="decrementVolees()">-</button>
+      </p>
+      <p class="control">
+        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px;">
+      </p>
+      <p class="control">
+        <button class="button is-small" (click)="incrementVolees()">+</button>
+      </p>
+    </div>
+  </div>
+
+  <div class="field mb-4">
+    <label class="label">Zone de réussite :</label>
+    <div class="field has-addons is-justify-content-center">
+      <p class="control">
+        <button class="button is-small" (click)="decrementZone()">-</button>
+      </p>
+      <p class="control">
+        <input class="input is-small has-text-centered" readonly [value]="zoneReussite" style="width: 60px;">
+      </p>
+      <p class="control">
+        <button class="button is-small" (click)="incrementZone()">+</button>
+      </p>
+    </div>
+  </div>
+
+  <div class="has-text-centered mt-4">
+    <button class="button is-primary" (click)="startGame()">Démarrer</button>
+  </div>
+</div>
+
+
+
+<!-- Résultats -->
+<div *ngIf="gameStarted" class="box content">
+  <h2 class="subtitle">Volées passées</h2>
+  <table class="table is-fullwidth is-bordered is-striped is-narrow">
+    <thead>
+      <tr>
+        <th>Volée</th>
+        <th>Détails</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vol of historiqueVolees; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>
+          <span
+            *ngFor="let s of vol.details"
+            class="tag m-1"
+            [ngClass]="getScoreClass(s)"
+            >{{ s }}</span
+          >
+        </td>
+        <td>{{ vol.score }}</td>
+      </tr>
+      <tr *ngIf="historiqueVolees.length > 0">
+       <td colspan="2">Total</td> 
+       <td>{{getTotalScore()}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <span *ngIf="historiqueVolees.length > 0">({{getZonePercent()}} % en zone)</span>
+  <br/>
+  <br/>
+  <!-- Volée en cours -->
+  <div *ngIf="gameStarted && !gameFinished">
+    <h2 class="subtitle">Volée {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>
+    <div>
+      <span
+        *ngFor="let s of currentVolee"
+        class="tag m-1"
+        [ngClass]="getScoreClass(s)"
+        >{{ s }}</span
+      >
+    </div>
+  </div>
+</div>
+
+<!-- Clavier -->
+<div *ngIf="gameStarted && !gameFinished" class="keyboard">
+  <div class="columns is-multiline is-mobile is-gapless">
+    <div *ngFor="let value of scoreValues" class="column is-one-third">
+      <button
+        class="button is-fullwidth custom-key"
+        [ngClass]="getScoreClass(value)"
+        (click)="addScore(value)"
+      >
+        {{ value }}
+      </button>
+    </div>
+  </div>
+</div>

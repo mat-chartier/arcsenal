@@ -52,6 +52,7 @@ export class TirCompteDoubleComponent {
     this.nbVolees = 6;
     this.currentVolee = [];
     this.historiqueVollees = [];
+    localStorage.removeItem('tirCompteDoubleGame');
   }
 
   addScore(score: number | 'X' | 'M') {
@@ -92,14 +93,14 @@ export class TirCompteDoubleComponent {
   }
 
   getScoreClass(score: number | 'X' | 'M') {
-    if (score === 'X' || score === 10)
+    if (score === 'X' || score === 10 || score === 9)
       return 'has-background-warning has-text-black';
-    if (score === 9 || score === 8)
+    if (score === 7 || score === 8)
       return 'has-background-danger has-text-white';
-    if (score === 7 || score === 6) return 'has-background-link has-text-white';
-    if (score === 5 || score === 4)
+    if (score === 5 || score === 6) return 'has-background-link has-text-white';
+    if (score === 3 || score === 4)
       return 'has-background-black has-text-white';
-    if (score === 3 || score === 2 || score === 1)
+    if ( score === 2 || score === 1)
       return 'has-background-white has-text-black';
     if (score === 'M') return 'has-background-grey-dark has-text-white';
     return '';
