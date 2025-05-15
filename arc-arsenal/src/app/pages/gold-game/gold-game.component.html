@@ -1,7 +1,7 @@
 <div
   class="box is-flex is-justify-content-space-between is-align-items-center mb-2"
 >
-  <h1 class="title">Gold Game</h1>
+  <h1 class="title is-4">Gold Game</h1>
   <button class="button is-danger" (click)="resetGame()">Recommencer</button>
 </div>
 
@@ -62,7 +62,7 @@
 
 <!-- Résultats -->
 <div *ngIf="gameStarted" class="box content">
-  <h2 class="subtitle">Volées passées</h2>
+  <h2 class="subtitle is-5">Volées passées</h2>
   <table class="table is-fullwidth is-bordered is-striped is-narrow">
     <thead>
       <tr>
@@ -95,7 +95,7 @@
   <br/>
   <!-- Volée en cours -->
   <div *ngIf="gameStarted && !gameFinished">
-    <h2 class="subtitle">Volée {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>
+    <h2 class="subtitle is-5">Volée {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>
     <div>
       <span
         *ngFor="let s of currentVolee"
@@ -103,6 +103,15 @@
         [ngClass]="getScoreClass(s)"
         >{{ s }}</span
       >
+    </div>
+    <div class="has-text-centered mt-2">
+      <button
+        class="button is-warning"
+        (click)="removeLastScore()"
+        [disabled]="currentVolee.length === 0"
+      >
+        Annuler dernière flèche
+      </button>
     </div>
   </div>
 </div>
