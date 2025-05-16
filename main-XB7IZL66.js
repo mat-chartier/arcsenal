@@ -42071,6 +42071,81 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
+// src/app/components/score-keyboard/score-keyboard.component.ts
+function ScoreKeyboardComponent_div_2_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 3)(1, "button", 4);
+    \u0275\u0275listener("click", function ScoreKeyboardComponent_div_2_Template_button_click_1_listener() {
+      const value_r2 = \u0275\u0275restoreView(_r1).$implicit;
+      const ctx_r2 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r2.selectScore(value_r2));
+    });
+    \u0275\u0275text(2);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const value_r2 = ctx.$implicit;
+    const ctx_r2 = \u0275\u0275nextContext();
+    \u0275\u0275advance();
+    \u0275\u0275property("ngClass", ctx_r2.getScoreClass(value_r2));
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate1(" ", value_r2, " ");
+  }
+}
+var ScoreKeyboardComponent = class _ScoreKeyboardComponent {
+  valeurs = [];
+  scoreSelected = new EventEmitter();
+  selectScore(value) {
+    this.scoreSelected.emit(value);
+    setTimeout(() => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }, 100);
+  }
+  getScoreClass(value) {
+    if (value === "X" || value === 10 || value === 9)
+      return "yellow";
+    if (value === 8 || value === 7)
+      return "red";
+    if (value === 6 || value === 5)
+      return "blue";
+    if (value === 4 || value === 3)
+      return "black";
+    if (value === 2 || value === 1)
+      return "white";
+    if (value === "M")
+      return "grey";
+    return "";
+  }
+  static \u0275fac = function ScoreKeyboardComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _ScoreKeyboardComponent)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ScoreKeyboardComponent, selectors: [["app-score-keyboard"]], inputs: { valeurs: "valeurs" }, outputs: { scoreSelected: "scoreSelected" }, decls: 3, vars: 1, consts: [[1, "keyboard"], [1, "columns", "is-multiline", "is-mobile"], ["class", "column is-one-third", 4, "ngFor", "ngForOf"], [1, "column", "is-one-third"], [1, "button", "custom-key", 2, "width", "100%", "height", "3rem", 3, "click", "ngClass"]], template: function ScoreKeyboardComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275elementStart(0, "div", 0)(1, "div", 1);
+      \u0275\u0275template(2, ScoreKeyboardComponent_div_2_Template, 3, 2, "div", 2);
+      \u0275\u0275elementEnd()();
+    }
+    if (rf & 2) {
+      \u0275\u0275advance(2);
+      \u0275\u0275property("ngForOf", ctx.valeurs);
+    }
+  }, dependencies: [CommonModule, NgClass, NgForOf], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}"] });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ScoreKeyboardComponent, [{
+    type: Component,
+    args: [{ selector: "app-score-keyboard", standalone: true, imports: [CommonModule], template: '<div class="keyboard">\n  <div class="columns is-multiline is-mobile">\n    <div *ngFor="let value of valeurs" class="column is-one-third">\n      <button\n        class="button custom-key"\n        [ngClass]="getScoreClass(value)"\n        (click)="selectScore(value)"\n        style="width: 100%; height: 3rem;"\n      >\n        {{ value }}\n      </button>\n    </div>\n  </div>\n</div>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}\n"] }]
+  }], null, { valeurs: [{
+    type: Input
+  }], scoreSelected: [{
+    type: Output
+  }] });
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ScoreKeyboardComponent, { className: "ScoreKeyboardComponent", filePath: "src/app/components/score-keyboard/score-keyboard.component.ts", lineNumber: 11 });
+})();
+
 // src/app/pages/gold-game/gold-game.component.ts
 function GoldGameComponent_div_5_Template(rf, ctx) {
   if (rf & 1) {
@@ -42303,37 +42378,20 @@ function GoldGameComponent_div_6_Template(rf, ctx) {
     \u0275\u0275property("ngIf", ctx_r1.gameStarted && !ctx_r1.gameFinished);
   }
 }
-function GoldGameComponent_div_7_div_2_Template(rf, ctx) {
+function GoldGameComponent_app_score_keyboard_7_Template(rf, ctx) {
   if (rf & 1) {
     const _r8 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 28)(1, "button", 29);
-    \u0275\u0275listener("click", function GoldGameComponent_div_7_div_2_Template_button_click_1_listener() {
-      const value_r9 = \u0275\u0275restoreView(_r8).$implicit;
-      const ctx_r1 = \u0275\u0275nextContext(2);
-      return \u0275\u0275resetView(ctx_r1.addScore(value_r9));
+    \u0275\u0275elementStart(0, "app-score-keyboard", 25);
+    \u0275\u0275listener("scoreSelected", function GoldGameComponent_app_score_keyboard_7_Template_app_score_keyboard_scoreSelected_0_listener($event) {
+      \u0275\u0275restoreView(_r8);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.addScore($event));
     });
-    \u0275\u0275text(2);
-    \u0275\u0275elementEnd()();
-  }
-  if (rf & 2) {
-    const value_r9 = ctx.$implicit;
-    const ctx_r1 = \u0275\u0275nextContext(2);
-    \u0275\u0275advance();
-    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(value_r9));
-    \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" ", value_r9, " ");
-  }
-}
-function GoldGameComponent_div_7_Template(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 25)(1, "div", 26);
-    \u0275\u0275template(2, GoldGameComponent_div_7_div_2_Template, 3, 2, "div", 27);
-    \u0275\u0275elementEnd()();
+    \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275advance(2);
-    \u0275\u0275property("ngForOf", ctx_r1.scoreValues);
+    \u0275\u0275property("valeurs", ctx_r1.scoreValues);
   }
 }
 var GoldGameComponent = class _GoldGameComponent {
@@ -42410,7 +42468,7 @@ var GoldGameComponent = class _GoldGameComponent {
     if (score === 2 || score === 1)
       return "white";
     if (score === "M")
-      return "has-background-grey-dark has-text-white";
+      return "gray";
     return "";
   }
   calculateScore(scores) {
@@ -42510,7 +42568,7 @@ var GoldGameComponent = class _GoldGameComponent {
   static \u0275fac = function GoldGameComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _GoldGameComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _GoldGameComponent, selectors: [["app-tir-compte-double"]], decls: 8, vars: 3, consts: [[1, "box", "is-flex", "is-justify-content-space-between", "is-align-items-center", "mb-2"], [1, "title", "is-4"], [1, "button", "is-danger", 3, "click"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], ["class", "keyboard", 4, "ngIf"], [1, "box"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-warning", 3, "click", "disabled"], [1, "keyboard"], [1, "columns", "is-multiline", "is-mobile", "is-gapless"], ["class", "column is-one-third", 4, "ngFor", "ngForOf"], [1, "column", "is-one-third"], [1, "button", "is-fullwidth", "custom-key", 3, "click", "ngClass"]], template: function GoldGameComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _GoldGameComponent, selectors: [["app-tir-compte-double"]], decls: 8, vars: 3, consts: [[1, "box", "is-flex", "is-justify-content-space-between", "is-align-items-center", "mb-2"], [1, "title", "is-4"], [1, "button", "is-danger", 3, "click"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "valeurs", "scoreSelected", 4, "ngIf"], [1, "box"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-warning", 3, "click", "disabled"], [3, "scoreSelected", "valeurs"]], template: function GoldGameComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "h1", 1);
       \u0275\u0275text(2, "Gold Game");
@@ -42521,7 +42579,7 @@ var GoldGameComponent = class _GoldGameComponent {
       });
       \u0275\u0275text(4, "Recommencer");
       \u0275\u0275elementEnd()();
-      \u0275\u0275template(5, GoldGameComponent_div_5_Template, 42, 3, "div", 3)(6, GoldGameComponent_div_6_Template, 19, 4, "div", 4)(7, GoldGameComponent_div_7_Template, 3, 1, "div", 5);
+      \u0275\u0275template(5, GoldGameComponent_div_5_Template, 42, 3, "div", 3)(6, GoldGameComponent_div_6_Template, 19, 4, "div", 4)(7, GoldGameComponent_app_score_keyboard_7_Template, 1, 1, "app-score-keyboard", 5);
     }
     if (rf & 2) {
       \u0275\u0275advance(5);
@@ -42531,16 +42589,16 @@ var GoldGameComponent = class _GoldGameComponent {
       \u0275\u0275advance();
       \u0275\u0275property("ngIf", ctx.gameStarted && !ctx.gameFinished);
     }
-  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}.yellow[_ngcontent-%COMP%]{background-color:#ff0;color:#000}.red[_ngcontent-%COMP%]{background-color:red;color:#000}.blue[_ngcontent-%COMP%]{background-color:#05c1f2;color:#000}.black[_ngcontent-%COMP%]{background-color:#111;color:#fff}.white[_ngcontent-%COMP%]{background-color:#fff;color:#000;border:1px solid #ccc}table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
+  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule, ScoreKeyboardComponent], styles: ["table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(GoldGameComponent, [{
     type: Component,
-    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule], template: '<div\n  class="box is-flex is-justify-content-space-between is-align-items-center mb-2"\n>\n  <h1 class="title is-4">Gold Game</h1>\n  <button class="button is-danger" (click)="resetGame()">Recommencer</button>\n</div>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Zone de r\xE9ussite :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementZone()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="zoneReussite" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementZone()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Score</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVolees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span\n            *ngFor="let s of vol.details"\n            class="tag m-1"\n            [ngClass]="getScoreClass(s)"\n            >{{ s }}</span\n          >\n        </td>\n        <td>{{ vol.score }}</td>\n      </tr>\n      <tr *ngIf="historiqueVolees.length > 0">\n       <td colspan="2">Total</td> \n       <td>{{getTotalScore()}}</td>\n      </tr>\n    </tbody>\n  </table>\n  <span *ngIf="historiqueVolees.length > 0">({{getZonePercent()}} % en zone)</span>\n  <br/>\n  <br/>\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span\n        *ngFor="let s of currentVolee"\n        class="tag m-1"\n        [ngClass]="getScoreClass(s)"\n        >{{ s }}</span\n      >\n    </div>\n    <div class="has-text-centered mt-2">\n      <button\n        class="button is-warning"\n        (click)="removeLastScore()"\n        [disabled]="currentVolee.length === 0"\n      >\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<div *ngIf="gameStarted && !gameFinished" class="keyboard">\n  <div class="columns is-multiline is-mobile is-gapless">\n    <div *ngFor="let value of scoreValues" class="column is-one-third">\n      <button\n        class="button is-fullwidth custom-key"\n        [ngClass]="getScoreClass(value)"\n        (click)="addScore(value)"\n      >\n        {{ value }}\n      </button>\n    </div>\n  </div>\n</div>\n', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}.yellow{background-color:#ff0;color:#000}.red{background-color:red;color:#000}.blue{background-color:#05c1f2;color:#000}.black{background-color:#111;color:#fff}.white{background-color:#fff;color:#000;border:1px solid #ccc}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
+    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent], template: '<div class="box is-flex is-justify-content-space-between is-align-items-center mb-2">\n  <h1 class="title is-4">Gold Game</h1>\n  <button class="button is-danger" (click)="resetGame()">Recommencer</button>\n</div>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Zone de r\xE9ussite :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementZone()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="zoneReussite" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementZone()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Score</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVolees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ vol.score }}</td>\n      </tr>\n      <tr *ngIf="historiqueVolees.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{getTotalScore()}}</td>\n      </tr>\n    </tbody>\n  </table>\n  <span *ngIf="historiqueVolees.length > 0">({{getZonePercent()}} % en zone)</span>\n  <br />\n  <br />\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-warning" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues" (scoreSelected)="addScore($event)"></app-score-keyboard>\n', styles: ["table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(GoldGameComponent, { className: "GoldGameComponent", filePath: "src/app/pages/gold-game/gold-game.component.ts", lineNumber: 12 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(GoldGameComponent, { className: "GoldGameComponent", filePath: "src/app/pages/gold-game/gold-game.component.ts", lineNumber: 13 });
 })();
 
 // src/app/pages/tir-compte-double/tir-compte-double.component.ts
@@ -42748,37 +42806,20 @@ function TirCompteDoubleComponent_div_6_Template(rf, ctx) {
     \u0275\u0275property("ngIf", ctx_r1.gameStarted && !ctx_r1.gameFinished);
   }
 }
-function TirCompteDoubleComponent_div_7_div_2_Template(rf, ctx) {
+function TirCompteDoubleComponent_app_score_keyboard_7_Template(rf, ctx) {
   if (rf & 1) {
     const _r8 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 28)(1, "button", 29);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_7_div_2_Template_button_click_1_listener() {
-      const value_r9 = \u0275\u0275restoreView(_r8).$implicit;
-      const ctx_r1 = \u0275\u0275nextContext(2);
-      return \u0275\u0275resetView(ctx_r1.addScore(value_r9));
+    \u0275\u0275elementStart(0, "app-score-keyboard", 25);
+    \u0275\u0275listener("scoreSelected", function TirCompteDoubleComponent_app_score_keyboard_7_Template_app_score_keyboard_scoreSelected_0_listener($event) {
+      \u0275\u0275restoreView(_r8);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.addScore($event));
     });
-    \u0275\u0275text(2);
-    \u0275\u0275elementEnd()();
-  }
-  if (rf & 2) {
-    const value_r9 = ctx.$implicit;
-    const ctx_r1 = \u0275\u0275nextContext(2);
-    \u0275\u0275advance();
-    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(value_r9));
-    \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" ", value_r9, " ");
-  }
-}
-function TirCompteDoubleComponent_div_7_Template(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 25)(1, "div", 26);
-    \u0275\u0275template(2, TirCompteDoubleComponent_div_7_div_2_Template, 3, 2, "div", 27);
-    \u0275\u0275elementEnd()();
+    \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275advance(2);
-    \u0275\u0275property("ngForOf", ctx_r1.scoreValues);
+    \u0275\u0275property("valeurs", ctx_r1.scoreValues);
   }
 }
 var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
@@ -42860,7 +42901,7 @@ var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
     if (score === 2 || score === 1)
       return "white";
     if (score === "M")
-      return "has-background-grey-dark has-text-white";
+      return "gray";
     return "";
   }
   calculateScoreSum(scores) {
@@ -42936,7 +42977,7 @@ var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
   static \u0275fac = function TirCompteDoubleComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _TirCompteDoubleComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TirCompteDoubleComponent, selectors: [["app-tir-compte-double"]], decls: 8, vars: 3, consts: [[1, "box", "is-flex", "is-justify-content-space-between", "is-align-items-center", "mb-2"], [1, "title", "is-4"], [1, "button", "is-danger", 3, "click"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], ["class", "keyboard", 4, "ngIf"], [1, "box"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-warning", 3, "click", "disabled"], [1, "keyboard"], [1, "columns", "is-multiline", "is-mobile", "is-gapless"], ["class", "column is-one-third", 4, "ngFor", "ngForOf"], [1, "column", "is-one-third"], [1, "button", "is-fullwidth", "custom-key", 3, "click", "ngClass"]], template: function TirCompteDoubleComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TirCompteDoubleComponent, selectors: [["app-tir-compte-double"]], decls: 8, vars: 3, consts: [[1, "box", "is-flex", "is-justify-content-space-between", "is-align-items-center", "mb-2"], [1, "title", "is-4"], [1, "button", "is-danger", 3, "click"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "valeurs", "scoreSelected", 4, "ngIf"], [1, "box"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-warning", 3, "click", "disabled"], [3, "scoreSelected", "valeurs"]], template: function TirCompteDoubleComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "h1", 1);
       \u0275\u0275text(2, "Tir compt\xE9 double");
@@ -42947,7 +42988,7 @@ var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
       });
       \u0275\u0275text(4, "Recommencer");
       \u0275\u0275elementEnd()();
-      \u0275\u0275template(5, TirCompteDoubleComponent_div_5_Template, 30, 2, "div", 3)(6, TirCompteDoubleComponent_div_6_Template, 18, 3, "div", 4)(7, TirCompteDoubleComponent_div_7_Template, 3, 1, "div", 5);
+      \u0275\u0275template(5, TirCompteDoubleComponent_div_5_Template, 30, 2, "div", 3)(6, TirCompteDoubleComponent_div_6_Template, 18, 3, "div", 4)(7, TirCompteDoubleComponent_app_score_keyboard_7_Template, 1, 1, "app-score-keyboard", 5);
     }
     if (rf & 2) {
       \u0275\u0275advance(5);
@@ -42957,16 +42998,16 @@ var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
       \u0275\u0275advance();
       \u0275\u0275property("ngIf", ctx.gameStarted && !ctx.gameFinished);
     }
-  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}.yellow[_ngcontent-%COMP%]{background-color:#ff0;color:#000}.red[_ngcontent-%COMP%]{background-color:red;color:#000}.blue[_ngcontent-%COMP%]{background-color:#05c1f2;color:#000}.black[_ngcontent-%COMP%]{background-color:#111;color:#fff}.white[_ngcontent-%COMP%]{background-color:#fff;color:#000;border:1px solid #ccc}table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
+  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule, ScoreKeyboardComponent], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TirCompteDoubleComponent, [{
     type: Component,
-    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule], template: '<div\n  class="box is-flex is-justify-content-space-between is-align-items-center mb-2"\n>\n  <h1 class="title is-4">Tir compt\xE9 double</h1>\n  <button class="button is-danger" (click)="resetGame()">Recommencer</button>\n</div>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input\n          class="input is-small has-text-centered"\n          readonly\n          [value]="nbFlechesParVolee"\n          style="width: 60px"\n        />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input\n          class="input is-small has-text-centered"\n          readonly\n          [value]="nbVolees"\n          style="width: 60px"\n        />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>6 +</th>\n        <th>6 -</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVollees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span\n            *ngFor="let s of vol.details"\n            class="tag m-1"\n            [ngClass]="getScoreClass(s)"\n            >{{ s }}</span\n          >\n        </td>\n        <td>{{ vol.meilleuresScore }}</td>\n        <td>{{ vol.moinsBonnesScore }}</td>\n      </tr>\n      <tr *ngIf="historiqueVollees.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{ getTotalBestScore() }}</td>\n        <td>{{ getTotalWorstScore() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span\n        *ngFor="let s of currentVolee"\n        class="tag m-1"\n        [ngClass]="getScoreClass(s)"\n        >{{ s }}</span\n      >\n    </div>\n    <div class="has-text-centered mt-2">\n      <button\n        class="button is-warning"\n        (click)="removeLastScore()"\n        [disabled]="currentVolee.length === 0"\n      >\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<div *ngIf="gameStarted && !gameFinished" class="keyboard">\n  <div class="columns is-multiline is-mobile is-gapless">\n    <div *ngFor="let value of scoreValues" class="column is-one-third">\n      <button\n        class="button is-fullwidth custom-key"\n        [ngClass]="getScoreClass(value)"\n        (click)="addScore(value)"\n      >\n        {{ value }}\n      </button>\n    </div>\n  </div>\n</div>\n', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}.yellow{background-color:#ff0;color:#000}.red{background-color:red;color:#000}.blue{background-color:#05c1f2;color:#000}.black{background-color:#111;color:#fff}.white{background-color:#fff;color:#000;border:1px solid #ccc}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
+    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent], template: '<div\n  class="box is-flex is-justify-content-space-between is-align-items-center mb-2"\n>\n  <h1 class="title is-4">Tir compt\xE9 double</h1>\n  <button class="button is-danger" (click)="resetGame()">Recommencer</button>\n</div>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input\n          class="input is-small has-text-centered"\n          readonly\n          [value]="nbFlechesParVolee"\n          style="width: 60px"\n        />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input\n          class="input is-small has-text-centered"\n          readonly\n          [value]="nbVolees"\n          style="width: 60px"\n        />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>6 +</th>\n        <th>6 -</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVollees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span\n            *ngFor="let s of vol.details"\n            class="tag m-1"\n            [ngClass]="getScoreClass(s)"\n            >{{ s }}</span\n          >\n        </td>\n        <td>{{ vol.meilleuresScore }}</td>\n        <td>{{ vol.moinsBonnesScore }}</td>\n      </tr>\n      <tr *ngIf="historiqueVollees.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{ getTotalBestScore() }}</td>\n        <td>{{ getTotalWorstScore() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span\n        *ngFor="let s of currentVolee"\n        class="tag m-1"\n        [ngClass]="getScoreClass(s)"\n        >{{ s }}</span\n      >\n    </div>\n    <div class="has-text-centered mt-2">\n      <button\n        class="button is-warning"\n        (click)="removeLastScore()"\n        [disabled]="currentVolee.length === 0"\n      >\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues" (scoreSelected)="addScore($event)"></app-score-keyboard>\n', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TirCompteDoubleComponent, { className: "TirCompteDoubleComponent", filePath: "src/app/pages/tir-compte-double/tir-compte-double.component.ts", lineNumber: 12 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TirCompteDoubleComponent, { className: "TirCompteDoubleComponent", filePath: "src/app/pages/tir-compte-double/tir-compte-double.component.ts", lineNumber: 13 });
 })();
 
 // src/app/pages/accueil/accueil.component.ts
