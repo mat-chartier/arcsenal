@@ -42120,7 +42120,7 @@ var ScoreKeyboardComponent = class _ScoreKeyboardComponent {
   static \u0275fac = function ScoreKeyboardComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _ScoreKeyboardComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ScoreKeyboardComponent, selectors: [["app-score-keyboard"]], inputs: { valeurs: "valeurs" }, outputs: { scoreSelected: "scoreSelected" }, decls: 3, vars: 1, consts: [[1, "keyboard"], [1, "columns", "is-multiline", "is-mobile"], ["class", "column is-one-third", 4, "ngFor", "ngForOf"], [1, "column", "is-one-third"], [1, "button", "custom-key", 2, "width", "100%", "height", "3rem", 3, "click", "ngClass"]], template: function ScoreKeyboardComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ScoreKeyboardComponent, selectors: [["app-score-keyboard"]], inputs: { valeurs: "valeurs" }, outputs: { scoreSelected: "scoreSelected" }, decls: 3, vars: 1, consts: [[1, "keyboard"], [1, "columns", "is-multiline", "is-mobile", "is-1"], ["class", "column is-one-quarter", 4, "ngFor", "ngForOf"], [1, "column", "is-one-quarter"], [1, "button", "custom-key", 2, "width", "100%", "height", "3rem", 3, "click", "ngClass"]], template: function ScoreKeyboardComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "div", 1);
       \u0275\u0275template(2, ScoreKeyboardComponent_div_2_Template, 3, 2, "div", 2);
@@ -42135,7 +42135,7 @@ var ScoreKeyboardComponent = class _ScoreKeyboardComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ScoreKeyboardComponent, [{
     type: Component,
-    args: [{ selector: "app-score-keyboard", standalone: true, imports: [CommonModule], template: '<div class="keyboard">\n  <div class="columns is-multiline is-mobile">\n    <div *ngFor="let value of valeurs" class="column is-one-third">\n      <button\n        class="button custom-key"\n        [ngClass]="getScoreClass(value)"\n        (click)="selectScore(value)"\n        style="width: 100%; height: 3rem;"\n      >\n        {{ value }}\n      </button>\n    </div>\n  </div>\n</div>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}\n"] }]
+    args: [{ selector: "app-score-keyboard", standalone: true, imports: [CommonModule], template: '<div class="keyboard">\n  <div class="columns is-multiline is-mobile is-1">\n    <div *ngFor="let value of valeurs" class="column is-one-quarter">\n      <button\n        class="button custom-key"\n        [ngClass]="getScoreClass(value)"\n        (click)="selectScore(value)"\n        style="width: 100%; height: 3rem;"\n      >\n        {{ value }}\n      </button>\n    </div>\n  </div>\n</div>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}\n"] }]
   }], null, { valeurs: [{
     type: Input
   }], scoreSelected: [{
