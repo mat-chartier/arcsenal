@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ScoreKeyboardComponent } from '../../components/score-keyboard/score-keyboard.component';
 
 @Component({
   selector: 'app-tir-compte-double',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ScoreKeyboardComponent],
   templateUrl: './tir-compte-double.component.html',
   styleUrl: './tir-compte-double.component.scss',
 })
@@ -102,7 +103,7 @@ export class TirCompteDoubleComponent {
       return 'black';
     if (score === 2 || score === 1)
       return 'white';
-    if (score === 'M') return 'has-background-grey-dark has-text-white';
+    if (score === 'M') return 'gray';
     return '';
   }
 
