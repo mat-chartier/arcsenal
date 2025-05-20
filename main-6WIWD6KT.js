@@ -43134,12 +43134,10 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
     if (event instanceof MouseEvent) {
       pt2.x = event.clientX;
       pt2.y = event.clientY;
-    } else {
-      pt2.x = event.touches[0].clientX;
-      pt2.y = event.touches[0].clientY;
+      const cursorpt = pt2.matrixTransform(svg.getScreenCTM().inverse());
+      this.fleches.push({ x: cursorpt.x, y: cursorpt.y });
+      this.nouvelImpact.emit({ x: cursorpt.x, y: cursorpt.y });
     }
-    const cursorpt = pt2.matrixTransform(svg.getScreenCTM().inverse());
-    this.fleches.push({ x: cursorpt.x, y: cursorpt.y });
   }
   startDrag(event) {
     if (event.touches.length === 1) {
@@ -43148,7 +43146,7 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
       this.startY = event.touches[0].clientY;
       const rect = this.blasonSvg.nativeElement.getBoundingClientRect();
       this.impactScreenX = event.touches[0].clientX - rect.left;
-      this.impactScreenY = event.touches[0].clientY - rect.top - 25;
+      this.impactScreenY = event.touches[0].clientY - rect.top - 35;
       this.impactVisible = true;
       event.preventDefault();
     }
@@ -43190,7 +43188,7 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
       let _t;
       \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.blasonSvg = _t.first);
     }
-  }, inputs: { autresImpacts: "autresImpacts", impactMoyen: "impactMoyen" }, outputs: { nouvelImpact: "nouvelImpact" }, decls: 7, vars: 5, consts: [["blasonSvg", ""], [1, "blason-container"], [1, "blason", 3, "click", "touchstart", "touchmove", "touchend"], ["cx", "100", "cy", "100", "stroke", "black", 4, "ngFor", "ngForOf"], ["r", "2", "fill", "black", 4, "ngFor", "ngForOf"], ["r", "3", "fill", "#55cc55", 4, "ngIf"], ["class", "impact", 3, "left", "top", 4, "ngIf"], ["cx", "100", "cy", "100", "stroke", "black"], ["r", "2", "fill", "black"], ["r", "3", "fill", "#55cc55"], [1, "impact"]], template: function BlasonInteractifComponent_Template(rf, ctx) {
+  }, inputs: { autresImpacts: "autresImpacts", impactMoyen: "impactMoyen" }, outputs: { nouvelImpact: "nouvelImpact" }, decls: 7, vars: 5, consts: [["blasonSvg", ""], [1, "blason-container"], [1, "blason", 3, "click", "touchstart", "touchmove", "touchend"], ["cx", "100", "cy", "100", "stroke", "black", 4, "ngFor", "ngForOf"], ["r", "2", "fill", "#777", 4, "ngFor", "ngForOf"], ["r", "3", "fill", "#55ff55", 4, "ngIf"], ["class", "impact", 3, "left", "top", 4, "ngIf"], ["cx", "100", "cy", "100", "stroke", "black"], ["r", "2", "fill", "#777"], ["r", "3", "fill", "#55ff55"], [1, "impact"]], template: function BlasonInteractifComponent_Template(rf, ctx) {
     if (rf & 1) {
       const _r1 = \u0275\u0275getCurrentView();
       \u0275\u0275elementStart(0, "div", 1);
@@ -43226,7 +43224,7 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
       \u0275\u0275advance();
       \u0275\u0275property("ngIf", ctx.impactVisible);
     }
-  }, dependencies: [CommonModule, NgForOf, NgIf], styles: ['@charset "UTF-8";.blason[_ngcontent-%COMP%]{width:100%;max-width:400px;height:auto;border:1px solid #ccc;touch-action:none}.blason-container[_ngcontent-%COMP%]{position:relative}.impact[_ngcontent-%COMP%]{position:absolute;width:12px;height:12px;background:red;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}'] });
+  }, dependencies: [CommonModule, NgForOf, NgIf], styles: ['@charset "UTF-8";.blason[_ngcontent-%COMP%]{width:100%;max-width:400px;height:auto;border:1px solid #ccc;touch-action:none}.blason-container[_ngcontent-%COMP%]{position:relative}.impact[_ngcontent-%COMP%]{position:absolute;width:12px;height:12px;background:#fff;border:2px solid #ddd;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}'] });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BlasonInteractifComponent, [{
@@ -43240,13 +43238,13 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
             [attr.stroke-width]="zone.strokeWidth" />
 
         <!-- Impacts d\xE9j\xE0 enregistr\xE9s (en noir) -->
-        <circle *ngFor="let f of autresImpacts" [attr.cx]="f.x" [attr.cy]="f.y" r="2" fill="black" />
+        <circle *ngFor="let f of autresImpacts" [attr.cx]="f.x" [attr.cy]="f.y" r="2" fill="#777" />
 
         <!-- Moyenne (en vert) -->
-        <circle *ngIf="impactMoyen" [attr.cx]="impactMoyen.x" [attr.cy]="impactMoyen.y" r="3" fill="#55cc55" />
+        <circle *ngIf="impactMoyen" [attr.cx]="impactMoyen.x" [attr.cy]="impactMoyen.y" r="3" fill="#55ff55" />
     </svg>
     <div *ngIf="impactVisible" class="impact" [style.left.px]="impactScreenX" [style.top.px]="impactScreenY"></div>
-</div>`, styles: ['@charset "UTF-8";.blason{width:100%;max-width:400px;height:auto;border:1px solid #ccc;touch-action:none}.blason-container{position:relative}.impact{position:absolute;width:12px;height:12px;background:red;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}\n'] }]
+</div>`, styles: ['@charset "UTF-8";.blason{width:100%;max-width:400px;height:auto;border:1px solid #ccc;touch-action:none}.blason-container{position:relative}.impact{position:absolute;width:12px;height:12px;background:#fff;border:2px solid #ddd;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}\n'] }]
   }], null, { autresImpacts: [{
     type: Input
   }], impactMoyen: [{
