@@ -1,0 +1,22 @@
+.blason {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border: 1px solid #ccc;
+  touch-action: none; /* pour gérer le touchstart proprement */
+}
+
+.blason-container {
+  position: relative;
+}
+
+.impact {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}

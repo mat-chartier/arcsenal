@@ -1,0 +1,48 @@
+<h2 class="title is-5">Tri de flèches <button *ngIf="mode != 'parametrage'" (click)="relancer()" class="button is-danger is-small">Relancer</button></h2>
+
+<!-- Paramétrage -->
+<div *ngIf="mode === 'parametrage'">
+    <h2 class="title is-4">Paramètres</h2>
+
+    <div class="field mb-4">
+        <label>Nombre de flèches :</label>
+        <input type="number" [(ngModel)]="nbFleches" min="1" inputmode="numeric" />
+        </div>
+
+    <div class="has-text-centered mt-4">
+        <button (click)="validerParametrage()" class="button is-primary">Valider</button>
+    </div>
+</div>
+
+<!-- Blason interactif -->
+<div *ngIf="mode === 'blason'">
+    <app-blason-interactif [autresImpacts]="getAllImpacts()" [impactsMoyens]="moyennesDesFleches()" (nouvelImpact)="onNouvelImpact($event)"></app-blason-interactif>
+
+    <button (click)="voirTout()" class="button is-warning">Voir tout</button>
+    
+</div>
+
+<!-- Voir tout : moyennes et moyenne des moyennes -->
+<div *ngIf="mode === 'voirTout'">
+    <h3>Toutes les moyennes</h3>
+    <app-blason-interactif [autresImpacts]="moyennesDesFleches()"
+        [impactsMoyens]="moyenneDesMoyennes()"></app-blason-interactif>
+
+    <button (click)="mode='blason'" class="button is-warning">Retour</button>
+</div>
+
+<!-- Modal choix flèche -->
+<div class="modal is-active" *ngIf="showModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Associer à quelle flèche ?</p>
+        </header>
+        <section class="modal-card-body">
+            <button *ngFor="let n of getFlecheNums()" class="button m-1" (click)="affecterImpact(n)">
+                {{ n }}
+            </button>
+            <button class="button m-1 is-danger" (click)="annulerAffectationImpact()">Annuler</button>
+        </section>
+    </div>
+</div>

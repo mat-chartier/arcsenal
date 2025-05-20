@@ -136,7 +136,7 @@ export class GoldGameComponent {
   }
 
   decrementFleches() {
-    if (this.nbFlechesParVolee > 7) {
+    if (this.nbFlechesParVolee > 1) {
       this.nbFlechesParVolee--;
     }
   }
