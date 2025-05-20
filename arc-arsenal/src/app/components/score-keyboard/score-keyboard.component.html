@@ -1,0 +1,14 @@
+<div class="keyboard">
+  <div class="columns is-multiline is-mobile is-1">
+    <div *ngFor="let value of valeurs" class="column is-one-quarter">
+      <button
+        class="button custom-key"
+        [ngClass]="getScoreClass(value)"
+        (click)="selectScore(value)"
+        style="width: 100%; height: 3rem;"
+      >
+        {{ value }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 <div
   class="box is-flex is-justify-content-space-between is-align-items-center mb-2"
 >
-  <h1 class="title">Tir compté double</h1>
+  <h1 class="title is-4">Tir compté double</h1>
   <button class="button is-danger" (click)="resetGame()">Recommencer</button>
 </div>
 
@@ -15,7 +15,12 @@
         <button class="button is-small" (click)="decrementFleches()">-</button>
       </p>
       <p class="control">
-        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px;">
+        <input
+          class="input is-small has-text-centered"
+          readonly
+          [value]="nbFlechesParVolee"
+          style="width: 60px"
+        />
       </p>
       <p class="control">
         <button class="button is-small" (click)="incrementFleches()">+</button>
@@ -30,7 +35,12 @@
         <button class="button is-small" (click)="decrementVolees()">-</button>
       </p>
       <p class="control">
-        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px;">
+        <input
+          class="input is-small has-text-centered"
+          readonly
+          [value]="nbVolees"
+          style="width: 60px"
+        />
       </p>
       <p class="control">
         <button class="button is-small" (click)="incrementVolees()">+</button>
@@ -43,11 +53,9 @@
   </div>
 </div>
 
-
-
 <!-- Résultats -->
 <div *ngIf="gameStarted" class="box content">
-  <h2 class="subtitle">Volées passées</h2>
+  <h2 class="subtitle is-5">Volées passées</h2>
   <table class="table is-fullwidth is-bordered is-striped is-narrow">
     <thead>
       <tr>
@@ -72,16 +80,16 @@
         <td>{{ vol.moinsBonnesScore }}</td>
       </tr>
       <tr *ngIf="historiqueVollees.length > 0">
-       <td colspan="2">Total</td> 
-       <td>{{getTotalBestScore()}}</td>
-       <td>{{getTotalWorstScore()}}</td>
+        <td colspan="2">Total</td>
+        <td>{{ getTotalBestScore() }}</td>
+        <td>{{ getTotalWorstScore() }}</td>
       </tr>
     </tbody>
   </table>
 
   <!-- Volée en cours -->
   <div *ngIf="gameStarted && !gameFinished">
-    <h2 class="subtitle">Volée {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>
+    <h2 class="subtitle is-5">Volée {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>
     <div>
       <span
         *ngFor="let s of currentVolee"
@@ -90,20 +98,17 @@
         >{{ s }}</span
       >
     </div>
-  </div>
-</div>
-
-<!-- Clavier -->
-<div *ngIf="gameStarted && !gameFinished" class="keyboard">
-  <div class="columns is-multiline is-mobile is-gapless">
-    <div *ngFor="let value of scoreValues" class="column is-one-third">
+    <div class="has-text-centered mt-2">
       <button
-        class="button is-fullwidth custom-key"
-        [ngClass]="getScoreClass(value)"
-        (click)="addScore(value)"
+        class="button is-warning"
+        (click)="removeLastScore()"
+        [disabled]="currentVolee.length === 0"
       >
-        {{ value }}
+        Annuler dernière flèche
       </button>
     </div>
   </div>
 </div>
+
+<!-- Clavier -->
+<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues" (scoreSelected)="addScore($event)"></app-score-keyboard>

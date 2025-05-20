@@ -1,7 +1,5 @@
-<div
-  class="box is-flex is-justify-content-space-between is-align-items-center mb-2"
->
-  <h1 class="title">Gold Game</h1>
+<div class="box is-flex is-justify-content-space-between is-align-items-center mb-2">
+  <h1 class="title is-4">Gold Game</h1>
   <button class="button is-danger" (click)="resetGame()">Recommencer</button>
 </div>
 
@@ -62,7 +60,7 @@
 
 <!-- Résultats -->
 <div *ngIf="gameStarted" class="box content">
-  <h2 class="subtitle">Volées passées</h2>
+  <h2 class="subtitle is-5">Volées passées</h2>
   <table class="table is-fullwidth is-bordered is-striped is-narrow">
     <thead>
       <tr>
@@ -75,49 +73,32 @@
       <tr *ngFor="let vol of historiqueVolees; index as i">
         <td>{{ i + 1 }}</td>
         <td>
-          <span
-            *ngFor="let s of vol.details"
-            class="tag m-1"
-            [ngClass]="getScoreClass(s)"
-            >{{ s }}</span
-          >
+          <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
         </td>
         <td>{{ vol.score }}</td>
       </tr>
       <tr *ngIf="historiqueVolees.length > 0">
-       <td colspan="2">Total</td> 
-       <td>{{getTotalScore()}}</td>
+        <td colspan="2">Total</td>
+        <td>{{getTotalScore()}}</td>
       </tr>
     </tbody>
   </table>
   <span *ngIf="historiqueVolees.length > 0">({{getZonePercent()}} % en zone)</span>
-  <br/>
-  <br/>
+  <br />
+  <br />
   <!-- Volée en cours -->
   <div *ngIf="gameStarted && !gameFinished">
-    <h2 class="subtitle">Volée {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>
+    <h2 class="subtitle is-5">Volée {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>
     <div>
-      <span
-        *ngFor="let s of currentVolee"
-        class="tag m-1"
-        [ngClass]="getScoreClass(s)"
-        >{{ s }}</span
-      >
+      <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
+    </div>
+    <div class="has-text-centered mt-2">
+      <button class="button is-warning" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">
+        Annuler dernière flèche
+      </button>
     </div>
   </div>
 </div>
 
 <!-- Clavier -->
-<div *ngIf="gameStarted && !gameFinished" class="keyboard">
-  <div class="columns is-multiline is-mobile is-gapless">
-    <div *ngFor="let value of scoreValues" class="column is-one-third">
-      <button
-        class="button is-fullwidth custom-key"
-        [ngClass]="getScoreClass(value)"
-        (click)="addScore(value)"
-      >
-        {{ value }}
-      </button>
-    </div>
-  </div>
-</div>
+<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues" (scoreSelected)="addScore($event)"></app-score-keyboard>
