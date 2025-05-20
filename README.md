@@ -4,7 +4,7 @@
 
 Cette application est conçue pour être responsive et fonctionner aussi bien en desktop qu’en mobile.
 
-Disponible sur githup pages: [https://mat-chartier.github.io/arcsenal/](https://mat-chartier.github.io/arcsenal/)
+Disponible sur github pages: [https://mat-chartier.github.io/arcsenal/](https://mat-chartier.github.io/arcsenal/)
 
 ---
 
@@ -46,7 +46,7 @@ Actuellement, l'application propose :
 
 ---
 
-## 📱 Fonctionnalités techniques
+### 📱 Fonctionnalités techniques
 
 - Application Angular standalone (sans modules)
 - CSS basé sur **Bulma**
@@ -56,10 +56,32 @@ Actuellement, l'application propose :
 
 ---
 
-## 🚀 Installation et lancement en local
+### 🚀 Installation et lancement en local
 
 ```bash
 git clone https://github.com/mat-chartier/arcsenal.git
 cd arcsenal
 npm install
 ng serve --open
+```
+
+---
+
+### 🌐 Déploiement
+
+Déployée en production sur GitHub Pages via :
+```bash
+ng build --configuration production
+npx angular-cli-ghpages --dir=dist/arc-senal/browser
+```
+
+---
+
+### 📃 Licence
+Projet distribué sous licence MIT.
+
+---
+
+### 📣 Contributions
+Toute suggestion ou contribution est la bienvenue, via issues ou pull requests ✌️
+
