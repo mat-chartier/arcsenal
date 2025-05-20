@@ -1,0 +1,16 @@
+<div class="blason-container">
+    <svg #blasonSvg [attr.viewBox]="viewBoxX + ' ' + viewBoxY + ' 200 200'" class="blason"
+        (click)="placerFleche($event)" (touchstart)="startDrag($event)" (touchmove)="drag($event)"
+        (touchend)="endDrag()">
+        <!-- Zones concentriques -->
+        <circle *ngFor="let zone of zones" [attr.r]="zone.r" [attr.fill]="zone.color" cx="100" cy="100" stroke="black"
+            [attr.stroke-width]="zone.strokeWidth" />
+
+        <!-- Impacts déjà enregistrés (en noir) -->
+        <circle *ngFor="let f of autresImpacts" [attr.cx]="f.x" [attr.cy]="f.y" r="2" fill="#777" />
+
+        <!-- Moyenne (en vert) -->
+        <circle *ngIf="impactMoyen" [attr.cx]="impactMoyen.x" [attr.cy]="impactMoyen.y" r="3" fill="#55ff55" />
+    </svg>
+    <div *ngIf="impactVisible" class="impact" [style.left.px]="impactScreenX" [style.top.px]="impactScreenY"></div>
+</div>
