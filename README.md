@@ -60,7 +60,7 @@ Actuellement, l'application propose :
 
 ```bash
 git clone https://github.com/mat-chartier/arcsenal.git
-cd arcsenal
+cd arc-senal
 npm install
 ng serve --open
 ```
