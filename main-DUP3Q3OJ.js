@@ -43108,16 +43108,12 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
   nouvelImpact = new EventEmitter();
   blasonSvg;
   zones = [
-    { r: 100, color: "white", strokeWidth: 0.2 },
-    { r: 90, color: "white", strokeWidth: 0.5 },
-    { r: 80, color: "black", strokeWidth: 0.2 },
-    { r: 70, color: "black", strokeWidth: 0.5 },
-    { r: 60, color: "#05c1f2", strokeWidth: 0.2 },
-    { r: 50, color: "#05c1f2", strokeWidth: 0.5 },
-    { r: 40, color: "red", strokeWidth: 0.2 },
-    { r: 30, color: "red", strokeWidth: 0.5 },
-    { r: 20, color: "yellow", strokeWidth: 0.2 },
-    { r: 10, color: "yellow", strokeWidth: 0.5 }
+    { r: 96, color: "#05c1f2", strokeWidth: 0.2 },
+    { r: 80, color: "#05c1f2", strokeWidth: 0.5 },
+    { r: 64, color: "red", strokeWidth: 0.2 },
+    { r: 48, color: "red", strokeWidth: 0.5 },
+    { r: 32, color: "yellow", strokeWidth: 0.2 },
+    { r: 16, color: "yellow", strokeWidth: 0.5 }
   ];
   viewBoxX = 0;
   viewBoxY = 0;
@@ -43127,6 +43123,10 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
   impactScreenX = 0;
   impactScreenY = 0;
   impactVisible = false;
+  zoomActive = false;
+  zoomFactor = 2;
+  zoomRefX = 100;
+  zoomRefY = 100;
   fleches = [];
   placerFleche(event) {
     const svg = this.blasonSvg.nativeElement;
@@ -43148,6 +43148,18 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
       this.impactScreenX = event.touches[0].clientX - rect.left;
       this.impactScreenY = event.touches[0].clientY - rect.top - 35;
       this.impactVisible = true;
+      const svg = this.blasonSvg.nativeElement;
+      const pt2 = svg.createSVGPoint();
+      pt2.x = event.touches[0].clientX;
+      pt2.y = event.touches[0].clientY;
+      const cursorpt = pt2.matrixTransform(svg.getScreenCTM().inverse());
+      const viewBoxSize = 200;
+      const relX = cursorpt.x / viewBoxSize;
+      const relY = cursorpt.y / viewBoxSize;
+      const newSize = viewBoxSize / this.zoomFactor;
+      this.zoomRefX = cursorpt.x - relX * newSize;
+      this.zoomRefY = cursorpt.y - relY * newSize;
+      this.zoomActive = true;
       event.preventDefault();
     }
   }
@@ -43155,8 +43167,8 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
     if (this.moving && event.touches.length === 1) {
       const dx = event.touches[0].clientX - this.startX;
       const dy = event.touches[0].clientY - this.startY;
-      this.viewBoxX -= dx * 0.5;
-      this.viewBoxY -= dy * 0.5;
+      this.viewBoxX -= dx * (200 / this.getCurrentViewBoxSize()) * 0.5;
+      this.viewBoxY -= dy * (200 / this.getCurrentViewBoxSize()) * 0.5;
       this.startX = event.touches[0].clientX;
       this.startY = event.touches[0].clientY;
       event.preventDefault();
@@ -43174,7 +43186,19 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
       this.viewBoxY = 0;
       this.impactVisible = false;
       this.moving = false;
+      this.zoomActive = false;
       this.nouvelImpact.emit({ x: cursorpt.x, y: cursorpt.y });
+    }
+  }
+  getCurrentViewBoxSize() {
+    return this.zoomActive ? 200 / this.zoomFactor : 200;
+  }
+  getViewBox() {
+    if (this.zoomActive) {
+      const size = 200 / this.zoomFactor;
+      return `${this.zoomRefX + this.viewBoxX} ${this.zoomRefY + this.viewBoxY} ${size} ${size}`;
+    } else {
+      return `${this.viewBoxX} ${this.viewBoxY} 200 200`;
     }
   }
   static \u0275fac = function BlasonInteractifComponent_Factory(__ngFactoryType__) {
@@ -43214,7 +43238,7 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
     }
     if (rf & 2) {
       \u0275\u0275advance();
-      \u0275\u0275attribute("viewBox", ctx.viewBoxX + " " + ctx.viewBoxY + " 200 200");
+      \u0275\u0275attribute("viewBox", ctx.getViewBox());
       \u0275\u0275advance(2);
       \u0275\u0275property("ngForOf", ctx.zones);
       \u0275\u0275advance();
@@ -43229,22 +43253,7 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BlasonInteractifComponent, [{
     type: Component,
-    args: [{ selector: "app-blason-interactif", standalone: true, imports: [CommonModule], template: `<div class="blason-container">
-    <svg #blasonSvg [attr.viewBox]="viewBoxX + ' ' + viewBoxY + ' 200 200'" class="blason"
-        (click)="placerFleche($event)" (touchstart)="startDrag($event)" (touchmove)="drag($event)"
-        (touchend)="endDrag()">
-        <!-- Zones concentriques -->
-        <circle *ngFor="let zone of zones" [attr.r]="zone.r" [attr.fill]="zone.color" cx="100" cy="100" stroke="black"
-            [attr.stroke-width]="zone.strokeWidth" />
-
-        <!-- Impacts d\xE9j\xE0 enregistr\xE9s (en noir) -->
-        <circle *ngFor="let f of autresImpacts" [attr.cx]="f.x" [attr.cy]="f.y" r="2" fill="#777" />
-
-        <!-- Moyenne (en vert) -->
-        <circle *ngIf="impactMoyen" [attr.cx]="impactMoyen.x" [attr.cy]="impactMoyen.y" r="3" fill="#55ff55" />
-    </svg>
-    <div *ngIf="impactVisible" class="impact" [style.left.px]="impactScreenX" [style.top.px]="impactScreenY"></div>
-</div>`, styles: ['@charset "UTF-8";.blason{width:100%;max-width:400px;height:auto;border:1px solid #ccc;touch-action:none}.blason-container{position:relative}.impact{position:absolute;width:12px;height:12px;background:#fff;border:2px solid #ddd;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}\n'] }]
+    args: [{ selector: "app-blason-interactif", standalone: true, imports: [CommonModule], template: '<div class="blason-container">\n    <svg #blasonSvg [attr.viewBox]="getViewBox()" class="blason"\n        (click)="placerFleche($event)" (touchstart)="startDrag($event)" (touchmove)="drag($event)"\n        (touchend)="endDrag()">\n        <!-- Zones concentriques -->\n        <circle *ngFor="let zone of zones" [attr.r]="zone.r" [attr.fill]="zone.color" cx="100" cy="100" stroke="black"\n            [attr.stroke-width]="zone.strokeWidth" />\n\n        <!-- Impacts d\xE9j\xE0 enregistr\xE9s (en noir) -->\n        <circle *ngFor="let f of autresImpacts" [attr.cx]="f.x" [attr.cy]="f.y" r="2" fill="#777" />\n\n        <!-- Moyenne (en vert) -->\n        <circle *ngIf="impactMoyen" [attr.cx]="impactMoyen.x" [attr.cy]="impactMoyen.y" r="3" fill="#55ff55" />\n    </svg>\n    <div *ngIf="impactVisible" class="impact" [style.left.px]="impactScreenX" [style.top.px]="impactScreenY"></div>\n</div>', styles: ['@charset "UTF-8";.blason{width:100%;max-width:400px;height:auto;border:1px solid #ccc;touch-action:none}.blason-container{position:relative}.impact{position:absolute;width:12px;height:12px;background:#fff;border:2px solid #ddd;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}\n'] }]
   }], null, { autresImpacts: [{
     type: Input
   }], impactMoyen: [{
