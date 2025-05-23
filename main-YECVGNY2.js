@@ -43125,6 +43125,7 @@ function BlasonInteractifComponent__svg_circle_6_Template(rf, ctx) {
     \u0275\u0275attribute("cx", ctx_r3.impactEnCours.x)("cy", ctx_r3.impactEnCours.y);
   }
 }
+var decalageVertical = 40;
 var BlasonInteractifComponent = class _BlasonInteractifComponent {
   blasonSvg;
   autresImpacts = [];
@@ -43149,7 +43150,7 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
       const svg = this.blasonSvg.nativeElement;
       const pt = svg.createSVGPoint();
       pt.x = event.touches[0].clientX;
-      pt.y = event.touches[0].clientY - 35;
+      pt.y = event.touches[0].clientY - decalageVertical;
       const cursorpt = pt.matrixTransform(svg.getScreenCTM().inverse());
       this.impactEnCours = { x: cursorpt.x, y: cursorpt.y };
       const viewBoxSize = 200;
@@ -43168,7 +43169,7 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
       const svg = this.blasonSvg.nativeElement;
       const pt = svg.createSVGPoint();
       pt.x = event.touches[0].clientX;
-      pt.y = event.touches[0].clientY - 35;
+      pt.y = event.touches[0].clientY - decalageVertical;
       const cursorpt = pt.matrixTransform(svg.getScreenCTM().inverse());
       this.impactEnCours = { x: cursorpt.x, y: cursorpt.y };
       event.preventDefault();
@@ -43254,7 +43255,7 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BlasonInteractifComponent, { className: "BlasonInteractifComponent", filePath: "src/app/components/blason-interactif/blason-interactif.component.ts", lineNumber: 11 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BlasonInteractifComponent, { className: "BlasonInteractifComponent", filePath: "src/app/components/blason-interactif/blason-interactif.component.ts", lineNumber: 12 });
 })();
 
 // src/app/pages/tri-de-fleches/tri-de-fleches.component.ts
@@ -43335,7 +43336,7 @@ function TriDeFlechesComponent_div_5_Template(rf, ctx) {
     \u0275\u0275text(2, "Toutes les moyennes");
     \u0275\u0275elementEnd();
     \u0275\u0275element(3, "app-blason-interactif", 11);
-    \u0275\u0275elementStart(4, "button", 12);
+    \u0275\u0275elementStart(4, "button", 10);
     \u0275\u0275listener("click", function TriDeFlechesComponent_div_5_Template_button_click_4_listener() {
       \u0275\u0275restoreView(_r5);
       const ctx_r1 = \u0275\u0275nextContext();
@@ -43353,7 +43354,7 @@ function TriDeFlechesComponent_div_5_Template(rf, ctx) {
 function TriDeFlechesComponent_div_6_button_7_Template(rf, ctx) {
   if (rf & 1) {
     const _r6 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 20);
+    \u0275\u0275elementStart(0, "button", 19);
     \u0275\u0275listener("click", function TriDeFlechesComponent_div_6_button_7_Template_button_click_0_listener() {
       const n_r7 = \u0275\u0275restoreView(_r6).$implicit;
       const ctx_r1 = \u0275\u0275nextContext(2);
@@ -43370,13 +43371,13 @@ function TriDeFlechesComponent_div_6_button_7_Template(rf, ctx) {
 }
 function TriDeFlechesComponent_div_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 13);
-    \u0275\u0275element(1, "div", 14);
-    \u0275\u0275elementStart(2, "div", 15)(3, "header", 16)(4, "p", 17);
+    \u0275\u0275elementStart(0, "div", 12);
+    \u0275\u0275element(1, "div", 13);
+    \u0275\u0275elementStart(2, "div", 14)(3, "header", 15)(4, "p", 16);
     \u0275\u0275text(5, "Associer \xE0 quelle fl\xE8che ?");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "section", 18);
-    \u0275\u0275template(7, TriDeFlechesComponent_div_6_button_7_Template, 2, 1, "button", 19);
+    \u0275\u0275elementStart(6, "section", 17);
+    \u0275\u0275template(7, TriDeFlechesComponent_div_6_button_7_Template, 2, 1, "button", 18);
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
@@ -43395,9 +43396,20 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
     this.initImpacts();
   }
   initImpacts() {
-    this.impactsParFleche = /* @__PURE__ */ new Map();
-    for (let i = 1; i <= this.nbFleches; i++) {
-      this.impactsParFleche.set(i, []);
+    const dataStr = localStorage.getItem("tri-de-fleches");
+    if (dataStr === null) {
+      this.impactsParFleche = /* @__PURE__ */ new Map();
+      for (let i = 1; i <= this.nbFleches; i++) {
+        this.impactsParFleche.set(i, []);
+      }
+    } else {
+      const data = JSON.parse(dataStr);
+      if (data != null) {
+        console.log(data);
+        this.nbFleches = data.nbFleches;
+        this.impactsParFleche = new Map(data.impactsParFleche);
+        this.mode = "blason";
+      }
     }
   }
   validerParametrage() {
@@ -43407,20 +43419,26 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
     }
   }
   getAllImpacts() {
-    return Array.from(this.impactsParFleche.entries()).flatMap(([arrowKey, coordinatesArray]) => {
-      return coordinatesArray.map((coord) => ({
-        x: coord.x,
-        y: coord.y,
-        arrow: arrowKey
-        // Use the map's key as the 'arrow' value
-      }));
-    });
+    if (this.impactsParFleche) {
+      return Array.from(this.impactsParFleche.entries()).flatMap(([arrowKey, coordinatesArray]) => {
+        return coordinatesArray.map((coord) => ({
+          x: coord.x,
+          y: coord.y,
+          arrow: arrowKey
+          // Use the map's key as the 'arrow' value
+        }));
+      });
+    }
+    return [];
   }
   getFlecheNums() {
     return Array.from({ length: this.nbFleches }, (_, i) => i + 1);
   }
   moyennesDesFleches() {
-    return this.getFlecheNums().map((n) => this.moyenne(this.impactsParFleche.get(n), n)).filter((m) => m !== null);
+    if (this.impactsParFleche) {
+      return this.getFlecheNums().map((n) => this.moyenne(this.impactsParFleche.get(n), n)).filter((m) => m !== null);
+    }
+    return [];
   }
   onNouvelImpact(impact) {
     this.dernierImpact = impact;
@@ -43457,20 +43475,22 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
   relancer() {
     this.nbFleches = 6;
     this.mode = "parametrage";
-    this.impactsParFleche.clear();
+    if (this.impactsParFleche) {
+      this.impactsParFleche.clear();
+    }
     localStorage.removeItem("tri-de-fleches");
   }
   sauvegarder() {
     const data = {
       nbFleches: this.nbFleches,
-      impacts: Array.from(this.impactsParFleche.entries())
+      impactsParFleche: Array.from(this.impactsParFleche.entries())
     };
     localStorage.setItem("tri-de-fleches", JSON.stringify(data));
   }
   static \u0275fac = function TriDeFlechesComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _TriDeFlechesComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TriDeFlechesComponent, selectors: [["app-tri-de-fleches"]], decls: 7, vars: 5, consts: [[1, "title", "is-4"], ["class", "button is-danger", 3, "click", 4, "ngIf"], [4, "ngIf"], ["class", "modal is-active", 4, "ngIf"], [1, "button", "is-danger", 3, "click"], [1, "field", "mb-4"], ["type", "number", "min", "1", "inputmode", "numeric", 3, "ngModelChange", "ngModel"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [3, "nouvelImpact", "autresImpacts", "impactsMoyens"], [1, "button", "is-warning", 3, "click"], [3, "autresImpacts", "impactsMoyens"], [3, "click"], [1, "modal", "is-active"], [1, "modal-background"], [1, "modal-card"], [1, "modal-card-head"], [1, "modal-card-title"], [1, "modal-card-body"], ["class", "button m-1", 3, "click", 4, "ngFor", "ngForOf"], [1, "button", "m-1", 3, "click"]], template: function TriDeFlechesComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TriDeFlechesComponent, selectors: [["app-tri-de-fleches"]], decls: 7, vars: 5, consts: [[1, "title", "is-4"], ["class", "button is-danger", 3, "click", 4, "ngIf"], [4, "ngIf"], ["class", "modal is-active", 4, "ngIf"], [1, "button", "is-danger", 3, "click"], [1, "field", "mb-4"], ["type", "number", "min", "1", "inputmode", "numeric", 3, "ngModelChange", "ngModel"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [3, "nouvelImpact", "autresImpacts", "impactsMoyens"], [1, "button", "is-warning", 3, "click"], [3, "autresImpacts", "impactsMoyens"], [1, "modal", "is-active"], [1, "modal-background"], [1, "modal-card"], [1, "modal-card-head"], [1, "modal-card-title"], [1, "modal-card-body"], ["class", "button m-1", 3, "click", 4, "ngFor", "ngForOf"], [1, "button", "m-1", 3, "click"]], template: function TriDeFlechesComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "h2", 0);
       \u0275\u0275text(1, "Tri de fl\xE8ches");
@@ -43525,7 +43545,7 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
     <app-blason-interactif [autresImpacts]="moyennesDesFleches()"
         [impactsMoyens]="moyenneDesMoyennes()"></app-blason-interactif>
 
-    <button (click)="mode='blason'">Retour</button>
+    <button (click)="mode='blason'" class="button is-warning">Retour</button>
 </div>
 
 <!-- Modal choix fl\xE8che -->
