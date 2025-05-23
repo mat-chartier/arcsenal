@@ -21,6 +21,12 @@ Actuellement, l'application propose :
 
 ### 🏹 Jeux disponibles :
 
+- **Tir Compté**
+  - Paramétrez le nombre de flèches par volée et le nombre de volées
+  - Saisissez vos flèches via un clavier couleur correspondant aux zones du blason
+  - Calcul automatique des scores
+  - Score cumulatif, sauvegarde locale
+
 - **Tir Compté Double**
   - Paramétrez le nombre de flèches par volée et le nombre de volées
   - Saisissez vos flèches via un clavier couleur correspondant aux zones du blason
