@@ -33,7 +33,7 @@ var __async = (__this, __arguments, generator) => {
         reject(e);
       }
     };
-    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    var step = (x2) => x2.done ? resolve(x2.value) : Promise.resolve(x2.value).then(fulfilled, rejected);
     step((generator = generator.apply(__this, __arguments)).next());
   });
 };
@@ -786,8 +786,8 @@ var EMPTY_OBSERVER = {
 var observable = (() => typeof Symbol === "function" && Symbol.observable || "@@observable")();
 
 // node_modules/rxjs/dist/esm/internal/util/identity.js
-function identity(x) {
-  return x;
+function identity(x2) {
+  return x2;
 }
 
 // node_modules/rxjs/dist/esm/internal/util/pipe.js
@@ -869,7 +869,7 @@ var Observable = class _Observable {
     promiseCtor = getPromiseCtor(promiseCtor);
     return new promiseCtor((resolve, reject) => {
       let value;
-      this.subscribe((x) => value = x, (err) => reject(err), () => resolve(value));
+      this.subscribe((x2) => value = x2, (err) => reject(err), () => resolve(value));
     });
   }
 };
@@ -1232,13 +1232,13 @@ function popScheduler(args) {
 }
 
 // node_modules/tslib/tslib.es6.mjs
-function __awaiter(thisArg, _arguments, P, generator) {
+function __awaiter(thisArg, _arguments, P2, generator) {
   function adopt(value) {
-    return value instanceof P ? value : new P(function(resolve) {
+    return value instanceof P2 ? value : new P2(function(resolve) {
       resolve(value);
     });
   }
-  return new (P || (P = Promise))(function(resolve, reject) {
+  return new (P2 || (P2 = Promise))(function(resolve, reject) {
     function fulfilled(value) {
       try {
         step(generator.next(value));
@@ -1259,26 +1259,26 @@ function __awaiter(thisArg, _arguments, P, generator) {
     step((generator = generator.apply(thisArg, _arguments || [])).next());
   });
 }
-function __values(o) {
-  var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-  if (m) return m.call(o);
-  if (o && typeof o.length === "number") return {
+function __values(o2) {
+  var s2 = typeof Symbol === "function" && Symbol.iterator, m = s2 && o2[s2], i = 0;
+  if (m) return m.call(o2);
+  if (o2 && typeof o2.length === "number") return {
     next: function() {
-      if (o && i >= o.length) o = void 0;
+      if (o2 && i >= o2.length) o2 = void 0;
       return {
-        value: o && o[i++],
-        done: !o
+        value: o2 && o2[i++],
+        done: !o2
       };
     }
   };
-  throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+  throw new TypeError(s2 ? "Object is not iterable." : "Symbol.iterator is not defined.");
 }
 function __await(v) {
   return this instanceof __await ? (this.v = v, this) : new __await(v);
 }
 function __asyncGenerator(thisArg, _arguments, generator) {
   if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-  var g = generator.apply(thisArg, _arguments || []), i, q = [];
+  var g2 = generator.apply(thisArg, _arguments || []), i, q = [];
   return i = Object.create((typeof AsyncIterator === "function" ? AsyncIterator : Object).prototype), verb("next"), verb("throw"), verb("return", awaitReturn), i[Symbol.asyncIterator] = function() {
     return this;
   }, i;
@@ -1288,7 +1288,7 @@ function __asyncGenerator(thisArg, _arguments, generator) {
     };
   }
   function verb(n, f) {
-    if (g[n]) {
+    if (g2[n]) {
       i[n] = function(v) {
         return new Promise(function(a, b) {
           q.push([n, v, a, b]) > 1 || resume(n, v);
@@ -1299,13 +1299,13 @@ function __asyncGenerator(thisArg, _arguments, generator) {
   }
   function resume(n, v) {
     try {
-      step(g[n](v));
+      step(g2[n](v));
     } catch (e) {
       settle(q[0][3], e);
     }
   }
-  function step(r) {
-    r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r);
+  function step(r2) {
+    r2.value instanceof __await ? Promise.resolve(r2.value.v).then(fulfill, reject) : settle(q[0][2], r2);
   }
   function fulfill(value) {
     resume("next", value);
@@ -1317,16 +1317,16 @@ function __asyncGenerator(thisArg, _arguments, generator) {
     if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]);
   }
 }
-function __asyncValues(o) {
+function __asyncValues(o2) {
   if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-  var m = o[Symbol.asyncIterator], i;
-  return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function() {
+  var m = o2[Symbol.asyncIterator], i;
+  return m ? m.call(o2) : (o2 = typeof __values === "function" ? __values(o2) : o2[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function() {
     return this;
   }, i);
   function verb(n) {
-    i[n] = o[n] && function(v) {
+    i[n] = o2[n] && function(v) {
       return new Promise(function(resolve, reject) {
-        v = o[n](v), settle(resolve, reject, v.done, v.value);
+        v = o2[n](v), settle(resolve, reject, v.done, v.value);
       });
     };
   }
@@ -1341,7 +1341,7 @@ function __asyncValues(o) {
 }
 
 // node_modules/rxjs/dist/esm/internal/util/isArrayLike.js
-var isArrayLike = (x) => x && typeof x.length === "number" && typeof x !== "function";
+var isArrayLike = (x2) => x2 && typeof x2.length === "number" && typeof x2 !== "function";
 
 // node_modules/rxjs/dist/esm/internal/util/isPromise.js
 function isPromise(value) {
@@ -1468,13 +1468,13 @@ function fromIterable(iterable) {
 }
 function fromAsyncIterable(asyncIterable) {
   return new Observable((subscriber) => {
-    process(asyncIterable, subscriber).catch((err) => subscriber.error(err));
+    process2(asyncIterable, subscriber).catch((err) => subscriber.error(err));
   });
 }
 function fromReadableStreamLike(readableStream) {
   return fromAsyncIterable(readableStreamLikeToAsyncGenerator(readableStream));
 }
-function process(asyncIterable, subscriber) {
+function process2(asyncIterable, subscriber) {
   var asyncIterable_1, asyncIterable_1_1;
   var e_1, _a;
   return __awaiter(this, void 0, void 0, function* () {
@@ -2691,9 +2691,9 @@ function throwCyclicDependencyError(token, path) {
 function throwMixedMultiProviderError() {
   throw new Error(`Cannot mix multi providers and regular providers`);
 }
-function throwInvalidProviderError(ngModuleType, providers, provider) {
-  if (ngModuleType && providers) {
-    const providerDetail = providers.map((v) => v == provider ? "?" + provider + "?" : "...");
+function throwInvalidProviderError(ngModuleType, providers2, provider) {
+  if (ngModuleType && providers2) {
+    const providerDetail = providers2.map((v) => v == provider ? "?" + provider + "?" : "...");
     throw new Error(`Invalid provider for the NgModule '${stringify(ngModuleType)}' - only instances of Provider and Type are allowed, got: [${providerDetail.join(", ")}]`);
   } else if (isEnvironmentProviders(provider)) {
     if (provider.\u0275fromNgModule) {
@@ -2841,8 +2841,8 @@ function catchInjectorError(e, token, injectorErrorName, source) {
   e[NG_TEMP_TOKEN_PATH] = null;
   throw e;
 }
-function formatError(text, obj, injectorErrorName, source = null) {
-  text = text && text.charAt(0) === "\n" && text.charAt(1) == NO_NEW_LINE ? text.slice(2) : text;
+function formatError(text2, obj, injectorErrorName, source = null) {
+  text2 = text2 && text2.charAt(0) === "\n" && text2.charAt(1) == NO_NEW_LINE ? text2.slice(2) : text2;
   let context2 = stringify(obj);
   if (Array.isArray(obj)) {
     context2 = obj.map(stringify).join(" -> ");
@@ -2856,7 +2856,7 @@ function formatError(text, obj, injectorErrorName, source = null) {
     }
     context2 = `{${parts.join(", ")}}`;
   }
-  return `${injectorErrorName}${source ? "(" + source + ")" : ""}[${context2}]: ${text.replace(NEW_LINE, "\n  ")}`;
+  return `${injectorErrorName}${source ? "(" + source + ")" : ""}[${context2}]: ${text2.replace(NEW_LINE, "\n  ")}`;
 }
 var Inject = attachInjectFlag(
   // Disable tslint because `DecoratorFlags` is a const enum which gets inlined.
@@ -2963,19 +2963,19 @@ function arraySplice(array, index, count) {
 }
 function arrayInsert2(array, index, value1, value2) {
   ngDevMode && assertLessThanOrEqual(index, array.length, "Can't insert past array end.");
-  let end = array.length;
-  if (end == index) {
+  let end2 = array.length;
+  if (end2 == index) {
     array.push(value1, value2);
-  } else if (end === 1) {
+  } else if (end2 === 1) {
     array.push(value2, array[0]);
     array[0] = value1;
   } else {
-    end--;
-    array.push(array[end - 1], array[end]);
-    while (end > index) {
-      const previousEnd = end - 2;
-      array[end] = array[previousEnd];
-      end--;
+    end2--;
+    array.push(array[end2 - 1], array[end2]);
+    while (end2 > index) {
+      const previousEnd = end2 - 2;
+      array[end2] = array[previousEnd];
+      end2--;
     }
     array[index] = value1;
     array[index + 1] = value2;
@@ -3004,19 +3004,19 @@ function keyValueArrayIndexOf(keyValueArray, key) {
 function _arrayIndexOfSorted(array, value, shift) {
   ngDevMode && assertEqual(Array.isArray(array), true, "Expecting an array");
   let start = 0;
-  let end = array.length >> shift;
-  while (end !== start) {
-    const middle = start + (end - start >> 1);
+  let end2 = array.length >> shift;
+  while (end2 !== start) {
+    const middle = start + (end2 - start >> 1);
     const current = array[middle << shift];
     if (value === current) {
       return middle << shift;
     } else if (current > value) {
-      end = middle;
+      end2 = middle;
     } else {
       start = middle + 1;
     }
   }
-  return ~(end << shift);
+  return ~(end2 << shift);
 }
 var EMPTY_OBJ = {};
 var EMPTY_ARRAY = [];
@@ -3063,9 +3063,9 @@ function isStandalone(type) {
   const def = getComponentDef(type) || getDirectiveDef(type) || getPipeDef$1(type);
   return def !== null && def.standalone;
 }
-function makeEnvironmentProviders(providers) {
+function makeEnvironmentProviders(providers2) {
   return {
-    \u0275providers: providers
+    \u0275providers: providers2
   };
 }
 function importProvidersFrom(...sources) {
@@ -3103,10 +3103,10 @@ function processInjectorTypesWithProviders(typesWithProviders, visitor) {
   for (let i = 0; i < typesWithProviders.length; i++) {
     const {
       ngModule,
-      providers
+      providers: providers2
     } = typesWithProviders[i];
-    deepForEachProvider(providers, (provider) => {
-      ngDevMode && validateProvider(provider, providers || EMPTY_ARRAY, ngModule);
+    deepForEachProvider(providers2, (provider) => {
+      ngDevMode && validateProvider(provider, providers2 || EMPTY_ARRAY, ngModule);
       visitor(provider, ngModule);
     });
   }
@@ -3197,17 +3197,17 @@ function walkProviderTree(container, visitor, parents, dedup) {
   }
   return defType !== container && container.providers !== void 0;
 }
-function validateProvider(provider, providers, containerType) {
+function validateProvider(provider, providers2, containerType) {
   if (isTypeProvider(provider) || isValueProvider(provider) || isFactoryProvider(provider) || isExistingProvider(provider)) {
     return;
   }
   const classRef = resolveForwardRef(provider && (provider.useClass || provider.provide));
   if (!classRef) {
-    throwInvalidProviderError(containerType, providers, provider);
+    throwInvalidProviderError(containerType, providers2, provider);
   }
 }
-function deepForEachProvider(providers, fn) {
-  for (let provider of providers) {
+function deepForEachProvider(providers2, fn) {
+  for (let provider of providers2) {
     if (isEnvironmentProviders(provider)) {
       provider = provider.\u0275providers;
     }
@@ -3272,12 +3272,12 @@ var R3Injector = class extends EnvironmentInjector {
   }
   _destroyed = false;
   injectorDefTypes;
-  constructor(providers, parent, source, scopes) {
+  constructor(providers2, parent, source, scopes) {
     super();
     this.parent = parent;
     this.source = source;
     this.scopes = scopes;
-    forEachSingleProvider(providers, (provider) => this.processProvider(provider));
+    forEachSingleProvider(providers2, (provider) => this.processProvider(provider));
     this.records.set(INJECTOR$1, makeRecord(void 0, this));
     if (scopes.has("environment")) {
       this.records.set(EnvironmentInjector, makeRecord(void 0, this));
@@ -3548,10 +3548,10 @@ function providerToRecord(provider) {
     return makeRecord(factory, NOT_YET);
   }
 }
-function providerToFactory(provider, ngModuleType, providers) {
+function providerToFactory(provider, ngModuleType, providers2) {
   let factory = void 0;
   if (ngDevMode && isEnvironmentProviders(provider)) {
-    throwInvalidProviderError(void 0, providers, provider);
+    throwInvalidProviderError(void 0, providers2, provider);
   }
   if (isTypeProvider(provider)) {
     const unwrappedProvider = resolveForwardRef(provider);
@@ -3566,7 +3566,7 @@ function providerToFactory(provider, ngModuleType, providers) {
     } else {
       const classRef = resolveForwardRef(provider && (provider.useClass || provider.provide));
       if (ngDevMode && !classRef) {
-        throwInvalidProviderError(ngModuleType, providers, provider);
+        throwInvalidProviderError(ngModuleType, providers2, provider);
       }
       if (hasDeps(provider)) {
         factory = () => new classRef(...injectArgs(provider.deps));
@@ -3598,8 +3598,8 @@ function hasOnDestroy(value) {
 function couldBeInjectableType(value) {
   return typeof value === "function" || typeof value === "object" && value instanceof InjectionToken;
 }
-function forEachSingleProvider(providers, fn) {
-  for (const provider of providers) {
+function forEachSingleProvider(providers2, fn) {
+  for (const provider of providers2) {
     if (Array.isArray(provider)) {
       forEachSingleProvider(provider, fn);
     } else if (provider && isEnvironmentProviders(provider)) {
@@ -3715,8 +3715,8 @@ var ReflectionCapabilities = class {
   constructor(reflect) {
     this._reflect = reflect || _global["Reflect"];
   }
-  factory(t) {
-    return (...args) => new t(...args);
+  factory(t2) {
+    return (...args) => new t2(...args);
   }
   /** @internal */
   _zipTypesAndAnnotations(paramTypes, paramAnnotations) {
@@ -4588,7 +4588,7 @@ function registerPreOrderHooks(directiveIndex, directiveDef, tView) {
 }
 function registerPostOrderHooks(tView, tNode) {
   ngDevMode && assertFirstCreatePass(tView);
-  for (let i = tNode.directiveStart, end = tNode.directiveEnd; i < end; i++) {
+  for (let i = tNode.directiveStart, end2 = tNode.directiveEnd; i < end2; i++) {
     const directiveDef = tView.data[i];
     ngDevMode && assertDefined(directiveDef, "Expecting DirectiveDef");
     const lifecycleHooks = directiveDef.type.prototype;
@@ -4773,16 +4773,16 @@ var NodeInjectorFactory = class {
   }
 };
 function toTNodeTypeAsString(tNodeType) {
-  let text = "";
-  tNodeType & 1 && (text += "|Text");
-  tNodeType & 2 && (text += "|Element");
-  tNodeType & 4 && (text += "|Container");
-  tNodeType & 8 && (text += "|ElementContainer");
-  tNodeType & 16 && (text += "|Projection");
-  tNodeType & 32 && (text += "|IcuContainer");
-  tNodeType & 64 && (text += "|Placeholder");
-  tNodeType & 128 && (text += "|LetDeclaration");
-  return text.length > 0 ? text.substring(1) : text;
+  let text2 = "";
+  tNodeType & 1 && (text2 += "|Text");
+  tNodeType & 2 && (text2 += "|Element");
+  tNodeType & 4 && (text2 += "|Container");
+  tNodeType & 8 && (text2 += "|ElementContainer");
+  tNodeType & 16 && (text2 += "|Projection");
+  tNodeType & 32 && (text2 += "|IcuContainer");
+  tNodeType & 64 && (text2 += "|Placeholder");
+  tNodeType & 128 && (text2 += "|LetDeclaration");
+  return text2.length > 0 ? text2.substring(1) : text2;
 }
 function isTNodeShape(value) {
   return value != null && typeof value === "object" && (value.insertBeforeIndex === null || typeof value.insertBeforeIndex === "number" || Array.isArray(value.insertBeforeIndex));
@@ -5332,7 +5332,7 @@ function \u0275\u0275getInheritedFactory(type) {
       }
       parent = Object.getPrototypeOf(parent);
     }
-    return (t) => new t();
+    return (t2) => new t2();
   });
 }
 function getFactoryOf(type) {
@@ -5529,9 +5529,9 @@ function createInjector(defType, parent = null, additionalProviders = null, name
   return injector;
 }
 function createInjectorWithoutInjectorInstances(defType, parent = null, additionalProviders = null, name, scopes = /* @__PURE__ */ new Set()) {
-  const providers = [additionalProviders || EMPTY_ARRAY, importProvidersFrom(defType)];
+  const providers2 = [additionalProviders || EMPTY_ARRAY, importProvidersFrom(defType)];
   name = name || (typeof defType === "object" ? void 0 : stringify(defType));
-  return new R3Injector(providers, parent || getNullInjector(), name || null, scopes);
+  return new R3Injector(providers2, parent || getNullInjector(), name || null, scopes);
 }
 var Injector = class _Injector {
   static THROW_IF_NOT_FOUND = THROW_IF_NOT_FOUND;
@@ -7208,7 +7208,7 @@ var AfterRenderSequence = class {
     this.unregisterOnDestroy?.();
     const scheduled2 = this.view?.[AFTER_RENDER_SEQUENCES_TO_ADD];
     if (scheduled2) {
-      this.view[AFTER_RENDER_SEQUENCES_TO_ADD] = scheduled2.filter((s) => s !== this);
+      this.view[AFTER_RENDER_SEQUENCES_TO_ADD] = scheduled2.filter((s2) => s2 !== this);
     }
   }
 };
@@ -7444,13 +7444,13 @@ function onInteraction(trigger, callback) {
   return () => {
     const {
       callbacks,
-      listener
+      listener: listener2
     } = entry;
     callbacks.delete(callback);
     if (callbacks.size === 0) {
       interactionTriggers.delete(trigger);
       for (const name of interactionEventNames) {
-        trigger.removeEventListener(name, listener, eventListenerOptions);
+        trigger.removeEventListener(name, listener2, eventListenerOptions);
       }
     }
   };
@@ -7468,12 +7468,12 @@ function onHover(trigger, callback) {
   return () => {
     const {
       callbacks,
-      listener
+      listener: listener2
     } = entry;
     callbacks.delete(callback);
     if (callbacks.size === 0) {
       for (const name of hoverEventNames) {
-        trigger.removeEventListener(name, listener, eventListenerOptions);
+        trigger.removeEventListener(name, listener2, eventListenerOptions);
       }
       hoverTriggers.delete(trigger);
     }
@@ -7702,8 +7702,8 @@ function executeContentQueries(tView, tNode, lView) {
     const prevConsumer = setActiveConsumer(null);
     try {
       const start = tNode.directiveStart;
-      const end = tNode.directiveEnd;
-      for (let directiveIndex = start; directiveIndex < end; directiveIndex++) {
+      const end2 = tNode.directiveEnd;
+      for (let directiveIndex = start; directiveIndex < end2; directiveIndex++) {
         const def = tView.data[directiveIndex];
         if (def.contentQueries) {
           const directiveInstance = lView[directiveIndex];
@@ -7729,9 +7729,9 @@ function getPolicy$1() {
     if (_global.trustedTypes) {
       try {
         policy$1 = _global.trustedTypes.createPolicy("angular", {
-          createHTML: (s) => s,
-          createScript: (s) => s,
-          createScriptURL: (s) => s
+          createHTML: (s2) => s2,
+          createScript: (s2) => s2,
+          createScriptURL: (s2) => s2
         });
       } catch {
       }
@@ -7752,9 +7752,9 @@ function getPolicy() {
     if (_global.trustedTypes) {
       try {
         policy = _global.trustedTypes.createPolicy("angular#unsafe-bypass", {
-          createHTML: (s) => s,
-          createScript: (s) => s,
-          createScriptURL: (s) => s
+          createHTML: (s2) => s2,
+          createScript: (s2) => s2,
+          createScriptURL: (s2) => s2
         });
       } catch {
       }
@@ -7888,14 +7888,14 @@ function _sanitizeUrl(url) {
 }
 function tagSet(tags) {
   const res = {};
-  for (const t of tags.split(",")) res[t] = true;
+  for (const t2 of tags.split(",")) res[t2] = true;
   return res;
 }
 function merge(...sets) {
   const res = {};
-  for (const s of sets) {
-    for (const v in s) {
-      if (s.hasOwnProperty(v)) res[v] = true;
+  for (const s2 of sets) {
+    for (const v in s2) {
+      if (s2.hasOwnProperty(v)) res[v] = true;
     }
   }
   return res;
@@ -8187,7 +8187,7 @@ var COMMENT_DISALLOWED = /^>|^->|<!--|-->|--!>|<!-$/g;
 var COMMENT_DELIMITER = /(<|>)/g;
 var COMMENT_DELIMITER_ESCAPED = "\u200B$1\u200B";
 function escapeCommentText(value) {
-  return value.replace(COMMENT_DISALLOWED, (text) => text.replace(COMMENT_DELIMITER, COMMENT_DELIMITER_ESCAPED));
+  return value.replace(COMMENT_DISALLOWED, (text2) => text2.replace(COMMENT_DELIMITER, COMMENT_DELIMITER_ESCAPED));
 }
 function normalizeDebugBindingName(name) {
   name = camelCaseToDashCase(name.replace(/[$@]/g, "_"));
@@ -8414,13 +8414,13 @@ function getExpressionChangedErrorDetails(lView, bindingIndex, oldValue, newValu
 }
 function classIndexOf(className, classToSearch, startingIndex) {
   ngDevMode && assertNotEqual(classToSearch, "", 'can not look for "" string.');
-  let end = className.length;
+  let end2 = className.length;
   while (true) {
     const foundIndex = className.indexOf(classToSearch, startingIndex);
     if (foundIndex === -1) return foundIndex;
     if (foundIndex === 0 || className.charCodeAt(foundIndex - 1) <= 32) {
       const length = classToSearch.length;
-      if (foundIndex + length === end || className.charCodeAt(foundIndex + length) <= 32) {
+      if (foundIndex + length === end2 || className.charCodeAt(foundIndex + length) <= 32) {
         return foundIndex;
       }
     }
@@ -8686,9 +8686,9 @@ function createCommentNode(renderer, value) {
   ngDevMode && ngDevMode.rendererCreateComment++;
   return renderer.createComment(escapeCommentText(value));
 }
-function createElementNode(renderer, name, namespace) {
+function createElementNode(renderer, name, namespace2) {
   ngDevMode && ngDevMode.rendererCreateElement++;
-  return renderer.createElement(name, namespace);
+  return renderer.createElement(name, namespace2);
 }
 function nativeInsertBefore(renderer, parent, child, beforeNode, isMove) {
   ngDevMode && ngDevMode.rendererInsertBefore++;
@@ -8728,7 +8728,7 @@ function setupStaticAttributes(renderer, element, tNode) {
   const {
     mergedAttrs,
     classes,
-    styles
+    styles: styles2
   } = tNode;
   if (mergedAttrs !== null) {
     setUpAttributes(renderer, element, mergedAttrs);
@@ -8736,8 +8736,8 @@ function setupStaticAttributes(renderer, element, tNode) {
   if (classes !== null) {
     writeDirectClass(renderer, element, classes);
   }
-  if (styles !== null) {
-    writeDirectStyle(renderer, element, styles);
+  if (styles2 !== null) {
+    writeDirectStyle(renderer, element, styles2);
   }
 }
 function createTView(type, declTNode, templateFn, decls, vars, directives, pipes, viewQuery, schemas, constsOrFactory, ssrId) {
@@ -9054,7 +9054,7 @@ function setNgReflectProperties(lView, tView, tNode, publicName, value) {
 }
 function instantiateAllDirectives(tView, lView, tNode) {
   const start = tNode.directiveStart;
-  const end = tNode.directiveEnd;
+  const end2 = tNode.directiveEnd;
   if (isComponentHost(tNode)) {
     ngDevMode && assertTNodeType(
       tNode,
@@ -9067,7 +9067,7 @@ function instantiateAllDirectives(tView, lView, tNode) {
     getOrCreateNodeInjectorForNode(tNode, lView);
   }
   const initialInputs = tNode.initialInputs;
-  for (let i = start; i < end; i++) {
+  for (let i = start; i < end2; i++) {
     const def = tView.data[i];
     const directive = getNodeInjectable(lView, tView, i, tNode);
     attachPatchData(directive, lView);
@@ -9082,12 +9082,12 @@ function instantiateAllDirectives(tView, lView, tNode) {
 }
 function invokeDirectivesHostBindings(tView, lView, tNode) {
   const start = tNode.directiveStart;
-  const end = tNode.directiveEnd;
+  const end2 = tNode.directiveEnd;
   const elementIndex = tNode.index;
   const currentDirectiveIndex = getCurrentDirectiveIndex();
   try {
     setSelectedIndex(elementIndex);
-    for (let dirIndex = start; dirIndex < end; dirIndex++) {
+    for (let dirIndex = start; dirIndex < end2; dirIndex++) {
       const def = tView.data[dirIndex];
       const directive = lView[dirIndex];
       setCurrentDirectiveIndex(dirIndex);
@@ -9140,23 +9140,23 @@ function findDirectiveDefMatches(tView, tNode) {
   }
   return matches;
 }
-function elementAttributeInternal(tNode, lView, name, value, sanitizer, namespace) {
+function elementAttributeInternal(tNode, lView, name, value, sanitizer, namespace2) {
   if (ngDevMode) {
     assertNotSame(value, NO_CHANGE, "Incoming value should never be NO_CHANGE.");
     validateAgainstEventAttributes(name);
     assertTNodeType(tNode, 2, `Attempted to set attribute \`${name}\` on a container node. Host bindings are not valid on ng-container or ng-template.`);
   }
   const element = getNativeByTNode(tNode, lView);
-  setElementAttribute(lView[RENDERER], element, namespace, tNode.value, name, value, sanitizer);
+  setElementAttribute(lView[RENDERER], element, namespace2, tNode.value, name, value, sanitizer);
 }
-function setElementAttribute(renderer, element, namespace, tagName, name, value, sanitizer) {
+function setElementAttribute(renderer, element, namespace2, tagName, name, value, sanitizer) {
   if (value == null) {
     ngDevMode && ngDevMode.rendererRemoveAttribute++;
-    renderer.removeAttribute(element, name, namespace);
+    renderer.removeAttribute(element, name, namespace2);
   } else {
     ngDevMode && ngDevMode.rendererSetAttribute++;
     const strValue = sanitizer == null ? renderStringify(value) : sanitizer(value, tagName || "", name);
-    renderer.setAttribute(element, name, strValue, namespace);
+    renderer.setAttribute(element, name, strValue, namespace2);
   }
 }
 function setInputsFromAttrs(lView, directiveIndex, instance, def, tNode, initialInputData) {
@@ -11560,7 +11560,7 @@ var ChainedInjector = class {
 };
 function computeStaticStyling(tNode, attrs, writeToHost) {
   ngDevMode && assertFirstCreatePass(getTView(), "Expecting to be called in first template pass only");
-  let styles = writeToHost ? tNode.styles : null;
+  let styles2 = writeToHost ? tNode.styles : null;
   let classes = writeToHost ? tNode.classes : null;
   let mode = 0;
   if (attrs !== null) {
@@ -11573,11 +11573,11 @@ function computeStaticStyling(tNode, attrs, writeToHost) {
       } else if (mode == 2) {
         const style = value;
         const styleValue = attrs[++i];
-        styles = concatStringsWithSpace(styles, style + ": " + styleValue + ";");
+        styles2 = concatStringsWithSpace(styles2, style + ": " + styleValue + ";");
       }
     }
   }
-  writeToHost ? tNode.styles = styles : tNode.stylesWithoutHost = styles;
+  writeToHost ? tNode.styles = styles2 : tNode.stylesWithoutHost = styles2;
   writeToHost ? tNode.classes = classes : tNode.classesWithoutHost = classes;
 }
 function \u0275\u0275directiveInject(token, flags = InjectFlags.Default) {
@@ -11705,8 +11705,8 @@ function initializeDirectives(tView, lView, tNode, directives, exportsMap, hostD
     configureViewWithDirective(tView, tNode, lView, directiveIdx, def);
     saveNameToExportMap(directiveIdx, def, exportsMap);
     if (hostDirectiveRanges !== null && hostDirectiveRanges.has(def)) {
-      const [start, end] = hostDirectiveRanges.get(def);
-      tNode.directiveToIndex.set(def.type, [directiveIdx, start + tNode.directiveStart, end + tNode.directiveStart]);
+      const [start, end2] = hostDirectiveRanges.get(def);
+      tNode.directiveToIndex.set(def.type, [directiveIdx, start + tNode.directiveStart, end2 + tNode.directiveStart]);
     } else if (hostDirectiveDefs === null || !hostDirectiveDefs.has(def)) {
       tNode.directiveToIndex.set(def.type, directiveIdx);
     }
@@ -11757,8 +11757,8 @@ function setupSelectorMatchedInputsOrOutputs(mode, tNode, def, directiveIndex) {
     }
   }
 }
-function setupHostDirectiveInputsOrOutputs(mode, tNode, config2, directiveIndex) {
-  const aliasMap = mode === 0 ? config2.inputs : config2.outputs;
+function setupHostDirectiveInputsOrOutputs(mode, tNode, config3, directiveIndex) {
+  const aliasMap = mode === 0 ? config3.inputs : config3.outputs;
   for (const initialName in aliasMap) {
     if (aliasMap.hasOwnProperty(initialName)) {
       const publicName = aliasMap[initialName];
@@ -11817,11 +11817,11 @@ function setupInitialInputs(tNode, directiveIndex, isHostDirective) {
         }
       }
     } else if (isHostDirective && hostDirectiveInputs.hasOwnProperty(attrName)) {
-      const config2 = hostDirectiveInputs[attrName];
-      for (let j = 0; j < config2.length; j += 2) {
-        if (config2[j] === directiveIndex) {
+      const config3 = hostDirectiveInputs[attrName];
+      for (let j = 0; j < config3.length; j += 2) {
+        if (config3[j] === directiveIndex) {
           inputsToStore ??= [];
-          inputsToStore.push(config2[j + 1], attrs[i + 1]);
+          inputsToStore.push(config3[j + 1], attrs[i + 1]);
           break;
         }
       }
@@ -11985,10 +11985,10 @@ function createRootLViewEnvironment(rootLViewInjector) {
     changeDetectionScheduler
   };
 }
-function createHostElement(componentDef, render) {
+function createHostElement(componentDef, render2) {
   const tagName = (componentDef.selectors[0][0] || "div").toLowerCase();
-  const namespace = tagName === "svg" ? SVG_NAMESPACE : tagName === "math" ? MATH_ML_NAMESPACE : null;
-  return createElementNode(render, tagName, namespace);
+  const namespace2 = tagName === "svg" ? SVG_NAMESPACE : tagName === "math" ? MATH_ML_NAMESPACE : null;
+  return createElementNode(render2, tagName, namespace2);
 }
 var ComponentFactory2 = class extends ComponentFactory$1 {
   componentDef;
@@ -12702,7 +12702,7 @@ function createContentQuery(directiveIndex, predicate, flags, read) {
   return createLQuery(tView, getLView(), flags);
 }
 function splitQueryMultiSelectors(locator) {
-  return locator.split(",").map((s) => s.trim());
+  return locator.split(",").map((s2) => s2.trim());
 }
 function createTQuery(tView, metadata, nodeIndex) {
   if (tView.queries === null) tView.queries = new TQueries_();
@@ -12916,17 +12916,17 @@ function resolveComponentResources(resourceResolver) {
         component.template = template;
       }));
     }
-    const styles = typeof component.styles === "string" ? [component.styles] : component.styles || [];
-    component.styles = styles;
+    const styles2 = typeof component.styles === "string" ? [component.styles] : component.styles || [];
+    component.styles = styles2;
     if (component.styleUrl && component.styleUrls?.length) {
       throw new Error("@Component cannot define both `styleUrl` and `styleUrls`. Use `styleUrl` if the component has one stylesheet, or `styleUrls` if it has multiple");
     } else if (component.styleUrls?.length) {
       const styleOffset = component.styles.length;
       const styleUrls = component.styleUrls;
       component.styleUrls.forEach((styleUrl, index) => {
-        styles.push("");
+        styles2.push("");
         promises.push(cachedResourceResolve(styleUrl).then((style) => {
-          styles[styleOffset + index] = style;
+          styles2[styleOffset + index] = style;
           styleUrls.splice(styleUrls.indexOf(styleUrl), 1);
           if (styleUrls.length == 0) {
             component.styleUrls = void 0;
@@ -12935,7 +12935,7 @@ function resolveComponentResources(resourceResolver) {
       });
     } else if (component.styleUrl) {
       promises.push(cachedResourceResolve(component.styleUrl).then((style) => {
-        styles.push(style);
+        styles2.push(style);
         component.styleUrl = void 0;
       }));
     }
@@ -13073,17 +13073,17 @@ var EnvironmentNgModuleRefAdapter = class extends NgModuleRef$1 {
   injector;
   componentFactoryResolver = new ComponentFactoryResolver2(this);
   instance = null;
-  constructor(config2) {
+  constructor(config3) {
     super();
-    const injector = new R3Injector([...config2.providers, {
+    const injector = new R3Injector([...config3.providers, {
       provide: NgModuleRef$1,
       useValue: this
     }, {
       provide: ComponentFactoryResolver$1,
       useValue: this.componentFactoryResolver
-    }], config2.parent || getNullInjector(), config2.debugName, /* @__PURE__ */ new Set(["environment"]));
+    }], config3.parent || getNullInjector(), config3.debugName, /* @__PURE__ */ new Set(["environment"]));
     this.injector = injector;
-    if (config2.runEnvironmentInitializers) {
+    if (config3.runEnvironmentInitializers) {
       injector.resolveInjectorInitializers();
     }
   }
@@ -13094,9 +13094,9 @@ var EnvironmentNgModuleRefAdapter = class extends NgModuleRef$1 {
     this.injector.onDestroy(callback);
   }
 };
-function createEnvironmentInjector(providers, parent, debugName = null) {
+function createEnvironmentInjector(providers2, parent, debugName = null) {
   const adapter = new EnvironmentNgModuleRefAdapter({
-    providers,
+    providers: providers2,
     parent,
     debugName,
     runEnvironmentInitializers: true
@@ -13114,8 +13114,8 @@ var StandaloneService = class _StandaloneService {
       return null;
     }
     if (!this.cachedInjectors.has(componentDef)) {
-      const providers = internalImportProvidersFrom(false, componentDef.type);
-      const standaloneInjector = providers.length > 0 ? createEnvironmentInjector([providers], this._injector, `Standalone[${componentDef.type.name}]`) : null;
+      const providers2 = internalImportProvidersFrom(false, componentDef.type);
+      const standaloneInjector = providers2.length > 0 ? createEnvironmentInjector([providers2], this._injector, `Standalone[${componentDef.type.name}]`) : null;
       this.cachedInjectors.set(componentDef, standaloneInjector);
     }
     return this.cachedInjectors.get(componentDef);
@@ -13525,8 +13525,8 @@ function findHostDirectiveDefs(currentDef, matchedDefs, hostDirectiveDefs) {
     for (const configOrFn of currentDef.hostDirectives) {
       if (typeof configOrFn === "function") {
         const resolved = configOrFn();
-        for (const config2 of resolved) {
-          trackHostDirectiveDef(createHostDirectiveDef(config2), matchedDefs, hostDirectiveDefs);
+        for (const config3 of resolved) {
+          trackHostDirectiveDef(createHostDirectiveDef(config3), matchedDefs, hostDirectiveDefs);
         }
       } else {
         trackHostDirectiveDef(configOrFn, matchedDefs, hostDirectiveDefs);
@@ -13544,15 +13544,15 @@ function trackHostDirectiveDef(def, matchedDefs, hostDirectiveDefs) {
   hostDirectiveDefs.set(hostDirectiveDef, def);
   matchedDefs.push(hostDirectiveDef);
 }
-function createHostDirectiveDef(config2) {
-  return typeof config2 === "function" ? {
-    directive: resolveForwardRef(config2),
+function createHostDirectiveDef(config3) {
+  return typeof config3 === "function" ? {
+    directive: resolveForwardRef(config3),
     inputs: EMPTY_OBJ,
     outputs: EMPTY_OBJ
   } : {
-    directive: resolveForwardRef(config2.directive),
-    inputs: bindingArrayToMap(config2.inputs),
-    outputs: bindingArrayToMap(config2.outputs)
+    directive: resolveForwardRef(config3.directive),
+    inputs: bindingArrayToMap(config3.inputs),
+    outputs: bindingArrayToMap(config3.outputs)
   };
 }
 function bindingArrayToMap(bindings) {
@@ -13635,8 +13635,8 @@ function iterateListLike(obj, fn) {
     }
   }
 }
-function isJsObject(o) {
-  return o !== null && (typeof o === "function" || typeof o === "object");
+function isJsObject(o2) {
+  return o2 !== null && (typeof o2 === "function" || typeof o2 === "object");
 }
 function devModeEqual(a, b) {
   const isListLikeIterableA = isListLikeIterable(a);
@@ -13983,9 +13983,9 @@ var TimerScheduler = class _TimerScheduler {
 };
 var CachedInjectorService = class _CachedInjectorService {
   cachedInjectors = /* @__PURE__ */ new Map();
-  getOrCreateInjector(key, parentInjector, providers, debugName) {
+  getOrCreateInjector(key, parentInjector, providers2, debugName) {
     if (!this.cachedInjectors.has(key)) {
-      const injector = providers.length > 0 ? createEnvironmentInjector(providers, parentInjector, debugName) : null;
+      const injector = providers2.length > 0 ? createEnvironmentInjector(providers2, parentInjector, debugName) : null;
       this.cachedInjectors.set(key, injector);
     }
     return this.cachedInjectors.get(key);
@@ -14013,22 +14013,22 @@ var CachedInjectorService = class _CachedInjectorService {
 };
 var DEFER_BLOCK_DEPENDENCY_INTERCEPTOR = /* @__PURE__ */ new InjectionToken("DEFER_BLOCK_DEPENDENCY_INTERCEPTOR");
 var DEFER_BLOCK_CONFIG = new InjectionToken(ngDevMode ? "DEFER_BLOCK_CONFIG" : "");
-function getOrCreateEnvironmentInjector(parentInjector, tDetails, providers) {
-  return parentInjector.get(CachedInjectorService).getOrCreateInjector(tDetails, parentInjector, providers, ngDevMode ? "DeferBlock Injector" : "");
+function getOrCreateEnvironmentInjector(parentInjector, tDetails, providers2) {
+  return parentInjector.get(CachedInjectorService).getOrCreateInjector(tDetails, parentInjector, providers2, ngDevMode ? "DeferBlock Injector" : "");
 }
-function createDeferBlockInjector(parentInjector, tDetails, providers) {
+function createDeferBlockInjector(parentInjector, tDetails, providers2) {
   if (parentInjector instanceof ChainedInjector) {
     const origInjector = parentInjector.injector;
     const parentEnvInjector2 = parentInjector.parentInjector;
-    const envInjector = getOrCreateEnvironmentInjector(parentEnvInjector2, tDetails, providers);
+    const envInjector = getOrCreateEnvironmentInjector(parentEnvInjector2, tDetails, providers2);
     return new ChainedInjector(origInjector, envInjector);
   }
   const parentEnvInjector = parentInjector.get(EnvironmentInjector);
   if (parentEnvInjector !== parentInjector) {
-    const envInjector = getOrCreateEnvironmentInjector(parentEnvInjector, tDetails, providers);
+    const envInjector = getOrCreateEnvironmentInjector(parentEnvInjector, tDetails, providers2);
     return new ChainedInjector(parentInjector, envInjector);
   }
-  return getOrCreateEnvironmentInjector(parentInjector, tDetails, providers);
+  return getOrCreateEnvironmentInjector(parentInjector, tDetails, providers2);
 }
 function renderDeferBlockState(newState, tNode, lContainer, skipTimerScheduling = false) {
   const hostLView = lContainer[PARENT];
@@ -14080,9 +14080,9 @@ function applyDeferBlockState(newState, lDetails, lContainer, tNode, hostLView) 
     let injector;
     if (newState === DeferBlockState.Complete) {
       const tDetails = getTDeferBlockDetails(hostTView, tNode);
-      const providers = tDetails.providers;
-      if (providers && providers.length > 0) {
-        injector = createDeferBlockInjector(hostLView[INJECTOR], tDetails, providers);
+      const providers2 = tDetails.providers;
+      if (providers2 && providers2.length > 0) {
+        injector = createDeferBlockInjector(hostLView[INJECTOR], tDetails, providers2);
       }
     }
     const {
@@ -14944,10 +14944,10 @@ function publishGlobalUtil(name, fn) {
 }
 function publishUtil(name, fn) {
   if (typeof COMPILED === "undefined" || !COMPILED) {
-    const w = _global;
+    const w2 = _global;
     ngDevMode && assertDefined(fn, "function not defined");
-    w[GLOBAL_PUBLISH_EXPANDO_KEY] ??= {};
-    w[GLOBAL_PUBLISH_EXPANDO_KEY][name] = fn;
+    w2[GLOBAL_PUBLISH_EXPANDO_KEY] ??= {};
+    w2[GLOBAL_PUBLISH_EXPANDO_KEY][name] = fn;
   }
 }
 var TESTABILITY = new InjectionToken("");
@@ -15018,13 +15018,13 @@ var Testability = class _Testability {
     if (!this.taskTrackingZone) {
       return [];
     }
-    return this.taskTrackingZone.macroTasks.map((t) => {
+    return this.taskTrackingZone.macroTasks.map((t2) => {
       return {
-        source: t.source,
+        source: t2.source,
         // From TaskTrackingZone:
         // https://github.com/angular/zone.js/blob/master/lib/zone-spec/task-tracking.ts#L40
-        creationLocation: t.creationLocation,
-        data: t.data
+        creationLocation: t2.creationLocation,
+        data: t2.data
       };
     });
   }
@@ -15691,13 +15691,13 @@ var ApplicationRef = class _ApplicationRef {
     if (ngDevMode && !Array.isArray(listeners)) {
       throw new RuntimeError(-209, `Unexpected type of the \`APP_BOOTSTRAP_LISTENER\` token value (expected an array, but got ${typeof listeners}). Please check that the \`APP_BOOTSTRAP_LISTENER\` token is configured as a \`multi: true\` provider.`);
     }
-    listeners.forEach((listener) => listener(componentRef));
+    listeners.forEach((listener2) => listener2(componentRef));
   }
   /** @internal */
   ngOnDestroy() {
     if (this._destroyed) return;
     try {
-      this._destroyListeners.forEach((listener) => listener());
+      this._destroyListeners.forEach((listener2) => listener2());
       this._views.slice().forEach((view) => view.destroy());
     } finally {
       this._destroyed = true;
@@ -15875,8 +15875,8 @@ function triggerResourceLoading(tDetails, lView, tNode) {
       if (directiveDefs.length > 0) {
         primaryBlockTView.directiveRegistry = addDepsToRegistry(primaryBlockTView.directiveRegistry, directiveDefs);
         const directiveTypes = directiveDefs.map((def) => def.type);
-        const providers = internalImportProvidersFrom(false, ...directiveTypes);
-        tDetails.providers = providers;
+        const providers2 = internalImportProvidersFrom(false, ...directiveTypes);
+        tDetails.providers = providers2;
       }
       if (pipeDefs.length > 0) {
         primaryBlockTView.pipeRegistry = addDepsToRegistry(primaryBlockTView.pipeRegistry, pipeDefs);
@@ -15893,10 +15893,10 @@ function shouldTriggerDeferBlock(triggerType, lView) {
     return false;
   }
   const injector = lView[INJECTOR];
-  const config2 = injector.get(DEFER_BLOCK_CONFIG, null, {
+  const config3 = injector.get(DEFER_BLOCK_CONFIG, null, {
     optional: true
   });
-  if (config2?.behavior === DeferBlockBehavior.Manual) {
+  if (config3?.behavior === DeferBlockBehavior.Manual) {
     return false;
   }
   return true;
@@ -16522,13 +16522,13 @@ function \u0275\u0275deferHydrateOnViewport() {
     triggerDeferBlock(2, lView, tNode);
   }
 }
-function \u0275\u0275attribute(name, value, sanitizer, namespace) {
+function \u0275\u0275attribute(name, value, sanitizer, namespace2) {
   const lView = getLView();
   const bindingIndex = nextBindingIndex();
   if (bindingUpdated(lView, bindingIndex, value)) {
     const tView = getTView();
     const tNode = getSelectedTNode();
-    elementAttributeInternal(tNode, lView, name, value, sanitizer, namespace);
+    elementAttributeInternal(tNode, lView, name, value, sanitizer, namespace2);
     ngDevMode && storePropertyBindingMetadata(tView.data, tNode, "attr." + name, bindingIndex);
   }
   return \u0275\u0275attribute;
@@ -16601,92 +16601,92 @@ function interpolation8(lView, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, i4, v
   incrementBindingIndex(8);
   return different ? prefix + renderStringify(v0) + i0 + renderStringify(v1) + i1 + renderStringify(v2) + i2 + renderStringify(v3) + i3 + renderStringify(v4) + i4 + renderStringify(v5) + i5 + renderStringify(v6) + i6 + renderStringify(v7) + suffix : NO_CHANGE;
 }
-function \u0275\u0275attributeInterpolate1(attrName, prefix, v0, suffix, sanitizer, namespace) {
+function \u0275\u0275attributeInterpolate1(attrName, prefix, v0, suffix, sanitizer, namespace2) {
   const lView = getLView();
   const interpolatedValue = interpolation1(lView, prefix, v0, suffix);
   if (interpolatedValue !== NO_CHANGE) {
     const tNode = getSelectedTNode();
-    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace);
+    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace2);
     ngDevMode && storePropertyBindingMetadata(getTView().data, tNode, "attr." + attrName, getBindingIndex() - 1, prefix, suffix);
   }
   return \u0275\u0275attributeInterpolate1;
 }
-function \u0275\u0275attributeInterpolate2(attrName, prefix, v0, i0, v1, suffix, sanitizer, namespace) {
+function \u0275\u0275attributeInterpolate2(attrName, prefix, v0, i0, v1, suffix, sanitizer, namespace2) {
   const lView = getLView();
   const interpolatedValue = interpolation2(lView, prefix, v0, i0, v1, suffix);
   if (interpolatedValue !== NO_CHANGE) {
     const tNode = getSelectedTNode();
-    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace);
+    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace2);
     ngDevMode && storePropertyBindingMetadata(getTView().data, tNode, "attr." + attrName, getBindingIndex() - 2, prefix, i0, suffix);
   }
   return \u0275\u0275attributeInterpolate2;
 }
-function \u0275\u0275attributeInterpolate3(attrName, prefix, v0, i0, v1, i1, v2, suffix, sanitizer, namespace) {
+function \u0275\u0275attributeInterpolate3(attrName, prefix, v0, i0, v1, i1, v2, suffix, sanitizer, namespace2) {
   const lView = getLView();
   const interpolatedValue = interpolation3(lView, prefix, v0, i0, v1, i1, v2, suffix);
   if (interpolatedValue !== NO_CHANGE) {
     const tNode = getSelectedTNode();
-    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace);
+    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace2);
     ngDevMode && storePropertyBindingMetadata(getTView().data, tNode, "attr." + attrName, getBindingIndex() - 3, prefix, i0, i1, suffix);
   }
   return \u0275\u0275attributeInterpolate3;
 }
-function \u0275\u0275attributeInterpolate4(attrName, prefix, v0, i0, v1, i1, v2, i2, v3, suffix, sanitizer, namespace) {
+function \u0275\u0275attributeInterpolate4(attrName, prefix, v0, i0, v1, i1, v2, i2, v3, suffix, sanitizer, namespace2) {
   const lView = getLView();
   const interpolatedValue = interpolation4(lView, prefix, v0, i0, v1, i1, v2, i2, v3, suffix);
   if (interpolatedValue !== NO_CHANGE) {
     const tNode = getSelectedTNode();
-    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace);
+    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace2);
     ngDevMode && storePropertyBindingMetadata(getTView().data, tNode, "attr." + attrName, getBindingIndex() - 4, prefix, i0, i1, i2, suffix);
   }
   return \u0275\u0275attributeInterpolate4;
 }
-function \u0275\u0275attributeInterpolate5(attrName, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, suffix, sanitizer, namespace) {
+function \u0275\u0275attributeInterpolate5(attrName, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, suffix, sanitizer, namespace2) {
   const lView = getLView();
   const interpolatedValue = interpolation5(lView, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, suffix);
   if (interpolatedValue !== NO_CHANGE) {
     const tNode = getSelectedTNode();
-    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace);
+    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace2);
     ngDevMode && storePropertyBindingMetadata(getTView().data, tNode, "attr." + attrName, getBindingIndex() - 5, prefix, i0, i1, i2, i3, suffix);
   }
   return \u0275\u0275attributeInterpolate5;
 }
-function \u0275\u0275attributeInterpolate6(attrName, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, i4, v5, suffix, sanitizer, namespace) {
+function \u0275\u0275attributeInterpolate6(attrName, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, i4, v5, suffix, sanitizer, namespace2) {
   const lView = getLView();
   const interpolatedValue = interpolation6(lView, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, i4, v5, suffix);
   if (interpolatedValue !== NO_CHANGE) {
     const tNode = getSelectedTNode();
-    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace);
+    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace2);
     ngDevMode && storePropertyBindingMetadata(getTView().data, tNode, "attr." + attrName, getBindingIndex() - 6, prefix, i0, i1, i2, i3, i4, suffix);
   }
   return \u0275\u0275attributeInterpolate6;
 }
-function \u0275\u0275attributeInterpolate7(attrName, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, i4, v5, i5, v6, suffix, sanitizer, namespace) {
+function \u0275\u0275attributeInterpolate7(attrName, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, i4, v5, i5, v6, suffix, sanitizer, namespace2) {
   const lView = getLView();
   const interpolatedValue = interpolation7(lView, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, i4, v5, i5, v6, suffix);
   if (interpolatedValue !== NO_CHANGE) {
     const tNode = getSelectedTNode();
-    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace);
+    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace2);
     ngDevMode && storePropertyBindingMetadata(getTView().data, tNode, "attr." + attrName, getBindingIndex() - 7, prefix, i0, i1, i2, i3, i4, i5, suffix);
   }
   return \u0275\u0275attributeInterpolate7;
 }
-function \u0275\u0275attributeInterpolate8(attrName, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, i4, v5, i5, v6, i6, v7, suffix, sanitizer, namespace) {
+function \u0275\u0275attributeInterpolate8(attrName, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, i4, v5, i5, v6, i6, v7, suffix, sanitizer, namespace2) {
   const lView = getLView();
   const interpolatedValue = interpolation8(lView, prefix, v0, i0, v1, i1, v2, i2, v3, i3, v4, i4, v5, i5, v6, i6, v7, suffix);
   if (interpolatedValue !== NO_CHANGE) {
     const tNode = getSelectedTNode();
-    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace);
+    elementAttributeInternal(tNode, lView, attrName, interpolatedValue, sanitizer, namespace2);
     ngDevMode && storePropertyBindingMetadata(getTView().data, tNode, "attr." + attrName, getBindingIndex() - 8, prefix, i0, i1, i2, i3, i4, i5, i6, suffix);
   }
   return \u0275\u0275attributeInterpolate8;
 }
-function \u0275\u0275attributeInterpolateV(attrName, values, sanitizer, namespace) {
+function \u0275\u0275attributeInterpolateV(attrName, values, sanitizer, namespace2) {
   const lView = getLView();
   const interpolated = interpolationV(lView, values);
   if (interpolated !== NO_CHANGE) {
     const tNode = getSelectedTNode();
-    elementAttributeInternal(tNode, lView, attrName, interpolated, sanitizer, namespace);
+    elementAttributeInternal(tNode, lView, attrName, interpolated, sanitizer, namespace2);
     if (ngDevMode) {
       const interpolationInBetween = [values[0]];
       for (let i = 2; i < values.length; i += 2) {
@@ -16858,103 +16858,103 @@ var parserState = {
   value: 0,
   valueEnd: 0
 };
-function getLastParsedKey(text) {
-  return text.substring(parserState.key, parserState.keyEnd);
+function getLastParsedKey(text2) {
+  return text2.substring(parserState.key, parserState.keyEnd);
 }
-function getLastParsedValue(text) {
-  return text.substring(parserState.value, parserState.valueEnd);
+function getLastParsedValue(text2) {
+  return text2.substring(parserState.value, parserState.valueEnd);
 }
-function parseClassName(text) {
-  resetParserState(text);
-  return parseClassNameNext(text, consumeWhitespace(text, 0, parserState.textEnd));
+function parseClassName(text2) {
+  resetParserState(text2);
+  return parseClassNameNext(text2, consumeWhitespace(text2, 0, parserState.textEnd));
 }
-function parseClassNameNext(text, index) {
-  const end = parserState.textEnd;
-  if (end === index) {
+function parseClassNameNext(text2, index) {
+  const end2 = parserState.textEnd;
+  if (end2 === index) {
     return -1;
   }
-  index = parserState.keyEnd = consumeClassToken(text, parserState.key = index, end);
-  return consumeWhitespace(text, index, end);
+  index = parserState.keyEnd = consumeClassToken(text2, parserState.key = index, end2);
+  return consumeWhitespace(text2, index, end2);
 }
-function parseStyle(text) {
-  resetParserState(text);
-  return parseStyleNext(text, consumeWhitespace(text, 0, parserState.textEnd));
+function parseStyle(text2) {
+  resetParserState(text2);
+  return parseStyleNext(text2, consumeWhitespace(text2, 0, parserState.textEnd));
 }
-function parseStyleNext(text, startIndex) {
-  const end = parserState.textEnd;
-  let index = parserState.key = consumeWhitespace(text, startIndex, end);
-  if (end === index) {
+function parseStyleNext(text2, startIndex) {
+  const end2 = parserState.textEnd;
+  let index = parserState.key = consumeWhitespace(text2, startIndex, end2);
+  if (end2 === index) {
     return -1;
   }
-  index = parserState.keyEnd = consumeStyleKey(text, index, end);
+  index = parserState.keyEnd = consumeStyleKey(text2, index, end2);
   index = consumeSeparator(
-    text,
+    text2,
     index,
-    end,
+    end2,
     58
     /* CharCode.COLON */
   );
-  index = parserState.value = consumeWhitespace(text, index, end);
-  index = parserState.valueEnd = consumeStyleValue(text, index, end);
+  index = parserState.value = consumeWhitespace(text2, index, end2);
+  index = parserState.valueEnd = consumeStyleValue(text2, index, end2);
   return consumeSeparator(
-    text,
+    text2,
     index,
-    end,
+    end2,
     59
     /* CharCode.SEMI_COLON */
   );
 }
-function resetParserState(text) {
+function resetParserState(text2) {
   parserState.key = 0;
   parserState.keyEnd = 0;
   parserState.value = 0;
   parserState.valueEnd = 0;
-  parserState.textEnd = text.length;
+  parserState.textEnd = text2.length;
 }
-function consumeWhitespace(text, startIndex, endIndex) {
-  while (startIndex < endIndex && text.charCodeAt(startIndex) <= 32) {
+function consumeWhitespace(text2, startIndex, endIndex) {
+  while (startIndex < endIndex && text2.charCodeAt(startIndex) <= 32) {
     startIndex++;
   }
   return startIndex;
 }
-function consumeClassToken(text, startIndex, endIndex) {
-  while (startIndex < endIndex && text.charCodeAt(startIndex) > 32) {
+function consumeClassToken(text2, startIndex, endIndex) {
+  while (startIndex < endIndex && text2.charCodeAt(startIndex) > 32) {
     startIndex++;
   }
   return startIndex;
 }
-function consumeStyleKey(text, startIndex, endIndex) {
+function consumeStyleKey(text2, startIndex, endIndex) {
   let ch;
-  while (startIndex < endIndex && ((ch = text.charCodeAt(startIndex)) === 45 || ch === 95 || (ch & -33) >= 65 && (ch & -33) <= 90 || ch >= 48 && ch <= 57)) {
+  while (startIndex < endIndex && ((ch = text2.charCodeAt(startIndex)) === 45 || ch === 95 || (ch & -33) >= 65 && (ch & -33) <= 90 || ch >= 48 && ch <= 57)) {
     startIndex++;
   }
   return startIndex;
 }
-function consumeSeparator(text, startIndex, endIndex, separator) {
-  startIndex = consumeWhitespace(text, startIndex, endIndex);
+function consumeSeparator(text2, startIndex, endIndex, separator) {
+  startIndex = consumeWhitespace(text2, startIndex, endIndex);
   if (startIndex < endIndex) {
-    if (ngDevMode && text.charCodeAt(startIndex) !== separator) {
-      malformedStyleError(text, String.fromCharCode(separator), startIndex);
+    if (ngDevMode && text2.charCodeAt(startIndex) !== separator) {
+      malformedStyleError(text2, String.fromCharCode(separator), startIndex);
     }
     startIndex++;
   }
   return startIndex;
 }
-function consumeStyleValue(text, startIndex, endIndex) {
+function consumeStyleValue(text2, startIndex, endIndex) {
   let ch1 = -1;
   let ch2 = -1;
   let ch3 = -1;
   let i = startIndex;
   let lastChIndex = i;
   while (i < endIndex) {
-    const ch = text.charCodeAt(i++);
+    const ch = text2.charCodeAt(i++);
     if (ch === 59) {
       return lastChIndex;
     } else if (ch === 34 || ch === 39) {
-      lastChIndex = i = consumeQuotedText(text, ch, i, endIndex);
+      lastChIndex = i = consumeQuotedText(text2, ch, i, endIndex);
     } else if (startIndex === i - 4 && // We have seen only 4 characters so far "URL(" (Ignore "foo_URL()")
     ch3 === 85 && ch2 === 82 && ch1 === 76 && ch === 40) {
-      lastChIndex = i = consumeQuotedText(text, 41, i, endIndex);
+      lastChIndex = i = consumeQuotedText(text2, 41, i, endIndex);
     } else if (ch > 32) {
       lastChIndex = i;
     }
@@ -16964,11 +16964,11 @@ function consumeStyleValue(text, startIndex, endIndex) {
   }
   return lastChIndex;
 }
-function consumeQuotedText(text, quoteCharCode, startIndex, endIndex) {
+function consumeQuotedText(text2, quoteCharCode, startIndex, endIndex) {
   let ch1 = -1;
   let index = startIndex;
   while (index < endIndex) {
-    const ch = text.charCodeAt(index++);
+    const ch = text2.charCodeAt(index++);
     if (ch == quoteCharCode && ch1 !== 92) {
       return index;
     }
@@ -16978,11 +16978,11 @@ function consumeQuotedText(text, quoteCharCode, startIndex, endIndex) {
       ch1 = ch;
     }
   }
-  throw ngDevMode ? malformedStyleError(text, String.fromCharCode(quoteCharCode), endIndex) : new Error();
+  throw ngDevMode ? malformedStyleError(text2, String.fromCharCode(quoteCharCode), endIndex) : new Error();
 }
-function malformedStyleError(text, expecting, index) {
-  ngDevMode && assertEqual(typeof text === "string", true, "String expected here");
-  throw throwError2(`Malformed style at location ${index} in string '` + text.substring(0, index) + "[>>" + text.substring(index, index + 1) + "<<]" + text.slice(index + 1) + `'. Expecting '${expecting}'.`);
+function malformedStyleError(text2, expecting, index) {
+  ngDevMode && assertEqual(typeof text2 === "string", true, "String expected here");
+  throw throwError2(`Malformed style at location ${index} in string '` + text2.substring(0, index) + "[>>" + text2.substring(index, index + 1) + "<<]" + text2.slice(index + 1) + `'. Expecting '${expecting}'.`);
 }
 function \u0275\u0275property(propName, value, sanitizer) {
   const lView = getLView();
@@ -17006,20 +17006,20 @@ function \u0275\u0275classProp(className, value) {
   checkStylingProperty(className, value, null, true);
   return \u0275\u0275classProp;
 }
-function \u0275\u0275styleMap(styles) {
-  checkStylingMap(styleKeyValueArraySet, styleStringParser, styles, false);
+function \u0275\u0275styleMap(styles2) {
+  checkStylingMap(styleKeyValueArraySet, styleStringParser, styles2, false);
 }
-function styleStringParser(keyValueArray, text) {
-  for (let i = parseStyle(text); i >= 0; i = parseStyleNext(text, i)) {
-    styleKeyValueArraySet(keyValueArray, getLastParsedKey(text), getLastParsedValue(text));
+function styleStringParser(keyValueArray, text2) {
+  for (let i = parseStyle(text2); i >= 0; i = parseStyleNext(text2, i)) {
+    styleKeyValueArraySet(keyValueArray, getLastParsedKey(text2), getLastParsedValue(text2));
   }
 }
 function \u0275\u0275classMap(classes) {
   checkStylingMap(classKeyValueArraySet, classStringParser, classes, true);
 }
-function classStringParser(keyValueArray, text) {
-  for (let i = parseClassName(text); i >= 0; i = parseClassNameNext(text, i)) {
-    keyValueArraySet(keyValueArray, getLastParsedKey(text), true);
+function classStringParser(keyValueArray, text2) {
+  for (let i = parseClassName(text2); i >= 0; i = parseClassNameNext(text2, i)) {
+    keyValueArraySet(keyValueArray, getLastParsedKey(text2), true);
   }
 }
 function checkStylingProperty(prop, value, suffix, isClassBased) {
@@ -17547,9 +17547,9 @@ function createOrAttach(liveCollection, detachedItems, trackByFn, index, value) 
     liveCollection.updateValue(index, value);
   }
 }
-function initLiveItemsInTheFuture(liveCollection, start, end, trackByFn) {
+function initLiveItemsInTheFuture(liveCollection, start, end2, trackByFn) {
   const keys = /* @__PURE__ */ new Set();
-  for (let i = start; i <= end; i++) {
+  for (let i = start; i <= end2; i++) {
     keys.add(trackByFn(i, liveCollection.at(i)));
   }
   return keys;
@@ -18148,14 +18148,14 @@ function applyCreateOpCodes(lView, createOpCodes, parentRNode, insertInFrontOf) 
   const renderer = lView[RENDERER];
   for (let i = 0; i < createOpCodes.length; i++) {
     const opCode = createOpCodes[i++];
-    const text = createOpCodes[i];
+    const text2 = createOpCodes[i];
     const isComment = (opCode & I18nCreateOpCode.COMMENT) === I18nCreateOpCode.COMMENT;
     const appendNow = (opCode & I18nCreateOpCode.APPEND_EAGERLY) === I18nCreateOpCode.APPEND_EAGERLY;
     const index = opCode >>> I18nCreateOpCode.SHIFT;
     let rNode = lView[index];
     let lastNodeWasCreated2 = false;
     if (rNode === null) {
-      rNode = lView[index] = _locateOrCreateNode(lView, index, text, isComment ? Node.COMMENT_NODE : Node.TEXT_NODE);
+      rNode = lView[index] = _locateOrCreateNode(lView, index, text2, isComment ? Node.COMMENT_NODE : Node.TEXT_NODE);
       lastNodeWasCreated2 = wasLastNodeCreated();
     }
     if (appendNow && parentRNode !== null && lastNodeWasCreated2) {
@@ -18375,11 +18375,11 @@ function i18nCreateOpCodesToString(opcodes) {
   let lines = [];
   for (let i = 0; i < createOpCodes.length; i++) {
     const opCode = createOpCodes[i++];
-    const text = createOpCodes[i];
+    const text2 = createOpCodes[i];
     const isComment = (opCode & I18nCreateOpCode.COMMENT) === I18nCreateOpCode.COMMENT;
     const appendNow = (opCode & I18nCreateOpCode.APPEND_EAGERLY) === I18nCreateOpCode.APPEND_EAGERLY;
     const index = opCode >>> I18nCreateOpCode.SHIFT;
-    lines.push(`lView[${index}] = document.${isComment ? "createComment" : "createText"}(${JSON.stringify(text)});`);
+    lines.push(`lView[${index}] = document.${isComment ? "createComment" : "createText"}(${JSON.stringify(text2)});`);
     if (appendNow) {
       lines.push(`parent.appendChild(lView[${index}]);`);
     }
@@ -18410,10 +18410,10 @@ function i18nUpdateOpCodesToString(opcodes) {
   while (parser.hasMore()) {
     let mask = parser.consumeNumber();
     let size = parser.consumeNumber();
-    const end = parser.i + size;
+    const end2 = parser.i + size;
     const statements = [];
     let statement = "";
-    while (parser.i < end) {
+    while (parser.i < end2) {
       let value = parser.consumeNumberOrString();
       if (typeof value === "string") {
         statement += value;
@@ -18447,13 +18447,13 @@ function icuCreateOpCodesToString(opcodes) {
   while (parser.hasMore()) {
     let value = parser.consumeNumberStringOrMarker();
     if (value === ICU_MARKER) {
-      const text = parser.consumeString();
+      const text2 = parser.consumeString();
       lastRef = parser.consumeNumber();
-      lines.push(`lView[${lastRef}] = document.createComment("${text}")`);
+      lines.push(`lView[${lastRef}] = document.createComment("${text2}")`);
     } else if (value === ELEMENT_MARKER) {
-      const text = parser.consumeString();
+      const text2 = parser.consumeString();
       lastRef = parser.consumeNumber();
-      lines.push(`lView[${lastRef}] = document.createElement("${text}")`);
+      lines.push(`lView[${lastRef}] = document.createElement("${text2}")`);
     } else if (typeof value === "string") {
       lastRef = parser.consumeNumber();
       lines.push(`lView[${lastRef}] = document.createTextNode("${value}")`);
@@ -18562,10 +18562,10 @@ function i18nStartFirstCreatePass(tView, parentTNodeIndex, lView, index, message
       for (let j = 0; j < parts.length; j++) {
         let part = parts[j];
         if ((j & 1) === 0) {
-          const text = part;
-          ngDevMode && assertString(text, "Parsed ICU part should be string");
-          if (text !== "") {
-            i18nStartFirstCreatePassProcessTextNode(astStack[0], tView, rootTNode, existingTNodeStack[0], createOpCodes, updateOpCodes, lView, text);
+          const text2 = part;
+          ngDevMode && assertString(text2, "Parsed ICU part should be string");
+          if (text2 !== "") {
+            i18nStartFirstCreatePassProcessTextNode(astStack[0], tView, rootTNode, existingTNodeStack[0], createOpCodes, updateOpCodes, lView, text2);
           }
         } else {
           const icuExpression = part;
@@ -18615,7 +18615,7 @@ function i18nStartFirstCreatePass(tView, parentTNodeIndex, lView, index, message
     parentTNodeIndex
   };
 }
-function createTNodeAndAddOpCode(tView, rootTNode, existingTNodes, lView, createOpCodes, text, isICU) {
+function createTNodeAndAddOpCode(tView, rootTNode, existingTNodes, lView, createOpCodes, text2, isICU) {
   const i18nNodeIdx = allocExpando(tView, lView, 1, null);
   let opCode = i18nNodeIdx << I18nCreateOpCode.SHIFT;
   let parentTNode = getCurrentParentTNode();
@@ -18629,8 +18629,8 @@ function createTNodeAndAddOpCode(tView, rootTNode, existingTNodes, lView, create
     opCode |= I18nCreateOpCode.COMMENT;
     ensureIcuContainerVisitorLoaded(loadIcuContainerVisitor);
   }
-  createOpCodes.push(opCode, text === null ? "" : text);
-  const tNode = createTNodeAtIndex(tView, i18nNodeIdx, isICU ? 32 : 1, text === null ? ngDevMode ? "{{?}}" : "" : text, null);
+  createOpCodes.push(opCode, text2 === null ? "" : text2);
+  const tNode = createTNodeAtIndex(tView, i18nNodeIdx, isICU ? 32 : 1, text2 === null ? ngDevMode ? "{{?}}" : "" : text2, null);
   addTNodeAndUpdateInsertBeforeIndex(existingTNodes, tNode);
   const tNodeIdx = tNode.index;
   setCurrentTNode(
@@ -18643,12 +18643,12 @@ function createTNodeAndAddOpCode(tView, rootTNode, existingTNodes, lView, create
   }
   return tNode;
 }
-function i18nStartFirstCreatePassProcessTextNode(ast, tView, rootTNode, existingTNodes, createOpCodes, updateOpCodes, lView, text) {
-  const hasBinding = text.match(BINDING_REGEXP);
-  const tNode = createTNodeAndAddOpCode(tView, rootTNode, existingTNodes, lView, createOpCodes, hasBinding ? null : text, false);
+function i18nStartFirstCreatePassProcessTextNode(ast, tView, rootTNode, existingTNodes, createOpCodes, updateOpCodes, lView, text2) {
+  const hasBinding = text2.match(BINDING_REGEXP);
+  const tNode = createTNodeAndAddOpCode(tView, rootTNode, existingTNodes, lView, createOpCodes, hasBinding ? null : text2, false);
   const index = tNode.index;
   if (hasBinding) {
-    generateBindingUpdateOpCodes(updateOpCodes, text, index, null, 0, null);
+    generateBindingUpdateOpCodes(updateOpCodes, text2, index, null, 0, null);
   }
   ast.push({
     kind: 0,
@@ -18745,8 +18745,8 @@ function getTranslationForTemplate(message, subTemplateIndex) {
     return removeInnerTemplateTranslation(message);
   } else {
     const start = message.indexOf(`:${subTemplateIndex}${MARKER}`) + 2 + subTemplateIndex.toString().length;
-    const end = message.search(new RegExp(`${MARKER}\\/\\*\\d+:${subTemplateIndex}${MARKER}`));
-    return removeInnerTemplateTranslation(message.substring(start, end));
+    const end2 = message.search(new RegExp(`${MARKER}\\/\\*\\d+:${subTemplateIndex}${MARKER}`));
+    return removeInnerTemplateTranslation(message.substring(start, end2));
   }
 }
 function icuStart(ast, tView, lView, updateOpCodes, parentIdx, icuExpression, anchorIdx) {
@@ -18980,11 +18980,11 @@ function addUpdateIcuUpdate(update, bindingMask, index) {
     /* I18nUpdateOpCode.IcuUpdate */
   );
 }
-function addCreateNodeAndAppend(create, marker, text, appendToParentIdx, createAtIdx) {
+function addCreateNodeAndAppend(create, marker, text2, appendToParentIdx, createAtIdx) {
   if (marker !== null) {
     create.push(marker);
   }
-  create.push(text, createAtIdx, icuCreateOpCode(0, appendToParentIdx, createAtIdx));
+  create.push(text2, createAtIdx, icuCreateOpCode(0, appendToParentIdx, createAtIdx));
 }
 function addCreateAttribute(create, newIndex, attr) {
   create.push(newIndex << 1 | 1, attr.name, attr.value);
@@ -19038,8 +19038,8 @@ function i18nPostprocess(message, replacements = {}) {
   if (!Object.keys(replacements).length) {
     return result;
   }
-  result = result.replace(PP_ICU_VARS_REGEXP, (match2, start, key, _type, _idx, end) => {
-    return replacements.hasOwnProperty(key) ? `${start}${replacements[key]}${end}` : match2;
+  result = result.replace(PP_ICU_VARS_REGEXP, (match2, start, key, _type, _idx, end2) => {
+    return replacements.hasOwnProperty(key) ? `${start}${replacements[key]}${end2}` : match2;
   });
   result = result.replace(PP_ICU_PLACEHOLDERS_REGEXP, (match2, key) => {
     return replacements.hasOwnProperty(key) ? replacements[key] : match2;
@@ -19760,12 +19760,12 @@ function \u0275\u0275attachSourceLocations(templatePath, locations) {
     }
   }
 }
-function providersResolver(def, providers, viewProviders) {
+function providersResolver(def, providers2, viewProviders) {
   const tView = getTView();
   if (tView.firstCreatePass) {
     const isComponent2 = isComponentDef(def);
     resolveProvider(viewProviders, tView.data, tView.blueprint, isComponent2, true);
-    resolveProvider(providers, tView.data, tView.blueprint, isComponent2, false);
+    resolveProvider(providers2, tView.data, tView.blueprint, isComponent2, false);
   }
 }
 function resolveProvider(provider, tInjectables, lInjectablesBlueprint, isComponent2, isViewProvider) {
@@ -19866,8 +19866,8 @@ function multiFactoryAdd(multiFactory2, factory, isComponentProvider) {
   }
   return multiFactory2.multi.push(factory) - 1;
 }
-function indexOf(item, arr, begin, end) {
-  for (let i = begin; i < end; i++) {
+function indexOf(item, arr, begin2, end2) {
+  for (let i = begin2; i < end2; i++) {
     if (arr[i] === item) return i;
   }
   return -1;
@@ -19907,13 +19907,13 @@ function multiFactory(factoryFn, index, isViewProvider, isComponent2, f) {
   multiFactoryAdd(factory, f, isComponent2 && !isViewProvider);
   return factory;
 }
-function \u0275\u0275ProvidersFeature(providers, viewProviders = []) {
+function \u0275\u0275ProvidersFeature(providers2, viewProviders = []) {
   return (definition) => {
     definition.providersResolver = (def, processProvidersFn) => {
       return providersResolver(
         def,
         //
-        processProvidersFn ? processProvidersFn(providers) : providers,
+        processProvidersFn ? processProvidersFn(providers2) : providers2,
         //
         viewProviders
       );
@@ -21008,7 +21008,7 @@ function getStandaloneDefFunctions(type, imports) {
         return [];
       }
       const scope = depsTracker.getStandaloneComponentScope(type, imports);
-      return [...scope.compilation.directives].map((p) => getComponentDef(p) || getDirectiveDef(p)).filter((d) => d !== null);
+      return [...scope.compilation.directives].map((p2) => getComponentDef(p2) || getDirectiveDef(p2)).filter((d) => d !== null);
     }
   };
   const pipeDefs = () => {
@@ -21022,7 +21022,7 @@ function getStandaloneDefFunctions(type, imports) {
         return [];
       }
       const scope = depsTracker.getStandaloneComponentScope(type, imports);
-      return [...scope.compilation.pipes].map((p) => getPipeDef$1(p)).filter((d) => d !== null);
+      return [...scope.compilation.pipes].map((p2) => getPipeDef$1(p2)).filter((d) => d !== null);
     }
   };
   return {
@@ -21262,9 +21262,9 @@ var Directive = makeDecorator("Directive", (dir = {}) => dir, void 0, void 0, (t
 var Component = makeDecorator("Component", (c = {}) => __spreadValues({
   changeDetection: ChangeDetectionStrategy.Default
 }, c), Directive, void 0, (type, meta) => compileComponent(type, meta));
-var Pipe = makeDecorator("Pipe", (p) => __spreadValues({
+var Pipe = makeDecorator("Pipe", (p2) => __spreadValues({
   pure: true
-}, p), void 0, void 0, (type, meta) => compilePipe(type, meta));
+}, p2), void 0, void 0, (type, meta) => compilePipe(type, meta));
 var Input = makePropDecorator("Input", (arg) => {
   if (!arg) {
     return {};
@@ -21964,22 +21964,22 @@ function logOversizedImageWarning(src) {
 }
 var PLATFORM_DESTROY_LISTENERS = new InjectionToken(ngDevMode ? "PlatformDestroyListeners" : "");
 var ENABLE_ROOT_COMPONENT_BOOTSTRAP = new InjectionToken(ngDevMode ? "ENABLE_ROOT_COMPONENT_BOOTSTRAP" : "");
-function isApplicationBootstrapConfig(config2) {
-  return !config2.moduleRef;
+function isApplicationBootstrapConfig(config3) {
+  return !config3.moduleRef;
 }
-function bootstrap(config2) {
-  const envInjector = isApplicationBootstrapConfig(config2) ? config2.r3Injector : config2.moduleRef.injector;
+function bootstrap(config3) {
+  const envInjector = isApplicationBootstrapConfig(config3) ? config3.r3Injector : config3.moduleRef.injector;
   const ngZone = envInjector.get(NgZone);
   return ngZone.run(() => {
-    if (isApplicationBootstrapConfig(config2)) {
-      config2.r3Injector.resolveInjectorInitializers();
+    if (isApplicationBootstrapConfig(config3)) {
+      config3.r3Injector.resolveInjectorInitializers();
     } else {
-      config2.moduleRef.resolveInjectorInitializers();
+      config3.moduleRef.resolveInjectorInitializers();
     }
     const exceptionHandler = envInjector.get(ErrorHandler, null);
     if (typeof ngDevMode === "undefined" || ngDevMode) {
       if (exceptionHandler === null) {
-        const errorMessage = isApplicationBootstrapConfig(config2) ? "No `ErrorHandler` found in the Dependency Injection tree." : "No ErrorHandler. Is platform module (BrowserModule) included";
+        const errorMessage = isApplicationBootstrapConfig(config3) ? "No `ErrorHandler` found in the Dependency Injection tree." : "No ErrorHandler. Is platform module (BrowserModule) included";
         throw new RuntimeError(402, errorMessage);
       }
       if (envInjector.get(PROVIDED_ZONELESS) && envInjector.get(PROVIDED_NG_ZONE)) {
@@ -21994,20 +21994,20 @@ function bootstrap(config2) {
         }
       });
     });
-    if (isApplicationBootstrapConfig(config2)) {
+    if (isApplicationBootstrapConfig(config3)) {
       const destroyListener = () => envInjector.destroy();
-      const onPlatformDestroyListeners = config2.platformInjector.get(PLATFORM_DESTROY_LISTENERS);
+      const onPlatformDestroyListeners = config3.platformInjector.get(PLATFORM_DESTROY_LISTENERS);
       onPlatformDestroyListeners.add(destroyListener);
       envInjector.onDestroy(() => {
         onErrorSubscription.unsubscribe();
         onPlatformDestroyListeners.delete(destroyListener);
       });
     } else {
-      const destroyListener = () => config2.moduleRef.destroy();
-      const onPlatformDestroyListeners = config2.platformInjector.get(PLATFORM_DESTROY_LISTENERS);
+      const destroyListener = () => config3.moduleRef.destroy();
+      const onPlatformDestroyListeners = config3.platformInjector.get(PLATFORM_DESTROY_LISTENERS);
       onPlatformDestroyListeners.add(destroyListener);
-      config2.moduleRef.onDestroy(() => {
-        remove(config2.allPlatformModules, config2.moduleRef);
+      config3.moduleRef.onDestroy(() => {
+        remove(config3.allPlatformModules, config3.moduleRef);
         onErrorSubscription.unsubscribe();
         onPlatformDestroyListeners.delete(destroyListener);
       });
@@ -22020,25 +22020,25 @@ function bootstrap(config2) {
         setLocaleId(localeId || DEFAULT_LOCALE_ID);
         const enableRootComponentBoostrap = envInjector.get(ENABLE_ROOT_COMPONENT_BOOTSTRAP, true);
         if (!enableRootComponentBoostrap) {
-          if (isApplicationBootstrapConfig(config2)) {
+          if (isApplicationBootstrapConfig(config3)) {
             return envInjector.get(ApplicationRef);
           }
-          config2.allPlatformModules.push(config2.moduleRef);
-          return config2.moduleRef;
+          config3.allPlatformModules.push(config3.moduleRef);
+          return config3.moduleRef;
         }
         if (typeof ngDevMode === "undefined" || ngDevMode) {
           const imagePerformanceService = envInjector.get(ImagePerformanceWarning);
           imagePerformanceService.start();
         }
-        if (isApplicationBootstrapConfig(config2)) {
+        if (isApplicationBootstrapConfig(config3)) {
           const appRef = envInjector.get(ApplicationRef);
-          if (config2.rootComponent !== void 0) {
-            appRef.bootstrap(config2.rootComponent);
+          if (config3.rootComponent !== void 0) {
+            appRef.bootstrap(config3.rootComponent);
           }
           return appRef;
         } else {
-          moduleDoBootstrap(config2.moduleRef, config2.allPlatformModules);
-          return config2.moduleRef;
+          moduleDoBootstrap(config3.moduleRef, config3.allPlatformModules);
+          return config3.moduleRef;
         }
       });
     });
@@ -22150,10 +22150,10 @@ var PlatformRef = class _PlatformRef {
       throw new RuntimeError(404, ngDevMode && "The platform has already been destroyed!");
     }
     this._modules.slice().forEach((module) => module.destroy());
-    this._destroyListeners.forEach((listener) => listener());
+    this._destroyListeners.forEach((listener2) => listener2());
     const destroyListeners = this._injector.get(PLATFORM_DESTROY_LISTENERS, null);
     if (destroyListeners) {
-      destroyListeners.forEach((listener) => listener());
+      destroyListeners.forEach((listener2) => listener2());
       destroyListeners.clear();
     }
     this._destroyed = true;
@@ -22196,13 +22196,13 @@ function createPlatform(injector) {
   runPlatformInitializers(injector);
   return platform;
 }
-function createPlatformFactory(parentPlatformFactory, name, providers = []) {
+function createPlatformFactory(parentPlatformFactory, name, providers2 = []) {
   const desc = `Platform: ${name}`;
   const marker = new InjectionToken(desc);
   return (extraProviders = []) => {
     let platform = getPlatform();
     if (!platform || platform.injector.get(ALLOW_MULTIPLE_PLATFORMS, false)) {
-      const platformProviders = [...providers, ...extraProviders, {
+      const platformProviders = [...providers2, ...extraProviders, {
         provide: marker,
         useValue: true
       }];
@@ -22215,7 +22215,7 @@ function createPlatformFactory(parentPlatformFactory, name, providers = []) {
     return assertPlatform(marker);
   };
 }
-function createPlatformInjector(providers = [], name) {
+function createPlatformInjector(providers2 = [], name) {
   return Injector.create({
     name,
     providers: [{
@@ -22224,7 +22224,7 @@ function createPlatformInjector(providers = [], name) {
     }, {
       provide: PLATFORM_DESTROY_LISTENERS,
       useValue: /* @__PURE__ */ new Set([() => _platformInjector = null])
-    }, ...providers]
+    }, ...providers2]
   });
 }
 function assertPlatform(requiredToken) {
@@ -22240,10 +22240,10 @@ function assertPlatform(requiredToken) {
 function getPlatform() {
   return _platformInjector?.get(PlatformRef) ?? null;
 }
-function createOrReusePlatformInjector(providers = []) {
+function createOrReusePlatformInjector(providers2 = []) {
   if (_platformInjector) return _platformInjector;
   publishDefaultGlobalUtils();
-  const injector = createPlatformInjector(providers);
+  const injector = createPlatformInjector(providers2);
   _platformInjector = injector;
   publishSignalConfiguration();
   runPlatformInitializers(injector);
@@ -23221,7 +23221,7 @@ var ApplicationModule = class _ApplicationModule {
     type: ApplicationRef
   }], null);
 })();
-function internalCreateApplication(config2) {
+function internalCreateApplication(config3) {
   profiler(
     8
     /* ProfilerEvent.BootstrapApplicationStart */
@@ -23231,7 +23231,7 @@ function internalCreateApplication(config2) {
       rootComponent,
       appProviders,
       platformProviders
-    } = config2;
+    } = config3;
     if ((typeof ngDevMode === "undefined" || ngDevMode) && rootComponent !== void 0) {
       assertStandaloneComponentType(rootComponent);
     }
@@ -23457,13 +23457,13 @@ var BrowserPlatformLocation = class _BrowserPlatformLocation extends PlatformLoc
     }]
   }], () => [], null);
 })();
-function joinWithSlash(start, end) {
-  if (!start) return end;
-  if (!end) return start;
+function joinWithSlash(start, end2) {
+  if (!start) return end2;
+  if (!end2) return start;
   if (start.endsWith("/")) {
-    return end.startsWith("/") ? start + end.slice(1) : start + end;
+    return end2.startsWith("/") ? start + end2.slice(1) : start + end2;
   }
-  return end.startsWith("/") ? start + end : `${start}/${end}`;
+  return end2.startsWith("/") ? start + end2 : `${start}/${end2}`;
 }
 function stripTrailingSlash(url) {
   const pathEndIdx = url.search(/#|\?|$/);
@@ -24326,12 +24326,12 @@ function formatDate(value, format, locale, timezone) {
     dateTimezoneOffset = timezoneToOffset(timezone, dateTimezoneOffset);
     date = convertTimezoneToLocal(date, timezone);
   }
-  let text = "";
+  let text2 = "";
   parts.forEach((value2) => {
     const dateFormatter = getDateFormatter(value2);
-    text += dateFormatter ? dateFormatter(date, locale, dateTimezoneOffset) : value2 === "''" ? "'" : value2.replace(/(^'|'$)/g, "").replace(/''/g, "'");
+    text2 += dateFormatter ? dateFormatter(date, locale, dateTimezoneOffset) : value2 === "''" ? "'" : value2.replace(/(^'|'$)/g, "").replace(/''/g, "'");
   });
-  return text;
+  return text2;
 }
 function createDate(year, month, date) {
   const newDate = /* @__PURE__ */ new Date(0);
@@ -24881,9 +24881,9 @@ function isoStringToDate(match2) {
   dateSetter.call(date, Number(match2[1]), Number(match2[2]) - 1, Number(match2[3]));
   const h = Number(match2[4] || 0) - tzHour;
   const m = Number(match2[5] || 0) - tzMin;
-  const s = Number(match2[6] || 0);
+  const s2 = Number(match2[6] || 0);
   const ms = Math.floor(parseFloat("0." + (match2[7] || 0)) * 1e3);
-  timeSetter.call(date, h, m, s, ms);
+  timeSetter.call(date, h, m, s2, ms);
   return date;
 }
 function isDate(value) {
@@ -24994,7 +24994,7 @@ function formatNumber(value, locale, digitsInfo) {
   return formatNumberToLocaleString(value, pattern, locale, NumberSymbol.Group, NumberSymbol.Decimal, digitsInfo);
 }
 function parseNumberFormat(format, minusSign = "-") {
-  const p = {
+  const p2 = {
     minInt: 1,
     minFrac: 0,
     maxFrac: 0,
@@ -25009,29 +25009,29 @@ function parseNumberFormat(format, minusSign = "-") {
   const positive = patternParts[0];
   const negative = patternParts[1];
   const positiveParts = positive.indexOf(DECIMAL_SEP) !== -1 ? positive.split(DECIMAL_SEP) : [positive.substring(0, positive.lastIndexOf(ZERO_CHAR) + 1), positive.substring(positive.lastIndexOf(ZERO_CHAR) + 1)], integer = positiveParts[0], fraction = positiveParts[1] || "";
-  p.posPre = integer.substring(0, integer.indexOf(DIGIT_CHAR));
+  p2.posPre = integer.substring(0, integer.indexOf(DIGIT_CHAR));
   for (let i = 0; i < fraction.length; i++) {
     const ch = fraction.charAt(i);
     if (ch === ZERO_CHAR) {
-      p.minFrac = p.maxFrac = i + 1;
+      p2.minFrac = p2.maxFrac = i + 1;
     } else if (ch === DIGIT_CHAR) {
-      p.maxFrac = i + 1;
+      p2.maxFrac = i + 1;
     } else {
-      p.posSuf += ch;
+      p2.posSuf += ch;
     }
   }
   const groups = integer.split(GROUP_SEP);
-  p.gSize = groups[1] ? groups[1].length : 0;
-  p.lgSize = groups[2] || groups[1] ? (groups[2] || groups[1]).length : 0;
+  p2.gSize = groups[1] ? groups[1].length : 0;
+  p2.lgSize = groups[2] || groups[1] ? (groups[2] || groups[1]).length : 0;
   if (negative) {
-    const trunkLen = positive.length - p.posPre.length - p.posSuf.length, pos = negative.indexOf(DIGIT_CHAR);
-    p.negPre = negative.substring(0, pos).replace(/'/g, "");
-    p.negSuf = negative.slice(pos + trunkLen).replace(/'/g, "");
+    const trunkLen = positive.length - p2.posPre.length - p2.posSuf.length, pos = negative.indexOf(DIGIT_CHAR);
+    p2.negPre = negative.substring(0, pos).replace(/'/g, "");
+    p2.negSuf = negative.slice(pos + trunkLen).replace(/'/g, "");
   } else {
-    p.negPre = minusSign + p.posPre;
-    p.negSuf = p.posSuf;
+    p2.negPre = minusSign + p2.posPre;
+    p2.negSuf = p2.posSuf;
   }
-  return p;
+  return p2;
 }
 function toPercent(parsedNumber) {
   if (parsedNumber.digits[0] === 0) {
@@ -25142,10 +25142,10 @@ function roundNumber(parsedNumber, minFrac, maxFrac) {
     parsedNumber.integerLen++;
   }
 }
-function parseIntAutoRadix(text) {
-  const result = parseInt(text);
+function parseIntAutoRadix(text2) {
+  const result = parseInt(text2);
   if (isNaN(result)) {
-    throw new Error("Invalid integer literal when parsing " + text);
+    throw new Error("Invalid integer literal when parsing " + text2);
   }
   return result;
 }
@@ -26646,8 +26646,8 @@ var KeyValuePipe = class _KeyValuePipe {
     const compareFnChanged = compareFn !== this.compareFn;
     if (differChanges) {
       this.keyValues = [];
-      differChanges.forEachItem((r) => {
-        this.keyValues.push(makeKeyValuePair(r.key, r.currentValue));
+      differChanges.forEachItem((r2) => {
+        this.keyValues.push(makeKeyValuePair(r2.key, r2.currentValue));
       });
     }
     if (differChanges || compareFnChanged) {
@@ -26862,13 +26862,13 @@ function strToNumber(value) {
   return value;
 }
 var SlicePipe = class _SlicePipe {
-  transform(value, start, end) {
+  transform(value, start, end2) {
     if (value == null) return null;
     const supports = typeof value === "string" || Array.isArray(value);
     if (!supports) {
       throw invalidPipeArgumentError(_SlicePipe, value);
     }
-    return value.slice(start, end);
+    return value.slice(start, end2);
   }
   static \u0275fac = function SlicePipe_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _SlicePipe)();
@@ -27068,7 +27068,7 @@ function normalizePath(path) {
 function normalizeSrc(src) {
   return src.startsWith("/") ? src.slice(1) : src;
 }
-var noopImageLoader = (config2) => config2.src;
+var noopImageLoader = (config3) => config3.src;
 var IMAGE_LOADER = new InjectionToken(ngDevMode ? "ImageLoader" : "", {
   providedIn: "root",
   factory: () => noopImageLoader
@@ -27079,19 +27079,19 @@ function createImageLoader(buildUrlFn, exampleUrls) {
       throwInvalidPathError(path, exampleUrls || []);
     }
     path = normalizePath(path);
-    const loaderFn = (config2) => {
-      if (isAbsoluteUrl(config2.src)) {
-        throwUnexpectedAbsoluteUrlError(path, config2.src);
+    const loaderFn = (config3) => {
+      if (isAbsoluteUrl(config3.src)) {
+        throwUnexpectedAbsoluteUrlError(path, config3.src);
       }
-      return buildUrlFn(path, __spreadProps(__spreadValues({}, config2), {
-        src: normalizeSrc(config2.src)
+      return buildUrlFn(path, __spreadProps(__spreadValues({}, config3), {
+        src: normalizeSrc(config3.src)
       }));
     };
-    const providers = [{
+    const providers2 = [{
       provide: IMAGE_LOADER,
       useValue: loaderFn
     }];
-    return providers;
+    return providers2;
   };
 }
 function throwInvalidPathError(path, exampleUrls) {
@@ -27101,15 +27101,15 @@ function throwUnexpectedAbsoluteUrlError(path, url) {
   throw new RuntimeError(2959, ngDevMode && `Image loader has detected a \`<img>\` tag with an invalid \`ngSrc\` attribute: ${url}. This image loader expects \`ngSrc\` to be a relative URL - however the provided value is an absolute URL. To fix this, provide \`ngSrc\` as a path relative to the base URL configured for this loader (\`${path}\`).`);
 }
 var provideCloudflareLoader = createImageLoader(createCloudflareUrl, ngDevMode ? ["https://<ZONE>/cdn-cgi/image/<OPTIONS>/<SOURCE-IMAGE>"] : void 0);
-function createCloudflareUrl(path, config2) {
+function createCloudflareUrl(path, config3) {
   let params = `format=auto`;
-  if (config2.width) {
-    params += `,width=${config2.width}`;
+  if (config3.width) {
+    params += `,width=${config3.width}`;
   }
-  if (config2.isPlaceholder) {
+  if (config3.isPlaceholder) {
     params += `,quality=${PLACEHOLDER_QUALITY}`;
   }
-  return `${path}/cdn-cgi/image/${params}/${config2.src}`;
+  return `${path}/cdn-cgi/image/${params}/${config3.src}`;
 }
 var cloudinaryLoaderInfo = {
   name: "Cloudinary",
@@ -27120,16 +27120,16 @@ function isCloudinaryUrl(url) {
   return CLOUDINARY_LOADER_REGEX.test(url);
 }
 var provideCloudinaryLoader = createImageLoader(createCloudinaryUrl, ngDevMode ? ["https://res.cloudinary.com/mysite", "https://mysite.cloudinary.com", "https://subdomain.mysite.com"] : void 0);
-function createCloudinaryUrl(path, config2) {
-  const quality = config2.isPlaceholder ? "q_auto:low" : "q_auto";
+function createCloudinaryUrl(path, config3) {
+  const quality = config3.isPlaceholder ? "q_auto:low" : "q_auto";
   let params = `f_auto,${quality}`;
-  if (config2.width) {
-    params += `,w_${config2.width}`;
+  if (config3.width) {
+    params += `,w_${config3.width}`;
   }
-  if (config2.loaderParams?.["rounded"]) {
+  if (config3.loaderParams?.["rounded"]) {
     params += `,r_max`;
   }
-  return `${path}/image/upload/${params}/${config2.src}`;
+  return `${path}/image/upload/${params}/${config3.src}`;
 }
 var imageKitLoaderInfo = {
   name: "ImageKit",
@@ -27140,16 +27140,16 @@ function isImageKitUrl(url) {
   return IMAGE_KIT_LOADER_REGEX.test(url);
 }
 var provideImageKitLoader = createImageLoader(createImagekitUrl, ngDevMode ? ["https://ik.imagekit.io/mysite", "https://subdomain.mysite.com"] : void 0);
-function createImagekitUrl(path, config2) {
+function createImagekitUrl(path, config3) {
   const {
     src,
     width
-  } = config2;
+  } = config3;
   const params = [];
   if (width) {
     params.push(`w-${width}`);
   }
-  if (config2.isPlaceholder) {
+  if (config3.isPlaceholder) {
     params.push(`q-${PLACEHOLDER_QUALITY}`);
   }
   const urlSegments = params.length ? [path, `tr:${params.join(",")}`, src] : [path, src];
@@ -27165,13 +27165,13 @@ function isImgixUrl(url) {
   return IMGIX_LOADER_REGEX.test(url);
 }
 var provideImgixLoader = createImageLoader(createImgixUrl, ngDevMode ? ["https://somepath.imgix.net/"] : void 0);
-function createImgixUrl(path, config2) {
-  const url = new URL(`${path}/${config2.src}`);
+function createImgixUrl(path, config3) {
+  const url = new URL(`${path}/${config3.src}`);
   url.searchParams.set("auto", "format");
-  if (config2.width) {
-    url.searchParams.set("w", config2.width.toString());
+  if (config3.width) {
+    url.searchParams.set("w", config3.width.toString());
   }
-  if (config2.isPlaceholder) {
+  if (config3.isPlaceholder) {
     url.searchParams.set("q", PLACEHOLDER_QUALITY);
   }
   return url.href;
@@ -27915,12 +27915,12 @@ var NgOptimizedImage = class _NgOptimizedImage {
     }]
   });
 })();
-function processConfig(config2) {
+function processConfig(config3) {
   let sortedBreakpoints = {};
-  if (config2.breakpoints) {
-    sortedBreakpoints.breakpoints = config2.breakpoints.sort((a, b) => a - b);
+  if (config3.breakpoints) {
+    sortedBreakpoints.breakpoints = config3.breakpoints.sort((a, b) => a - b);
   }
-  return Object.assign({}, IMAGE_CONFIG_DEFAULTS, config2, sortedBreakpoints);
+  return Object.assign({}, IMAGE_CONFIG_DEFAULTS, config3, sortedBreakpoints);
 }
 function assertNoConflictingSrc(dir) {
   if (dir.src) {
@@ -28204,12 +28204,12 @@ var EventManager = class _EventManager {
   /**
    * Initializes an instance of the event-manager service.
    */
-  constructor(plugins, _zone) {
+  constructor(plugins2, _zone) {
     this._zone = _zone;
-    plugins.forEach((plugin) => {
+    plugins2.forEach((plugin) => {
       plugin.manager = this;
     });
-    this._plugins = plugins.slice().reverse();
+    this._plugins = plugins2.slice().reverse();
   }
   /**
    * Registers a handler for a specific element and event.
@@ -28237,8 +28237,8 @@ var EventManager = class _EventManager {
     if (plugin) {
       return plugin;
     }
-    const plugins = this._plugins;
-    plugin = plugins.find((plugin2) => plugin2.supports(eventName));
+    const plugins2 = this._plugins;
+    plugin = plugins2.find((plugin2) => plugin2.supports(eventName));
     if (!plugin) {
       throw new RuntimeError(5101, (typeof ngDevMode === "undefined" || ngDevMode) && `No event manager plugin found for event ${eventName}`);
     }
@@ -28345,8 +28345,8 @@ var SharedStylesHost = class _SharedStylesHost {
    * Adds embedded styles to the DOM via HTML `style` elements.
    * @param styles An array of style content strings.
    */
-  addStyles(styles, urls) {
-    for (const value of styles) {
+  addStyles(styles2, urls) {
+    for (const value of styles2) {
       this.addUsage(value, this.inline, createStyleElement);
     }
     urls?.forEach((value) => this.addUsage(value, this.external, createLinkElement));
@@ -28355,8 +28355,8 @@ var SharedStylesHost = class _SharedStylesHost {
    * Removes embedded styles from the DOM that were added as HTML `style` elements.
    * @param styles An array of style content strings.
    */
-  removeStyles(styles, urls) {
-    for (const value of styles) {
+  removeStyles(styles2, urls) {
+    for (const value of styles2) {
       this.removeUsage(value, this.inline);
     }
     urls?.forEach((value) => this.removeUsage(value, this.external));
@@ -28488,15 +28488,15 @@ function shimContentAttribute(componentShortId) {
 function shimHostAttribute(componentShortId) {
   return HOST_ATTR.replace(COMPONENT_REGEX, componentShortId);
 }
-function shimStylesContent(compId, styles) {
-  return styles.map((s) => s.replace(COMPONENT_REGEX, compId));
+function shimStylesContent(compId, styles2) {
+  return styles2.map((s2) => s2.replace(COMPONENT_REGEX, compId));
 }
-function addBaseHrefToCssSourceMap(baseHref, styles) {
+function addBaseHrefToCssSourceMap(baseHref, styles2) {
   if (!baseHref) {
-    return styles;
+    return styles2;
   }
   const absoluteBaseHrefUrl = new URL(baseHref, "http://localhost");
-  return styles.map((cssContent) => {
+  return styles2.map((cssContent) => {
     if (!cssContent.includes("sourceMappingURL=")) {
       return cssContent;
     }
@@ -28668,9 +28668,9 @@ var DefaultDomRenderer2 = class {
   destroy() {
   }
   destroyNode = null;
-  createElement(name, namespace) {
-    if (namespace) {
-      return this.doc.createElementNS(NAMESPACE_URIS[namespace] || namespace, name);
+  createElement(name, namespace2) {
+    if (namespace2) {
+      return this.doc.createElementNS(NAMESPACE_URIS[namespace2] || namespace2, name);
     }
     return this.doc.createElement(name);
   }
@@ -28709,10 +28709,10 @@ var DefaultDomRenderer2 = class {
   nextSibling(node) {
     return node.nextSibling;
   }
-  setAttribute(el, name, value, namespace) {
-    if (namespace) {
-      name = namespace + ":" + name;
-      const namespaceUri = NAMESPACE_URIS[namespace];
+  setAttribute(el, name, value, namespace2) {
+    if (namespace2) {
+      name = namespace2 + ":" + name;
+      const namespaceUri = NAMESPACE_URIS[namespace2];
       if (namespaceUri) {
         el.setAttributeNS(namespaceUri, name, value);
       } else {
@@ -28722,13 +28722,13 @@ var DefaultDomRenderer2 = class {
       el.setAttribute(name, value);
     }
   }
-  removeAttribute(el, name, namespace) {
-    if (namespace) {
-      const namespaceUri = NAMESPACE_URIS[namespace];
+  removeAttribute(el, name, namespace2) {
+    if (namespace2) {
+      const namespaceUri = NAMESPACE_URIS[namespace2];
       if (namespaceUri) {
         el.removeAttributeNS(namespaceUri, name);
       } else {
-        el.removeAttribute(`${namespace}:${name}`);
+        el.removeAttribute(`${namespace2}:${name}`);
       }
     } else {
       el.removeAttribute(name);
@@ -28814,13 +28814,13 @@ var ShadowDomRenderer = class extends DefaultDomRenderer2 {
       mode: "open"
     });
     this.sharedStylesHost.addHost(this.shadowRoot);
-    let styles = component.styles;
+    let styles2 = component.styles;
     if (ngDevMode) {
       const baseHref = getDOM().getBaseHref(doc) ?? "";
-      styles = addBaseHrefToCssSourceMap(baseHref, styles);
+      styles2 = addBaseHrefToCssSourceMap(baseHref, styles2);
     }
-    styles = shimStylesContent(component.id, styles);
-    for (const style of styles) {
+    styles2 = shimStylesContent(component.id, styles2);
+    for (const style of styles2) {
       const styleEl = document.createElement("style");
       if (nonce) {
         styleEl.setAttribute("nonce", nonce);
@@ -28867,12 +28867,12 @@ var NoneEncapsulationDomRenderer = class extends DefaultDomRenderer2 {
     super(eventManager, doc, ngZone, platformIsServer, tracingService);
     this.sharedStylesHost = sharedStylesHost;
     this.removeStylesOnCompDestroy = removeStylesOnCompDestroy;
-    let styles = component.styles;
+    let styles2 = component.styles;
     if (ngDevMode) {
       const baseHref = getDOM().getBaseHref(doc) ?? "";
-      styles = addBaseHrefToCssSourceMap(baseHref, styles);
+      styles2 = addBaseHrefToCssSourceMap(baseHref, styles2);
     }
-    this.styles = compId ? shimStylesContent(compId, styles) : styles;
+    this.styles = compId ? shimStylesContent(compId, styles2) : styles2;
     this.styleUrls = component.getExternalStyles?.(compId);
   }
   applyStyles() {
@@ -28911,10 +28911,10 @@ var BrowserDomAdapter = class _BrowserDomAdapter extends DomAdapter {
   static makeCurrent() {
     setRootDomAdapter(new _BrowserDomAdapter());
   }
-  onAndCancel(el, evt, listener, options) {
-    el.addEventListener(evt, listener, options);
+  onAndCancel(el, evt, listener2, options) {
+    el.addEventListener(evt, listener2, options);
     return () => {
-      el.removeEventListener(evt, listener, options);
+      el.removeEventListener(evt, listener2, options);
     };
   }
   dispatchEvent(el, evt) {
@@ -29007,9 +29007,9 @@ var BrowserGetTestability = class {
     if (elem == null) {
       return null;
     }
-    const t = registry.getTestability(elem);
-    if (t != null) {
-      return t;
+    const t2 = registry.getTestability(elem);
+    if (t2 != null) {
+      return t2;
     } else if (!findInAncestors) {
       return null;
     }
@@ -29637,9 +29637,9 @@ var HammerGesturesPlugin = class _HammerGesturesPlugin extends EventManagerPlugi
   _injector;
   loader;
   _loaderPromise = null;
-  constructor(doc, _config, _injector, loader) {
+  constructor(doc, _config2, _injector, loader) {
     super(doc);
-    this._config = _config;
+    this._config = _config2;
     this._injector = _injector;
     this.loader = loader;
   }
@@ -30190,8 +30190,8 @@ var UrlSerializer = class _UrlSerializer {
 var DefaultUrlSerializer = class {
   /** Parses a url into a `UrlTree` */
   parse(url) {
-    const p = new UrlParser(url);
-    return new UrlTree(p.parseRootSegment(), p.parseQueryParams(), p.parseFragment());
+    const p2 = new UrlParser(url);
+    return new UrlTree(p2.parseRootSegment(), p2.parseQueryParams(), p2.parseFragment());
   }
   /** Converts a `UrlTree` into a url */
   serialize(tree2) {
@@ -30203,7 +30203,7 @@ var DefaultUrlSerializer = class {
 };
 var DEFAULT_SERIALIZER = new DefaultUrlSerializer();
 function serializePaths(segment) {
-  return segment.segments.map((p) => serializePath(p)).join("/");
+  return segment.segments.map((p2) => serializePath(p2)).join("/");
 }
 function serializeSegment(segment, root) {
   if (!segment.hasChildren()) {
@@ -30231,23 +30231,23 @@ function serializeSegment(segment, root) {
     return `${serializePaths(segment)}/(${children.join("//")})`;
   }
 }
-function encodeUriString(s) {
-  return encodeURIComponent(s).replace(/%40/g, "@").replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",");
+function encodeUriString(s2) {
+  return encodeURIComponent(s2).replace(/%40/g, "@").replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",");
 }
-function encodeUriQuery(s) {
-  return encodeUriString(s).replace(/%3B/gi, ";");
+function encodeUriQuery(s2) {
+  return encodeUriString(s2).replace(/%3B/gi, ";");
 }
-function encodeUriFragment(s) {
-  return encodeURI(s);
+function encodeUriFragment(s2) {
+  return encodeURI(s2);
 }
-function encodeUriSegment(s) {
-  return encodeUriString(s).replace(/\(/g, "%28").replace(/\)/g, "%29").replace(/%26/gi, "&");
+function encodeUriSegment(s2) {
+  return encodeUriString(s2).replace(/\(/g, "%28").replace(/\)/g, "%29").replace(/%26/gi, "&");
 }
-function decode(s) {
-  return decodeURIComponent(s);
+function decode(s2) {
+  return decodeURIComponent(s2);
 }
-function decodeQuery(s) {
-  return decode(s.replace(/\+/g, "%20"));
+function decodeQuery(s2) {
+  return decode(s2.replace(/\+/g, "%20"));
 }
 function serializePath(path) {
   return `${encodeUriSegment(path.path)}${serializeMatrixParams(path.parameters)}`;
@@ -30258,7 +30258,7 @@ function serializeMatrixParams(params) {
 function serializeQueryParams(params) {
   const strParams = Object.entries(params).map(([name, value]) => {
     return Array.isArray(value) ? value.map((v) => `${encodeUriQuery(name)}=${encodeUriQuery(v)}`).join("&") : `${encodeUriQuery(name)}=${encodeUriQuery(value)}`;
-  }).filter((s) => s);
+  }).filter((s2) => s2);
   return strParams.length ? `?${strParams.join("&")}` : "";
 }
 var SEGMENT_RE = /^[^\/()?;#]+/;
@@ -30453,15 +30453,15 @@ function squashSegmentGroup(segmentGroup) {
       newChildren[childOutlet] = childCandidate;
     }
   }
-  const s = new UrlSegmentGroup(segmentGroup.segments, newChildren);
-  return mergeTrivialChildren(s);
+  const s2 = new UrlSegmentGroup(segmentGroup.segments, newChildren);
+  return mergeTrivialChildren(s2);
 }
-function mergeTrivialChildren(s) {
-  if (s.numberOfChildren === 1 && s.children[PRIMARY_OUTLET]) {
-    const c = s.children[PRIMARY_OUTLET];
-    return new UrlSegmentGroup(s.segments.concat(c.segments), c.children);
+function mergeTrivialChildren(s2) {
+  if (s2.numberOfChildren === 1 && s2.children[PRIMARY_OUTLET]) {
+    const c = s2.children[PRIMARY_OUTLET];
+    return new UrlSegmentGroup(s2.segments.concat(c.segments), c.children);
   }
-  return s;
+  return s2;
 }
 function isUrlTree(v) {
   return v instanceof UrlTree;
@@ -30623,18 +30623,18 @@ function findStartingPositionForTargetGroup(nav, root, target) {
   return createPositionApplyingDoubleDots(target, index, nav.numberOfDoubleDots);
 }
 function createPositionApplyingDoubleDots(group, index, numberOfDoubleDots) {
-  let g = group;
+  let g2 = group;
   let ci = index;
   let dd = numberOfDoubleDots;
   while (dd > ci) {
     dd -= ci;
-    g = g.parent;
-    if (!g) {
+    g2 = g2.parent;
+    if (!g2) {
       throw new RuntimeError(4005, (typeof ngDevMode === "undefined" || ngDevMode) && "Invalid number of '../'");
     }
-    ci = g.segments.length;
+    ci = g2.segments.length;
   }
-  return new Position(g, false, ci - dd);
+  return new Position(g2, false, ci - dd);
 }
 function getOutlets(commands) {
   if (isCommandWithOutlets(commands[0])) {
@@ -30652,9 +30652,9 @@ function updateSegmentGroup(segmentGroup, startIndex, commands) {
   const m = prefixedWith(segmentGroup, startIndex, commands);
   const slicedCommands = commands.slice(m.commandIndex);
   if (m.match && m.pathIndex < segmentGroup.segments.length) {
-    const g = new UrlSegmentGroup(segmentGroup.segments.slice(0, m.pathIndex), {});
-    g.children[PRIMARY_OUTLET] = new UrlSegmentGroup(segmentGroup.segments.slice(m.pathIndex), segmentGroup.children);
-    return updateSegmentGroupChildren(g, 0, slicedCommands);
+    const g2 = new UrlSegmentGroup(segmentGroup.segments.slice(0, m.pathIndex), {});
+    g2.children[PRIMARY_OUTLET] = new UrlSegmentGroup(segmentGroup.segments.slice(m.pathIndex), segmentGroup.children);
+    return updateSegmentGroupChildren(g2, 0, slicedCommands);
   } else if (m.match && slicedCommands.length === 0) {
     return new UrlSegmentGroup(segmentGroup.segments, {});
   } else if (m.match && !segmentGroup.hasChildren()) {
@@ -30671,7 +30671,7 @@ function updateSegmentGroupChildren(segmentGroup, startIndex, commands) {
   } else {
     const outlets = getOutlets(commands);
     const children = {};
-    if (Object.keys(outlets).some((o) => o !== PRIMARY_OUTLET) && segmentGroup.children[PRIMARY_OUTLET] && segmentGroup.numberOfChildren === 1 && segmentGroup.children[PRIMARY_OUTLET].segments.length === 0) {
+    if (Object.keys(outlets).some((o2) => o2 !== PRIMARY_OUTLET) && segmentGroup.children[PRIMARY_OUTLET] && segmentGroup.numberOfChildren === 1 && segmentGroup.children[PRIMARY_OUTLET].segments.length === 0) {
       const childrenOfEmptyChild = updateSegmentGroupChildren(segmentGroup.children[PRIMARY_OUTLET], startIndex, commands);
       return new UrlSegmentGroup(segmentGroup.segments, childrenOfEmptyChild.children);
     }
@@ -30734,8 +30734,8 @@ function createNewSegmentGroup(segmentGroup, startIndex, commands) {
       return new UrlSegmentGroup(paths, children);
     }
     if (i === 0 && isMatrixParams(commands[0])) {
-      const p = segmentGroup.segments[startIndex];
-      paths.push(new UrlSegment(p.path, stringify2(commands[0])));
+      const p2 = segmentGroup.segments[startIndex];
+      paths.push(new UrlSegment(p2.path, stringify2(commands[0])));
       i++;
       continue;
     }
@@ -31103,9 +31103,9 @@ function getOrCreateRouteInjectorIfNeeded(route, currentInjector) {
   }
   return route._injector ?? currentInjector;
 }
-function validateConfig(config2, parentPath = "", requireStandaloneComponents = false) {
-  for (let i = 0; i < config2.length; i++) {
-    const route = config2[i];
+function validateConfig(config3, parentPath = "", requireStandaloneComponents = false) {
+  for (let i = 0; i < config3.length; i++) {
+    const route = config3[i];
     const fullPath = getFullPath(parentPath, route);
     validateNode(route, fullPath, requireStandaloneComponents);
   }
@@ -31198,8 +31198,8 @@ function getOutlet(route) {
   return route.outlet || PRIMARY_OUTLET;
 }
 function sortByMatchingOutlets(routes2, outletName) {
-  const sortedConfig = routes2.filter((r) => getOutlet(r) === outletName);
-  sortedConfig.push(...routes2.filter((r) => getOutlet(r) !== outletName));
+  const sortedConfig = routes2.filter((r2) => getOutlet(r2) === outletName);
+  sortedConfig.push(...routes2.filter((r2) => getOutlet(r2) !== outletName));
   return sortedConfig;
 }
 function getClosestRouteInjector(snapshot) {
@@ -31207,8 +31207,8 @@ function getClosestRouteInjector(snapshot) {
   if (snapshot.routeConfig?._injector) {
     return snapshot.routeConfig._injector;
   }
-  for (let s = snapshot.parent; s; s = s.parent) {
-    const route = s.routeConfig;
+  for (let s2 = snapshot.parent; s2; s2 = s2.parent) {
+    const route = s2.routeConfig;
     if (route?._loadedInjector) return route._loadedInjector;
     if (route?._injector) return route._injector;
   }
@@ -31308,38 +31308,38 @@ var Tree = class {
   /**
    * @internal
    */
-  parent(t) {
-    const p = this.pathFromRoot(t);
-    return p.length > 1 ? p[p.length - 2] : null;
+  parent(t2) {
+    const p2 = this.pathFromRoot(t2);
+    return p2.length > 1 ? p2[p2.length - 2] : null;
   }
   /**
    * @internal
    */
-  children(t) {
-    const n = findNode(t, this._root);
-    return n ? n.children.map((t2) => t2.value) : [];
+  children(t2) {
+    const n = findNode(t2, this._root);
+    return n ? n.children.map((t3) => t3.value) : [];
   }
   /**
    * @internal
    */
-  firstChild(t) {
-    const n = findNode(t, this._root);
+  firstChild(t2) {
+    const n = findNode(t2, this._root);
     return n && n.children.length > 0 ? n.children[0].value : null;
   }
   /**
    * @internal
    */
-  siblings(t) {
-    const p = findPath(t, this._root);
-    if (p.length < 2) return [];
-    const c = p[p.length - 2].children.map((c2) => c2.value);
-    return c.filter((cc) => cc !== t);
+  siblings(t2) {
+    const p2 = findPath(t2, this._root);
+    if (p2.length < 2) return [];
+    const c = p2[p2.length - 2].children.map((c2) => c2.value);
+    return c.filter((cc) => cc !== t2);
   }
   /**
    * @internal
    */
-  pathFromRoot(t) {
-    return findPath(t, this._root).map((s) => s.value);
+  pathFromRoot(t2) {
+    return findPath(t2, this._root).map((s2) => s2.value);
   }
 };
 function findNode(value, node) {
@@ -31487,7 +31487,7 @@ var ActivatedRoute = class {
    * The map supports retrieving single and multiple values from the same parameter.
    */
   get paramMap() {
-    this._paramMap ??= this.params.pipe(map((p) => convertToParamMap(p)));
+    this._paramMap ??= this.params.pipe(map((p2) => convertToParamMap(p2)));
     return this._paramMap;
   }
   /**
@@ -31495,7 +31495,7 @@ var ActivatedRoute = class {
    * The map supports retrieving single and multiple values from the query parameter.
    */
   get queryParamMap() {
-    this._queryParamMap ??= this.queryParams.pipe(map((p) => convertToParamMap(p)));
+    this._queryParamMap ??= this.queryParams.pipe(map((p2) => convertToParamMap(p2)));
     return this._queryParamMap;
   }
   toString() {
@@ -31647,8 +31647,8 @@ function equalParamsAndUrlSegments(a, b) {
   const parentsMismatch = !a.parent !== !b.parent;
   return equalUrlParams && !parentsMismatch && (!a.parent || equalParamsAndUrlSegments(a.parent, b.parent));
 }
-function hasStaticTitle(config2) {
-  return typeof config2.title === "string" || config2.title === null;
+function hasStaticTitle(config3) {
+  return typeof config3.title === "string" || config3.title === null;
 }
 var ROUTER_OUTLET_DATA = new InjectionToken(ngDevMode ? "RouterOutlet data" : "");
 var RouterOutlet = class _RouterOutlet {
@@ -31957,9 +31957,9 @@ function createNode(routeReuseStrategy, curr, prevState) {
 }
 function createOrReuseChildren(routeReuseStrategy, curr, prevState) {
   return curr.children.map((child) => {
-    for (const p of prevState.children) {
-      if (routeReuseStrategy.shouldReuseRoute(child.value, p.value.snapshot)) {
-        return createNode(routeReuseStrategy, child, p);
+    for (const p2 of prevState.children) {
+      if (routeReuseStrategy.shouldReuseRoute(child.value, p2.value.snapshot)) {
+        return createNode(routeReuseStrategy, child, p2);
       }
     }
     return createNode(routeReuseStrategy, child);
@@ -32003,9 +32003,9 @@ function isNavigationCancelingError(error) {
   return !!error && error[NAVIGATION_CANCELING_ERROR];
 }
 var warnedAboutUnsupportedInputBinding = false;
-var activateRoutes = (rootContexts, routeReuseStrategy, forwardEvent, inputBindingEnabled) => map((t) => {
-  new ActivateRoutes(routeReuseStrategy, t.targetRouterState, t.currentRouterState, forwardEvent, inputBindingEnabled).activate(rootContexts);
-  return t;
+var activateRoutes = (rootContexts, routeReuseStrategy, forwardEvent, inputBindingEnabled) => map((t2) => {
+  new ActivateRoutes(routeReuseStrategy, t2.targetRouterState, t2.currentRouterState, forwardEvent, inputBindingEnabled).activate(rootContexts);
+  return t2;
 });
 var ActivateRoutes = class {
   routeReuseStrategy;
@@ -32175,11 +32175,11 @@ function getAllRouteGuards(future, curr, parentContexts) {
   const currRoot = curr ? curr._root : null;
   return getChildRouteGuards(futureRoot, currRoot, parentContexts, [futureRoot.value]);
 }
-function getCanActivateChild(p) {
-  const canActivateChild = p.routeConfig ? p.routeConfig.canActivateChild : null;
+function getCanActivateChild(p2) {
+  const canActivateChild = p2.routeConfig ? p2.routeConfig.canActivateChild : null;
   if (!canActivateChild || canActivateChild.length === 0) return null;
   return {
-    node: p,
+    node: p2,
     guards: canActivateChild
   };
 }
@@ -32263,9 +32263,9 @@ function shouldRunGuardsAndResolvers(curr, future, mode) {
 }
 function deactivateRouteAndItsChildren(route, context2, checks) {
   const children = nodeChildrenAsMap(route);
-  const r = route.value;
+  const r2 = route.value;
   Object.entries(children).forEach(([childName, node]) => {
-    if (!r.component) {
+    if (!r2.component) {
       deactivateRouteAndItsChildren(node, context2, checks);
     } else if (context2) {
       deactivateRouteAndItsChildren(node, context2.children.getContext(childName), checks);
@@ -32273,12 +32273,12 @@ function deactivateRouteAndItsChildren(route, context2, checks) {
       deactivateRouteAndItsChildren(node, null, checks);
     }
   });
-  if (!r.component) {
-    checks.canDeactivateChecks.push(new CanDeactivate(null, r));
+  if (!r2.component) {
+    checks.canDeactivateChecks.push(new CanDeactivate(null, r2));
   } else if (context2 && context2.outlet && context2.outlet.isActivated) {
-    checks.canDeactivateChecks.push(new CanDeactivate(context2.outlet.component, r));
+    checks.canDeactivateChecks.push(new CanDeactivate(context2.outlet.component, r2));
   } else {
-    checks.canDeactivateChecks.push(new CanDeactivate(null, r));
+    checks.canDeactivateChecks.push(new CanDeactivate(null, r2));
   }
 }
 function isFunction2(v) {
@@ -32308,7 +32308,7 @@ function isEmptyError(e) {
 var INITIAL_VALUE = /* @__PURE__ */ Symbol("INITIAL_VALUE");
 function prioritizedGuardValue() {
   return switchMap((obs) => {
-    return combineLatest(obs.map((o) => o.pipe(take(1), startWith(INITIAL_VALUE)))).pipe(map((results) => {
+    return combineLatest(obs.map((o2) => o2.pipe(take(1), startWith(INITIAL_VALUE)))).pipe(map((results) => {
       for (const result of results) {
         if (result === true) {
           continue;
@@ -32326,7 +32326,7 @@ function isRedirect(val) {
   return isUrlTree(val) || val instanceof RedirectCommand;
 }
 function checkGuards(injector, forwardEvent) {
-  return mergeMap((t) => {
+  return mergeMap((t2) => {
     const {
       targetSnapshot,
       currentSnapshot,
@@ -32334,15 +32334,15 @@ function checkGuards(injector, forwardEvent) {
         canActivateChecks,
         canDeactivateChecks
       }
-    } = t;
+    } = t2;
     if (canDeactivateChecks.length === 0 && canActivateChecks.length === 0) {
-      return of(__spreadProps(__spreadValues({}, t), {
+      return of(__spreadProps(__spreadValues({}, t2), {
         guardsResult: true
       }));
     }
     return runCanDeactivateChecks(canDeactivateChecks, targetSnapshot, currentSnapshot, injector).pipe(mergeMap((canDeactivate) => {
       return canDeactivate && isBoolean(canDeactivate) ? runCanActivateChecks(targetSnapshot, canActivateChecks, injector, forwardEvent) : of(canDeactivate);
-    }), map((guardsResult) => __spreadProps(__spreadValues({}, t), {
+    }), map((guardsResult) => __spreadProps(__spreadValues({}, t2), {
       guardsResult
     })));
   });
@@ -32386,7 +32386,7 @@ function runCanActivate(futureRSS, futureARS, injector) {
 }
 function runCanActivateChild(futureRSS, path, injector) {
   const futureARS = path[path.length - 1];
-  const canActivateChildGuards = path.slice(0, path.length - 1).reverse().map((p) => getCanActivateChild(p)).filter((_) => _ !== null);
+  const canActivateChildGuards = path.slice(0, path.length - 1).reverse().map((p2) => getCanActivateChild(p2)).filter((_) => _ !== null);
   const canActivateChildGuardsMapped = canActivateChildGuards.map((d) => {
     return defer(() => {
       const guardsMapped = d.guards.map((canActivateChild) => {
@@ -32542,7 +32542,7 @@ var ApplyRedirects = class {
     return new UrlSegmentGroup(updatedSegments, children);
   }
   createSegments(redirectTo, redirectToSegments, actualSegments, posParams) {
-    return redirectToSegments.map((s) => s.path[0] === ":" ? this.findPosParam(redirectTo, s, posParams) : this.findOrReturn(s, actualSegments));
+    return redirectToSegments.map((s2) => s2.path[0] === ":" ? this.findPosParam(redirectTo, s2, posParams) : this.findOrReturn(s2, actualSegments));
   }
   findPosParam(redirectTo, redirectToUrlSegment, posParams) {
     const pos = posParams[redirectToUrlSegment.path.substring(1)];
@@ -32551,10 +32551,10 @@ var ApplyRedirects = class {
   }
   findOrReturn(redirectToUrlSegment, actualSegments) {
     let idx = 0;
-    for (const s of actualSegments) {
-      if (s.path === redirectToUrlSegment.path) {
+    for (const s2 of actualSegments) {
+      if (s2.path === redirectToUrlSegment.path) {
         actualSegments.splice(idx);
-        return s;
+        return s2;
       }
       idx++;
     }
@@ -32618,33 +32618,33 @@ function createWildcardMatchResult(segments) {
     positionalParamSegments: {}
   };
 }
-function split(segmentGroup, consumedSegments, slicedSegments, config2) {
-  if (slicedSegments.length > 0 && containsEmptyPathMatchesWithNamedOutlets(segmentGroup, slicedSegments, config2)) {
-    const s2 = new UrlSegmentGroup(consumedSegments, createChildrenForEmptyPaths(config2, new UrlSegmentGroup(slicedSegments, segmentGroup.children)));
+function split(segmentGroup, consumedSegments, slicedSegments, config3) {
+  if (slicedSegments.length > 0 && containsEmptyPathMatchesWithNamedOutlets(segmentGroup, slicedSegments, config3)) {
+    const s3 = new UrlSegmentGroup(consumedSegments, createChildrenForEmptyPaths(config3, new UrlSegmentGroup(slicedSegments, segmentGroup.children)));
     return {
-      segmentGroup: s2,
+      segmentGroup: s3,
       slicedSegments: []
     };
   }
-  if (slicedSegments.length === 0 && containsEmptyPathMatches(segmentGroup, slicedSegments, config2)) {
-    const s2 = new UrlSegmentGroup(segmentGroup.segments, addEmptyPathsToChildrenIfNeeded(segmentGroup, slicedSegments, config2, segmentGroup.children));
+  if (slicedSegments.length === 0 && containsEmptyPathMatches(segmentGroup, slicedSegments, config3)) {
+    const s3 = new UrlSegmentGroup(segmentGroup.segments, addEmptyPathsToChildrenIfNeeded(segmentGroup, slicedSegments, config3, segmentGroup.children));
     return {
-      segmentGroup: s2,
+      segmentGroup: s3,
       slicedSegments
     };
   }
-  const s = new UrlSegmentGroup(segmentGroup.segments, segmentGroup.children);
+  const s2 = new UrlSegmentGroup(segmentGroup.segments, segmentGroup.children);
   return {
-    segmentGroup: s,
+    segmentGroup: s2,
     slicedSegments
   };
 }
 function addEmptyPathsToChildrenIfNeeded(segmentGroup, slicedSegments, routes2, children) {
   const res = {};
-  for (const r of routes2) {
-    if (emptyPathMatch(segmentGroup, slicedSegments, r) && !children[getOutlet(r)]) {
-      const s = new UrlSegmentGroup([], {});
-      res[getOutlet(r)] = s;
+  for (const r2 of routes2) {
+    if (emptyPathMatch(segmentGroup, slicedSegments, r2) && !children[getOutlet(r2)]) {
+      const s2 = new UrlSegmentGroup([], {});
+      res[getOutlet(r2)] = s2;
     }
   }
   return __spreadValues(__spreadValues({}, children), res);
@@ -32652,33 +32652,33 @@ function addEmptyPathsToChildrenIfNeeded(segmentGroup, slicedSegments, routes2, 
 function createChildrenForEmptyPaths(routes2, primarySegment) {
   const res = {};
   res[PRIMARY_OUTLET] = primarySegment;
-  for (const r of routes2) {
-    if (r.path === "" && getOutlet(r) !== PRIMARY_OUTLET) {
-      const s = new UrlSegmentGroup([], {});
-      res[getOutlet(r)] = s;
+  for (const r2 of routes2) {
+    if (r2.path === "" && getOutlet(r2) !== PRIMARY_OUTLET) {
+      const s2 = new UrlSegmentGroup([], {});
+      res[getOutlet(r2)] = s2;
     }
   }
   return res;
 }
 function containsEmptyPathMatchesWithNamedOutlets(segmentGroup, slicedSegments, routes2) {
-  return routes2.some((r) => emptyPathMatch(segmentGroup, slicedSegments, r) && getOutlet(r) !== PRIMARY_OUTLET);
+  return routes2.some((r2) => emptyPathMatch(segmentGroup, slicedSegments, r2) && getOutlet(r2) !== PRIMARY_OUTLET);
 }
 function containsEmptyPathMatches(segmentGroup, slicedSegments, routes2) {
-  return routes2.some((r) => emptyPathMatch(segmentGroup, slicedSegments, r));
+  return routes2.some((r2) => emptyPathMatch(segmentGroup, slicedSegments, r2));
 }
-function emptyPathMatch(segmentGroup, slicedSegments, r) {
-  if ((segmentGroup.hasChildren() || slicedSegments.length > 0) && r.pathMatch === "full") {
+function emptyPathMatch(segmentGroup, slicedSegments, r2) {
+  if ((segmentGroup.hasChildren() || slicedSegments.length > 0) && r2.pathMatch === "full") {
     return false;
   }
-  return r.path === "";
+  return r2.path === "";
 }
 function noLeftoversInUrl(segmentGroup, segments, outlet) {
   return segments.length === 0 && !segmentGroup.children[outlet];
 }
 var NoLeftoversInUrl = class {
 };
-function recognize$1(injector, configLoader, rootComponentType, config2, urlTree, urlSerializer, paramsInheritanceStrategy = "emptyOnly") {
-  return new Recognizer(injector, configLoader, rootComponentType, config2, urlTree, paramsInheritanceStrategy, urlSerializer).recognize();
+function recognize$1(injector, configLoader, rootComponentType, config3, urlTree, urlSerializer, paramsInheritanceStrategy = "emptyOnly") {
+  return new Recognizer(injector, configLoader, rootComponentType, config3, urlTree, paramsInheritanceStrategy, urlSerializer).recognize();
 }
 var MAX_ALLOWED_REDIRECTS = 31;
 var Recognizer = class {
@@ -32692,11 +32692,11 @@ var Recognizer = class {
   applyRedirects;
   absoluteRedirectCount = 0;
   allowRedirects = true;
-  constructor(injector, configLoader, rootComponentType, config2, urlTree, paramsInheritanceStrategy, urlSerializer) {
+  constructor(injector, configLoader, rootComponentType, config3, urlTree, paramsInheritanceStrategy, urlSerializer) {
     this.injector = injector;
     this.configLoader = configLoader;
     this.rootComponentType = rootComponentType;
-    this.config = config2;
+    this.config = config3;
     this.urlTree = urlTree;
     this.paramsInheritanceStrategy = paramsInheritanceStrategy;
     this.urlSerializer = urlSerializer;
@@ -32740,11 +32740,11 @@ var Recognizer = class {
       throw e;
     }));
   }
-  processSegmentGroup(injector, config2, segmentGroup, outlet, parentRoute) {
+  processSegmentGroup(injector, config3, segmentGroup, outlet, parentRoute) {
     if (segmentGroup.segments.length === 0 && segmentGroup.hasChildren()) {
-      return this.processChildren(injector, config2, segmentGroup, parentRoute);
+      return this.processChildren(injector, config3, segmentGroup, parentRoute);
     }
-    return this.processSegment(injector, config2, segmentGroup, segmentGroup.segments, outlet, true, parentRoute).pipe(map((child) => child instanceof TreeNode ? [child] : []));
+    return this.processSegment(injector, config3, segmentGroup, segmentGroup.segments, outlet, true, parentRoute).pipe(map((child) => child instanceof TreeNode ? [child] : []));
   }
   /**
    * Matches every child outlet in the `segmentGroup` to a `Route` in the config. Returns `null` if
@@ -32754,7 +32754,7 @@ var Recognizer = class {
    * @param segmentGroup - The `UrlSegmentGroup` whose children need to be matched against the
    *     config.
    */
-  processChildren(injector, config2, segmentGroup, parentRoute) {
+  processChildren(injector, config3, segmentGroup, parentRoute) {
     const childOutlets = [];
     for (const child of Object.keys(segmentGroup.children)) {
       if (child === "primary") {
@@ -32765,7 +32765,7 @@ var Recognizer = class {
     }
     return from(childOutlets).pipe(concatMap((childOutlet) => {
       const child = segmentGroup.children[childOutlet];
-      const sortedConfig = sortByMatchingOutlets(config2, childOutlet);
+      const sortedConfig = sortByMatchingOutlets(config3, childOutlet);
       return this.processSegmentGroup(injector, sortedConfig, child, childOutlet, parentRoute);
     }), scan((children, outletChildren) => {
       children.push(...outletChildren);
@@ -32781,14 +32781,14 @@ var Recognizer = class {
     }));
   }
   processSegment(injector, routes2, segmentGroup, segments, outlet, allowRedirects, parentRoute) {
-    return from(routes2).pipe(concatMap((r) => {
-      return this.processSegmentAgainstRoute(r._injector ?? injector, routes2, r, segmentGroup, segments, outlet, allowRedirects, parentRoute).pipe(catchError((e) => {
+    return from(routes2).pipe(concatMap((r2) => {
+      return this.processSegmentAgainstRoute(r2._injector ?? injector, routes2, r2, segmentGroup, segments, outlet, allowRedirects, parentRoute).pipe(catchError((e) => {
         if (e instanceof NoMatch) {
           return of(null);
         }
         throw e;
       }));
-    }), first((x) => !!x), catchError((e) => {
+    }), first((x2) => !!x2), catchError((e) => {
       if (isEmptyError(e)) {
         if (noLeftoversInUrl(segmentGroup, segments, outlet)) {
           return of(new NoLeftoversInUrl());
@@ -32918,8 +32918,8 @@ function sortActivatedRouteSnapshots(nodes) {
   });
 }
 function hasEmptyPathConfig(node) {
-  const config2 = node.value.routeConfig;
-  return config2 && config2.path === "";
+  const config3 = node.value.routeConfig;
+  return config3 && config3.path === "";
 }
 function mergeEmptyPathMatches(nodes) {
   const result = [];
@@ -32948,9 +32948,9 @@ function checkOutletNameUniqueness(nodes) {
   nodes.forEach((n) => {
     const routeWithSameOutletName = names[n.value.outlet];
     if (routeWithSameOutletName) {
-      const p = routeWithSameOutletName.url.map((s) => s.toString()).join("/");
-      const c = n.value.url.map((s) => s.toString()).join("/");
-      throw new RuntimeError(4006, (typeof ngDevMode === "undefined" || ngDevMode) && `Two segments cannot have the same outlet name: '${p}' and '${c}'.`);
+      const p2 = routeWithSameOutletName.url.map((s2) => s2.toString()).join("/");
+      const c = n.value.url.map((s2) => s2.toString()).join("/");
+      throw new RuntimeError(4006, (typeof ngDevMode === "undefined" || ngDevMode) && `Two segments cannot have the same outlet name: '${p2}' and '${c}'.`);
     }
     names[n.value.outlet] = n.value;
   });
@@ -32961,27 +32961,27 @@ function getData(route) {
 function getResolve(route) {
   return route.resolve || {};
 }
-function recognize(injector, configLoader, rootComponentType, config2, serializer, paramsInheritanceStrategy) {
-  return mergeMap((t) => recognize$1(injector, configLoader, rootComponentType, config2, t.extractedUrl, serializer, paramsInheritanceStrategy).pipe(map(({
+function recognize(injector, configLoader, rootComponentType, config3, serializer, paramsInheritanceStrategy) {
+  return mergeMap((t2) => recognize$1(injector, configLoader, rootComponentType, config3, t2.extractedUrl, serializer, paramsInheritanceStrategy).pipe(map(({
     state: targetSnapshot,
     tree: urlAfterRedirects
   }) => {
-    return __spreadProps(__spreadValues({}, t), {
+    return __spreadProps(__spreadValues({}, t2), {
       targetSnapshot,
       urlAfterRedirects
     });
   })));
 }
 function resolveData(paramsInheritanceStrategy, injector) {
-  return mergeMap((t) => {
+  return mergeMap((t2) => {
     const {
       targetSnapshot,
       guards: {
         canActivateChecks
       }
-    } = t;
+    } = t2;
     if (!canActivateChecks.length) {
-      return of(t);
+      return of(t2);
     }
     const routesWithResolversToRun = new Set(canActivateChecks.map((check) => check.route));
     const routesNeedingDataUpdates = /* @__PURE__ */ new Set();
@@ -33001,7 +33001,7 @@ function resolveData(paramsInheritanceStrategy, injector) {
         route.data = getInherited(route, route.parent, paramsInheritanceStrategy).resolve;
         return of(void 0);
       }
-    }), tap(() => routesProcessed++), takeLast(1), mergeMap((_) => routesProcessed === routesNeedingDataUpdates.size ? of(t) : EMPTY));
+    }), tap(() => routesProcessed++), takeLast(1), mergeMap((_) => routesProcessed === routesNeedingDataUpdates.size ? of(t2) : EMPTY));
   });
 }
 function flattenRouteTree(route) {
@@ -33009,10 +33009,10 @@ function flattenRouteTree(route) {
   return [route, ...descendants];
 }
 function runResolve(futureARS, futureRSS, paramsInheritanceStrategy, injector) {
-  const config2 = futureARS.routeConfig;
+  const config3 = futureARS.routeConfig;
   const resolve = futureARS._resolve;
-  if (config2?.title !== void 0 && !hasStaticTitle(config2)) {
-    resolve[RouteTitleKey] = config2.title;
+  if (config3?.title !== void 0 && !hasStaticTitle(config3)) {
+    resolve[RouteTitleKey] = config3.title;
   }
   return resolveNode(resolve, futureARS, futureRSS, injector).pipe(map((resolvedData) => {
     futureARS._resolvedData = resolvedData;
@@ -33156,11 +33156,11 @@ var \u0275EmptyOutletComponent = class _\u0275EmptyOutletComponent {
     }]
   }], null, null);
 })();
-function standardizeConfig(r) {
-  const children = r.children && r.children.map(standardizeConfig);
-  const c = children ? __spreadProps(__spreadValues({}, r), {
+function standardizeConfig(r2) {
+  const children = r2.children && r2.children.map(standardizeConfig);
+  const c = children ? __spreadProps(__spreadValues({}, r2), {
     children
-  }) : __spreadValues({}, r);
+  }) : __spreadValues({}, r2);
   if (!c.component && !c.loadComponent && (children || c.loadChildren) && c.outlet && c.outlet !== PRIMARY_OUTLET) {
     c.component = \u0275EmptyOutletComponent;
   }
@@ -33233,11 +33233,11 @@ var RouterConfigLoader = class _RouterConfigLoader {
   }], null, null);
 })();
 function loadChildren(route, compiler, parentInjector, onLoadEndListener) {
-  return wrapIntoObservable(route.loadChildren()).pipe(map(maybeUnwrapDefaultExport), mergeMap((t) => {
-    if (t instanceof NgModuleFactory$1 || Array.isArray(t)) {
-      return of(t);
+  return wrapIntoObservable(route.loadChildren()).pipe(map(maybeUnwrapDefaultExport), mergeMap((t2) => {
+    if (t2 instanceof NgModuleFactory$1 || Array.isArray(t2)) {
+      return of(t2);
     } else {
-      return from(compiler.compileModuleAsync(t));
+      return from(compiler.compileModuleAsync(t2));
     }
   }), map((factoryOrRoutes) => {
     if (onLoadEndListener) {
@@ -33408,8 +33408,8 @@ var NavigationTransitions = class _NavigationTransitions {
   rootComponentType = null;
   destroyed = false;
   constructor() {
-    const onLoadStart = (r) => this.events.next(new RouteConfigLoadStart(r));
-    const onLoadEnd = (r) => this.events.next(new RouteConfigLoadEnd(r));
+    const onLoadStart = (r2) => this.events.next(new RouteConfigLoadStart(r2));
+    const onLoadEnd = (r2) => this.events.next(new RouteConfigLoadEnd(r2));
     this.configLoader.onLoadEndListener = onLoadEnd;
     this.configLoader.onLoadStartListener = onLoadStart;
     this.destroyRef.onDestroy(() => {
@@ -33436,13 +33436,13 @@ var NavigationTransitions = class _NavigationTransitions {
   setupNavigations(router) {
     this.transitions = new BehaviorSubject(null);
     return this.transitions.pipe(
-      filter((t) => t !== null),
+      filter((t2) => t2 !== null),
       // Using switchMap so we cancel executing navigations when a new one comes in
       switchMap((overallTransitionState) => {
         let completed = false;
         let errored = false;
         return of(overallTransitionState).pipe(
-          switchMap((t) => {
+          switchMap((t2) => {
             if (this.navigationId > overallTransitionState.id) {
               const cancellationReason = typeof ngDevMode === "undefined" || ngDevMode ? `Navigation ID ${overallTransitionState.id} is not equal to the current navigation id ${this.navigationId}` : "";
               this.cancelNavigationTransition(overallTransitionState, cancellationReason, NavigationCancellationCode.SupersededByNewNavigation);
@@ -33450,59 +33450,59 @@ var NavigationTransitions = class _NavigationTransitions {
             }
             this.currentTransition = overallTransitionState;
             this.currentNavigation = {
-              id: t.id,
-              initialUrl: t.rawUrl,
-              extractedUrl: t.extractedUrl,
-              targetBrowserUrl: typeof t.extras.browserUrl === "string" ? this.urlSerializer.parse(t.extras.browserUrl) : t.extras.browserUrl,
-              trigger: t.source,
-              extras: t.extras,
+              id: t2.id,
+              initialUrl: t2.rawUrl,
+              extractedUrl: t2.extractedUrl,
+              targetBrowserUrl: typeof t2.extras.browserUrl === "string" ? this.urlSerializer.parse(t2.extras.browserUrl) : t2.extras.browserUrl,
+              trigger: t2.source,
+              extras: t2.extras,
               previousNavigation: !this.lastSuccessfulNavigation ? null : __spreadProps(__spreadValues({}, this.lastSuccessfulNavigation), {
                 previousNavigation: null
               })
             };
             const urlTransition = !router.navigated || this.isUpdatingInternalState() || this.isUpdatedBrowserUrl();
-            const onSameUrlNavigation = t.extras.onSameUrlNavigation ?? router.onSameUrlNavigation;
+            const onSameUrlNavigation = t2.extras.onSameUrlNavigation ?? router.onSameUrlNavigation;
             if (!urlTransition && onSameUrlNavigation !== "reload") {
-              const reason = typeof ngDevMode === "undefined" || ngDevMode ? `Navigation to ${t.rawUrl} was ignored because it is the same as the current Router URL.` : "";
-              this.events.next(new NavigationSkipped(t.id, this.urlSerializer.serialize(t.rawUrl), reason, NavigationSkippedCode.IgnoredSameUrlNavigation));
-              t.resolve(false);
+              const reason = typeof ngDevMode === "undefined" || ngDevMode ? `Navigation to ${t2.rawUrl} was ignored because it is the same as the current Router URL.` : "";
+              this.events.next(new NavigationSkipped(t2.id, this.urlSerializer.serialize(t2.rawUrl), reason, NavigationSkippedCode.IgnoredSameUrlNavigation));
+              t2.resolve(false);
               return EMPTY;
             }
-            if (this.urlHandlingStrategy.shouldProcessUrl(t.rawUrl)) {
-              return of(t).pipe(
+            if (this.urlHandlingStrategy.shouldProcessUrl(t2.rawUrl)) {
+              return of(t2).pipe(
                 // Fire NavigationStart event
-                switchMap((t2) => {
-                  this.events.next(new NavigationStart(t2.id, this.urlSerializer.serialize(t2.extractedUrl), t2.source, t2.restoredState));
-                  if (t2.id !== this.navigationId) {
+                switchMap((t3) => {
+                  this.events.next(new NavigationStart(t3.id, this.urlSerializer.serialize(t3.extractedUrl), t3.source, t3.restoredState));
+                  if (t3.id !== this.navigationId) {
                     return EMPTY;
                   }
-                  return Promise.resolve(t2);
+                  return Promise.resolve(t3);
                 }),
                 // Recognize
                 recognize(this.environmentInjector, this.configLoader, this.rootComponentType, router.config, this.urlSerializer, this.paramsInheritanceStrategy),
                 // Update URL if in `eager` update mode
-                tap((t2) => {
-                  overallTransitionState.targetSnapshot = t2.targetSnapshot;
-                  overallTransitionState.urlAfterRedirects = t2.urlAfterRedirects;
+                tap((t3) => {
+                  overallTransitionState.targetSnapshot = t3.targetSnapshot;
+                  overallTransitionState.urlAfterRedirects = t3.urlAfterRedirects;
                   this.currentNavigation = __spreadProps(__spreadValues({}, this.currentNavigation), {
-                    finalUrl: t2.urlAfterRedirects
+                    finalUrl: t3.urlAfterRedirects
                   });
-                  const routesRecognized = new RoutesRecognized(t2.id, this.urlSerializer.serialize(t2.extractedUrl), this.urlSerializer.serialize(t2.urlAfterRedirects), t2.targetSnapshot);
+                  const routesRecognized = new RoutesRecognized(t3.id, this.urlSerializer.serialize(t3.extractedUrl), this.urlSerializer.serialize(t3.urlAfterRedirects), t3.targetSnapshot);
                   this.events.next(routesRecognized);
                 })
               );
-            } else if (urlTransition && this.urlHandlingStrategy.shouldProcessUrl(t.currentRawUrl)) {
+            } else if (urlTransition && this.urlHandlingStrategy.shouldProcessUrl(t2.currentRawUrl)) {
               const {
                 id,
                 extractedUrl,
                 source,
                 restoredState,
                 extras
-              } = t;
+              } = t2;
               const navStart = new NavigationStart(id, this.urlSerializer.serialize(extractedUrl), source, restoredState);
               this.events.next(navStart);
               const targetSnapshot = createEmptyState(this.rootComponentType).snapshot;
-              this.currentTransition = overallTransitionState = __spreadProps(__spreadValues({}, t), {
+              this.currentTransition = overallTransitionState = __spreadProps(__spreadValues({}, t2), {
                 targetSnapshot,
                 urlAfterRedirects: extractedUrl,
                 extras: __spreadProps(__spreadValues({}, extras), {
@@ -33513,64 +33513,64 @@ var NavigationTransitions = class _NavigationTransitions {
               this.currentNavigation.finalUrl = extractedUrl;
               return of(overallTransitionState);
             } else {
-              const reason = typeof ngDevMode === "undefined" || ngDevMode ? `Navigation was ignored because the UrlHandlingStrategy indicated neither the current URL ${t.currentRawUrl} nor target URL ${t.rawUrl} should be processed.` : "";
-              this.events.next(new NavigationSkipped(t.id, this.urlSerializer.serialize(t.extractedUrl), reason, NavigationSkippedCode.IgnoredByUrlHandlingStrategy));
-              t.resolve(false);
+              const reason = typeof ngDevMode === "undefined" || ngDevMode ? `Navigation was ignored because the UrlHandlingStrategy indicated neither the current URL ${t2.currentRawUrl} nor target URL ${t2.rawUrl} should be processed.` : "";
+              this.events.next(new NavigationSkipped(t2.id, this.urlSerializer.serialize(t2.extractedUrl), reason, NavigationSkippedCode.IgnoredByUrlHandlingStrategy));
+              t2.resolve(false);
               return EMPTY;
             }
           }),
           // --- GUARDS ---
-          tap((t) => {
-            const guardsStart = new GuardsCheckStart(t.id, this.urlSerializer.serialize(t.extractedUrl), this.urlSerializer.serialize(t.urlAfterRedirects), t.targetSnapshot);
+          tap((t2) => {
+            const guardsStart = new GuardsCheckStart(t2.id, this.urlSerializer.serialize(t2.extractedUrl), this.urlSerializer.serialize(t2.urlAfterRedirects), t2.targetSnapshot);
             this.events.next(guardsStart);
           }),
-          map((t) => {
-            this.currentTransition = overallTransitionState = __spreadProps(__spreadValues({}, t), {
-              guards: getAllRouteGuards(t.targetSnapshot, t.currentSnapshot, this.rootContexts)
+          map((t2) => {
+            this.currentTransition = overallTransitionState = __spreadProps(__spreadValues({}, t2), {
+              guards: getAllRouteGuards(t2.targetSnapshot, t2.currentSnapshot, this.rootContexts)
             });
             return overallTransitionState;
           }),
           checkGuards(this.environmentInjector, (evt) => this.events.next(evt)),
-          tap((t) => {
-            overallTransitionState.guardsResult = t.guardsResult;
-            if (t.guardsResult && typeof t.guardsResult !== "boolean") {
-              throw redirectingNavigationError(this.urlSerializer, t.guardsResult);
+          tap((t2) => {
+            overallTransitionState.guardsResult = t2.guardsResult;
+            if (t2.guardsResult && typeof t2.guardsResult !== "boolean") {
+              throw redirectingNavigationError(this.urlSerializer, t2.guardsResult);
             }
-            const guardsEnd = new GuardsCheckEnd(t.id, this.urlSerializer.serialize(t.extractedUrl), this.urlSerializer.serialize(t.urlAfterRedirects), t.targetSnapshot, !!t.guardsResult);
+            const guardsEnd = new GuardsCheckEnd(t2.id, this.urlSerializer.serialize(t2.extractedUrl), this.urlSerializer.serialize(t2.urlAfterRedirects), t2.targetSnapshot, !!t2.guardsResult);
             this.events.next(guardsEnd);
           }),
-          filter((t) => {
-            if (!t.guardsResult) {
-              this.cancelNavigationTransition(t, "", NavigationCancellationCode.GuardRejected);
+          filter((t2) => {
+            if (!t2.guardsResult) {
+              this.cancelNavigationTransition(t2, "", NavigationCancellationCode.GuardRejected);
               return false;
             }
             return true;
           }),
           // --- RESOLVE ---
-          switchTap((t) => {
-            if (t.guards.canActivateChecks.length === 0) {
+          switchTap((t2) => {
+            if (t2.guards.canActivateChecks.length === 0) {
               return void 0;
             }
-            return of(t).pipe(tap((t2) => {
-              const resolveStart = new ResolveStart(t2.id, this.urlSerializer.serialize(t2.extractedUrl), this.urlSerializer.serialize(t2.urlAfterRedirects), t2.targetSnapshot);
+            return of(t2).pipe(tap((t3) => {
+              const resolveStart = new ResolveStart(t3.id, this.urlSerializer.serialize(t3.extractedUrl), this.urlSerializer.serialize(t3.urlAfterRedirects), t3.targetSnapshot);
               this.events.next(resolveStart);
-            }), switchMap((t2) => {
+            }), switchMap((t3) => {
               let dataResolved = false;
-              return of(t2).pipe(resolveData(this.paramsInheritanceStrategy, this.environmentInjector), tap({
+              return of(t3).pipe(resolveData(this.paramsInheritanceStrategy, this.environmentInjector), tap({
                 next: () => dataResolved = true,
                 complete: () => {
                   if (!dataResolved) {
-                    this.cancelNavigationTransition(t2, typeof ngDevMode === "undefined" || ngDevMode ? `At least one route resolver didn't emit any value.` : "", NavigationCancellationCode.NoDataFromResolver);
+                    this.cancelNavigationTransition(t3, typeof ngDevMode === "undefined" || ngDevMode ? `At least one route resolver didn't emit any value.` : "", NavigationCancellationCode.NoDataFromResolver);
                   }
                 }
               }));
-            }), tap((t2) => {
-              const resolveEnd = new ResolveEnd(t2.id, this.urlSerializer.serialize(t2.extractedUrl), this.urlSerializer.serialize(t2.urlAfterRedirects), t2.targetSnapshot);
+            }), tap((t3) => {
+              const resolveEnd = new ResolveEnd(t3.id, this.urlSerializer.serialize(t3.extractedUrl), this.urlSerializer.serialize(t3.urlAfterRedirects), t3.targetSnapshot);
               this.events.next(resolveEnd);
             }));
           }),
           // --- LOAD COMPONENTS ---
-          switchTap((t) => {
+          switchTap((t2) => {
             const loadComponents = (route) => {
               const loaders = [];
               if (route.routeConfig?.loadComponent && !route.routeConfig._loadedComponent) {
@@ -33583,7 +33583,7 @@ var NavigationTransitions = class _NavigationTransitions {
               }
               return loaders;
             };
-            return combineLatest(loadComponents(t.targetSnapshot.root)).pipe(defaultIfEmpty(null), take(1));
+            return combineLatest(loadComponents(t2.targetSnapshot.root)).pipe(defaultIfEmpty(null), take(1));
           }),
           switchTap(() => this.afterPreactivation()),
           switchMap(() => {
@@ -33594,9 +33594,9 @@ var NavigationTransitions = class _NavigationTransitions {
             const viewTransitionStarted = this.createViewTransition?.(this.environmentInjector, currentSnapshot.root, targetSnapshot.root);
             return viewTransitionStarted ? from(viewTransitionStarted).pipe(map(() => overallTransitionState)) : of(overallTransitionState);
           }),
-          map((t) => {
-            const targetRouterState = createRouterState(router.routeReuseStrategy, t.targetSnapshot, t.currentRouterState);
-            this.currentTransition = overallTransitionState = __spreadProps(__spreadValues({}, t), {
+          map((t2) => {
+            const targetRouterState = createRouterState(router.routeReuseStrategy, t2.targetSnapshot, t2.currentRouterState);
+            this.currentTransition = overallTransitionState = __spreadProps(__spreadValues({}, t2), {
               targetRouterState
             });
             this.currentNavigation.targetRouterState = targetRouterState;
@@ -33611,12 +33611,12 @@ var NavigationTransitions = class _NavigationTransitions {
           // this is done as a safety measure to avoid surfacing this error (#49567).
           take(1),
           tap({
-            next: (t) => {
+            next: (t2) => {
               completed = true;
               this.lastSuccessfulNavigation = this.currentNavigation;
-              this.events.next(new NavigationEnd(t.id, this.urlSerializer.serialize(t.extractedUrl), this.urlSerializer.serialize(t.urlAfterRedirects)));
-              this.titleStrategy?.updateTitle(t.targetRouterState.snapshot);
-              t.resolve(true);
+              this.events.next(new NavigationEnd(t2.id, this.urlSerializer.serialize(t2.extractedUrl), this.urlSerializer.serialize(t2.urlAfterRedirects)));
+              this.titleStrategy?.updateTitle(t2.targetRouterState.snapshot);
+              t2.resolve(true);
             },
             complete: () => {
               completed = true;
@@ -33684,10 +33684,10 @@ var NavigationTransitions = class _NavigationTransitions {
       })
     );
   }
-  cancelNavigationTransition(t, reason, code) {
-    const navCancel = new NavigationCancel(t.id, this.urlSerializer.serialize(t.extractedUrl), reason, code);
+  cancelNavigationTransition(t2, reason, code) {
+    const navCancel = new NavigationCancel(t2.id, this.urlSerializer.serialize(t2.extractedUrl), reason, code);
     this.events.next(navCancel);
-    t.resolve(false);
+    t2.resolve(false);
   }
   /**
    * @returns Whether we're navigating to somewhere that is not what the Router is
@@ -33936,11 +33936,11 @@ var HistoryStateManager = class _HistoryStateManager extends StateManager {
     }
     return this.restoredState()?.\u0275routerPageId ?? this.currentPageId;
   }
-  registerNonRouterCurrentEntryChangeListener(listener) {
+  registerNonRouterCurrentEntryChangeListener(listener2) {
     return this.location.subscribe((event) => {
       if (event["type"] === "popstate") {
         setTimeout(() => {
-          listener(event["url"], event.state, "popstate");
+          listener2(event["url"], event.state, "popstate");
         });
       }
     });
@@ -34271,9 +34271,9 @@ var Router = class _Router {
    * ]);
    * ```
    */
-  resetConfig(config2) {
-    (typeof ngDevMode === "undefined" || ngDevMode) && validateConfig(config2);
-    this.config = config2.map(standardizeConfig);
+  resetConfig(config3) {
+    (typeof ngDevMode === "undefined" || ngDevMode) && validateConfig(config3);
+    this.config = config3.map(standardizeConfig);
     this.navigated = false;
   }
   /** @nodoc */
@@ -34621,8 +34621,8 @@ var RouterLink = class _RouterLink {
     const tagName = el.nativeElement.tagName?.toLowerCase();
     this.isAnchorElement = tagName === "a" || tagName === "area";
     if (this.isAnchorElement) {
-      this.subscription = router.events.subscribe((s) => {
-        if (s instanceof NavigationEnd) {
+      this.subscription = router.events.subscribe((s2) => {
+        if (s2 instanceof NavigationEnd) {
           this.updateHref();
         }
       });
@@ -34927,8 +34927,8 @@ var RouterLinkActive = class _RouterLinkActive {
     this.renderer = renderer;
     this.cdr = cdr;
     this.link = link;
-    this.routerEventsSubscription = router.events.subscribe((s) => {
-      if (s instanceof NavigationEnd) {
+    this.routerEventsSubscription = router.events.subscribe((s2) => {
+      if (s2 instanceof NavigationEnd) {
         this.update();
       }
     });
@@ -35164,13 +35164,13 @@ var RouterPreloader = class _RouterPreloader {
       } else {
         loadedChildren$ = of(null);
       }
-      const recursiveLoadChildren$ = loadedChildren$.pipe(mergeMap((config2) => {
-        if (config2 === null) {
+      const recursiveLoadChildren$ = loadedChildren$.pipe(mergeMap((config3) => {
+        if (config3 === null) {
           return of(void 0);
         }
-        route._loadedRoutes = config2.routes;
-        route._loadedInjector = config2.injector;
-        return this.processRoutes(config2.injector ?? injector, config2.routes);
+        route._loadedRoutes = config3.routes;
+        route._loadedInjector = config3.injector;
+        return this.processRoutes(config3.injector ?? injector, config3.routes);
       }));
       if (route.loadComponent && !route._loadedComponent) {
         const loadComponent$ = this.loader.loadComponent(route);
@@ -35327,10 +35327,10 @@ function provideRouter(routes2, ...features) {
 function rootRoute(router) {
   return router.routerState.root;
 }
-function routerFeature(kind, providers) {
+function routerFeature(kind, providers2) {
   return {
     \u0275kind: kind,
-    \u0275providers: providers
+    \u0275providers: providers2
   };
 }
 var ROUTER_IS_PROVIDED = new InjectionToken("", {
@@ -35370,7 +35370,7 @@ var INITIAL_NAVIGATION = new InjectionToken(typeof ngDevMode === "undefined" || 
   /* InitialNavigation.EnabledNonBlocking */
 });
 function withEnabledBlockingInitialNavigation() {
-  const providers = [{
+  const providers2 = [{
     provide: INITIAL_NAVIGATION,
     useValue: 0
     /* InitialNavigation.EnabledBlocking */
@@ -35392,22 +35392,22 @@ function withEnabledBlockingInitialNavigation() {
       });
     });
   })];
-  return routerFeature(2, providers);
+  return routerFeature(2, providers2);
 }
 function withDisabledInitialNavigation() {
-  const providers = [provideAppInitializer(() => {
+  const providers2 = [provideAppInitializer(() => {
     inject(Router).setUpLocationChangeListener();
   }), {
     provide: INITIAL_NAVIGATION,
     useValue: 2
     /* InitialNavigation.Disabled */
   }];
-  return routerFeature(3, providers);
+  return routerFeature(3, providers2);
 }
 function withDebugTracing() {
-  let providers = [];
+  let providers2 = [];
   if (typeof ngDevMode === "undefined" || ngDevMode) {
-    providers = [{
+    providers2 = [{
       provide: ENVIRONMENT_INITIALIZER,
       multi: true,
       useFactory: () => {
@@ -35421,31 +35421,31 @@ function withDebugTracing() {
       }
     }];
   } else {
-    providers = [];
+    providers2 = [];
   }
-  return routerFeature(1, providers);
+  return routerFeature(1, providers2);
 }
 var ROUTER_PRELOADER = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "router preloader" : "");
 function withPreloading(preloadingStrategy) {
-  const providers = [{
+  const providers2 = [{
     provide: ROUTER_PRELOADER,
     useExisting: RouterPreloader
   }, {
     provide: PreloadingStrategy,
     useExisting: preloadingStrategy
   }];
-  return routerFeature(0, providers);
+  return routerFeature(0, providers2);
 }
 function withComponentInputBinding() {
-  const providers = [RoutedComponentInputBinder, {
+  const providers2 = [RoutedComponentInputBinder, {
     provide: INPUT_BINDER,
     useExisting: RoutedComponentInputBinder
   }];
-  return routerFeature(8, providers);
+  return routerFeature(8, providers2);
 }
 function withViewTransitions(options) {
   performanceMarkFeature("NgRouterViewTransitions");
-  const providers = [{
+  const providers2 = [{
     provide: CREATE_VIEW_TRANSITION,
     useValue: createViewTransition
   }, {
@@ -35454,7 +35454,7 @@ function withViewTransitions(options) {
       skipNextTransition: !!options?.skipInitialTransition
     }, options)
   }];
-  return routerFeature(9, providers);
+  return routerFeature(9, providers2);
 }
 var ROUTER_DIRECTIVES = [RouterOutlet, RouterLink, RouterLinkActive, \u0275EmptyOutletComponent];
 var ROUTER_FORROOT_GUARD = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "router duplicate forRoot guard" : "");
@@ -35505,10 +35505,10 @@ var RouterModule = class _RouterModule {
    * @return The new `NgModule`.
    *
    */
-  static forRoot(routes2, config2) {
+  static forRoot(routes2, config3) {
     return {
       ngModule: _RouterModule,
-      providers: [ROUTER_PROVIDERS, typeof ngDevMode === "undefined" || ngDevMode ? config2?.enableTracing ? withDebugTracing().\u0275providers : [] : [], {
+      providers: [ROUTER_PROVIDERS, typeof ngDevMode === "undefined" || ngDevMode ? config3?.enableTracing ? withDebugTracing().\u0275providers : [] : [], {
         provide: ROUTES,
         multi: true,
         useValue: routes2
@@ -35516,13 +35516,13 @@ var RouterModule = class _RouterModule {
         provide: ROUTER_FORROOT_GUARD,
         useFactory: provideForRootGuard,
         deps: [[Router, new Optional(), new SkipSelf()]]
-      } : [], config2?.errorHandler ? {
+      } : [], config3?.errorHandler ? {
         provide: NAVIGATION_ERROR_HANDLER,
-        useValue: config2.errorHandler
+        useValue: config3.errorHandler
       } : [], {
         provide: ROUTER_CONFIGURATION,
-        useValue: config2 ? config2 : {}
-      }, config2?.useHash ? provideHashLocationStrategy() : providePathLocationStrategy(), provideRouterScroller(), config2?.preloadingStrategy ? withPreloading(config2.preloadingStrategy).\u0275providers : [], config2?.initialNavigation ? provideInitialNavigation(config2) : [], config2?.bindToComponentInputs ? withComponentInputBinding().\u0275providers : [], config2?.enableViewTransitions ? withViewTransitions().\u0275providers : [], provideRouterInitializer()]
+        useValue: config3 ? config3 : {}
+      }, config3?.useHash ? provideHashLocationStrategy() : providePathLocationStrategy(), provideRouterScroller(), config3?.preloadingStrategy ? withPreloading(config3.preloadingStrategy).\u0275providers : [], config3?.initialNavigation ? provideInitialNavigation(config3) : [], config3?.bindToComponentInputs ? withComponentInputBinding().\u0275providers : [], config3?.enableViewTransitions ? withViewTransitions().\u0275providers : [], provideRouterInitializer()]
     };
   }
   /**
@@ -35574,13 +35574,13 @@ function provideRouterScroller() {
     useFactory: () => {
       const viewportScroller = inject(ViewportScroller);
       const zone = inject(NgZone);
-      const config2 = inject(ROUTER_CONFIGURATION);
+      const config3 = inject(ROUTER_CONFIGURATION);
       const transitions = inject(NavigationTransitions);
       const urlSerializer = inject(UrlSerializer);
-      if (config2.scrollOffset) {
-        viewportScroller.setOffset(config2.scrollOffset);
+      if (config3.scrollOffset) {
+        viewportScroller.setOffset(config3.scrollOffset);
       }
-      return new RouterScroller(urlSerializer, transitions, viewportScroller, zone, config2);
+      return new RouterScroller(urlSerializer, transitions, viewportScroller, zone, config3);
     }
   };
 }
@@ -35602,8 +35602,8 @@ function provideForRootGuard(router) {
   }
   return "guarded";
 }
-function provideInitialNavigation(config2) {
-  return [config2.initialNavigation === "disabled" ? withDisabledInitialNavigation().\u0275providers : [], config2.initialNavigation === "enabledBlocking" ? withEnabledBlockingInitialNavigation().\u0275providers : []];
+function provideInitialNavigation(config3) {
+  return [config3.initialNavigation === "disabled" ? withDisabledInitialNavigation().\u0275providers : [], config3.initialNavigation === "enabledBlocking" ? withEnabledBlockingInitialNavigation().\u0275providers : []];
 }
 var ROUTER_INITIALIZER = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "Router Initializer" : "");
 function provideRouterInitializer() {
@@ -35764,8 +35764,8 @@ var DEFAULT_VALUE_ACCESSOR = {
   multi: true
 };
 function _isAndroid() {
-  const userAgent = getDOM() ? getDOM().getUserAgent() : "";
-  return /android (\d+)/.test(userAgent.toLowerCase());
+  const userAgent2 = getDOM() ? getDOM().getUserAgent() : "";
+  return /android (\d+)/.test(userAgent2.toLowerCase());
 }
 var COMPOSITION_BUFFER_MODE = new InjectionToken(ngDevMode ? "CompositionEventMode" : "");
 var DefaultValueAccessor = class _DefaultValueAccessor extends BaseControlValueAccessor {
@@ -35976,8 +35976,8 @@ function patternValidator(pattern) {
 function nullValidator(control) {
   return null;
 }
-function isPresent(o) {
-  return o != null;
+function isPresent(o2) {
+  return o2 != null;
 }
 function toObservable(value) {
   const obs = isPromise2(value) ? from(value) : value;
@@ -37529,11 +37529,11 @@ var AbstractControl = class {
    * Retrieves the top-level ancestor of this control.
    */
   get root() {
-    let x = this;
-    while (x._parent) {
-      x = x._parent;
+    let x2 = this;
+    while (x2._parent) {
+      x2 = x2._parent;
     }
-    return x;
+    return x2;
   }
   /** @internal */
   _updateControlsErrors(emitEvent, changedControl, shouldHaveEmitted) {
@@ -37989,14 +37989,14 @@ function setUpControl(control, dir, callSetDisabledState = setDisabledStateDefau
   setUpDisabledChangeHandler(control, dir);
 }
 function cleanUpControl(control, dir, validateControlPresenceOnChange = true) {
-  const noop3 = () => {
+  const noop4 = () => {
     if (validateControlPresenceOnChange && (typeof ngDevMode === "undefined" || ngDevMode)) {
       _noControlError(dir);
     }
   };
   if (dir.valueAccessor) {
-    dir.valueAccessor.registerOnChange(noop3);
-    dir.valueAccessor.registerOnTouched(noop3);
+    dir.valueAccessor.registerOnChange(noop4);
+    dir.valueAccessor.registerOnTouched(noop4);
   }
   cleanUpValidators(control, dir);
   if (control) {
@@ -38005,9 +38005,9 @@ function cleanUpControl(control, dir, validateControlPresenceOnChange = true) {
     });
   }
 }
-function registerOnValidatorChange(validators, onChange) {
+function registerOnValidatorChange(validators, onChange2) {
   validators.forEach((validator) => {
-    if (validator.registerOnValidatorChange) validator.registerOnValidatorChange(onChange);
+    if (validator.registerOnValidatorChange) validator.registerOnValidatorChange(onChange2);
   });
 }
 function setUpDisabledChangeHandler(control, dir) {
@@ -38062,10 +38062,10 @@ function cleanUpValidators(control, dir) {
       }
     }
   }
-  const noop3 = () => {
+  const noop4 = () => {
   };
-  registerOnValidatorChange(dir._rawValidators, noop3);
-  registerOnValidatorChange(dir._rawAsyncValidators, noop3);
+  registerOnValidatorChange(dir._rawValidators, noop4);
+  registerOnValidatorChange(dir._rawAsyncValidators, noop4);
   return isControlUpdated;
 }
 function setUpViewChangePipeline(control, dir) {
@@ -38092,13 +38092,13 @@ function updateControl(control, dir) {
   control._pendingChange = false;
 }
 function setUpModelChangePipeline(control, dir) {
-  const onChange = (newValue, emitModelEvent) => {
+  const onChange2 = (newValue, emitModelEvent) => {
     dir.valueAccessor.writeValue(newValue);
     if (emitModelEvent) dir.viewToModelUpdate(newValue);
   };
-  control.registerOnChange(onChange);
+  control.registerOnChange(onChange2);
   dir._registerOnDestroy(() => {
-    control._unregisterOnChange(onChange);
+    control._unregisterOnChange(onChange2);
   });
 }
 function setUpFormContainer(control, dir) {
@@ -40659,11 +40659,11 @@ var SelectMultipleControlValueAccessor = class _SelectMultipleControlValueAccess
     let optionSelectedStateSetter;
     if (Array.isArray(value)) {
       const ids = value.map((v) => this._getOptionId(v));
-      optionSelectedStateSetter = (opt, o) => {
-        opt._setSelected(ids.indexOf(o.toString()) > -1);
+      optionSelectedStateSetter = (opt, o2) => {
+        opt._setSelected(ids.indexOf(o2.toString()) > -1);
       };
     } else {
-      optionSelectedStateSetter = (opt, o) => {
+      optionSelectedStateSetter = (opt, o2) => {
         opt._setSelected(false);
       };
     }
@@ -42147,81 +42147,94 @@ var ScoreKeyboardComponent = class _ScoreKeyboardComponent {
 })();
 
 // src/app/pages/gold-game/gold-game.component.ts
-function GoldGameComponent_div_5_Template(rf, ctx) {
+function GoldGameComponent_button_2_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 6)(1, "h2", 1);
+    \u0275\u0275elementStart(0, "button", 5);
+    \u0275\u0275listener("click", function GoldGameComponent_button_2_Template_button_click_0_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.resetGame());
+    });
+    \u0275\u0275text(1, "Recommencer");
+    \u0275\u0275elementEnd();
+  }
+}
+function GoldGameComponent_div_3_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r3 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 6)(1, "h2", 7);
     \u0275\u0275text(2, "Param\xE8tres");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "div", 7)(4, "label", 8);
+    \u0275\u0275elementStart(3, "div", 8)(4, "label", 9);
     \u0275\u0275text(5, "Fl\xE8ches par vol\xE9e :");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "div", 9)(7, "p", 10)(8, "button", 11);
-    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_8_listener() {
-      \u0275\u0275restoreView(_r1);
+    \u0275\u0275elementStart(6, "div", 10)(7, "p", 11)(8, "button", 12);
+    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_8_listener() {
+      \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.decrementFleches());
     });
     \u0275\u0275text(9, "-");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(10, "p", 10);
-    \u0275\u0275element(11, "input", 12);
+    \u0275\u0275elementStart(10, "p", 11);
+    \u0275\u0275element(11, "input", 13);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "p", 10)(13, "button", 11);
-    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_13_listener() {
-      \u0275\u0275restoreView(_r1);
+    \u0275\u0275elementStart(12, "p", 11)(13, "button", 12);
+    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_13_listener() {
+      \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.incrementFleches());
     });
     \u0275\u0275text(14, "+");
     \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(15, "div", 7)(16, "label", 8);
+    \u0275\u0275elementStart(15, "div", 8)(16, "label", 9);
     \u0275\u0275text(17, "Nombre de vol\xE9es :");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(18, "div", 9)(19, "p", 10)(20, "button", 11);
-    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_20_listener() {
-      \u0275\u0275restoreView(_r1);
+    \u0275\u0275elementStart(18, "div", 10)(19, "p", 11)(20, "button", 12);
+    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_20_listener() {
+      \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.decrementVolees());
     });
     \u0275\u0275text(21, "-");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(22, "p", 10);
-    \u0275\u0275element(23, "input", 12);
+    \u0275\u0275elementStart(22, "p", 11);
+    \u0275\u0275element(23, "input", 13);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(24, "p", 10)(25, "button", 11);
-    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_25_listener() {
-      \u0275\u0275restoreView(_r1);
+    \u0275\u0275elementStart(24, "p", 11)(25, "button", 12);
+    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_25_listener() {
+      \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.incrementVolees());
     });
     \u0275\u0275text(26, "+");
     \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(27, "div", 7)(28, "label", 8);
+    \u0275\u0275elementStart(27, "div", 8)(28, "label", 9);
     \u0275\u0275text(29, "Zone de r\xE9ussite :");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(30, "div", 9)(31, "p", 10)(32, "button", 11);
-    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_32_listener() {
-      \u0275\u0275restoreView(_r1);
+    \u0275\u0275elementStart(30, "div", 10)(31, "p", 11)(32, "button", 12);
+    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_32_listener() {
+      \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.decrementZone());
     });
     \u0275\u0275text(33, "-");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(34, "p", 10);
-    \u0275\u0275element(35, "input", 12);
+    \u0275\u0275elementStart(34, "p", 11);
+    \u0275\u0275element(35, "input", 13);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(36, "p", 10)(37, "button", 11);
-    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_37_listener() {
-      \u0275\u0275restoreView(_r1);
+    \u0275\u0275elementStart(36, "p", 11)(37, "button", 12);
+    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_37_listener() {
+      \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.incrementZone());
     });
     \u0275\u0275text(38, "+");
     \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(39, "div", 13)(40, "button", 14);
-    \u0275\u0275listener("click", function GoldGameComponent_div_5_Template_button_click_40_listener() {
-      \u0275\u0275restoreView(_r1);
+    \u0275\u0275elementStart(39, "div", 14)(40, "button", 15);
+    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_40_listener() {
+      \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.startGame());
     });
@@ -42238,46 +42251,46 @@ function GoldGameComponent_div_5_Template(rf, ctx) {
     \u0275\u0275property("value", ctx_r1.zoneReussite);
   }
 }
-function GoldGameComponent_div_6_tr_13_span_4_Template(rf, ctx) {
+function GoldGameComponent_div_4_tr_13_span_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 21);
+    \u0275\u0275elementStart(0, "span", 22);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const s_r3 = ctx.$implicit;
+    const s_r4 = ctx.$implicit;
     const ctx_r1 = \u0275\u0275nextContext(3);
-    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(s_r3));
+    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(s_r4));
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(s_r3);
+    \u0275\u0275textInterpolate(s_r4);
   }
 }
-function GoldGameComponent_div_6_tr_13_Template(rf, ctx) {
+function GoldGameComponent_div_4_tr_13_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "tr")(1, "td");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "td");
-    \u0275\u0275template(4, GoldGameComponent_div_6_tr_13_span_4_Template, 2, 2, "span", 20);
+    \u0275\u0275template(4, GoldGameComponent_div_4_tr_13_span_4_Template, 2, 2, "span", 21);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(5, "td");
     \u0275\u0275text(6);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const vol_r4 = ctx.$implicit;
-    const i_r5 = ctx.index;
+    const vol_r5 = ctx.$implicit;
+    const i_r6 = ctx.index;
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(i_r5 + 1);
+    \u0275\u0275textInterpolate(i_r6 + 1);
     \u0275\u0275advance(2);
-    \u0275\u0275property("ngForOf", vol_r4.details);
+    \u0275\u0275property("ngForOf", vol_r5.details);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(vol_r4.score);
+    \u0275\u0275textInterpolate(vol_r5.score);
   }
 }
-function GoldGameComponent_div_6_tr_14_Template(rf, ctx) {
+function GoldGameComponent_div_4_tr_14_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "tr")(1, "td", 22);
+    \u0275\u0275elementStart(0, "tr")(1, "td", 23);
     \u0275\u0275text(2, "Total");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "td");
@@ -42290,7 +42303,7 @@ function GoldGameComponent_div_6_tr_14_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r1.getTotalScore());
   }
 }
-function GoldGameComponent_div_6_span_15_Template(rf, ctx) {
+function GoldGameComponent_div_4_span_15_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "span");
     \u0275\u0275text(1);
@@ -42302,32 +42315,32 @@ function GoldGameComponent_div_6_span_15_Template(rf, ctx) {
     \u0275\u0275textInterpolate1("(", ctx_r1.getZonePercent(), " % en zone)");
   }
 }
-function GoldGameComponent_div_6_div_18_span_4_Template(rf, ctx) {
+function GoldGameComponent_div_4_div_18_span_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 21);
+    \u0275\u0275elementStart(0, "span", 22);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const s_r7 = ctx.$implicit;
+    const s_r8 = ctx.$implicit;
     const ctx_r1 = \u0275\u0275nextContext(3);
-    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(s_r7));
+    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(s_r8));
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(s_r7);
+    \u0275\u0275textInterpolate(s_r8);
   }
 }
-function GoldGameComponent_div_6_div_18_Template(rf, ctx) {
+function GoldGameComponent_div_4_div_18_Template(rf, ctx) {
   if (rf & 1) {
-    const _r6 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div")(1, "h2", 16);
+    const _r7 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div")(1, "h2", 17);
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "div");
-    \u0275\u0275template(4, GoldGameComponent_div_6_div_18_span_4_Template, 2, 2, "span", 20);
+    \u0275\u0275template(4, GoldGameComponent_div_4_div_18_span_4_Template, 2, 2, "span", 21);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "div", 23)(6, "button", 24);
-    \u0275\u0275listener("click", function GoldGameComponent_div_6_div_18_Template_button_click_6_listener() {
-      \u0275\u0275restoreView(_r6);
+    \u0275\u0275elementStart(5, "div", 24)(6, "button", 25);
+    \u0275\u0275listener("click", function GoldGameComponent_div_4_div_18_Template_button_click_6_listener() {
+      \u0275\u0275restoreView(_r7);
       const ctx_r1 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r1.removeLastScore());
     });
@@ -42344,12 +42357,12 @@ function GoldGameComponent_div_6_div_18_Template(rf, ctx) {
     \u0275\u0275property("disabled", ctx_r1.currentVolee.length === 0);
   }
 }
-function GoldGameComponent_div_6_Template(rf, ctx) {
+function GoldGameComponent_div_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 15)(1, "h2", 16);
+    \u0275\u0275elementStart(0, "div", 16)(1, "h2", 17);
     \u0275\u0275text(2, "Vol\xE9es pass\xE9es");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "table", 17)(4, "thead")(5, "tr")(6, "th");
+    \u0275\u0275elementStart(3, "table", 18)(4, "thead")(5, "tr")(6, "th");
     \u0275\u0275text(7, "Vol\xE9e");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(8, "th");
@@ -42359,11 +42372,11 @@ function GoldGameComponent_div_6_Template(rf, ctx) {
     \u0275\u0275text(11, "Score");
     \u0275\u0275elementEnd()()();
     \u0275\u0275elementStart(12, "tbody");
-    \u0275\u0275template(13, GoldGameComponent_div_6_tr_13_Template, 7, 3, "tr", 18)(14, GoldGameComponent_div_6_tr_14_Template, 5, 1, "tr", 19);
+    \u0275\u0275template(13, GoldGameComponent_div_4_tr_13_Template, 7, 3, "tr", 19)(14, GoldGameComponent_div_4_tr_14_Template, 5, 1, "tr", 20);
     \u0275\u0275elementEnd()();
-    \u0275\u0275template(15, GoldGameComponent_div_6_span_15_Template, 2, 1, "span", 19);
+    \u0275\u0275template(15, GoldGameComponent_div_4_span_15_Template, 2, 1, "span", 20);
     \u0275\u0275element(16, "br")(17, "br");
-    \u0275\u0275template(18, GoldGameComponent_div_6_div_18_Template, 8, 4, "div", 19);
+    \u0275\u0275template(18, GoldGameComponent_div_4_div_18_Template, 8, 4, "div", 20);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
@@ -42378,12 +42391,12 @@ function GoldGameComponent_div_6_Template(rf, ctx) {
     \u0275\u0275property("ngIf", ctx_r1.gameStarted && !ctx_r1.gameFinished);
   }
 }
-function GoldGameComponent_app_score_keyboard_7_Template(rf, ctx) {
+function GoldGameComponent_app_score_keyboard_5_Template(rf, ctx) {
   if (rf & 1) {
-    const _r8 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "app-score-keyboard", 25);
-    \u0275\u0275listener("scoreSelected", function GoldGameComponent_app_score_keyboard_7_Template_app_score_keyboard_scoreSelected_0_listener($event) {
-      \u0275\u0275restoreView(_r8);
+    const _r9 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "app-score-keyboard", 26);
+    \u0275\u0275listener("scoreSelected", function GoldGameComponent_app_score_keyboard_5_Template_app_score_keyboard_scoreSelected_0_listener($event) {
+      \u0275\u0275restoreView(_r9);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.addScore($event));
     });
@@ -42472,16 +42485,16 @@ var GoldGameComponent = class _GoldGameComponent {
     return "";
   }
   calculateScore(scores) {
-    return scores.reduce((total, s) => {
-      if (s == "M")
-        s = 0;
-      if (s == "X")
-        s = 11;
-      if (s == this.zoneReussite)
+    return scores.reduce((total, s2) => {
+      if (s2 == "M")
+        s2 = 0;
+      if (s2 == "X")
+        s2 = 11;
+      if (s2 == this.zoneReussite)
         return total;
-      if (s == this.zoneReussite + 1)
+      if (s2 == this.zoneReussite + 1)
         return total + 1;
-      if (s > this.zoneReussite + 1)
+      if (s2 > this.zoneReussite + 1)
         return total + 2;
       return total - 1;
     }, 0);
@@ -42510,7 +42523,7 @@ var GoldGameComponent = class _GoldGameComponent {
     this.nbFlechesParVolee++;
   }
   decrementFleches() {
-    if (this.nbFlechesParVolee > 7) {
+    if (this.nbFlechesParVolee > 1) {
       this.nbFlechesParVolee--;
     }
   }
@@ -42568,21 +42581,18 @@ var GoldGameComponent = class _GoldGameComponent {
   static \u0275fac = function GoldGameComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _GoldGameComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _GoldGameComponent, selectors: [["app-tir-compte-double"]], decls: 8, vars: 3, consts: [[1, "box", "is-flex", "is-justify-content-space-between", "is-align-items-center", "mb-2"], [1, "title", "is-4"], [1, "button", "is-danger", 3, "click"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "valeurs", "scoreSelected", 4, "ngIf"], [1, "box"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-warning", 3, "click", "disabled"], [3, "scoreSelected", "valeurs"]], template: function GoldGameComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _GoldGameComponent, selectors: [["app-tir-compte-double"]], decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["class", "button is-danger is-small", 3, "click", 4, "ngIf"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "valeurs", "scoreSelected", 4, "ngIf"], [1, "button", "is-danger", "is-small", 3, "click"], [1, "box"], [1, "title", "is-4"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-warning", 3, "click", "disabled"], [3, "scoreSelected", "valeurs"]], template: function GoldGameComponent_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275elementStart(0, "div", 0)(1, "h1", 1);
-      \u0275\u0275text(2, "Gold Game");
+      \u0275\u0275elementStart(0, "h1", 0);
+      \u0275\u0275text(1, "Gold Game ");
+      \u0275\u0275template(2, GoldGameComponent_button_2_Template, 2, 0, "button", 1);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(3, "button", 2);
-      \u0275\u0275listener("click", function GoldGameComponent_Template_button_click_3_listener() {
-        return ctx.resetGame();
-      });
-      \u0275\u0275text(4, "Recommencer");
-      \u0275\u0275elementEnd()();
-      \u0275\u0275template(5, GoldGameComponent_div_5_Template, 42, 3, "div", 3)(6, GoldGameComponent_div_6_Template, 19, 4, "div", 4)(7, GoldGameComponent_app_score_keyboard_7_Template, 1, 1, "app-score-keyboard", 5);
+      \u0275\u0275template(3, GoldGameComponent_div_3_Template, 42, 3, "div", 2)(4, GoldGameComponent_div_4_Template, 19, 4, "div", 3)(5, GoldGameComponent_app_score_keyboard_5_Template, 1, 1, "app-score-keyboard", 4);
     }
     if (rf & 2) {
-      \u0275\u0275advance(5);
+      \u0275\u0275advance(2);
+      \u0275\u0275property("ngIf", ctx.gameStarted);
+      \u0275\u0275advance();
       \u0275\u0275property("ngIf", !ctx.gameStarted);
       \u0275\u0275advance();
       \u0275\u0275property("ngIf", ctx.gameStarted);
@@ -42594,67 +42604,3785 @@ var GoldGameComponent = class _GoldGameComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(GoldGameComponent, [{
     type: Component,
-    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent], template: '<div class="box is-flex is-justify-content-space-between is-align-items-center mb-2">\n  <h1 class="title is-4">Gold Game</h1>\n  <button class="button is-danger" (click)="resetGame()">Recommencer</button>\n</div>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Zone de r\xE9ussite :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementZone()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="zoneReussite" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementZone()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Score</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVolees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ vol.score }}</td>\n      </tr>\n      <tr *ngIf="historiqueVolees.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{getTotalScore()}}</td>\n      </tr>\n    </tbody>\n  </table>\n  <span *ngIf="historiqueVolees.length > 0">({{getZonePercent()}} % en zone)</span>\n  <br />\n  <br />\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-warning" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues" (scoreSelected)="addScore($event)"></app-score-keyboard>\n', styles: ["table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
+    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent], template: '  <h1 class="title is-5">Gold Game\n    <button *ngIf="gameStarted" class="button is-danger is-small" (click)="resetGame()">Recommencer</button>\n  </h1>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Zone de r\xE9ussite :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementZone()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="zoneReussite" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementZone()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Score</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVolees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ vol.score }}</td>\n      </tr>\n      <tr *ngIf="historiqueVolees.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{getTotalScore()}}</td>\n      </tr>\n    </tbody>\n  </table>\n  <span *ngIf="historiqueVolees.length > 0">({{getZonePercent()}} % en zone)</span>\n  <br />\n  <br />\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-warning" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues" (scoreSelected)="addScore($event)"></app-score-keyboard>\n', styles: ["table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
   }], null, null);
 })();
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(GoldGameComponent, { className: "GoldGameComponent", filePath: "src/app/pages/gold-game/gold-game.component.ts", lineNumber: 13 });
 })();
 
+// node_modules/@fortawesome/fontawesome-svg-core/index.mjs
+function _defineProperty(e, r2, t2) {
+  return (r2 = _toPropertyKey(r2)) in e ? Object.defineProperty(e, r2, {
+    value: t2,
+    enumerable: true,
+    configurable: true,
+    writable: true
+  }) : e[r2] = t2, e;
+}
+function ownKeys(e, r2) {
+  var t2 = Object.keys(e);
+  if (Object.getOwnPropertySymbols) {
+    var o2 = Object.getOwnPropertySymbols(e);
+    r2 && (o2 = o2.filter(function(r3) {
+      return Object.getOwnPropertyDescriptor(e, r3).enumerable;
+    })), t2.push.apply(t2, o2);
+  }
+  return t2;
+}
+function _objectSpread2(e) {
+  for (var r2 = 1; r2 < arguments.length; r2++) {
+    var t2 = null != arguments[r2] ? arguments[r2] : {};
+    r2 % 2 ? ownKeys(Object(t2), true).forEach(function(r3) {
+      _defineProperty(e, r3, t2[r3]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t2)) : ownKeys(Object(t2)).forEach(function(r3) {
+      Object.defineProperty(e, r3, Object.getOwnPropertyDescriptor(t2, r3));
+    });
+  }
+  return e;
+}
+function _toPrimitive(t2, r2) {
+  if ("object" != typeof t2 || !t2) return t2;
+  var e = t2[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t2, r2 || "default");
+    if ("object" != typeof i) return i;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return ("string" === r2 ? String : Number)(t2);
+}
+function _toPropertyKey(t2) {
+  var i = _toPrimitive(t2, "string");
+  return "symbol" == typeof i ? i : i + "";
+}
+var noop3 = () => {
+};
+var _WINDOW = {};
+var _DOCUMENT = {};
+var _MUTATION_OBSERVER = null;
+var _PERFORMANCE = {
+  mark: noop3,
+  measure: noop3
+};
+try {
+  if (typeof window !== "undefined") _WINDOW = window;
+  if (typeof document !== "undefined") _DOCUMENT = document;
+  if (typeof MutationObserver !== "undefined") _MUTATION_OBSERVER = MutationObserver;
+  if (typeof performance !== "undefined") _PERFORMANCE = performance;
+} catch (e) {
+}
+var {
+  userAgent = ""
+} = _WINDOW.navigator || {};
+var WINDOW = _WINDOW;
+var DOCUMENT3 = _DOCUMENT;
+var MUTATION_OBSERVER = _MUTATION_OBSERVER;
+var PERFORMANCE = _PERFORMANCE;
+var IS_BROWSER = !!WINDOW.document;
+var IS_DOM = !!DOCUMENT3.documentElement && !!DOCUMENT3.head && typeof DOCUMENT3.addEventListener === "function" && typeof DOCUMENT3.createElement === "function";
+var IS_IE = ~userAgent.indexOf("MSIE") || ~userAgent.indexOf("Trident/");
+var p = /fa(s|r|l|t|d|dr|dl|dt|b|k|kd|ss|sr|sl|st|sds|sdr|sdl|sdt)?[\-\ ]/;
+var g = /Font ?Awesome ?([56 ]*)(Solid|Regular|Light|Thin|Duotone|Brands|Free|Pro|Sharp Duotone|Sharp|Kit)?.*/i;
+var S = {
+  classic: {
+    fa: "solid",
+    fas: "solid",
+    "fa-solid": "solid",
+    far: "regular",
+    "fa-regular": "regular",
+    fal: "light",
+    "fa-light": "light",
+    fat: "thin",
+    "fa-thin": "thin",
+    fab: "brands",
+    "fa-brands": "brands"
+  },
+  duotone: {
+    fa: "solid",
+    fad: "solid",
+    "fa-solid": "solid",
+    "fa-duotone": "solid",
+    fadr: "regular",
+    "fa-regular": "regular",
+    fadl: "light",
+    "fa-light": "light",
+    fadt: "thin",
+    "fa-thin": "thin"
+  },
+  sharp: {
+    fa: "solid",
+    fass: "solid",
+    "fa-solid": "solid",
+    fasr: "regular",
+    "fa-regular": "regular",
+    fasl: "light",
+    "fa-light": "light",
+    fast: "thin",
+    "fa-thin": "thin"
+  },
+  "sharp-duotone": {
+    fa: "solid",
+    fasds: "solid",
+    "fa-solid": "solid",
+    fasdr: "regular",
+    "fa-regular": "regular",
+    fasdl: "light",
+    "fa-light": "light",
+    fasdt: "thin",
+    "fa-thin": "thin"
+  }
+};
+var A = {
+  GROUP: "duotone-group",
+  SWAP_OPACITY: "swap-opacity",
+  PRIMARY: "primary",
+  SECONDARY: "secondary"
+};
+var P = ["fa-classic", "fa-duotone", "fa-sharp", "fa-sharp-duotone"];
+var s = "classic";
+var t = "duotone";
+var r = "sharp";
+var o = "sharp-duotone";
+var L = [s, t, r, o];
+var G = {
+  classic: {
+    900: "fas",
+    400: "far",
+    normal: "far",
+    300: "fal",
+    100: "fat"
+  },
+  duotone: {
+    900: "fad",
+    400: "fadr",
+    300: "fadl",
+    100: "fadt"
+  },
+  sharp: {
+    900: "fass",
+    400: "fasr",
+    300: "fasl",
+    100: "fast"
+  },
+  "sharp-duotone": {
+    900: "fasds",
+    400: "fasdr",
+    300: "fasdl",
+    100: "fasdt"
+  }
+};
+var lt = {
+  "Font Awesome 6 Free": {
+    900: "fas",
+    400: "far"
+  },
+  "Font Awesome 6 Pro": {
+    900: "fas",
+    400: "far",
+    normal: "far",
+    300: "fal",
+    100: "fat"
+  },
+  "Font Awesome 6 Brands": {
+    400: "fab",
+    normal: "fab"
+  },
+  "Font Awesome 6 Duotone": {
+    900: "fad",
+    400: "fadr",
+    normal: "fadr",
+    300: "fadl",
+    100: "fadt"
+  },
+  "Font Awesome 6 Sharp": {
+    900: "fass",
+    400: "fasr",
+    normal: "fasr",
+    300: "fasl",
+    100: "fast"
+  },
+  "Font Awesome 6 Sharp Duotone": {
+    900: "fasds",
+    400: "fasdr",
+    normal: "fasdr",
+    300: "fasdl",
+    100: "fasdt"
+  }
+};
+var pt = /* @__PURE__ */ new Map([["classic", {
+  defaultShortPrefixId: "fas",
+  defaultStyleId: "solid",
+  styleIds: ["solid", "regular", "light", "thin", "brands"],
+  futureStyleIds: [],
+  defaultFontWeight: 900
+}], ["sharp", {
+  defaultShortPrefixId: "fass",
+  defaultStyleId: "solid",
+  styleIds: ["solid", "regular", "light", "thin"],
+  futureStyleIds: [],
+  defaultFontWeight: 900
+}], ["duotone", {
+  defaultShortPrefixId: "fad",
+  defaultStyleId: "solid",
+  styleIds: ["solid", "regular", "light", "thin"],
+  futureStyleIds: [],
+  defaultFontWeight: 900
+}], ["sharp-duotone", {
+  defaultShortPrefixId: "fasds",
+  defaultStyleId: "solid",
+  styleIds: ["solid", "regular", "light", "thin"],
+  futureStyleIds: [],
+  defaultFontWeight: 900
+}]]);
+var xt = {
+  classic: {
+    solid: "fas",
+    regular: "far",
+    light: "fal",
+    thin: "fat",
+    brands: "fab"
+  },
+  duotone: {
+    solid: "fad",
+    regular: "fadr",
+    light: "fadl",
+    thin: "fadt"
+  },
+  sharp: {
+    solid: "fass",
+    regular: "fasr",
+    light: "fasl",
+    thin: "fast"
+  },
+  "sharp-duotone": {
+    solid: "fasds",
+    regular: "fasdr",
+    light: "fasdl",
+    thin: "fasdt"
+  }
+};
+var Ft = ["fak", "fa-kit", "fakd", "fa-kit-duotone"];
+var St = {
+  kit: {
+    fak: "kit",
+    "fa-kit": "kit"
+  },
+  "kit-duotone": {
+    fakd: "kit-duotone",
+    "fa-kit-duotone": "kit-duotone"
+  }
+};
+var At = ["kit"];
+var Ct = {
+  kit: {
+    "fa-kit": "fak"
+  },
+  "kit-duotone": {
+    "fa-kit-duotone": "fakd"
+  }
+};
+var Lt = ["fak", "fakd"];
+var Wt = {
+  kit: {
+    fak: "fa-kit"
+  },
+  "kit-duotone": {
+    fakd: "fa-kit-duotone"
+  }
+};
+var Et = {
+  kit: {
+    kit: "fak"
+  },
+  "kit-duotone": {
+    "kit-duotone": "fakd"
+  }
+};
+var t$1 = {
+  GROUP: "duotone-group",
+  SWAP_OPACITY: "swap-opacity",
+  PRIMARY: "primary",
+  SECONDARY: "secondary"
+};
+var r$1 = ["fa-classic", "fa-duotone", "fa-sharp", "fa-sharp-duotone"];
+var bt$1 = ["fak", "fa-kit", "fakd", "fa-kit-duotone"];
+var Yt = {
+  "Font Awesome Kit": {
+    400: "fak",
+    normal: "fak"
+  },
+  "Font Awesome Kit Duotone": {
+    400: "fakd",
+    normal: "fakd"
+  }
+};
+var ua = {
+  classic: {
+    "fa-brands": "fab",
+    "fa-duotone": "fad",
+    "fa-light": "fal",
+    "fa-regular": "far",
+    "fa-solid": "fas",
+    "fa-thin": "fat"
+  },
+  duotone: {
+    "fa-regular": "fadr",
+    "fa-light": "fadl",
+    "fa-thin": "fadt"
+  },
+  sharp: {
+    "fa-solid": "fass",
+    "fa-regular": "fasr",
+    "fa-light": "fasl",
+    "fa-thin": "fast"
+  },
+  "sharp-duotone": {
+    "fa-solid": "fasds",
+    "fa-regular": "fasdr",
+    "fa-light": "fasdl",
+    "fa-thin": "fasdt"
+  }
+};
+var I$1 = {
+  classic: ["fas", "far", "fal", "fat", "fad"],
+  duotone: ["fadr", "fadl", "fadt"],
+  sharp: ["fass", "fasr", "fasl", "fast"],
+  "sharp-duotone": ["fasds", "fasdr", "fasdl", "fasdt"]
+};
+var ga = {
+  classic: {
+    fab: "fa-brands",
+    fad: "fa-duotone",
+    fal: "fa-light",
+    far: "fa-regular",
+    fas: "fa-solid",
+    fat: "fa-thin"
+  },
+  duotone: {
+    fadr: "fa-regular",
+    fadl: "fa-light",
+    fadt: "fa-thin"
+  },
+  sharp: {
+    fass: "fa-solid",
+    fasr: "fa-regular",
+    fasl: "fa-light",
+    fast: "fa-thin"
+  },
+  "sharp-duotone": {
+    fasds: "fa-solid",
+    fasdr: "fa-regular",
+    fasdl: "fa-light",
+    fasdt: "fa-thin"
+  }
+};
+var x = ["fa-solid", "fa-regular", "fa-light", "fa-thin", "fa-duotone", "fa-brands"];
+var Ia = ["fa", "fas", "far", "fal", "fat", "fad", "fadr", "fadl", "fadt", "fab", "fass", "fasr", "fasl", "fast", "fasds", "fasdr", "fasdl", "fasdt", ...r$1, ...x];
+var m$1 = ["solid", "regular", "light", "thin", "duotone", "brands"];
+var c$1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var F$1 = c$1.concat([11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+var ma = [...Object.keys(I$1), ...m$1, "2xs", "xs", "sm", "lg", "xl", "2xl", "beat", "border", "fade", "beat-fade", "bounce", "flip-both", "flip-horizontal", "flip-vertical", "flip", "fw", "inverse", "layers-counter", "layers-text", "layers", "li", "pull-left", "pull-right", "pulse", "rotate-180", "rotate-270", "rotate-90", "rotate-by", "shake", "spin-pulse", "spin-reverse", "spin", "stack-1x", "stack-2x", "stack", "ul", t$1.GROUP, t$1.SWAP_OPACITY, t$1.PRIMARY, t$1.SECONDARY].concat(c$1.map((a) => "".concat(a, "x"))).concat(F$1.map((a) => "w-".concat(a)));
+var wa = {
+  "Font Awesome 5 Free": {
+    900: "fas",
+    400: "far"
+  },
+  "Font Awesome 5 Pro": {
+    900: "fas",
+    400: "far",
+    normal: "far",
+    300: "fal"
+  },
+  "Font Awesome 5 Brands": {
+    400: "fab",
+    normal: "fab"
+  },
+  "Font Awesome 5 Duotone": {
+    900: "fad"
+  }
+};
+var NAMESPACE_IDENTIFIER = "___FONT_AWESOME___";
+var UNITS_IN_GRID = 16;
+var DEFAULT_CSS_PREFIX = "fa";
+var DEFAULT_REPLACEMENT_CLASS = "svg-inline--fa";
+var DATA_FA_I2SVG = "data-fa-i2svg";
+var DATA_FA_PSEUDO_ELEMENT = "data-fa-pseudo-element";
+var DATA_FA_PSEUDO_ELEMENT_PENDING = "data-fa-pseudo-element-pending";
+var DATA_PREFIX = "data-prefix";
+var DATA_ICON = "data-icon";
+var HTML_CLASS_I2SVG_BASE_CLASS = "fontawesome-i2svg";
+var MUTATION_APPROACH_ASYNC = "async";
+var TAGNAMES_TO_SKIP_FOR_PSEUDOELEMENTS = ["HTML", "HEAD", "STYLE", "SCRIPT"];
+var PRODUCTION = (() => {
+  try {
+    return false;
+  } catch (e$$1) {
+    return false;
+  }
+})();
+function familyProxy(obj) {
+  return new Proxy(obj, {
+    get(target, prop) {
+      return prop in target ? target[prop] : target[s];
+    }
+  });
+}
+var _PREFIX_TO_STYLE = _objectSpread2({}, S);
+_PREFIX_TO_STYLE[s] = _objectSpread2(_objectSpread2(_objectSpread2(_objectSpread2({}, {
+  "fa-duotone": "duotone"
+}), S[s]), St["kit"]), St["kit-duotone"]);
+var PREFIX_TO_STYLE = familyProxy(_PREFIX_TO_STYLE);
+var _STYLE_TO_PREFIX = _objectSpread2({}, xt);
+_STYLE_TO_PREFIX[s] = _objectSpread2(_objectSpread2(_objectSpread2(_objectSpread2({}, {
+  duotone: "fad"
+}), _STYLE_TO_PREFIX[s]), Et["kit"]), Et["kit-duotone"]);
+var STYLE_TO_PREFIX = familyProxy(_STYLE_TO_PREFIX);
+var _PREFIX_TO_LONG_STYLE = _objectSpread2({}, ga);
+_PREFIX_TO_LONG_STYLE[s] = _objectSpread2(_objectSpread2({}, _PREFIX_TO_LONG_STYLE[s]), Wt["kit"]);
+var PREFIX_TO_LONG_STYLE = familyProxy(_PREFIX_TO_LONG_STYLE);
+var _LONG_STYLE_TO_PREFIX = _objectSpread2({}, ua);
+_LONG_STYLE_TO_PREFIX[s] = _objectSpread2(_objectSpread2({}, _LONG_STYLE_TO_PREFIX[s]), Ct["kit"]);
+var LONG_STYLE_TO_PREFIX = familyProxy(_LONG_STYLE_TO_PREFIX);
+var ICON_SELECTION_SYNTAX_PATTERN = p;
+var LAYERS_TEXT_CLASSNAME = "fa-layers-text";
+var FONT_FAMILY_PATTERN = g;
+var _FONT_WEIGHT_TO_PREFIX = _objectSpread2({}, G);
+var FONT_WEIGHT_TO_PREFIX = familyProxy(_FONT_WEIGHT_TO_PREFIX);
+var ATTRIBUTES_WATCHED_FOR_MUTATION = ["class", "data-prefix", "data-icon", "data-fa-transform", "data-fa-mask"];
+var DUOTONE_CLASSES = A;
+var RESERVED_CLASSES = [...At, ...ma];
+var initial = WINDOW.FontAwesomeConfig || {};
+function getAttrConfig(attr) {
+  var element = DOCUMENT3.querySelector("script[" + attr + "]");
+  if (element) {
+    return element.getAttribute(attr);
+  }
+}
+function coerce(val) {
+  if (val === "") return true;
+  if (val === "false") return false;
+  if (val === "true") return true;
+  return val;
+}
+if (DOCUMENT3 && typeof DOCUMENT3.querySelector === "function") {
+  const attrs = [["data-family-prefix", "familyPrefix"], ["data-css-prefix", "cssPrefix"], ["data-family-default", "familyDefault"], ["data-style-default", "styleDefault"], ["data-replacement-class", "replacementClass"], ["data-auto-replace-svg", "autoReplaceSvg"], ["data-auto-add-css", "autoAddCss"], ["data-auto-a11y", "autoA11y"], ["data-search-pseudo-elements", "searchPseudoElements"], ["data-observe-mutations", "observeMutations"], ["data-mutate-approach", "mutateApproach"], ["data-keep-original-source", "keepOriginalSource"], ["data-measure-performance", "measurePerformance"], ["data-show-missing-icons", "showMissingIcons"]];
+  attrs.forEach((_ref) => {
+    let [attr, key] = _ref;
+    const val = coerce(getAttrConfig(attr));
+    if (val !== void 0 && val !== null) {
+      initial[key] = val;
+    }
+  });
+}
+var _default = {
+  styleDefault: "solid",
+  familyDefault: s,
+  cssPrefix: DEFAULT_CSS_PREFIX,
+  replacementClass: DEFAULT_REPLACEMENT_CLASS,
+  autoReplaceSvg: true,
+  autoAddCss: true,
+  autoA11y: true,
+  searchPseudoElements: false,
+  observeMutations: true,
+  mutateApproach: "async",
+  keepOriginalSource: true,
+  measurePerformance: false,
+  showMissingIcons: true
+};
+if (initial.familyPrefix) {
+  initial.cssPrefix = initial.familyPrefix;
+}
+var _config = _objectSpread2(_objectSpread2({}, _default), initial);
+if (!_config.autoReplaceSvg) _config.observeMutations = false;
+var config2 = {};
+Object.keys(_default).forEach((key) => {
+  Object.defineProperty(config2, key, {
+    enumerable: true,
+    set: function(val) {
+      _config[key] = val;
+      _onChangeCb.forEach((cb) => cb(config2));
+    },
+    get: function() {
+      return _config[key];
+    }
+  });
+});
+Object.defineProperty(config2, "familyPrefix", {
+  enumerable: true,
+  set: function(val) {
+    _config.cssPrefix = val;
+    _onChangeCb.forEach((cb) => cb(config2));
+  },
+  get: function() {
+    return _config.cssPrefix;
+  }
+});
+WINDOW.FontAwesomeConfig = config2;
+var _onChangeCb = [];
+function onChange(cb) {
+  _onChangeCb.push(cb);
+  return () => {
+    _onChangeCb.splice(_onChangeCb.indexOf(cb), 1);
+  };
+}
+var d$2 = UNITS_IN_GRID;
+var meaninglessTransform = {
+  size: 16,
+  x: 0,
+  y: 0,
+  rotate: 0,
+  flipX: false,
+  flipY: false
+};
+function insertCss(css2) {
+  if (!css2 || !IS_DOM) {
+    return;
+  }
+  const style = DOCUMENT3.createElement("style");
+  style.setAttribute("type", "text/css");
+  style.innerHTML = css2;
+  const headChildren = DOCUMENT3.head.childNodes;
+  let beforeChild = null;
+  for (let i = headChildren.length - 1; i > -1; i--) {
+    const child = headChildren[i];
+    const tagName = (child.tagName || "").toUpperCase();
+    if (["STYLE", "LINK"].indexOf(tagName) > -1) {
+      beforeChild = child;
+    }
+  }
+  DOCUMENT3.head.insertBefore(style, beforeChild);
+  return css2;
+}
+var idPool = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+function nextUniqueId() {
+  let size = 12;
+  let id = "";
+  while (size-- > 0) {
+    id += idPool[Math.random() * 62 | 0];
+  }
+  return id;
+}
+function toArray(obj) {
+  const array = [];
+  for (let i = (obj || []).length >>> 0; i--; ) {
+    array[i] = obj[i];
+  }
+  return array;
+}
+function classArray(node) {
+  if (node.classList) {
+    return toArray(node.classList);
+  } else {
+    return (node.getAttribute("class") || "").split(" ").filter((i) => i);
+  }
+}
+function htmlEscape(str) {
+  return "".concat(str).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/'/g, "&#39;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function joinAttributes(attributes) {
+  return Object.keys(attributes || {}).reduce((acc, attributeName) => {
+    return acc + "".concat(attributeName, '="').concat(htmlEscape(attributes[attributeName]), '" ');
+  }, "").trim();
+}
+function joinStyles(styles2) {
+  return Object.keys(styles2 || {}).reduce((acc, styleName) => {
+    return acc + "".concat(styleName, ": ").concat(styles2[styleName].trim(), ";");
+  }, "");
+}
+function transformIsMeaningful(transform) {
+  return transform.size !== meaninglessTransform.size || transform.x !== meaninglessTransform.x || transform.y !== meaninglessTransform.y || transform.rotate !== meaninglessTransform.rotate || transform.flipX || transform.flipY;
+}
+function transformForSvg(_ref) {
+  let {
+    transform,
+    containerWidth,
+    iconWidth
+  } = _ref;
+  const outer = {
+    transform: "translate(".concat(containerWidth / 2, " 256)")
+  };
+  const innerTranslate = "translate(".concat(transform.x * 32, ", ").concat(transform.y * 32, ") ");
+  const innerScale = "scale(".concat(transform.size / 16 * (transform.flipX ? -1 : 1), ", ").concat(transform.size / 16 * (transform.flipY ? -1 : 1), ") ");
+  const innerRotate = "rotate(".concat(transform.rotate, " 0 0)");
+  const inner = {
+    transform: "".concat(innerTranslate, " ").concat(innerScale, " ").concat(innerRotate)
+  };
+  const path = {
+    transform: "translate(".concat(iconWidth / 2 * -1, " -256)")
+  };
+  return {
+    outer,
+    inner,
+    path
+  };
+}
+function transformForCss(_ref2) {
+  let {
+    transform,
+    width = UNITS_IN_GRID,
+    height = UNITS_IN_GRID,
+    startCentered = false
+  } = _ref2;
+  let val = "";
+  if (startCentered && IS_IE) {
+    val += "translate(".concat(transform.x / d$2 - width / 2, "em, ").concat(transform.y / d$2 - height / 2, "em) ");
+  } else if (startCentered) {
+    val += "translate(calc(-50% + ".concat(transform.x / d$2, "em), calc(-50% + ").concat(transform.y / d$2, "em)) ");
+  } else {
+    val += "translate(".concat(transform.x / d$2, "em, ").concat(transform.y / d$2, "em) ");
+  }
+  val += "scale(".concat(transform.size / d$2 * (transform.flipX ? -1 : 1), ", ").concat(transform.size / d$2 * (transform.flipY ? -1 : 1), ") ");
+  val += "rotate(".concat(transform.rotate, "deg) ");
+  return val;
+}
+var baseStyles = ':root, :host {\n  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";\n  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";\n  --fa-font-light: normal 300 1em/1 "Font Awesome 6 Pro";\n  --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Pro";\n  --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";\n  --fa-font-duotone-regular: normal 400 1em/1 "Font Awesome 6 Duotone";\n  --fa-font-duotone-light: normal 300 1em/1 "Font Awesome 6 Duotone";\n  --fa-font-duotone-thin: normal 100 1em/1 "Font Awesome 6 Duotone";\n  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";\n  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";\n  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";\n  --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";\n  --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 6 Sharp";\n  --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 6 Sharp Duotone";\n  --fa-font-sharp-duotone-regular: normal 400 1em/1 "Font Awesome 6 Sharp Duotone";\n  --fa-font-sharp-duotone-light: normal 300 1em/1 "Font Awesome 6 Sharp Duotone";\n  --fa-font-sharp-duotone-thin: normal 100 1em/1 "Font Awesome 6 Sharp Duotone";\n}\n\nsvg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {\n  overflow: visible;\n  box-sizing: content-box;\n}\n\n.svg-inline--fa {\n  display: var(--fa-display, inline-block);\n  height: 1em;\n  overflow: visible;\n  vertical-align: -0.125em;\n}\n.svg-inline--fa.fa-2xs {\n  vertical-align: 0.1em;\n}\n.svg-inline--fa.fa-xs {\n  vertical-align: 0em;\n}\n.svg-inline--fa.fa-sm {\n  vertical-align: -0.0714285705em;\n}\n.svg-inline--fa.fa-lg {\n  vertical-align: -0.2em;\n}\n.svg-inline--fa.fa-xl {\n  vertical-align: -0.25em;\n}\n.svg-inline--fa.fa-2xl {\n  vertical-align: -0.3125em;\n}\n.svg-inline--fa.fa-pull-left {\n  margin-right: var(--fa-pull-margin, 0.3em);\n  width: auto;\n}\n.svg-inline--fa.fa-pull-right {\n  margin-left: var(--fa-pull-margin, 0.3em);\n  width: auto;\n}\n.svg-inline--fa.fa-li {\n  width: var(--fa-li-width, 2em);\n  top: 0.25em;\n}\n.svg-inline--fa.fa-fw {\n  width: var(--fa-fw-width, 1.25em);\n}\n\n.fa-layers svg.svg-inline--fa {\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n\n.fa-layers-counter, .fa-layers-text {\n  display: inline-block;\n  position: absolute;\n  text-align: center;\n}\n\n.fa-layers {\n  display: inline-block;\n  height: 1em;\n  position: relative;\n  text-align: center;\n  vertical-align: -0.125em;\n  width: 1em;\n}\n.fa-layers svg.svg-inline--fa {\n  transform-origin: center center;\n}\n\n.fa-layers-text {\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  transform-origin: center center;\n}\n\n.fa-layers-counter {\n  background-color: var(--fa-counter-background-color, #ff253a);\n  border-radius: var(--fa-counter-border-radius, 1em);\n  box-sizing: border-box;\n  color: var(--fa-inverse, #fff);\n  line-height: var(--fa-counter-line-height, 1);\n  max-width: var(--fa-counter-max-width, 5em);\n  min-width: var(--fa-counter-min-width, 1.5em);\n  overflow: hidden;\n  padding: var(--fa-counter-padding, 0.25em 0.5em);\n  right: var(--fa-right, 0);\n  text-overflow: ellipsis;\n  top: var(--fa-top, 0);\n  transform: scale(var(--fa-counter-scale, 0.25));\n  transform-origin: top right;\n}\n\n.fa-layers-bottom-right {\n  bottom: var(--fa-bottom, 0);\n  right: var(--fa-right, 0);\n  top: auto;\n  transform: scale(var(--fa-layers-scale, 0.25));\n  transform-origin: bottom right;\n}\n\n.fa-layers-bottom-left {\n  bottom: var(--fa-bottom, 0);\n  left: var(--fa-left, 0);\n  right: auto;\n  top: auto;\n  transform: scale(var(--fa-layers-scale, 0.25));\n  transform-origin: bottom left;\n}\n\n.fa-layers-top-right {\n  top: var(--fa-top, 0);\n  right: var(--fa-right, 0);\n  transform: scale(var(--fa-layers-scale, 0.25));\n  transform-origin: top right;\n}\n\n.fa-layers-top-left {\n  left: var(--fa-left, 0);\n  right: auto;\n  top: var(--fa-top, 0);\n  transform: scale(var(--fa-layers-scale, 0.25));\n  transform-origin: top left;\n}\n\n.fa-1x {\n  font-size: 1em;\n}\n\n.fa-2x {\n  font-size: 2em;\n}\n\n.fa-3x {\n  font-size: 3em;\n}\n\n.fa-4x {\n  font-size: 4em;\n}\n\n.fa-5x {\n  font-size: 5em;\n}\n\n.fa-6x {\n  font-size: 6em;\n}\n\n.fa-7x {\n  font-size: 7em;\n}\n\n.fa-8x {\n  font-size: 8em;\n}\n\n.fa-9x {\n  font-size: 9em;\n}\n\n.fa-10x {\n  font-size: 10em;\n}\n\n.fa-2xs {\n  font-size: 0.625em;\n  line-height: 0.1em;\n  vertical-align: 0.225em;\n}\n\n.fa-xs {\n  font-size: 0.75em;\n  line-height: 0.0833333337em;\n  vertical-align: 0.125em;\n}\n\n.fa-sm {\n  font-size: 0.875em;\n  line-height: 0.0714285718em;\n  vertical-align: 0.0535714295em;\n}\n\n.fa-lg {\n  font-size: 1.25em;\n  line-height: 0.05em;\n  vertical-align: -0.075em;\n}\n\n.fa-xl {\n  font-size: 1.5em;\n  line-height: 0.0416666682em;\n  vertical-align: -0.125em;\n}\n\n.fa-2xl {\n  font-size: 2em;\n  line-height: 0.03125em;\n  vertical-align: -0.1875em;\n}\n\n.fa-fw {\n  text-align: center;\n  width: 1.25em;\n}\n\n.fa-ul {\n  list-style-type: none;\n  margin-left: var(--fa-li-margin, 2.5em);\n  padding-left: 0;\n}\n.fa-ul > li {\n  position: relative;\n}\n\n.fa-li {\n  left: calc(-1 * var(--fa-li-width, 2em));\n  position: absolute;\n  text-align: center;\n  width: var(--fa-li-width, 2em);\n  line-height: inherit;\n}\n\n.fa-border {\n  border-color: var(--fa-border-color, #eee);\n  border-radius: var(--fa-border-radius, 0.1em);\n  border-style: var(--fa-border-style, solid);\n  border-width: var(--fa-border-width, 0.08em);\n  padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);\n}\n\n.fa-pull-left {\n  float: left;\n  margin-right: var(--fa-pull-margin, 0.3em);\n}\n\n.fa-pull-right {\n  float: right;\n  margin-left: var(--fa-pull-margin, 0.3em);\n}\n\n.fa-beat {\n  animation-name: fa-beat;\n  animation-delay: var(--fa-animation-delay, 0s);\n  animation-direction: var(--fa-animation-direction, normal);\n  animation-duration: var(--fa-animation-duration, 1s);\n  animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  animation-timing-function: var(--fa-animation-timing, ease-in-out);\n}\n\n.fa-bounce {\n  animation-name: fa-bounce;\n  animation-delay: var(--fa-animation-delay, 0s);\n  animation-direction: var(--fa-animation-direction, normal);\n  animation-duration: var(--fa-animation-duration, 1s);\n  animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));\n}\n\n.fa-fade {\n  animation-name: fa-fade;\n  animation-delay: var(--fa-animation-delay, 0s);\n  animation-direction: var(--fa-animation-direction, normal);\n  animation-duration: var(--fa-animation-duration, 1s);\n  animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));\n}\n\n.fa-beat-fade {\n  animation-name: fa-beat-fade;\n  animation-delay: var(--fa-animation-delay, 0s);\n  animation-direction: var(--fa-animation-direction, normal);\n  animation-duration: var(--fa-animation-duration, 1s);\n  animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));\n}\n\n.fa-flip {\n  animation-name: fa-flip;\n  animation-delay: var(--fa-animation-delay, 0s);\n  animation-direction: var(--fa-animation-direction, normal);\n  animation-duration: var(--fa-animation-duration, 1s);\n  animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  animation-timing-function: var(--fa-animation-timing, ease-in-out);\n}\n\n.fa-shake {\n  animation-name: fa-shake;\n  animation-delay: var(--fa-animation-delay, 0s);\n  animation-direction: var(--fa-animation-direction, normal);\n  animation-duration: var(--fa-animation-duration, 1s);\n  animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  animation-timing-function: var(--fa-animation-timing, linear);\n}\n\n.fa-spin {\n  animation-name: fa-spin;\n  animation-delay: var(--fa-animation-delay, 0s);\n  animation-direction: var(--fa-animation-direction, normal);\n  animation-duration: var(--fa-animation-duration, 2s);\n  animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  animation-timing-function: var(--fa-animation-timing, linear);\n}\n\n.fa-spin-reverse {\n  --fa-animation-direction: reverse;\n}\n\n.fa-pulse,\n.fa-spin-pulse {\n  animation-name: fa-spin;\n  animation-direction: var(--fa-animation-direction, normal);\n  animation-duration: var(--fa-animation-duration, 1s);\n  animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  animation-timing-function: var(--fa-animation-timing, steps(8));\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .fa-beat,\n.fa-bounce,\n.fa-fade,\n.fa-beat-fade,\n.fa-flip,\n.fa-pulse,\n.fa-shake,\n.fa-spin,\n.fa-spin-pulse {\n    animation-delay: -1ms;\n    animation-duration: 1ms;\n    animation-iteration-count: 1;\n    transition-delay: 0s;\n    transition-duration: 0s;\n  }\n}\n@keyframes fa-beat {\n  0%, 90% {\n    transform: scale(1);\n  }\n  45% {\n    transform: scale(var(--fa-beat-scale, 1.25));\n  }\n}\n@keyframes fa-bounce {\n  0% {\n    transform: scale(1, 1) translateY(0);\n  }\n  10% {\n    transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);\n  }\n  30% {\n    transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));\n  }\n  50% {\n    transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);\n  }\n  57% {\n    transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));\n  }\n  64% {\n    transform: scale(1, 1) translateY(0);\n  }\n  100% {\n    transform: scale(1, 1) translateY(0);\n  }\n}\n@keyframes fa-fade {\n  50% {\n    opacity: var(--fa-fade-opacity, 0.4);\n  }\n}\n@keyframes fa-beat-fade {\n  0%, 100% {\n    opacity: var(--fa-beat-fade-opacity, 0.4);\n    transform: scale(1);\n  }\n  50% {\n    opacity: 1;\n    transform: scale(var(--fa-beat-fade-scale, 1.125));\n  }\n}\n@keyframes fa-flip {\n  50% {\n    transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));\n  }\n}\n@keyframes fa-shake {\n  0% {\n    transform: rotate(-15deg);\n  }\n  4% {\n    transform: rotate(15deg);\n  }\n  8%, 24% {\n    transform: rotate(-18deg);\n  }\n  12%, 28% {\n    transform: rotate(18deg);\n  }\n  16% {\n    transform: rotate(-22deg);\n  }\n  20% {\n    transform: rotate(22deg);\n  }\n  32% {\n    transform: rotate(-12deg);\n  }\n  36% {\n    transform: rotate(12deg);\n  }\n  40%, 100% {\n    transform: rotate(0deg);\n  }\n}\n@keyframes fa-spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.fa-rotate-90 {\n  transform: rotate(90deg);\n}\n\n.fa-rotate-180 {\n  transform: rotate(180deg);\n}\n\n.fa-rotate-270 {\n  transform: rotate(270deg);\n}\n\n.fa-flip-horizontal {\n  transform: scale(-1, 1);\n}\n\n.fa-flip-vertical {\n  transform: scale(1, -1);\n}\n\n.fa-flip-both,\n.fa-flip-horizontal.fa-flip-vertical {\n  transform: scale(-1, -1);\n}\n\n.fa-rotate-by {\n  transform: rotate(var(--fa-rotate-angle, 0));\n}\n\n.fa-stack {\n  display: inline-block;\n  vertical-align: middle;\n  height: 2em;\n  position: relative;\n  width: 2.5em;\n}\n\n.fa-stack-1x,\n.fa-stack-2x {\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  top: 0;\n  z-index: var(--fa-stack-z-index, auto);\n}\n\n.svg-inline--fa.fa-stack-1x {\n  height: 1em;\n  width: 1.25em;\n}\n.svg-inline--fa.fa-stack-2x {\n  height: 2em;\n  width: 2.5em;\n}\n\n.fa-inverse {\n  color: var(--fa-inverse, #fff);\n}\n\n.sr-only,\n.fa-sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border-width: 0;\n}\n\n.sr-only-focusable:not(:focus),\n.fa-sr-only-focusable:not(:focus) {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border-width: 0;\n}\n\n.svg-inline--fa .fa-primary {\n  fill: var(--fa-primary-color, currentColor);\n  opacity: var(--fa-primary-opacity, 1);\n}\n\n.svg-inline--fa .fa-secondary {\n  fill: var(--fa-secondary-color, currentColor);\n  opacity: var(--fa-secondary-opacity, 0.4);\n}\n\n.svg-inline--fa.fa-swap-opacity .fa-primary {\n  opacity: var(--fa-secondary-opacity, 0.4);\n}\n\n.svg-inline--fa.fa-swap-opacity .fa-secondary {\n  opacity: var(--fa-primary-opacity, 1);\n}\n\n.svg-inline--fa mask .fa-primary,\n.svg-inline--fa mask .fa-secondary {\n  fill: black;\n}';
+function css() {
+  const dcp = DEFAULT_CSS_PREFIX;
+  const drc = DEFAULT_REPLACEMENT_CLASS;
+  const fp = config2.cssPrefix;
+  const rc = config2.replacementClass;
+  let s2 = baseStyles;
+  if (fp !== dcp || rc !== drc) {
+    const dPatt = new RegExp("\\.".concat(dcp, "\\-"), "g");
+    const customPropPatt = new RegExp("\\--".concat(dcp, "\\-"), "g");
+    const rPatt = new RegExp("\\.".concat(drc), "g");
+    s2 = s2.replace(dPatt, ".".concat(fp, "-")).replace(customPropPatt, "--".concat(fp, "-")).replace(rPatt, ".".concat(rc));
+  }
+  return s2;
+}
+var _cssInserted = false;
+function ensureCss() {
+  if (config2.autoAddCss && !_cssInserted) {
+    insertCss(css());
+    _cssInserted = true;
+  }
+}
+var InjectCSS = {
+  mixout() {
+    return {
+      dom: {
+        css,
+        insertCss: ensureCss
+      }
+    };
+  },
+  hooks() {
+    return {
+      beforeDOMElementCreation() {
+        ensureCss();
+      },
+      beforeI2svg() {
+        ensureCss();
+      }
+    };
+  }
+};
+var w = WINDOW || {};
+if (!w[NAMESPACE_IDENTIFIER]) w[NAMESPACE_IDENTIFIER] = {};
+if (!w[NAMESPACE_IDENTIFIER].styles) w[NAMESPACE_IDENTIFIER].styles = {};
+if (!w[NAMESPACE_IDENTIFIER].hooks) w[NAMESPACE_IDENTIFIER].hooks = {};
+if (!w[NAMESPACE_IDENTIFIER].shims) w[NAMESPACE_IDENTIFIER].shims = [];
+var namespace = w[NAMESPACE_IDENTIFIER];
+var functions = [];
+var listener = function() {
+  DOCUMENT3.removeEventListener("DOMContentLoaded", listener);
+  loaded = 1;
+  functions.map((fn) => fn());
+};
+var loaded = false;
+if (IS_DOM) {
+  loaded = (DOCUMENT3.documentElement.doScroll ? /^loaded|^c/ : /^loaded|^i|^c/).test(DOCUMENT3.readyState);
+  if (!loaded) DOCUMENT3.addEventListener("DOMContentLoaded", listener);
+}
+function domready(fn) {
+  if (!IS_DOM) return;
+  loaded ? setTimeout(fn, 0) : functions.push(fn);
+}
+function toHtml(abstractNodes) {
+  const {
+    tag,
+    attributes = {},
+    children = []
+  } = abstractNodes;
+  if (typeof abstractNodes === "string") {
+    return htmlEscape(abstractNodes);
+  } else {
+    return "<".concat(tag, " ").concat(joinAttributes(attributes), ">").concat(children.map(toHtml).join(""), "</").concat(tag, ">");
+  }
+}
+function iconFromMapping(mapping, prefix, iconName) {
+  if (mapping && mapping[prefix] && mapping[prefix][iconName]) {
+    return {
+      prefix,
+      iconName,
+      icon: mapping[prefix][iconName]
+    };
+  }
+}
+var bindInternal4 = function bindInternal42(func, thisContext) {
+  return function(a, b, c, d) {
+    return func.call(thisContext, a, b, c, d);
+  };
+};
+var reduce = function fastReduceObject(subject, fn, initialValue, thisContext) {
+  var keys = Object.keys(subject), length = keys.length, iterator2 = thisContext !== void 0 ? bindInternal4(fn, thisContext) : fn, i, key, result;
+  if (initialValue === void 0) {
+    i = 1;
+    result = subject[keys[0]];
+  } else {
+    i = 0;
+    result = initialValue;
+  }
+  for (; i < length; i++) {
+    key = keys[i];
+    result = iterator2(result, subject[key], key, subject);
+  }
+  return result;
+};
+function ucs2decode(string) {
+  const output = [];
+  let counter2 = 0;
+  const length = string.length;
+  while (counter2 < length) {
+    const value = string.charCodeAt(counter2++);
+    if (value >= 55296 && value <= 56319 && counter2 < length) {
+      const extra = string.charCodeAt(counter2++);
+      if ((extra & 64512) == 56320) {
+        output.push(((value & 1023) << 10) + (extra & 1023) + 65536);
+      } else {
+        output.push(value);
+        counter2--;
+      }
+    } else {
+      output.push(value);
+    }
+  }
+  return output;
+}
+function toHex(unicode) {
+  const decoded = ucs2decode(unicode);
+  return decoded.length === 1 ? decoded[0].toString(16) : null;
+}
+function codePointAt(string, index) {
+  const size = string.length;
+  let first2 = string.charCodeAt(index);
+  let second;
+  if (first2 >= 55296 && first2 <= 56319 && size > index + 1) {
+    second = string.charCodeAt(index + 1);
+    if (second >= 56320 && second <= 57343) {
+      return (first2 - 55296) * 1024 + second - 56320 + 65536;
+    }
+  }
+  return first2;
+}
+function normalizeIcons(icons) {
+  return Object.keys(icons).reduce((acc, iconName) => {
+    const icon2 = icons[iconName];
+    const expanded = !!icon2.icon;
+    if (expanded) {
+      acc[icon2.iconName] = icon2.icon;
+    } else {
+      acc[iconName] = icon2;
+    }
+    return acc;
+  }, {});
+}
+function defineIcons(prefix, icons) {
+  let params = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
+  const {
+    skipHooks = false
+  } = params;
+  const normalized = normalizeIcons(icons);
+  if (typeof namespace.hooks.addPack === "function" && !skipHooks) {
+    namespace.hooks.addPack(prefix, normalizeIcons(icons));
+  } else {
+    namespace.styles[prefix] = _objectSpread2(_objectSpread2({}, namespace.styles[prefix] || {}), normalized);
+  }
+  if (prefix === "fas") {
+    defineIcons("fa", icons);
+  }
+}
+var {
+  styles,
+  shims
+} = namespace;
+var FAMILY_NAMES = Object.keys(PREFIX_TO_LONG_STYLE);
+var PREFIXES_FOR_FAMILY = FAMILY_NAMES.reduce((acc, familyId) => {
+  acc[familyId] = Object.keys(PREFIX_TO_LONG_STYLE[familyId]);
+  return acc;
+}, {});
+var _defaultUsablePrefix = null;
+var _byUnicode = {};
+var _byLigature = {};
+var _byOldName = {};
+var _byOldUnicode = {};
+var _byAlias = {};
+function isReserved(name) {
+  return ~RESERVED_CLASSES.indexOf(name);
+}
+function getIconName(cssPrefix, cls) {
+  const parts = cls.split("-");
+  const prefix = parts[0];
+  const iconName = parts.slice(1).join("-");
+  if (prefix === cssPrefix && iconName !== "" && !isReserved(iconName)) {
+    return iconName;
+  } else {
+    return null;
+  }
+}
+var build = () => {
+  const lookup = (reducer) => {
+    return reduce(styles, (o$$1, style, prefix) => {
+      o$$1[prefix] = reduce(style, reducer, {});
+      return o$$1;
+    }, {});
+  };
+  _byUnicode = lookup((acc, icon2, iconName) => {
+    if (icon2[3]) {
+      acc[icon2[3]] = iconName;
+    }
+    if (icon2[2]) {
+      const aliases = icon2[2].filter((a$$1) => {
+        return typeof a$$1 === "number";
+      });
+      aliases.forEach((alias) => {
+        acc[alias.toString(16)] = iconName;
+      });
+    }
+    return acc;
+  });
+  _byLigature = lookup((acc, icon2, iconName) => {
+    acc[iconName] = iconName;
+    if (icon2[2]) {
+      const aliases = icon2[2].filter((a$$1) => {
+        return typeof a$$1 === "string";
+      });
+      aliases.forEach((alias) => {
+        acc[alias] = iconName;
+      });
+    }
+    return acc;
+  });
+  _byAlias = lookup((acc, icon2, iconName) => {
+    const aliases = icon2[2];
+    acc[iconName] = iconName;
+    aliases.forEach((alias) => {
+      acc[alias] = iconName;
+    });
+    return acc;
+  });
+  const hasRegular = "far" in styles || config2.autoFetchSvg;
+  const shimLookups = reduce(shims, (acc, shim) => {
+    const maybeNameMaybeUnicode = shim[0];
+    let prefix = shim[1];
+    const iconName = shim[2];
+    if (prefix === "far" && !hasRegular) {
+      prefix = "fas";
+    }
+    if (typeof maybeNameMaybeUnicode === "string") {
+      acc.names[maybeNameMaybeUnicode] = {
+        prefix,
+        iconName
+      };
+    }
+    if (typeof maybeNameMaybeUnicode === "number") {
+      acc.unicodes[maybeNameMaybeUnicode.toString(16)] = {
+        prefix,
+        iconName
+      };
+    }
+    return acc;
+  }, {
+    names: {},
+    unicodes: {}
+  });
+  _byOldName = shimLookups.names;
+  _byOldUnicode = shimLookups.unicodes;
+  _defaultUsablePrefix = getCanonicalPrefix(config2.styleDefault, {
+    family: config2.familyDefault
+  });
+};
+onChange((c$$1) => {
+  _defaultUsablePrefix = getCanonicalPrefix(c$$1.styleDefault, {
+    family: config2.familyDefault
+  });
+});
+build();
+function byUnicode(prefix, unicode) {
+  return (_byUnicode[prefix] || {})[unicode];
+}
+function byLigature(prefix, ligature) {
+  return (_byLigature[prefix] || {})[ligature];
+}
+function byAlias(prefix, alias) {
+  return (_byAlias[prefix] || {})[alias];
+}
+function byOldName(name) {
+  return _byOldName[name] || {
+    prefix: null,
+    iconName: null
+  };
+}
+function byOldUnicode(unicode) {
+  const oldUnicode = _byOldUnicode[unicode];
+  const newUnicode = byUnicode("fas", unicode);
+  return oldUnicode || (newUnicode ? {
+    prefix: "fas",
+    iconName: newUnicode
+  } : null) || {
+    prefix: null,
+    iconName: null
+  };
+}
+function getDefaultUsablePrefix() {
+  return _defaultUsablePrefix;
+}
+var emptyCanonicalIcon = () => {
+  return {
+    prefix: null,
+    iconName: null,
+    rest: []
+  };
+};
+function getFamilyId(values) {
+  let family = s;
+  const famProps = FAMILY_NAMES.reduce((acc, familyId) => {
+    acc[familyId] = "".concat(config2.cssPrefix, "-").concat(familyId);
+    return acc;
+  }, {});
+  L.forEach((familyId) => {
+    if (values.includes(famProps[familyId]) || values.some((v$$1) => PREFIXES_FOR_FAMILY[familyId].includes(v$$1))) {
+      family = familyId;
+    }
+  });
+  return family;
+}
+function getCanonicalPrefix(styleOrPrefix) {
+  let params = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+  const {
+    family = s
+  } = params;
+  const style = PREFIX_TO_STYLE[family][styleOrPrefix];
+  if (family === t && !styleOrPrefix) {
+    return "fad";
+  }
+  const prefix = STYLE_TO_PREFIX[family][styleOrPrefix] || STYLE_TO_PREFIX[family][style];
+  const defined = styleOrPrefix in namespace.styles ? styleOrPrefix : null;
+  const result = prefix || defined || null;
+  return result;
+}
+function moveNonFaClassesToRest(classNames) {
+  let rest = [];
+  let iconName = null;
+  classNames.forEach((cls) => {
+    const result = getIconName(config2.cssPrefix, cls);
+    if (result) {
+      iconName = result;
+    } else if (cls) {
+      rest.push(cls);
+    }
+  });
+  return {
+    iconName,
+    rest
+  };
+}
+function sortedUniqueValues(arr) {
+  return arr.sort().filter((value, index, arr2) => {
+    return arr2.indexOf(value) === index;
+  });
+}
+function getCanonicalIcon(values) {
+  let params = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+  const {
+    skipLookups = false
+  } = params;
+  let givenPrefix = null;
+  const faCombinedClasses = Ia.concat(bt$1);
+  const faStyleOrFamilyClasses = sortedUniqueValues(values.filter((cls) => faCombinedClasses.includes(cls)));
+  const nonStyleOrFamilyClasses = sortedUniqueValues(values.filter((cls) => !Ia.includes(cls)));
+  const faStyles = faStyleOrFamilyClasses.filter((cls) => {
+    givenPrefix = cls;
+    return !P.includes(cls);
+  });
+  const [styleFromValues = null] = faStyles;
+  const family = getFamilyId(faStyleOrFamilyClasses);
+  const canonical = _objectSpread2(_objectSpread2({}, moveNonFaClassesToRest(nonStyleOrFamilyClasses)), {}, {
+    prefix: getCanonicalPrefix(styleFromValues, {
+      family
+    })
+  });
+  return _objectSpread2(_objectSpread2(_objectSpread2({}, canonical), getDefaultCanonicalPrefix({
+    values,
+    family,
+    styles,
+    config: config2,
+    canonical,
+    givenPrefix
+  })), applyShimAndAlias(skipLookups, givenPrefix, canonical));
+}
+function applyShimAndAlias(skipLookups, givenPrefix, canonical) {
+  let {
+    prefix,
+    iconName
+  } = canonical;
+  if (skipLookups || !prefix || !iconName) {
+    return {
+      prefix,
+      iconName
+    };
+  }
+  const shim = givenPrefix === "fa" ? byOldName(iconName) : {};
+  const aliasIconName = byAlias(prefix, iconName);
+  iconName = shim.iconName || aliasIconName || iconName;
+  prefix = shim.prefix || prefix;
+  if (prefix === "far" && !styles["far"] && styles["fas"] && !config2.autoFetchSvg) {
+    prefix = "fas";
+  }
+  return {
+    prefix,
+    iconName
+  };
+}
+var newCanonicalFamilies = L.filter((familyId) => {
+  return familyId !== s || familyId !== t;
+});
+var newCanonicalStyles = Object.keys(ga).filter((key) => key !== s).map((key) => Object.keys(ga[key])).flat();
+function getDefaultCanonicalPrefix(prefixOptions) {
+  const {
+    values,
+    family,
+    canonical,
+    givenPrefix = "",
+    styles: styles2 = {},
+    config: config$$1 = {}
+  } = prefixOptions;
+  const isDuotoneFamily = family === t;
+  const valuesHasDuotone = values.includes("fa-duotone") || values.includes("fad");
+  const defaultFamilyIsDuotone = config$$1.familyDefault === "duotone";
+  const canonicalPrefixIsDuotone = canonical.prefix === "fad" || canonical.prefix === "fa-duotone";
+  if (!isDuotoneFamily && (valuesHasDuotone || defaultFamilyIsDuotone || canonicalPrefixIsDuotone)) {
+    canonical.prefix = "fad";
+  }
+  if (values.includes("fa-brands") || values.includes("fab")) {
+    canonical.prefix = "fab";
+  }
+  if (!canonical.prefix && newCanonicalFamilies.includes(family)) {
+    const validPrefix = Object.keys(styles2).find((key) => newCanonicalStyles.includes(key));
+    if (validPrefix || config$$1.autoFetchSvg) {
+      const defaultPrefix = pt.get(family).defaultShortPrefixId;
+      canonical.prefix = defaultPrefix;
+      canonical.iconName = byAlias(canonical.prefix, canonical.iconName) || canonical.iconName;
+    }
+  }
+  if (canonical.prefix === "fa" || givenPrefix === "fa") {
+    canonical.prefix = getDefaultUsablePrefix() || "fas";
+  }
+  return canonical;
+}
+var Library = class {
+  constructor() {
+    this.definitions = {};
+  }
+  add() {
+    for (var _len = arguments.length, definitions = new Array(_len), _key = 0; _key < _len; _key++) {
+      definitions[_key] = arguments[_key];
+    }
+    const additions = definitions.reduce(this._pullDefinitions, {});
+    Object.keys(additions).forEach((key) => {
+      this.definitions[key] = _objectSpread2(_objectSpread2({}, this.definitions[key] || {}), additions[key]);
+      defineIcons(key, additions[key]);
+      const longPrefix = PREFIX_TO_LONG_STYLE[s][key];
+      if (longPrefix) defineIcons(longPrefix, additions[key]);
+      build();
+    });
+  }
+  reset() {
+    this.definitions = {};
+  }
+  _pullDefinitions(additions, definition) {
+    const normalized = definition.prefix && definition.iconName && definition.icon ? {
+      0: definition
+    } : definition;
+    Object.keys(normalized).map((key) => {
+      const {
+        prefix,
+        iconName,
+        icon: icon2
+      } = normalized[key];
+      const aliases = icon2[2];
+      if (!additions[prefix]) additions[prefix] = {};
+      if (aliases.length > 0) {
+        aliases.forEach((alias) => {
+          if (typeof alias === "string") {
+            additions[prefix][alias] = icon2;
+          }
+        });
+      }
+      additions[prefix][iconName] = icon2;
+    });
+    return additions;
+  }
+};
+var _plugins = [];
+var _hooks = {};
+var providers = {};
+var defaultProviderKeys = Object.keys(providers);
+function registerPlugins(nextPlugins, _ref) {
+  let {
+    mixoutsTo: obj
+  } = _ref;
+  _plugins = nextPlugins;
+  _hooks = {};
+  Object.keys(providers).forEach((k) => {
+    if (defaultProviderKeys.indexOf(k) === -1) {
+      delete providers[k];
+    }
+  });
+  _plugins.forEach((plugin) => {
+    const mixout = plugin.mixout ? plugin.mixout() : {};
+    Object.keys(mixout).forEach((tk) => {
+      if (typeof mixout[tk] === "function") {
+        obj[tk] = mixout[tk];
+      }
+      if (typeof mixout[tk] === "object") {
+        Object.keys(mixout[tk]).forEach((sk) => {
+          if (!obj[tk]) {
+            obj[tk] = {};
+          }
+          obj[tk][sk] = mixout[tk][sk];
+        });
+      }
+    });
+    if (plugin.hooks) {
+      const hooks = plugin.hooks();
+      Object.keys(hooks).forEach((hook) => {
+        if (!_hooks[hook]) {
+          _hooks[hook] = [];
+        }
+        _hooks[hook].push(hooks[hook]);
+      });
+    }
+    if (plugin.provides) {
+      plugin.provides(providers);
+    }
+  });
+  return obj;
+}
+function chainHooks(hook, accumulator) {
+  for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    args[_key - 2] = arguments[_key];
+  }
+  const hookFns = _hooks[hook] || [];
+  hookFns.forEach((hookFn) => {
+    accumulator = hookFn.apply(null, [accumulator, ...args]);
+  });
+  return accumulator;
+}
+function callHooks2(hook) {
+  for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+    args[_key2 - 1] = arguments[_key2];
+  }
+  const hookFns = _hooks[hook] || [];
+  hookFns.forEach((hookFn) => {
+    hookFn.apply(null, args);
+  });
+  return void 0;
+}
+function callProvided() {
+  const hook = arguments[0];
+  const args = Array.prototype.slice.call(arguments, 1);
+  return providers[hook] ? providers[hook].apply(null, args) : void 0;
+}
+function findIconDefinition(iconLookup) {
+  if (iconLookup.prefix === "fa") {
+    iconLookup.prefix = "fas";
+  }
+  let {
+    iconName
+  } = iconLookup;
+  const prefix = iconLookup.prefix || getDefaultUsablePrefix();
+  if (!iconName) return;
+  iconName = byAlias(prefix, iconName) || iconName;
+  return iconFromMapping(library.definitions, prefix, iconName) || iconFromMapping(namespace.styles, prefix, iconName);
+}
+var library = new Library();
+var noAuto = () => {
+  config2.autoReplaceSvg = false;
+  config2.observeMutations = false;
+  callHooks2("noAuto");
+};
+var dom = {
+  i2svg: function() {
+    let params = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+    if (IS_DOM) {
+      callHooks2("beforeI2svg", params);
+      callProvided("pseudoElements2svg", params);
+      return callProvided("i2svg", params);
+    } else {
+      return Promise.reject(new Error("Operation requires a DOM of some kind."));
+    }
+  },
+  watch: function() {
+    let params = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+    const {
+      autoReplaceSvgRoot
+    } = params;
+    if (config2.autoReplaceSvg === false) {
+      config2.autoReplaceSvg = true;
+    }
+    config2.observeMutations = true;
+    domready(() => {
+      autoReplace({
+        autoReplaceSvgRoot
+      });
+      callHooks2("watch", params);
+    });
+  }
+};
+var parse = {
+  icon: (icon2) => {
+    if (icon2 === null) {
+      return null;
+    }
+    if (typeof icon2 === "object" && icon2.prefix && icon2.iconName) {
+      return {
+        prefix: icon2.prefix,
+        iconName: byAlias(icon2.prefix, icon2.iconName) || icon2.iconName
+      };
+    }
+    if (Array.isArray(icon2) && icon2.length === 2) {
+      const iconName = icon2[1].indexOf("fa-") === 0 ? icon2[1].slice(3) : icon2[1];
+      const prefix = getCanonicalPrefix(icon2[0]);
+      return {
+        prefix,
+        iconName: byAlias(prefix, iconName) || iconName
+      };
+    }
+    if (typeof icon2 === "string" && (icon2.indexOf("".concat(config2.cssPrefix, "-")) > -1 || icon2.match(ICON_SELECTION_SYNTAX_PATTERN))) {
+      const canonicalIcon = getCanonicalIcon(icon2.split(" "), {
+        skipLookups: true
+      });
+      return {
+        prefix: canonicalIcon.prefix || getDefaultUsablePrefix(),
+        iconName: byAlias(canonicalIcon.prefix, canonicalIcon.iconName) || canonicalIcon.iconName
+      };
+    }
+    if (typeof icon2 === "string") {
+      const prefix = getDefaultUsablePrefix();
+      return {
+        prefix,
+        iconName: byAlias(prefix, icon2) || icon2
+      };
+    }
+  }
+};
+var api = {
+  noAuto,
+  config: config2,
+  dom,
+  parse,
+  library,
+  findIconDefinition,
+  toHtml
+};
+var autoReplace = function() {
+  let params = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+  const {
+    autoReplaceSvgRoot = DOCUMENT3
+  } = params;
+  if ((Object.keys(namespace.styles).length > 0 || config2.autoFetchSvg) && IS_DOM && config2.autoReplaceSvg) api.dom.i2svg({
+    node: autoReplaceSvgRoot
+  });
+};
+function domVariants(val, abstractCreator) {
+  Object.defineProperty(val, "abstract", {
+    get: abstractCreator
+  });
+  Object.defineProperty(val, "html", {
+    get: function() {
+      return val.abstract.map((a) => toHtml(a));
+    }
+  });
+  Object.defineProperty(val, "node", {
+    get: function() {
+      if (!IS_DOM) return;
+      const container = DOCUMENT3.createElement("div");
+      container.innerHTML = val.html;
+      return container.children;
+    }
+  });
+  return val;
+}
+function asIcon(_ref) {
+  let {
+    children,
+    main,
+    mask,
+    attributes,
+    styles: styles2,
+    transform
+  } = _ref;
+  if (transformIsMeaningful(transform) && main.found && !mask.found) {
+    const {
+      width,
+      height
+    } = main;
+    const offset = {
+      x: width / height / 2,
+      y: 0.5
+    };
+    attributes["style"] = joinStyles(_objectSpread2(_objectSpread2({}, styles2), {}, {
+      "transform-origin": "".concat(offset.x + transform.x / 16, "em ").concat(offset.y + transform.y / 16, "em")
+    }));
+  }
+  return [{
+    tag: "svg",
+    attributes,
+    children
+  }];
+}
+function asSymbol(_ref) {
+  let {
+    prefix,
+    iconName,
+    children,
+    attributes,
+    symbol
+  } = _ref;
+  const id = symbol === true ? "".concat(prefix, "-").concat(config2.cssPrefix, "-").concat(iconName) : symbol;
+  return [{
+    tag: "svg",
+    attributes: {
+      style: "display: none;"
+    },
+    children: [{
+      tag: "symbol",
+      attributes: _objectSpread2(_objectSpread2({}, attributes), {}, {
+        id
+      }),
+      children
+    }]
+  }];
+}
+function makeInlineSvgAbstract(params) {
+  const {
+    icons: {
+      main,
+      mask
+    },
+    prefix,
+    iconName,
+    transform,
+    symbol,
+    title,
+    maskId,
+    titleId,
+    extra,
+    watchable = false
+  } = params;
+  const {
+    width,
+    height
+  } = mask.found ? mask : main;
+  const isUploadedIcon = Lt.includes(prefix);
+  const attrClass = [config2.replacementClass, iconName ? "".concat(config2.cssPrefix, "-").concat(iconName) : ""].filter((c$$1) => extra.classes.indexOf(c$$1) === -1).filter((c$$1) => c$$1 !== "" || !!c$$1).concat(extra.classes).join(" ");
+  let content = {
+    children: [],
+    attributes: _objectSpread2(_objectSpread2({}, extra.attributes), {}, {
+      "data-prefix": prefix,
+      "data-icon": iconName,
+      "class": attrClass,
+      "role": extra.attributes.role || "img",
+      "xmlns": "http://www.w3.org/2000/svg",
+      "viewBox": "0 0 ".concat(width, " ").concat(height)
+    })
+  };
+  const uploadedIconWidthStyle = isUploadedIcon && !~extra.classes.indexOf("fa-fw") ? {
+    width: "".concat(width / height * 16 * 0.0625, "em")
+  } : {};
+  if (watchable) {
+    content.attributes[DATA_FA_I2SVG] = "";
+  }
+  if (title) {
+    content.children.push({
+      tag: "title",
+      attributes: {
+        id: content.attributes["aria-labelledby"] || "title-".concat(titleId || nextUniqueId())
+      },
+      children: [title]
+    });
+    delete content.attributes.title;
+  }
+  const args = _objectSpread2(_objectSpread2({}, content), {}, {
+    prefix,
+    iconName,
+    main,
+    mask,
+    maskId,
+    transform,
+    symbol,
+    styles: _objectSpread2(_objectSpread2({}, uploadedIconWidthStyle), extra.styles)
+  });
+  const {
+    children,
+    attributes
+  } = mask.found && main.found ? callProvided("generateAbstractMask", args) || {
+    children: [],
+    attributes: {}
+  } : callProvided("generateAbstractIcon", args) || {
+    children: [],
+    attributes: {}
+  };
+  args.children = children;
+  args.attributes = attributes;
+  if (symbol) {
+    return asSymbol(args);
+  } else {
+    return asIcon(args);
+  }
+}
+function makeLayersTextAbstract(params) {
+  const {
+    content,
+    width,
+    height,
+    transform,
+    title,
+    extra,
+    watchable = false
+  } = params;
+  const attributes = _objectSpread2(_objectSpread2(_objectSpread2({}, extra.attributes), title ? {
+    "title": title
+  } : {}), {}, {
+    "class": extra.classes.join(" ")
+  });
+  if (watchable) {
+    attributes[DATA_FA_I2SVG] = "";
+  }
+  const styles2 = _objectSpread2({}, extra.styles);
+  if (transformIsMeaningful(transform)) {
+    styles2["transform"] = transformForCss({
+      transform,
+      startCentered: true,
+      width,
+      height
+    });
+    styles2["-webkit-transform"] = styles2["transform"];
+  }
+  const styleString = joinStyles(styles2);
+  if (styleString.length > 0) {
+    attributes["style"] = styleString;
+  }
+  const val = [];
+  val.push({
+    tag: "span",
+    attributes,
+    children: [content]
+  });
+  if (title) {
+    val.push({
+      tag: "span",
+      attributes: {
+        class: "sr-only"
+      },
+      children: [title]
+    });
+  }
+  return val;
+}
+function makeLayersCounterAbstract(params) {
+  const {
+    content,
+    title,
+    extra
+  } = params;
+  const attributes = _objectSpread2(_objectSpread2(_objectSpread2({}, extra.attributes), title ? {
+    "title": title
+  } : {}), {}, {
+    "class": extra.classes.join(" ")
+  });
+  const styleString = joinStyles(extra.styles);
+  if (styleString.length > 0) {
+    attributes["style"] = styleString;
+  }
+  const val = [];
+  val.push({
+    tag: "span",
+    attributes,
+    children: [content]
+  });
+  if (title) {
+    val.push({
+      tag: "span",
+      attributes: {
+        class: "sr-only"
+      },
+      children: [title]
+    });
+  }
+  return val;
+}
+var {
+  styles: styles$1
+} = namespace;
+function asFoundIcon(icon2) {
+  const width = icon2[0];
+  const height = icon2[1];
+  const [vectorData] = icon2.slice(4);
+  let element = null;
+  if (Array.isArray(vectorData)) {
+    element = {
+      tag: "g",
+      attributes: {
+        class: "".concat(config2.cssPrefix, "-").concat(DUOTONE_CLASSES.GROUP)
+      },
+      children: [{
+        tag: "path",
+        attributes: {
+          class: "".concat(config2.cssPrefix, "-").concat(DUOTONE_CLASSES.SECONDARY),
+          fill: "currentColor",
+          d: vectorData[0]
+        }
+      }, {
+        tag: "path",
+        attributes: {
+          class: "".concat(config2.cssPrefix, "-").concat(DUOTONE_CLASSES.PRIMARY),
+          fill: "currentColor",
+          d: vectorData[1]
+        }
+      }]
+    };
+  } else {
+    element = {
+      tag: "path",
+      attributes: {
+        fill: "currentColor",
+        d: vectorData
+      }
+    };
+  }
+  return {
+    found: true,
+    width,
+    height,
+    icon: element
+  };
+}
+var missingIconResolutionMixin = {
+  found: false,
+  width: 512,
+  height: 512
+};
+function maybeNotifyMissing(iconName, prefix) {
+  if (!PRODUCTION && !config2.showMissingIcons && iconName) {
+    console.error('Icon with name "'.concat(iconName, '" and prefix "').concat(prefix, '" is missing.'));
+  }
+}
+function findIcon(iconName, prefix) {
+  let givenPrefix = prefix;
+  if (prefix === "fa" && config2.styleDefault !== null) {
+    prefix = getDefaultUsablePrefix();
+  }
+  return new Promise((resolve, reject) => {
+    if (givenPrefix === "fa") {
+      const shim = byOldName(iconName) || {};
+      iconName = shim.iconName || iconName;
+      prefix = shim.prefix || prefix;
+    }
+    if (iconName && prefix && styles$1[prefix] && styles$1[prefix][iconName]) {
+      const icon2 = styles$1[prefix][iconName];
+      return resolve(asFoundIcon(icon2));
+    }
+    maybeNotifyMissing(iconName, prefix);
+    resolve(_objectSpread2(_objectSpread2({}, missingIconResolutionMixin), {}, {
+      icon: config2.showMissingIcons && iconName ? callProvided("missingIconAbstract") || {} : {}
+    }));
+  });
+}
+var noop$1 = () => {
+};
+var p$2 = config2.measurePerformance && PERFORMANCE && PERFORMANCE.mark && PERFORMANCE.measure ? PERFORMANCE : {
+  mark: noop$1,
+  measure: noop$1
+};
+var preamble = 'FA "6.7.2"';
+var begin = (name) => {
+  p$2.mark("".concat(preamble, " ").concat(name, " begins"));
+  return () => end(name);
+};
+var end = (name) => {
+  p$2.mark("".concat(preamble, " ").concat(name, " ends"));
+  p$2.measure("".concat(preamble, " ").concat(name), "".concat(preamble, " ").concat(name, " begins"), "".concat(preamble, " ").concat(name, " ends"));
+};
+var perf = {
+  begin,
+  end
+};
+var noop$2 = () => {
+};
+function isWatched(node) {
+  const i2svg = node.getAttribute ? node.getAttribute(DATA_FA_I2SVG) : null;
+  return typeof i2svg === "string";
+}
+function hasPrefixAndIcon(node) {
+  const prefix = node.getAttribute ? node.getAttribute(DATA_PREFIX) : null;
+  const icon2 = node.getAttribute ? node.getAttribute(DATA_ICON) : null;
+  return prefix && icon2;
+}
+function hasBeenReplaced(node) {
+  return node && node.classList && node.classList.contains && node.classList.contains(config2.replacementClass);
+}
+function getMutator() {
+  if (config2.autoReplaceSvg === true) {
+    return mutators.replace;
+  }
+  const mutator = mutators[config2.autoReplaceSvg];
+  return mutator || mutators.replace;
+}
+function createElementNS(tag) {
+  return DOCUMENT3.createElementNS("http://www.w3.org/2000/svg", tag);
+}
+function createElement(tag) {
+  return DOCUMENT3.createElement(tag);
+}
+function convertSVG(abstractObj) {
+  let params = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+  const {
+    ceFn = abstractObj.tag === "svg" ? createElementNS : createElement
+  } = params;
+  if (typeof abstractObj === "string") {
+    return DOCUMENT3.createTextNode(abstractObj);
+  }
+  const tag = ceFn(abstractObj.tag);
+  Object.keys(abstractObj.attributes || []).forEach(function(key) {
+    tag.setAttribute(key, abstractObj.attributes[key]);
+  });
+  const children = abstractObj.children || [];
+  children.forEach(function(child) {
+    tag.appendChild(convertSVG(child, {
+      ceFn
+    }));
+  });
+  return tag;
+}
+function nodeAsComment(node) {
+  let comment = " ".concat(node.outerHTML, " ");
+  comment = "".concat(comment, "Font Awesome fontawesome.com ");
+  return comment;
+}
+var mutators = {
+  replace: function(mutation) {
+    const node = mutation[0];
+    if (node.parentNode) {
+      mutation[1].forEach((abstract) => {
+        node.parentNode.insertBefore(convertSVG(abstract), node);
+      });
+      if (node.getAttribute(DATA_FA_I2SVG) === null && config2.keepOriginalSource) {
+        let comment = DOCUMENT3.createComment(nodeAsComment(node));
+        node.parentNode.replaceChild(comment, node);
+      } else {
+        node.remove();
+      }
+    }
+  },
+  nest: function(mutation) {
+    const node = mutation[0];
+    const abstract = mutation[1];
+    if (~classArray(node).indexOf(config2.replacementClass)) {
+      return mutators.replace(mutation);
+    }
+    const forSvg = new RegExp("".concat(config2.cssPrefix, "-.*"));
+    delete abstract[0].attributes.id;
+    if (abstract[0].attributes.class) {
+      const splitClasses = abstract[0].attributes.class.split(" ").reduce((acc, cls) => {
+        if (cls === config2.replacementClass || cls.match(forSvg)) {
+          acc.toSvg.push(cls);
+        } else {
+          acc.toNode.push(cls);
+        }
+        return acc;
+      }, {
+        toNode: [],
+        toSvg: []
+      });
+      abstract[0].attributes.class = splitClasses.toSvg.join(" ");
+      if (splitClasses.toNode.length === 0) {
+        node.removeAttribute("class");
+      } else {
+        node.setAttribute("class", splitClasses.toNode.join(" "));
+      }
+    }
+    const newInnerHTML = abstract.map((a) => toHtml(a)).join("\n");
+    node.setAttribute(DATA_FA_I2SVG, "");
+    node.innerHTML = newInnerHTML;
+  }
+};
+function performOperationSync(op) {
+  op();
+}
+function perform(mutations, callback) {
+  const callbackFunction = typeof callback === "function" ? callback : noop$2;
+  if (mutations.length === 0) {
+    callbackFunction();
+  } else {
+    let frame = performOperationSync;
+    if (config2.mutateApproach === MUTATION_APPROACH_ASYNC) {
+      frame = WINDOW.requestAnimationFrame || performOperationSync;
+    }
+    frame(() => {
+      const mutator = getMutator();
+      const mark = perf.begin("mutate");
+      mutations.map(mutator);
+      mark();
+      callbackFunction();
+    });
+  }
+}
+var disabled = false;
+function disableObservation() {
+  disabled = true;
+}
+function enableObservation() {
+  disabled = false;
+}
+var mo = null;
+function observe(options) {
+  if (!MUTATION_OBSERVER) {
+    return;
+  }
+  if (!config2.observeMutations) {
+    return;
+  }
+  const {
+    treeCallback = noop$2,
+    nodeCallback = noop$2,
+    pseudoElementsCallback = noop$2,
+    observeMutationsRoot = DOCUMENT3
+  } = options;
+  mo = new MUTATION_OBSERVER((objects) => {
+    if (disabled) return;
+    const defaultPrefix = getDefaultUsablePrefix();
+    toArray(objects).forEach((mutationRecord) => {
+      if (mutationRecord.type === "childList" && mutationRecord.addedNodes.length > 0 && !isWatched(mutationRecord.addedNodes[0])) {
+        if (config2.searchPseudoElements) {
+          pseudoElementsCallback(mutationRecord.target);
+        }
+        treeCallback(mutationRecord.target);
+      }
+      if (mutationRecord.type === "attributes" && mutationRecord.target.parentNode && config2.searchPseudoElements) {
+        pseudoElementsCallback(mutationRecord.target.parentNode);
+      }
+      if (mutationRecord.type === "attributes" && isWatched(mutationRecord.target) && ~ATTRIBUTES_WATCHED_FOR_MUTATION.indexOf(mutationRecord.attributeName)) {
+        if (mutationRecord.attributeName === "class" && hasPrefixAndIcon(mutationRecord.target)) {
+          const {
+            prefix,
+            iconName
+          } = getCanonicalIcon(classArray(mutationRecord.target));
+          mutationRecord.target.setAttribute(DATA_PREFIX, prefix || defaultPrefix);
+          if (iconName) mutationRecord.target.setAttribute(DATA_ICON, iconName);
+        } else if (hasBeenReplaced(mutationRecord.target)) {
+          nodeCallback(mutationRecord.target);
+        }
+      }
+    });
+  });
+  if (!IS_DOM) return;
+  mo.observe(observeMutationsRoot, {
+    childList: true,
+    attributes: true,
+    characterData: true,
+    subtree: true
+  });
+}
+function disconnect() {
+  if (!mo) return;
+  mo.disconnect();
+}
+function styleParser(node) {
+  const style = node.getAttribute("style");
+  let val = [];
+  if (style) {
+    val = style.split(";").reduce((acc, style2) => {
+      const styles2 = style2.split(":");
+      const prop = styles2[0];
+      const value = styles2.slice(1);
+      if (prop && value.length > 0) {
+        acc[prop] = value.join(":").trim();
+      }
+      return acc;
+    }, {});
+  }
+  return val;
+}
+function classParser(node) {
+  const existingPrefix = node.getAttribute("data-prefix");
+  const existingIconName = node.getAttribute("data-icon");
+  const innerText = node.innerText !== void 0 ? node.innerText.trim() : "";
+  let val = getCanonicalIcon(classArray(node));
+  if (!val.prefix) {
+    val.prefix = getDefaultUsablePrefix();
+  }
+  if (existingPrefix && existingIconName) {
+    val.prefix = existingPrefix;
+    val.iconName = existingIconName;
+  }
+  if (val.iconName && val.prefix) {
+    return val;
+  }
+  if (val.prefix && innerText.length > 0) {
+    val.iconName = byLigature(val.prefix, node.innerText) || byUnicode(val.prefix, toHex(node.innerText));
+  }
+  if (!val.iconName && config2.autoFetchSvg && node.firstChild && node.firstChild.nodeType === Node.TEXT_NODE) {
+    val.iconName = node.firstChild.data;
+  }
+  return val;
+}
+function attributesParser(node) {
+  const extraAttributes = toArray(node.attributes).reduce((acc, attr) => {
+    if (acc.name !== "class" && acc.name !== "style") {
+      acc[attr.name] = attr.value;
+    }
+    return acc;
+  }, {});
+  const title = node.getAttribute("title");
+  const titleId = node.getAttribute("data-fa-title-id");
+  if (config2.autoA11y) {
+    if (title) {
+      extraAttributes["aria-labelledby"] = "".concat(config2.replacementClass, "-title-").concat(titleId || nextUniqueId());
+    } else {
+      extraAttributes["aria-hidden"] = "true";
+      extraAttributes["focusable"] = "false";
+    }
+  }
+  return extraAttributes;
+}
+function blankMeta() {
+  return {
+    iconName: null,
+    title: null,
+    titleId: null,
+    prefix: null,
+    transform: meaninglessTransform,
+    symbol: false,
+    mask: {
+      iconName: null,
+      prefix: null,
+      rest: []
+    },
+    maskId: null,
+    extra: {
+      classes: [],
+      styles: {},
+      attributes: {}
+    }
+  };
+}
+function parseMeta(node) {
+  let parser = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {
+    styleParser: true
+  };
+  const {
+    iconName,
+    prefix,
+    rest: extraClasses
+  } = classParser(node);
+  const extraAttributes = attributesParser(node);
+  const pluginMeta = chainHooks("parseNodeAttributes", {}, node);
+  let extraStyles = parser.styleParser ? styleParser(node) : [];
+  return _objectSpread2({
+    iconName,
+    title: node.getAttribute("title"),
+    titleId: node.getAttribute("data-fa-title-id"),
+    prefix,
+    transform: meaninglessTransform,
+    mask: {
+      iconName: null,
+      prefix: null,
+      rest: []
+    },
+    maskId: null,
+    symbol: false,
+    extra: {
+      classes: extraClasses,
+      styles: extraStyles,
+      attributes: extraAttributes
+    }
+  }, pluginMeta);
+}
+var {
+  styles: styles$2
+} = namespace;
+function generateMutation(node) {
+  const nodeMeta = config2.autoReplaceSvg === "nest" ? parseMeta(node, {
+    styleParser: false
+  }) : parseMeta(node);
+  if (~nodeMeta.extra.classes.indexOf(LAYERS_TEXT_CLASSNAME)) {
+    return callProvided("generateLayersText", node, nodeMeta);
+  } else {
+    return callProvided("generateSvgReplacementMutation", node, nodeMeta);
+  }
+}
+function getKnownPrefixes() {
+  return [...Ft, ...Ia];
+}
+function onTree(root) {
+  let callback = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : null;
+  if (!IS_DOM) return Promise.resolve();
+  const htmlClassList = DOCUMENT3.documentElement.classList;
+  const hclAdd = (suffix) => htmlClassList.add("".concat(HTML_CLASS_I2SVG_BASE_CLASS, "-").concat(suffix));
+  const hclRemove = (suffix) => htmlClassList.remove("".concat(HTML_CLASS_I2SVG_BASE_CLASS, "-").concat(suffix));
+  const prefixes = config2.autoFetchSvg ? getKnownPrefixes() : P.concat(Object.keys(styles$2));
+  if (!prefixes.includes("fa")) {
+    prefixes.push("fa");
+  }
+  const prefixesDomQuery = [".".concat(LAYERS_TEXT_CLASSNAME, ":not([").concat(DATA_FA_I2SVG, "])")].concat(prefixes.map((p$$1) => ".".concat(p$$1, ":not([").concat(DATA_FA_I2SVG, "])"))).join(", ");
+  if (prefixesDomQuery.length === 0) {
+    return Promise.resolve();
+  }
+  let candidates = [];
+  try {
+    candidates = toArray(root.querySelectorAll(prefixesDomQuery));
+  } catch (e$$1) {
+  }
+  if (candidates.length > 0) {
+    hclAdd("pending");
+    hclRemove("complete");
+  } else {
+    return Promise.resolve();
+  }
+  const mark = perf.begin("onTree");
+  const mutations = candidates.reduce((acc, node) => {
+    try {
+      const mutation = generateMutation(node);
+      if (mutation) {
+        acc.push(mutation);
+      }
+    } catch (e$$1) {
+      if (!PRODUCTION) {
+        if (e$$1.name === "MissingIcon") {
+          console.error(e$$1);
+        }
+      }
+    }
+    return acc;
+  }, []);
+  return new Promise((resolve, reject) => {
+    Promise.all(mutations).then((resolvedMutations) => {
+      perform(resolvedMutations, () => {
+        hclAdd("active");
+        hclAdd("complete");
+        hclRemove("pending");
+        if (typeof callback === "function") callback();
+        mark();
+        resolve();
+      });
+    }).catch((e$$1) => {
+      mark();
+      reject(e$$1);
+    });
+  });
+}
+function onNode(node) {
+  let callback = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : null;
+  generateMutation(node).then((mutation) => {
+    if (mutation) {
+      perform([mutation], callback);
+    }
+  });
+}
+function resolveIcons(next) {
+  return function(maybeIconDefinition) {
+    let params = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+    const iconDefinition = (maybeIconDefinition || {}).icon ? maybeIconDefinition : findIconDefinition(maybeIconDefinition || {});
+    let {
+      mask
+    } = params;
+    if (mask) {
+      mask = (mask || {}).icon ? mask : findIconDefinition(mask || {});
+    }
+    return next(iconDefinition, _objectSpread2(_objectSpread2({}, params), {}, {
+      mask
+    }));
+  };
+}
+var render = function(iconDefinition) {
+  let params = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+  const {
+    transform = meaninglessTransform,
+    symbol = false,
+    mask = null,
+    maskId = null,
+    title = null,
+    titleId = null,
+    classes = [],
+    attributes = {},
+    styles: styles2 = {}
+  } = params;
+  if (!iconDefinition) return;
+  const {
+    prefix,
+    iconName,
+    icon: icon2
+  } = iconDefinition;
+  return domVariants(_objectSpread2({
+    type: "icon"
+  }, iconDefinition), () => {
+    callHooks2("beforeDOMElementCreation", {
+      iconDefinition,
+      params
+    });
+    if (config2.autoA11y) {
+      if (title) {
+        attributes["aria-labelledby"] = "".concat(config2.replacementClass, "-title-").concat(titleId || nextUniqueId());
+      } else {
+        attributes["aria-hidden"] = "true";
+        attributes["focusable"] = "false";
+      }
+    }
+    return makeInlineSvgAbstract({
+      icons: {
+        main: asFoundIcon(icon2),
+        mask: mask ? asFoundIcon(mask.icon) : {
+          found: false,
+          width: null,
+          height: null,
+          icon: {}
+        }
+      },
+      prefix,
+      iconName,
+      transform: _objectSpread2(_objectSpread2({}, meaninglessTransform), transform),
+      symbol,
+      title,
+      maskId,
+      titleId,
+      extra: {
+        attributes,
+        styles: styles2,
+        classes
+      }
+    });
+  });
+};
+var ReplaceElements = {
+  mixout() {
+    return {
+      icon: resolveIcons(render)
+    };
+  },
+  hooks() {
+    return {
+      mutationObserverCallbacks(accumulator) {
+        accumulator.treeCallback = onTree;
+        accumulator.nodeCallback = onNode;
+        return accumulator;
+      }
+    };
+  },
+  provides(providers$$1) {
+    providers$$1.i2svg = function(params) {
+      const {
+        node = DOCUMENT3,
+        callback = () => {
+        }
+      } = params;
+      return onTree(node, callback);
+    };
+    providers$$1.generateSvgReplacementMutation = function(node, nodeMeta) {
+      const {
+        iconName,
+        title,
+        titleId,
+        prefix,
+        transform,
+        symbol,
+        mask,
+        maskId,
+        extra
+      } = nodeMeta;
+      return new Promise((resolve, reject) => {
+        Promise.all([findIcon(iconName, prefix), mask.iconName ? findIcon(mask.iconName, mask.prefix) : Promise.resolve({
+          found: false,
+          width: 512,
+          height: 512,
+          icon: {}
+        })]).then((_ref) => {
+          let [main, mask2] = _ref;
+          resolve([node, makeInlineSvgAbstract({
+            icons: {
+              main,
+              mask: mask2
+            },
+            prefix,
+            iconName,
+            transform,
+            symbol,
+            maskId,
+            title,
+            titleId,
+            extra,
+            watchable: true
+          })]);
+        }).catch(reject);
+      });
+    };
+    providers$$1.generateAbstractIcon = function(_ref2) {
+      let {
+        children,
+        attributes,
+        main,
+        transform,
+        styles: styles2
+      } = _ref2;
+      const styleString = joinStyles(styles2);
+      if (styleString.length > 0) {
+        attributes["style"] = styleString;
+      }
+      let nextChild;
+      if (transformIsMeaningful(transform)) {
+        nextChild = callProvided("generateAbstractTransformGrouping", {
+          main,
+          transform,
+          containerWidth: main.width,
+          iconWidth: main.width
+        });
+      }
+      children.push(nextChild || main.icon);
+      return {
+        children,
+        attributes
+      };
+    };
+  }
+};
+var Layers = {
+  mixout() {
+    return {
+      layer(assembler) {
+        let params = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+        const {
+          classes = []
+        } = params;
+        return domVariants({
+          type: "layer"
+        }, () => {
+          callHooks2("beforeDOMElementCreation", {
+            assembler,
+            params
+          });
+          let children = [];
+          assembler((args) => {
+            Array.isArray(args) ? args.map((a) => {
+              children = children.concat(a.abstract);
+            }) : children = children.concat(args.abstract);
+          });
+          return [{
+            tag: "span",
+            attributes: {
+              class: ["".concat(config2.cssPrefix, "-layers"), ...classes].join(" ")
+            },
+            children
+          }];
+        });
+      }
+    };
+  }
+};
+var LayersCounter = {
+  mixout() {
+    return {
+      counter(content) {
+        let params = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+        const {
+          title = null,
+          classes = [],
+          attributes = {},
+          styles: styles2 = {}
+        } = params;
+        return domVariants({
+          type: "counter",
+          content
+        }, () => {
+          callHooks2("beforeDOMElementCreation", {
+            content,
+            params
+          });
+          return makeLayersCounterAbstract({
+            content: content.toString(),
+            title,
+            extra: {
+              attributes,
+              styles: styles2,
+              classes: ["".concat(config2.cssPrefix, "-layers-counter"), ...classes]
+            }
+          });
+        });
+      }
+    };
+  }
+};
+var LayersText = {
+  mixout() {
+    return {
+      text(content) {
+        let params = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+        const {
+          transform = meaninglessTransform,
+          title = null,
+          classes = [],
+          attributes = {},
+          styles: styles2 = {}
+        } = params;
+        return domVariants({
+          type: "text",
+          content
+        }, () => {
+          callHooks2("beforeDOMElementCreation", {
+            content,
+            params
+          });
+          return makeLayersTextAbstract({
+            content,
+            transform: _objectSpread2(_objectSpread2({}, meaninglessTransform), transform),
+            title,
+            extra: {
+              attributes,
+              styles: styles2,
+              classes: ["".concat(config2.cssPrefix, "-layers-text"), ...classes]
+            }
+          });
+        });
+      }
+    };
+  },
+  provides(providers$$1) {
+    providers$$1.generateLayersText = function(node, nodeMeta) {
+      const {
+        title,
+        transform,
+        extra
+      } = nodeMeta;
+      let width = null;
+      let height = null;
+      if (IS_IE) {
+        const computedFontSize = parseInt(getComputedStyle(node).fontSize, 10);
+        const boundingClientRect = node.getBoundingClientRect();
+        width = boundingClientRect.width / computedFontSize;
+        height = boundingClientRect.height / computedFontSize;
+      }
+      if (config2.autoA11y && !title) {
+        extra.attributes["aria-hidden"] = "true";
+      }
+      return Promise.resolve([node, makeLayersTextAbstract({
+        content: node.innerHTML,
+        width,
+        height,
+        transform,
+        title,
+        extra,
+        watchable: true
+      })]);
+    };
+  }
+};
+var CLEAN_CONTENT_PATTERN = new RegExp('"', "ug");
+var SECONDARY_UNICODE_RANGE = [1105920, 1112319];
+var _FONT_FAMILY_WEIGHT_TO_PREFIX = _objectSpread2(_objectSpread2(_objectSpread2(_objectSpread2({}, {
+  FontAwesome: {
+    normal: "fas",
+    400: "fas"
+  }
+}), lt), wa), Yt);
+var FONT_FAMILY_WEIGHT_TO_PREFIX = Object.keys(_FONT_FAMILY_WEIGHT_TO_PREFIX).reduce((acc, key) => {
+  acc[key.toLowerCase()] = _FONT_FAMILY_WEIGHT_TO_PREFIX[key];
+  return acc;
+}, {});
+var FONT_FAMILY_WEIGHT_FALLBACK = Object.keys(FONT_FAMILY_WEIGHT_TO_PREFIX).reduce((acc, fontFamily) => {
+  const weights = FONT_FAMILY_WEIGHT_TO_PREFIX[fontFamily];
+  acc[fontFamily] = weights[900] || [...Object.entries(weights)][0][1];
+  return acc;
+}, {});
+function hexValueFromContent(content) {
+  const cleaned = content.replace(CLEAN_CONTENT_PATTERN, "");
+  const codePoint = codePointAt(cleaned, 0);
+  const isPrependTen = codePoint >= SECONDARY_UNICODE_RANGE[0] && codePoint <= SECONDARY_UNICODE_RANGE[1];
+  const isDoubled = cleaned.length === 2 ? cleaned[0] === cleaned[1] : false;
+  return {
+    value: isDoubled ? toHex(cleaned[0]) : toHex(cleaned),
+    isSecondary: isPrependTen || isDoubled
+  };
+}
+function getPrefix(fontFamily, fontWeight) {
+  const fontFamilySanitized = fontFamily.replace(/^['"]|['"]$/g, "").toLowerCase();
+  const fontWeightInteger = parseInt(fontWeight);
+  const fontWeightSanitized = isNaN(fontWeightInteger) ? "normal" : fontWeightInteger;
+  return (FONT_FAMILY_WEIGHT_TO_PREFIX[fontFamilySanitized] || {})[fontWeightSanitized] || FONT_FAMILY_WEIGHT_FALLBACK[fontFamilySanitized];
+}
+function replaceForPosition(node, position) {
+  const pendingAttribute = "".concat(DATA_FA_PSEUDO_ELEMENT_PENDING).concat(position.replace(":", "-"));
+  return new Promise((resolve, reject) => {
+    if (node.getAttribute(pendingAttribute) !== null) {
+      return resolve();
+    }
+    const children = toArray(node.children);
+    const alreadyProcessedPseudoElement = children.filter((c$$1) => c$$1.getAttribute(DATA_FA_PSEUDO_ELEMENT) === position)[0];
+    const styles2 = WINDOW.getComputedStyle(node, position);
+    const fontFamily = styles2.getPropertyValue("font-family");
+    const fontFamilyMatch = fontFamily.match(FONT_FAMILY_PATTERN);
+    const fontWeight = styles2.getPropertyValue("font-weight");
+    const content = styles2.getPropertyValue("content");
+    if (alreadyProcessedPseudoElement && !fontFamilyMatch) {
+      node.removeChild(alreadyProcessedPseudoElement);
+      return resolve();
+    } else if (fontFamilyMatch && content !== "none" && content !== "") {
+      const content2 = styles2.getPropertyValue("content");
+      let prefix = getPrefix(fontFamily, fontWeight);
+      const {
+        value: hexValue,
+        isSecondary
+      } = hexValueFromContent(content2);
+      const isV4 = fontFamilyMatch[0].startsWith("FontAwesome");
+      let iconName = byUnicode(prefix, hexValue);
+      let iconIdentifier = iconName;
+      if (isV4) {
+        const iconName4 = byOldUnicode(hexValue);
+        if (iconName4.iconName && iconName4.prefix) {
+          iconName = iconName4.iconName;
+          prefix = iconName4.prefix;
+        }
+      }
+      if (iconName && !isSecondary && (!alreadyProcessedPseudoElement || alreadyProcessedPseudoElement.getAttribute(DATA_PREFIX) !== prefix || alreadyProcessedPseudoElement.getAttribute(DATA_ICON) !== iconIdentifier)) {
+        node.setAttribute(pendingAttribute, iconIdentifier);
+        if (alreadyProcessedPseudoElement) {
+          node.removeChild(alreadyProcessedPseudoElement);
+        }
+        const meta = blankMeta();
+        const {
+          extra
+        } = meta;
+        extra.attributes[DATA_FA_PSEUDO_ELEMENT] = position;
+        findIcon(iconName, prefix).then((main) => {
+          const abstract = makeInlineSvgAbstract(_objectSpread2(_objectSpread2({}, meta), {}, {
+            icons: {
+              main,
+              mask: emptyCanonicalIcon()
+            },
+            prefix,
+            iconName: iconIdentifier,
+            extra,
+            watchable: true
+          }));
+          const element = DOCUMENT3.createElementNS("http://www.w3.org/2000/svg", "svg");
+          if (position === "::before") {
+            node.insertBefore(element, node.firstChild);
+          } else {
+            node.appendChild(element);
+          }
+          element.outerHTML = abstract.map((a$$1) => toHtml(a$$1)).join("\n");
+          node.removeAttribute(pendingAttribute);
+          resolve();
+        }).catch(reject);
+      } else {
+        resolve();
+      }
+    } else {
+      resolve();
+    }
+  });
+}
+function replace(node) {
+  return Promise.all([replaceForPosition(node, "::before"), replaceForPosition(node, "::after")]);
+}
+function processable(node) {
+  return node.parentNode !== document.head && !~TAGNAMES_TO_SKIP_FOR_PSEUDOELEMENTS.indexOf(node.tagName.toUpperCase()) && !node.getAttribute(DATA_FA_PSEUDO_ELEMENT) && (!node.parentNode || node.parentNode.tagName !== "svg");
+}
+function searchPseudoElements(root) {
+  if (!IS_DOM) return;
+  return new Promise((resolve, reject) => {
+    const operations = toArray(root.querySelectorAll("*")).filter(processable).map(replace);
+    const end2 = perf.begin("searchPseudoElements");
+    disableObservation();
+    Promise.all(operations).then(() => {
+      end2();
+      enableObservation();
+      resolve();
+    }).catch(() => {
+      end2();
+      enableObservation();
+      reject();
+    });
+  });
+}
+var PseudoElements = {
+  hooks() {
+    return {
+      mutationObserverCallbacks(accumulator) {
+        accumulator.pseudoElementsCallback = searchPseudoElements;
+        return accumulator;
+      }
+    };
+  },
+  provides(providers2) {
+    providers2.pseudoElements2svg = function(params) {
+      const {
+        node = DOCUMENT3
+      } = params;
+      if (config2.searchPseudoElements) {
+        searchPseudoElements(node);
+      }
+    };
+  }
+};
+var _unwatched = false;
+var MutationObserver$1 = {
+  mixout() {
+    return {
+      dom: {
+        unwatch() {
+          disableObservation();
+          _unwatched = true;
+        }
+      }
+    };
+  },
+  hooks() {
+    return {
+      bootstrap() {
+        observe(chainHooks("mutationObserverCallbacks", {}));
+      },
+      noAuto() {
+        disconnect();
+      },
+      watch(params) {
+        const {
+          observeMutationsRoot
+        } = params;
+        if (_unwatched) {
+          enableObservation();
+        } else {
+          observe(chainHooks("mutationObserverCallbacks", {
+            observeMutationsRoot
+          }));
+        }
+      }
+    };
+  }
+};
+var parseTransformString = (transformString) => {
+  let transform = {
+    size: 16,
+    x: 0,
+    y: 0,
+    flipX: false,
+    flipY: false,
+    rotate: 0
+  };
+  return transformString.toLowerCase().split(" ").reduce((acc, n) => {
+    const parts = n.toLowerCase().split("-");
+    const first2 = parts[0];
+    let rest = parts.slice(1).join("-");
+    if (first2 && rest === "h") {
+      acc.flipX = true;
+      return acc;
+    }
+    if (first2 && rest === "v") {
+      acc.flipY = true;
+      return acc;
+    }
+    rest = parseFloat(rest);
+    if (isNaN(rest)) {
+      return acc;
+    }
+    switch (first2) {
+      case "grow":
+        acc.size = acc.size + rest;
+        break;
+      case "shrink":
+        acc.size = acc.size - rest;
+        break;
+      case "left":
+        acc.x = acc.x - rest;
+        break;
+      case "right":
+        acc.x = acc.x + rest;
+        break;
+      case "up":
+        acc.y = acc.y - rest;
+        break;
+      case "down":
+        acc.y = acc.y + rest;
+        break;
+      case "rotate":
+        acc.rotate = acc.rotate + rest;
+        break;
+    }
+    return acc;
+  }, transform);
+};
+var PowerTransforms = {
+  mixout() {
+    return {
+      parse: {
+        transform: (transformString) => {
+          return parseTransformString(transformString);
+        }
+      }
+    };
+  },
+  hooks() {
+    return {
+      parseNodeAttributes(accumulator, node) {
+        const transformString = node.getAttribute("data-fa-transform");
+        if (transformString) {
+          accumulator.transform = parseTransformString(transformString);
+        }
+        return accumulator;
+      }
+    };
+  },
+  provides(providers2) {
+    providers2.generateAbstractTransformGrouping = function(_ref) {
+      let {
+        main,
+        transform,
+        containerWidth,
+        iconWidth
+      } = _ref;
+      const outer = {
+        transform: "translate(".concat(containerWidth / 2, " 256)")
+      };
+      const innerTranslate = "translate(".concat(transform.x * 32, ", ").concat(transform.y * 32, ") ");
+      const innerScale = "scale(".concat(transform.size / 16 * (transform.flipX ? -1 : 1), ", ").concat(transform.size / 16 * (transform.flipY ? -1 : 1), ") ");
+      const innerRotate = "rotate(".concat(transform.rotate, " 0 0)");
+      const inner = {
+        transform: "".concat(innerTranslate, " ").concat(innerScale, " ").concat(innerRotate)
+      };
+      const path = {
+        transform: "translate(".concat(iconWidth / 2 * -1, " -256)")
+      };
+      const operations = {
+        outer,
+        inner,
+        path
+      };
+      return {
+        tag: "g",
+        attributes: _objectSpread2({}, operations.outer),
+        children: [{
+          tag: "g",
+          attributes: _objectSpread2({}, operations.inner),
+          children: [{
+            tag: main.icon.tag,
+            children: main.icon.children,
+            attributes: _objectSpread2(_objectSpread2({}, main.icon.attributes), operations.path)
+          }]
+        }]
+      };
+    };
+  }
+};
+var ALL_SPACE = {
+  x: 0,
+  y: 0,
+  width: "100%",
+  height: "100%"
+};
+function fillBlack(abstract) {
+  let force = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
+  if (abstract.attributes && (abstract.attributes.fill || force)) {
+    abstract.attributes.fill = "black";
+  }
+  return abstract;
+}
+function deGroup(abstract) {
+  if (abstract.tag === "g") {
+    return abstract.children;
+  } else {
+    return [abstract];
+  }
+}
+var Masks = {
+  hooks() {
+    return {
+      parseNodeAttributes(accumulator, node) {
+        const maskData = node.getAttribute("data-fa-mask");
+        const mask = !maskData ? emptyCanonicalIcon() : getCanonicalIcon(maskData.split(" ").map((i) => i.trim()));
+        if (!mask.prefix) {
+          mask.prefix = getDefaultUsablePrefix();
+        }
+        accumulator.mask = mask;
+        accumulator.maskId = node.getAttribute("data-fa-mask-id");
+        return accumulator;
+      }
+    };
+  },
+  provides(providers2) {
+    providers2.generateAbstractMask = function(_ref) {
+      let {
+        children,
+        attributes,
+        main,
+        mask,
+        maskId: explicitMaskId,
+        transform
+      } = _ref;
+      const {
+        width: mainWidth,
+        icon: mainPath
+      } = main;
+      const {
+        width: maskWidth,
+        icon: maskPath
+      } = mask;
+      const trans = transformForSvg({
+        transform,
+        containerWidth: maskWidth,
+        iconWidth: mainWidth
+      });
+      const maskRect = {
+        tag: "rect",
+        attributes: _objectSpread2(_objectSpread2({}, ALL_SPACE), {}, {
+          fill: "white"
+        })
+      };
+      const maskInnerGroupChildrenMixin = mainPath.children ? {
+        children: mainPath.children.map(fillBlack)
+      } : {};
+      const maskInnerGroup = {
+        tag: "g",
+        attributes: _objectSpread2({}, trans.inner),
+        children: [fillBlack(_objectSpread2({
+          tag: mainPath.tag,
+          attributes: _objectSpread2(_objectSpread2({}, mainPath.attributes), trans.path)
+        }, maskInnerGroupChildrenMixin))]
+      };
+      const maskOuterGroup = {
+        tag: "g",
+        attributes: _objectSpread2({}, trans.outer),
+        children: [maskInnerGroup]
+      };
+      const maskId = "mask-".concat(explicitMaskId || nextUniqueId());
+      const clipId = "clip-".concat(explicitMaskId || nextUniqueId());
+      const maskTag = {
+        tag: "mask",
+        attributes: _objectSpread2(_objectSpread2({}, ALL_SPACE), {}, {
+          id: maskId,
+          maskUnits: "userSpaceOnUse",
+          maskContentUnits: "userSpaceOnUse"
+        }),
+        children: [maskRect, maskOuterGroup]
+      };
+      const defs = {
+        tag: "defs",
+        children: [{
+          tag: "clipPath",
+          attributes: {
+            id: clipId
+          },
+          children: deGroup(maskPath)
+        }, maskTag]
+      };
+      children.push(defs, {
+        tag: "rect",
+        attributes: _objectSpread2({
+          fill: "currentColor",
+          "clip-path": "url(#".concat(clipId, ")"),
+          mask: "url(#".concat(maskId, ")")
+        }, ALL_SPACE)
+      });
+      return {
+        children,
+        attributes
+      };
+    };
+  }
+};
+var MissingIconIndicator = {
+  provides(providers2) {
+    let reduceMotion = false;
+    if (WINDOW.matchMedia) {
+      reduceMotion = WINDOW.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+    providers2.missingIconAbstract = function() {
+      const gChildren = [];
+      const FILL = {
+        fill: "currentColor"
+      };
+      const ANIMATION_BASE = {
+        attributeType: "XML",
+        repeatCount: "indefinite",
+        dur: "2s"
+      };
+      gChildren.push({
+        tag: "path",
+        attributes: _objectSpread2(_objectSpread2({}, FILL), {}, {
+          d: "M156.5,447.7l-12.6,29.5c-18.7-9.5-35.9-21.2-51.5-34.9l22.7-22.7C127.6,430.5,141.5,440,156.5,447.7z M40.6,272H8.5 c1.4,21.2,5.4,41.7,11.7,61.1L50,321.2C45.1,305.5,41.8,289,40.6,272z M40.6,240c1.4-18.8,5.2-37,11.1-54.1l-29.5-12.6 C14.7,194.3,10,216.7,8.5,240H40.6z M64.3,156.5c7.8-14.9,17.2-28.8,28.1-41.5L69.7,92.3c-13.7,15.6-25.5,32.8-34.9,51.5 L64.3,156.5z M397,419.6c-13.9,12-29.4,22.3-46.1,30.4l11.9,29.8c20.7-9.9,39.8-22.6,56.9-37.6L397,419.6z M115,92.4 c13.9-12,29.4-22.3,46.1-30.4l-11.9-29.8c-20.7,9.9-39.8,22.6-56.8,37.6L115,92.4z M447.7,355.5c-7.8,14.9-17.2,28.8-28.1,41.5 l22.7,22.7c13.7-15.6,25.5-32.9,34.9-51.5L447.7,355.5z M471.4,272c-1.4,18.8-5.2,37-11.1,54.1l29.5,12.6 c7.5-21.1,12.2-43.5,13.6-66.8H471.4z M321.2,462c-15.7,5-32.2,8.2-49.2,9.4v32.1c21.2-1.4,41.7-5.4,61.1-11.7L321.2,462z M240,471.4c-18.8-1.4-37-5.2-54.1-11.1l-12.6,29.5c21.1,7.5,43.5,12.2,66.8,13.6V471.4z M462,190.8c5,15.7,8.2,32.2,9.4,49.2h32.1 c-1.4-21.2-5.4-41.7-11.7-61.1L462,190.8z M92.4,397c-12-13.9-22.3-29.4-30.4-46.1l-29.8,11.9c9.9,20.7,22.6,39.8,37.6,56.9 L92.4,397z M272,40.6c18.8,1.4,36.9,5.2,54.1,11.1l12.6-29.5C317.7,14.7,295.3,10,272,8.5V40.6z M190.8,50 c15.7-5,32.2-8.2,49.2-9.4V8.5c-21.2,1.4-41.7,5.4-61.1,11.7L190.8,50z M442.3,92.3L419.6,115c12,13.9,22.3,29.4,30.5,46.1 l29.8-11.9C470,128.5,457.3,109.4,442.3,92.3z M397,92.4l22.7-22.7c-15.6-13.7-32.8-25.5-51.5-34.9l-12.6,29.5 C370.4,72.1,384.4,81.5,397,92.4z"
+        })
+      });
+      const OPACITY_ANIMATE = _objectSpread2(_objectSpread2({}, ANIMATION_BASE), {}, {
+        attributeName: "opacity"
+      });
+      const dot = {
+        tag: "circle",
+        attributes: _objectSpread2(_objectSpread2({}, FILL), {}, {
+          cx: "256",
+          cy: "364",
+          r: "28"
+        }),
+        children: []
+      };
+      if (!reduceMotion) {
+        dot.children.push({
+          tag: "animate",
+          attributes: _objectSpread2(_objectSpread2({}, ANIMATION_BASE), {}, {
+            attributeName: "r",
+            values: "28;14;28;28;14;28;"
+          })
+        }, {
+          tag: "animate",
+          attributes: _objectSpread2(_objectSpread2({}, OPACITY_ANIMATE), {}, {
+            values: "1;0;1;1;0;1;"
+          })
+        });
+      }
+      gChildren.push(dot);
+      gChildren.push({
+        tag: "path",
+        attributes: _objectSpread2(_objectSpread2({}, FILL), {}, {
+          opacity: "1",
+          d: "M263.7,312h-16c-6.6,0-12-5.4-12-12c0-71,77.4-63.9,77.4-107.8c0-20-17.8-40.2-57.4-40.2c-29.1,0-44.3,9.6-59.2,28.7 c-3.9,5-11.1,6-16.2,2.4l-13.1-9.2c-5.6-3.9-6.9-11.8-2.6-17.2c21.2-27.2,46.4-44.7,91.2-44.7c52.3,0,97.4,29.8,97.4,80.2 c0,67.6-77.4,63.5-77.4,107.8C275.7,306.6,270.3,312,263.7,312z"
+        }),
+        children: reduceMotion ? [] : [{
+          tag: "animate",
+          attributes: _objectSpread2(_objectSpread2({}, OPACITY_ANIMATE), {}, {
+            values: "1;0;0;0;0;1;"
+          })
+        }]
+      });
+      if (!reduceMotion) {
+        gChildren.push({
+          tag: "path",
+          attributes: _objectSpread2(_objectSpread2({}, FILL), {}, {
+            opacity: "0",
+            d: "M232.5,134.5l7,168c0.3,6.4,5.6,11.5,12,11.5h9c6.4,0,11.7-5.1,12-11.5l7-168c0.3-6.8-5.2-12.5-12-12.5h-23 C237.7,122,232.2,127.7,232.5,134.5z"
+          }),
+          children: [{
+            tag: "animate",
+            attributes: _objectSpread2(_objectSpread2({}, OPACITY_ANIMATE), {}, {
+              values: "0;0;1;1;0;0;"
+            })
+          }]
+        });
+      }
+      return {
+        tag: "g",
+        attributes: {
+          "class": "missing"
+        },
+        children: gChildren
+      };
+    };
+  }
+};
+var SvgSymbols = {
+  hooks() {
+    return {
+      parseNodeAttributes(accumulator, node) {
+        const symbolData = node.getAttribute("data-fa-symbol");
+        const symbol = symbolData === null ? false : symbolData === "" ? true : symbolData;
+        accumulator["symbol"] = symbol;
+        return accumulator;
+      }
+    };
+  }
+};
+var plugins = [InjectCSS, ReplaceElements, Layers, LayersCounter, LayersText, PseudoElements, MutationObserver$1, PowerTransforms, Masks, MissingIconIndicator, SvgSymbols];
+registerPlugins(plugins, {
+  mixoutsTo: api
+});
+var noAuto$1 = api.noAuto;
+var config$1 = api.config;
+var library$1 = api.library;
+var dom$1 = api.dom;
+var parse$1 = api.parse;
+var findIconDefinition$1 = api.findIconDefinition;
+var toHtml$1 = api.toHtml;
+var icon = api.icon;
+var layer = api.layer;
+var text = api.text;
+var counter = api.counter;
+
+// node_modules/@fortawesome/angular-fontawesome/fesm2022/angular-fontawesome.mjs
+var _c0 = ["*"];
+var faWarnIfIconDefinitionMissing = (iconSpec) => {
+  throw new Error(`Could not find icon with iconName=${iconSpec.iconName} and prefix=${iconSpec.prefix} in the icon library.`);
+};
+var faWarnIfIconSpecMissing = () => {
+  throw new Error("Property `icon` is required for `fa-icon`/`fa-duotone-icon` components.");
+};
+var isKnownRotateValue = (rotate) => rotate != null && (rotate === 90 || rotate === 180 || rotate === 270 || rotate === "90" || rotate === "180" || rotate === "270");
+var faClassList = (props) => {
+  const knownRotateValue = isKnownRotateValue(props.rotate);
+  const classes = {
+    [`fa-${props.animation}`]: props.animation != null && !props.animation.startsWith("spin"),
+    "fa-spin": props.animation === "spin" || props.animation === "spin-reverse",
+    "fa-spin-pulse": props.animation === "spin-pulse" || props.animation === "spin-pulse-reverse",
+    "fa-spin-reverse": props.animation === "spin-reverse" || props.animation === "spin-pulse-reverse",
+    // According to https://fontawesome.com/docs/web/style/animate#spin fa-pulse
+    // class is deprecated, remove the below line when Font Awesome 5 support
+    // is dropped.
+    "fa-pulse": props.animation === "spin-pulse" || props.animation === "spin-pulse-reverse",
+    "fa-fw": props.fixedWidth,
+    "fa-border": props.border,
+    "fa-inverse": props.inverse,
+    "fa-layers-counter": props.counter,
+    "fa-flip-horizontal": props.flip === "horizontal" || props.flip === "both",
+    "fa-flip-vertical": props.flip === "vertical" || props.flip === "both",
+    [`fa-${props.size}`]: props.size !== null,
+    [`fa-rotate-${props.rotate}`]: knownRotateValue,
+    "fa-rotate-by": props.rotate != null && !knownRotateValue,
+    [`fa-pull-${props.pull}`]: props.pull !== null,
+    [`fa-stack-${props.stackItemSize}`]: props.stackItemSize != null
+  };
+  return Object.keys(classes).map((key) => classes[key] ? key : null).filter((key) => key);
+};
+var cssInserted = /* @__PURE__ */ new WeakSet();
+var autoCssId = "fa-auto-css";
+function ensureCss2(document2, config3) {
+  if (!config3.autoAddCss) {
+    return;
+  }
+  if (cssInserted.has(document2)) {
+    return;
+  }
+  if (document2.getElementById(autoCssId) != null) {
+    config3.autoAddCss = false;
+    cssInserted.add(document2);
+    return;
+  }
+  const style = document2.createElement("style");
+  style.setAttribute("type", "text/css");
+  style.setAttribute("id", autoCssId);
+  style.innerHTML = dom$1.css();
+  const headChildren = document2.head.childNodes;
+  let beforeChild = null;
+  for (let i = headChildren.length - 1; i > -1; i--) {
+    const child = headChildren[i];
+    const tagName = child.nodeName.toUpperCase();
+    if (["STYLE", "LINK"].indexOf(tagName) > -1) {
+      beforeChild = child;
+    }
+  }
+  document2.head.insertBefore(style, beforeChild);
+  config3.autoAddCss = false;
+  cssInserted.add(document2);
+}
+var isIconLookup = (i) => i.prefix !== void 0 && i.iconName !== void 0;
+var faNormalizeIconSpec = (iconSpec, defaultPrefix) => {
+  if (isIconLookup(iconSpec)) {
+    return iconSpec;
+  }
+  if (Array.isArray(iconSpec) && iconSpec.length === 2) {
+    return {
+      prefix: iconSpec[0],
+      iconName: iconSpec[1]
+    };
+  }
+  return {
+    prefix: defaultPrefix,
+    iconName: iconSpec
+  };
+};
+var FaConfig = class _FaConfig {
+  constructor() {
+    this.defaultPrefix = "fas";
+    this.fallbackIcon = null;
+    this._autoAddCss = true;
+  }
+  /**
+   * Automatically add Font Awesome styles to the document when icon is rendered.
+   *
+   * For the majority of the cases the automatically added CSS is sufficient,
+   * please refer to the linked guide for more information on when to disable
+   * this feature.
+   *
+   * @see {@link: https://github.com/FortAwesome/angular-fontawesome/blob/main/docs/guide/adding-css.md}
+   * @default true
+   */
+  set autoAddCss(value) {
+    config$1.autoAddCss = value;
+    this._autoAddCss = value;
+  }
+  get autoAddCss() {
+    return this._autoAddCss;
+  }
+  static {
+    this.\u0275fac = function FaConfig_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _FaConfig)();
+    };
+  }
+  static {
+    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
+      token: _FaConfig,
+      factory: _FaConfig.\u0275fac,
+      providedIn: "root"
+    });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FaConfig, [{
+    type: Injectable,
+    args: [{
+      providedIn: "root"
+    }]
+  }], null, null);
+})();
+var FaIconLibrary = class _FaIconLibrary {
+  constructor() {
+    this.definitions = {};
+  }
+  addIcons(...icons) {
+    for (const icon2 of icons) {
+      if (!(icon2.prefix in this.definitions)) {
+        this.definitions[icon2.prefix] = {};
+      }
+      this.definitions[icon2.prefix][icon2.iconName] = icon2;
+      for (const alias of icon2.icon[2]) {
+        if (typeof alias === "string") {
+          this.definitions[icon2.prefix][alias] = icon2;
+        }
+      }
+    }
+  }
+  addIconPacks(...packs) {
+    for (const pack of packs) {
+      const icons = Object.keys(pack).map((key) => pack[key]);
+      this.addIcons(...icons);
+    }
+  }
+  getIconDefinition(prefix, name) {
+    if (prefix in this.definitions && name in this.definitions[prefix]) {
+      return this.definitions[prefix][name];
+    }
+    return null;
+  }
+  static {
+    this.\u0275fac = function FaIconLibrary_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _FaIconLibrary)();
+    };
+  }
+  static {
+    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
+      token: _FaIconLibrary,
+      factory: _FaIconLibrary.\u0275fac,
+      providedIn: "root"
+    });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FaIconLibrary, [{
+    type: Injectable,
+    args: [{
+      providedIn: "root"
+    }]
+  }], null, null);
+})();
+var FaStackItemSizeDirective = class _FaStackItemSizeDirective {
+  constructor() {
+    this.stackItemSize = "1x";
+  }
+  ngOnChanges(changes) {
+    if ("size" in changes) {
+      throw new Error('fa-icon is not allowed to customize size when used inside fa-stack. Set size on the enclosing fa-stack instead: <fa-stack size="4x">...</fa-stack>.');
+    }
+  }
+  static {
+    this.\u0275fac = function FaStackItemSizeDirective_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _FaStackItemSizeDirective)();
+    };
+  }
+  static {
+    this.\u0275dir = /* @__PURE__ */ \u0275\u0275defineDirective({
+      type: _FaStackItemSizeDirective,
+      selectors: [["fa-icon", "stackItemSize", ""], ["fa-duotone-icon", "stackItemSize", ""]],
+      inputs: {
+        stackItemSize: "stackItemSize",
+        size: "size"
+      },
+      features: [\u0275\u0275NgOnChangesFeature]
+    });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FaStackItemSizeDirective, [{
+    type: Directive,
+    args: [{
+      // eslint-disable-next-line @angular-eslint/directive-selector
+      selector: "fa-icon[stackItemSize],fa-duotone-icon[stackItemSize]"
+    }]
+  }], null, {
+    stackItemSize: [{
+      type: Input
+    }],
+    size: [{
+      type: Input
+    }]
+  });
+})();
+var FaStackComponent = class _FaStackComponent {
+  constructor(renderer, elementRef) {
+    this.renderer = renderer;
+    this.elementRef = elementRef;
+  }
+  ngOnInit() {
+    this.renderer.addClass(this.elementRef.nativeElement, "fa-stack");
+  }
+  ngOnChanges(changes) {
+    if ("size" in changes) {
+      if (changes.size.currentValue != null) {
+        this.renderer.addClass(this.elementRef.nativeElement, `fa-${changes.size.currentValue}`);
+      }
+      if (changes.size.previousValue != null) {
+        this.renderer.removeClass(this.elementRef.nativeElement, `fa-${changes.size.previousValue}`);
+      }
+    }
+  }
+  static {
+    this.\u0275fac = function FaStackComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _FaStackComponent)(\u0275\u0275directiveInject(Renderer2), \u0275\u0275directiveInject(ElementRef));
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({
+      type: _FaStackComponent,
+      selectors: [["fa-stack"]],
+      inputs: {
+        size: "size"
+      },
+      features: [\u0275\u0275NgOnChangesFeature],
+      ngContentSelectors: _c0,
+      decls: 1,
+      vars: 0,
+      template: function FaStackComponent_Template(rf, ctx) {
+        if (rf & 1) {
+          \u0275\u0275projectionDef();
+          \u0275\u0275projection(0);
+        }
+      },
+      encapsulation: 2
+    });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FaStackComponent, [{
+    type: Component,
+    args: [{
+      selector: "fa-stack",
+      template: `<ng-content></ng-content>`
+    }]
+  }], () => [{
+    type: Renderer2
+  }, {
+    type: ElementRef
+  }], {
+    size: [{
+      type: Input
+    }]
+  });
+})();
+var FaIconComponent = class _FaIconComponent {
+  constructor(sanitizer, config3, iconLibrary, stackItem, stack) {
+    this.sanitizer = sanitizer;
+    this.config = config3;
+    this.iconLibrary = iconLibrary;
+    this.stackItem = stackItem;
+    this.document = inject(DOCUMENT2);
+    if (stack != null && stackItem == null) {
+      console.error('FontAwesome: fa-icon and fa-duotone-icon elements must specify stackItemSize attribute when wrapped into fa-stack. Example: <fa-icon stackItemSize="2x"></fa-icon>.');
+    }
+  }
+  ngOnChanges(changes) {
+    if (this.icon == null && this.config.fallbackIcon == null) {
+      faWarnIfIconSpecMissing();
+      return;
+    }
+    if (changes) {
+      const iconDefinition = this.findIconDefinition(this.icon ?? this.config.fallbackIcon);
+      if (iconDefinition != null) {
+        const params = this.buildParams();
+        ensureCss2(this.document, this.config);
+        const renderedIcon = icon(iconDefinition, params);
+        this.renderedIconHTML = this.sanitizer.bypassSecurityTrustHtml(renderedIcon.html.join("\n"));
+      }
+    }
+  }
+  /**
+   * Programmatically trigger rendering of the icon.
+   *
+   * This method is useful, when creating {@link FaIconComponent} dynamically or
+   * changing its inputs programmatically as in these cases icon won't be
+   * re-rendered automatically.
+   */
+  render() {
+    this.ngOnChanges({});
+  }
+  findIconDefinition(i) {
+    const lookup = faNormalizeIconSpec(i, this.config.defaultPrefix);
+    if ("icon" in lookup) {
+      return lookup;
+    }
+    const definition = this.iconLibrary.getIconDefinition(lookup.prefix, lookup.iconName);
+    if (definition != null) {
+      return definition;
+    }
+    faWarnIfIconDefinitionMissing(lookup);
+    return null;
+  }
+  buildParams() {
+    const classOpts = {
+      flip: this.flip,
+      animation: this.animation,
+      border: this.border,
+      inverse: this.inverse,
+      size: this.size || null,
+      pull: this.pull || null,
+      rotate: this.rotate || null,
+      fixedWidth: typeof this.fixedWidth === "boolean" ? this.fixedWidth : this.config.fixedWidth,
+      stackItemSize: this.stackItem != null ? this.stackItem.stackItemSize : null
+    };
+    const parsedTransform = typeof this.transform === "string" ? parse$1.transform(this.transform) : this.transform;
+    const styles2 = {};
+    if (classOpts.rotate != null && !isKnownRotateValue(classOpts.rotate)) {
+      styles2["--fa-rotate-angle"] = `${classOpts.rotate}`;
+    }
+    return {
+      title: this.title,
+      transform: parsedTransform,
+      classes: faClassList(classOpts),
+      mask: this.mask != null ? this.findIconDefinition(this.mask) : null,
+      symbol: this.symbol,
+      attributes: {
+        role: this.a11yRole
+      },
+      styles: styles2
+    };
+  }
+  static {
+    this.\u0275fac = function FaIconComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _FaIconComponent)(\u0275\u0275directiveInject(DomSanitizer), \u0275\u0275directiveInject(FaConfig), \u0275\u0275directiveInject(FaIconLibrary), \u0275\u0275directiveInject(FaStackItemSizeDirective, 8), \u0275\u0275directiveInject(FaStackComponent, 8));
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({
+      type: _FaIconComponent,
+      selectors: [["fa-icon"]],
+      hostAttrs: [1, "ng-fa-icon"],
+      hostVars: 2,
+      hostBindings: function FaIconComponent_HostBindings(rf, ctx) {
+        if (rf & 2) {
+          \u0275\u0275hostProperty("innerHTML", ctx.renderedIconHTML, \u0275\u0275sanitizeHtml);
+          \u0275\u0275attribute("title", ctx.title);
+        }
+      },
+      inputs: {
+        icon: "icon",
+        title: "title",
+        animation: "animation",
+        mask: "mask",
+        flip: "flip",
+        size: "size",
+        pull: "pull",
+        border: "border",
+        inverse: "inverse",
+        symbol: "symbol",
+        rotate: "rotate",
+        fixedWidth: "fixedWidth",
+        transform: "transform",
+        a11yRole: "a11yRole"
+      },
+      features: [\u0275\u0275NgOnChangesFeature],
+      decls: 0,
+      vars: 0,
+      template: function FaIconComponent_Template(rf, ctx) {
+      },
+      encapsulation: 2
+    });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FaIconComponent, [{
+    type: Component,
+    args: [{
+      selector: "fa-icon",
+      template: ``,
+      host: {
+        class: "ng-fa-icon",
+        "[attr.title]": "title"
+      }
+    }]
+  }], () => [{
+    type: DomSanitizer
+  }, {
+    type: FaConfig
+  }, {
+    type: FaIconLibrary
+  }, {
+    type: FaStackItemSizeDirective,
+    decorators: [{
+      type: Optional
+    }]
+  }, {
+    type: FaStackComponent,
+    decorators: [{
+      type: Optional
+    }]
+  }], {
+    icon: [{
+      type: Input
+    }],
+    title: [{
+      type: Input
+    }],
+    animation: [{
+      type: Input
+    }],
+    mask: [{
+      type: Input
+    }],
+    flip: [{
+      type: Input
+    }],
+    size: [{
+      type: Input
+    }],
+    pull: [{
+      type: Input
+    }],
+    border: [{
+      type: Input
+    }],
+    inverse: [{
+      type: Input
+    }],
+    symbol: [{
+      type: Input
+    }],
+    rotate: [{
+      type: Input
+    }],
+    fixedWidth: [{
+      type: Input
+    }],
+    transform: [{
+      type: Input
+    }],
+    a11yRole: [{
+      type: Input
+    }],
+    renderedIconHTML: [{
+      type: HostBinding,
+      args: ["innerHTML"]
+    }]
+  });
+})();
+var FaDuotoneIconComponent = class _FaDuotoneIconComponent extends FaIconComponent {
+  findIconDefinition(i) {
+    const definition = super.findIconDefinition(i);
+    if (definition != null && !Array.isArray(definition.icon[4])) {
+      throw new Error(`The specified icon does not appear to be a Duotone icon. Check that you specified the correct style: <fa-duotone-icon [icon]="['fad', '${definition.iconName}']"></fa-duotone-icon> or use: <fa-icon icon="${definition.iconName}"></fa-icon> instead.`);
+    }
+    return definition;
+  }
+  buildParams() {
+    const params = super.buildParams();
+    if (this.swapOpacity === true || this.swapOpacity === "true") {
+      if (Array.isArray(params.classes)) {
+        params.classes.push("fa-swap-opacity");
+      } else if (typeof params.classes === "string") {
+        params.classes = [params.classes, "fa-swap-opacity"];
+      } else {
+        params.classes = ["fa-swap-opacity"];
+      }
+    }
+    if (params.styles == null) {
+      params.styles = {};
+    }
+    if (this.primaryOpacity != null) {
+      params.styles["--fa-primary-opacity"] = this.primaryOpacity.toString();
+    }
+    if (this.secondaryOpacity != null) {
+      params.styles["--fa-secondary-opacity"] = this.secondaryOpacity.toString();
+    }
+    if (this.primaryColor != null) {
+      params.styles["--fa-primary-color"] = this.primaryColor;
+    }
+    if (this.secondaryColor != null) {
+      params.styles["--fa-secondary-color"] = this.secondaryColor;
+    }
+    return params;
+  }
+  static {
+    this.\u0275fac = /* @__PURE__ */ (() => {
+      let \u0275FaDuotoneIconComponent_BaseFactory;
+      return function FaDuotoneIconComponent_Factory(__ngFactoryType__) {
+        return (\u0275FaDuotoneIconComponent_BaseFactory || (\u0275FaDuotoneIconComponent_BaseFactory = \u0275\u0275getInheritedFactory(_FaDuotoneIconComponent)))(__ngFactoryType__ || _FaDuotoneIconComponent);
+      };
+    })();
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({
+      type: _FaDuotoneIconComponent,
+      selectors: [["fa-duotone-icon"]],
+      inputs: {
+        swapOpacity: "swapOpacity",
+        primaryOpacity: "primaryOpacity",
+        secondaryOpacity: "secondaryOpacity",
+        primaryColor: "primaryColor",
+        secondaryColor: "secondaryColor"
+      },
+      features: [\u0275\u0275InheritDefinitionFeature],
+      decls: 0,
+      vars: 0,
+      template: function FaDuotoneIconComponent_Template(rf, ctx) {
+      },
+      encapsulation: 2
+    });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FaDuotoneIconComponent, [{
+    type: Component,
+    args: [{
+      selector: "fa-duotone-icon",
+      template: ``
+    }]
+  }], null, {
+    swapOpacity: [{
+      type: Input
+    }],
+    primaryOpacity: [{
+      type: Input
+    }],
+    secondaryOpacity: [{
+      type: Input
+    }],
+    primaryColor: [{
+      type: Input
+    }],
+    secondaryColor: [{
+      type: Input
+    }]
+  });
+})();
+var faWarnIfParentNotExist = (parent, parentName, childName) => {
+  if (!parent) {
+    throw new Error(`${childName} should be used as child of ${parentName} only.`);
+  }
+};
+var FaLayersComponent = class _FaLayersComponent {
+  constructor(renderer, elementRef, config3) {
+    this.renderer = renderer;
+    this.elementRef = elementRef;
+    this.config = config3;
+    this.document = inject(DOCUMENT2);
+  }
+  ngOnInit() {
+    this.renderer.addClass(this.elementRef.nativeElement, "fa-layers");
+    ensureCss2(this.document, this.config);
+    this.fixedWidth = typeof this.fixedWidth === "boolean" ? this.fixedWidth : this.config.fixedWidth;
+  }
+  ngOnChanges(changes) {
+    if ("size" in changes) {
+      if (changes.size.currentValue != null) {
+        this.renderer.addClass(this.elementRef.nativeElement, `fa-${changes.size.currentValue}`);
+      }
+      if (changes.size.previousValue != null) {
+        this.renderer.removeClass(this.elementRef.nativeElement, `fa-${changes.size.previousValue}`);
+      }
+    }
+  }
+  static {
+    this.\u0275fac = function FaLayersComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _FaLayersComponent)(\u0275\u0275directiveInject(Renderer2), \u0275\u0275directiveInject(ElementRef), \u0275\u0275directiveInject(FaConfig));
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({
+      type: _FaLayersComponent,
+      selectors: [["fa-layers"]],
+      hostVars: 2,
+      hostBindings: function FaLayersComponent_HostBindings(rf, ctx) {
+        if (rf & 2) {
+          \u0275\u0275classProp("fa-fw", ctx.fixedWidth);
+        }
+      },
+      inputs: {
+        size: "size",
+        fixedWidth: "fixedWidth"
+      },
+      features: [\u0275\u0275NgOnChangesFeature],
+      ngContentSelectors: _c0,
+      decls: 1,
+      vars: 0,
+      template: function FaLayersComponent_Template(rf, ctx) {
+        if (rf & 1) {
+          \u0275\u0275projectionDef();
+          \u0275\u0275projection(0);
+        }
+      },
+      encapsulation: 2
+    });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FaLayersComponent, [{
+    type: Component,
+    args: [{
+      selector: "fa-layers",
+      template: `<ng-content></ng-content>`
+    }]
+  }], () => [{
+    type: Renderer2
+  }, {
+    type: ElementRef
+  }, {
+    type: FaConfig
+  }], {
+    size: [{
+      type: Input
+    }],
+    fixedWidth: [{
+      type: Input
+    }, {
+      type: HostBinding,
+      args: ["class.fa-fw"]
+    }]
+  });
+})();
+var FaLayersCounterComponent = class _FaLayersCounterComponent {
+  constructor(parent, sanitizer) {
+    this.parent = parent;
+    this.sanitizer = sanitizer;
+    this.document = inject(DOCUMENT2);
+    this.config = inject(FaConfig);
+    faWarnIfParentNotExist(this.parent, "FaLayersComponent", this.constructor.name);
+  }
+  ngOnChanges(changes) {
+    if (changes) {
+      const params = this.buildParams();
+      this.updateContent(params);
+    }
+  }
+  buildParams() {
+    return {
+      title: this.title,
+      classes: this.position != null ? [`fa-layers-${this.position}`] : void 0
+    };
+  }
+  updateContent(params) {
+    ensureCss2(this.document, this.config);
+    this.renderedHTML = this.sanitizer.bypassSecurityTrustHtml(counter(this.content || "", params).html.join(""));
+  }
+  static {
+    this.\u0275fac = function FaLayersCounterComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _FaLayersCounterComponent)(\u0275\u0275directiveInject(FaLayersComponent, 8), \u0275\u0275directiveInject(DomSanitizer));
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({
+      type: _FaLayersCounterComponent,
+      selectors: [["fa-layers-counter"]],
+      hostAttrs: [1, "ng-fa-layers-counter"],
+      hostVars: 1,
+      hostBindings: function FaLayersCounterComponent_HostBindings(rf, ctx) {
+        if (rf & 2) {
+          \u0275\u0275hostProperty("innerHTML", ctx.renderedHTML, \u0275\u0275sanitizeHtml);
+        }
+      },
+      inputs: {
+        content: "content",
+        title: "title",
+        position: "position"
+      },
+      features: [\u0275\u0275NgOnChangesFeature],
+      decls: 0,
+      vars: 0,
+      template: function FaLayersCounterComponent_Template(rf, ctx) {
+      },
+      encapsulation: 2
+    });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FaLayersCounterComponent, [{
+    type: Component,
+    args: [{
+      selector: "fa-layers-counter",
+      template: "",
+      host: {
+        class: "ng-fa-layers-counter"
+      }
+    }]
+  }], () => [{
+    type: FaLayersComponent,
+    decorators: [{
+      type: Optional
+    }]
+  }, {
+    type: DomSanitizer
+  }], {
+    content: [{
+      type: Input
+    }],
+    title: [{
+      type: Input
+    }],
+    position: [{
+      type: Input
+    }],
+    renderedHTML: [{
+      type: HostBinding,
+      args: ["innerHTML"]
+    }]
+  });
+})();
+var FaLayersTextComponent = class _FaLayersTextComponent {
+  constructor(parent, sanitizer) {
+    this.parent = parent;
+    this.sanitizer = sanitizer;
+    this.document = inject(DOCUMENT2);
+    this.config = inject(FaConfig);
+    faWarnIfParentNotExist(this.parent, "FaLayersComponent", this.constructor.name);
+  }
+  ngOnChanges(changes) {
+    if (changes) {
+      const params = this.buildParams();
+      this.updateContent(params);
+    }
+  }
+  /**
+   * Updating params by component props.
+   */
+  buildParams() {
+    const classOpts = {
+      flip: this.flip,
+      border: this.border,
+      inverse: this.inverse,
+      size: this.size || null,
+      pull: this.pull || null,
+      rotate: this.rotate || null,
+      fixedWidth: this.fixedWidth
+    };
+    const parsedTransform = typeof this.transform === "string" ? parse$1.transform(this.transform) : this.transform;
+    const styles2 = {};
+    if (classOpts.rotate != null && !isKnownRotateValue(classOpts.rotate)) {
+      styles2["--fa-rotate-angle"] = `${classOpts.rotate}`;
+    }
+    return {
+      transform: parsedTransform,
+      classes: faClassList(classOpts),
+      title: this.title,
+      styles: styles2
+    };
+  }
+  updateContent(params) {
+    ensureCss2(this.document, this.config);
+    this.renderedHTML = this.sanitizer.bypassSecurityTrustHtml(text(this.content || "", params).html.join("\n"));
+  }
+  static {
+    this.\u0275fac = function FaLayersTextComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _FaLayersTextComponent)(\u0275\u0275directiveInject(FaLayersComponent, 8), \u0275\u0275directiveInject(DomSanitizer));
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({
+      type: _FaLayersTextComponent,
+      selectors: [["fa-layers-text"]],
+      hostAttrs: [1, "ng-fa-layers-text"],
+      hostVars: 1,
+      hostBindings: function FaLayersTextComponent_HostBindings(rf, ctx) {
+        if (rf & 2) {
+          \u0275\u0275hostProperty("innerHTML", ctx.renderedHTML, \u0275\u0275sanitizeHtml);
+        }
+      },
+      inputs: {
+        content: "content",
+        title: "title",
+        flip: "flip",
+        size: "size",
+        pull: "pull",
+        border: "border",
+        inverse: "inverse",
+        rotate: "rotate",
+        fixedWidth: "fixedWidth",
+        transform: "transform"
+      },
+      features: [\u0275\u0275NgOnChangesFeature],
+      decls: 0,
+      vars: 0,
+      template: function FaLayersTextComponent_Template(rf, ctx) {
+      },
+      encapsulation: 2
+    });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FaLayersTextComponent, [{
+    type: Component,
+    args: [{
+      selector: "fa-layers-text",
+      template: "",
+      host: {
+        class: "ng-fa-layers-text"
+      }
+    }]
+  }], () => [{
+    type: FaLayersComponent,
+    decorators: [{
+      type: Optional
+    }]
+  }, {
+    type: DomSanitizer
+  }], {
+    content: [{
+      type: Input
+    }],
+    title: [{
+      type: Input
+    }],
+    flip: [{
+      type: Input
+    }],
+    size: [{
+      type: Input
+    }],
+    pull: [{
+      type: Input
+    }],
+    border: [{
+      type: Input
+    }],
+    inverse: [{
+      type: Input
+    }],
+    rotate: [{
+      type: Input
+    }],
+    fixedWidth: [{
+      type: Input
+    }],
+    transform: [{
+      type: Input
+    }],
+    renderedHTML: [{
+      type: HostBinding,
+      args: ["innerHTML"]
+    }]
+  });
+})();
+var FontAwesomeModule = class _FontAwesomeModule {
+  static {
+    this.\u0275fac = function FontAwesomeModule_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _FontAwesomeModule)();
+    };
+  }
+  static {
+    this.\u0275mod = /* @__PURE__ */ \u0275\u0275defineNgModule({
+      type: _FontAwesomeModule
+    });
+  }
+  static {
+    this.\u0275inj = /* @__PURE__ */ \u0275\u0275defineInjector({});
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FontAwesomeModule, [{
+    type: NgModule,
+    args: [{
+      imports: [FaIconComponent, FaDuotoneIconComponent, FaLayersComponent, FaLayersTextComponent, FaLayersCounterComponent, FaStackComponent, FaStackItemSizeDirective],
+      exports: [FaIconComponent, FaDuotoneIconComponent, FaLayersComponent, FaLayersTextComponent, FaLayersCounterComponent, FaStackComponent, FaStackItemSizeDirective]
+    }]
+  }], null, null);
+})();
+
+// node_modules/@fortawesome/free-solid-svg-icons/index.mjs
+var faRotateLeft = {
+  prefix: "fas",
+  iconName: "rotate-left",
+  icon: [512, 512, ["rotate-back", "rotate-backward", "undo-alt"], "f2ea", "M48.5 224L40 224c-13.3 0-24-10.7-24-24L16 72c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2L98.6 96.6c87.6-86.5 228.7-86.2 315.8 1c87.5 87.5 87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3c-62.2-62.2-162.7-62.5-225.3-1L185 183c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8L48.5 224z"]
+};
+
 // src/app/pages/tir-compte-double/tir-compte-double.component.ts
-function TirCompteDoubleComponent_div_5_Template(rf, ctx) {
+function TirCompteDoubleComponent_fa_icon_2_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 6)(1, "h2", 1);
+    \u0275\u0275elementStart(0, "fa-icon", 5);
+    \u0275\u0275listener("click", function TirCompteDoubleComponent_fa_icon_2_Template_fa_icon_click_0_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.resetGame());
+    });
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275property("icon", ctx_r1.faRotateLeft);
+  }
+}
+function TirCompteDoubleComponent_div_3_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r3 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 6)(1, "h2", 7);
     \u0275\u0275text(2, "Param\xE8tres");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "div", 7)(4, "label", 8);
+    \u0275\u0275elementStart(3, "div", 8)(4, "label", 9);
     \u0275\u0275text(5, "Fl\xE8ches par vol\xE9e :");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "div", 9)(7, "p", 10)(8, "button", 11);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_5_Template_button_click_8_listener() {
-      \u0275\u0275restoreView(_r1);
+    \u0275\u0275elementStart(6, "div", 10)(7, "p", 11)(8, "button", 12);
+    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_3_Template_button_click_8_listener() {
+      \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.decrementFleches());
     });
     \u0275\u0275text(9, "-");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(10, "p", 10);
-    \u0275\u0275element(11, "input", 12);
+    \u0275\u0275elementStart(10, "p", 11);
+    \u0275\u0275element(11, "input", 13);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "p", 10)(13, "button", 11);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_5_Template_button_click_13_listener() {
-      \u0275\u0275restoreView(_r1);
+    \u0275\u0275elementStart(12, "p", 11)(13, "button", 12);
+    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_3_Template_button_click_13_listener() {
+      \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.incrementFleches());
     });
     \u0275\u0275text(14, "+");
     \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(15, "div", 7)(16, "label", 8);
+    \u0275\u0275elementStart(15, "div", 8)(16, "label", 9);
     \u0275\u0275text(17, "Nombre de vol\xE9es :");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(18, "div", 9)(19, "p", 10)(20, "button", 11);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_5_Template_button_click_20_listener() {
-      \u0275\u0275restoreView(_r1);
+    \u0275\u0275elementStart(18, "div", 10)(19, "p", 11)(20, "button", 12);
+    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_3_Template_button_click_20_listener() {
+      \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.decrementVolees());
     });
     \u0275\u0275text(21, "-");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(22, "p", 10);
-    \u0275\u0275element(23, "input", 12);
+    \u0275\u0275elementStart(22, "p", 11);
+    \u0275\u0275element(23, "input", 13);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(24, "p", 10)(25, "button", 11);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_5_Template_button_click_25_listener() {
-      \u0275\u0275restoreView(_r1);
+    \u0275\u0275elementStart(24, "p", 11)(25, "button", 12);
+    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_3_Template_button_click_25_listener() {
+      \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.incrementVolees());
     });
     \u0275\u0275text(26, "+");
     \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(27, "div", 13)(28, "button", 14);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_5_Template_button_click_28_listener() {
-      \u0275\u0275restoreView(_r1);
+    \u0275\u0275elementStart(27, "div", 14)(28, "button", 15);
+    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_3_Template_button_click_28_listener() {
+      \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.startGame());
     });
@@ -42669,27 +46397,27 @@ function TirCompteDoubleComponent_div_5_Template(rf, ctx) {
     \u0275\u0275property("value", ctx_r1.nbVolees);
   }
 }
-function TirCompteDoubleComponent_div_6_tr_15_span_4_Template(rf, ctx) {
+function TirCompteDoubleComponent_div_4_tr_15_span_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 21);
+    \u0275\u0275elementStart(0, "span", 22);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const s_r3 = ctx.$implicit;
+    const s_r4 = ctx.$implicit;
     const ctx_r1 = \u0275\u0275nextContext(3);
-    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(s_r3));
+    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(s_r4));
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(s_r3);
+    \u0275\u0275textInterpolate(s_r4);
   }
 }
-function TirCompteDoubleComponent_div_6_tr_15_Template(rf, ctx) {
+function TirCompteDoubleComponent_div_4_tr_15_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "tr")(1, "td");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "td");
-    \u0275\u0275template(4, TirCompteDoubleComponent_div_6_tr_15_span_4_Template, 2, 2, "span", 20);
+    \u0275\u0275template(4, TirCompteDoubleComponent_div_4_tr_15_span_4_Template, 2, 2, "span", 21);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(5, "td");
     \u0275\u0275text(6);
@@ -42699,21 +46427,21 @@ function TirCompteDoubleComponent_div_6_tr_15_Template(rf, ctx) {
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const vol_r4 = ctx.$implicit;
-    const i_r5 = ctx.index;
+    const vol_r5 = ctx.$implicit;
+    const i_r6 = ctx.index;
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(i_r5 + 1);
+    \u0275\u0275textInterpolate(i_r6 + 1);
     \u0275\u0275advance(2);
-    \u0275\u0275property("ngForOf", vol_r4.details);
+    \u0275\u0275property("ngForOf", vol_r5.details);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(vol_r4.meilleuresScore);
+    \u0275\u0275textInterpolate(vol_r5.meilleuresScore);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(vol_r4.moinsBonnesScore);
+    \u0275\u0275textInterpolate(vol_r5.moinsBonnesScore);
   }
 }
-function TirCompteDoubleComponent_div_6_tr_16_Template(rf, ctx) {
+function TirCompteDoubleComponent_div_4_tr_16_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "tr")(1, "td", 22);
+    \u0275\u0275elementStart(0, "tr")(1, "td", 23);
     \u0275\u0275text(2, "Total");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "td");
@@ -42731,32 +46459,32 @@ function TirCompteDoubleComponent_div_6_tr_16_Template(rf, ctx) {
     \u0275\u0275textInterpolate(ctx_r1.getTotalWorstScore());
   }
 }
-function TirCompteDoubleComponent_div_6_div_17_span_4_Template(rf, ctx) {
+function TirCompteDoubleComponent_div_4_div_17_span_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 21);
+    \u0275\u0275elementStart(0, "span", 22);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const s_r7 = ctx.$implicit;
+    const s_r8 = ctx.$implicit;
     const ctx_r1 = \u0275\u0275nextContext(3);
-    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(s_r7));
+    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(s_r8));
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(s_r7);
+    \u0275\u0275textInterpolate(s_r8);
   }
 }
-function TirCompteDoubleComponent_div_6_div_17_Template(rf, ctx) {
+function TirCompteDoubleComponent_div_4_div_17_Template(rf, ctx) {
   if (rf & 1) {
-    const _r6 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div")(1, "h2", 16);
+    const _r7 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div")(1, "h2", 17);
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "div");
-    \u0275\u0275template(4, TirCompteDoubleComponent_div_6_div_17_span_4_Template, 2, 2, "span", 20);
+    \u0275\u0275template(4, TirCompteDoubleComponent_div_4_div_17_span_4_Template, 2, 2, "span", 21);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "div", 23)(6, "button", 24);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_6_div_17_Template_button_click_6_listener() {
-      \u0275\u0275restoreView(_r6);
+    \u0275\u0275elementStart(5, "div", 24)(6, "button", 25);
+    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_4_div_17_Template_button_click_6_listener() {
+      \u0275\u0275restoreView(_r7);
       const ctx_r1 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r1.removeLastScore());
     });
@@ -42773,12 +46501,12 @@ function TirCompteDoubleComponent_div_6_div_17_Template(rf, ctx) {
     \u0275\u0275property("disabled", ctx_r1.currentVolee.length === 0);
   }
 }
-function TirCompteDoubleComponent_div_6_Template(rf, ctx) {
+function TirCompteDoubleComponent_div_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 15)(1, "h2", 16);
+    \u0275\u0275elementStart(0, "div", 16)(1, "h2", 17);
     \u0275\u0275text(2, "Vol\xE9es pass\xE9es");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "table", 17)(4, "thead")(5, "tr")(6, "th");
+    \u0275\u0275elementStart(3, "table", 18)(4, "thead")(5, "tr")(6, "th");
     \u0275\u0275text(7, "Vol\xE9e");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(8, "th");
@@ -42791,9 +46519,9 @@ function TirCompteDoubleComponent_div_6_Template(rf, ctx) {
     \u0275\u0275text(13, "6 -");
     \u0275\u0275elementEnd()()();
     \u0275\u0275elementStart(14, "tbody");
-    \u0275\u0275template(15, TirCompteDoubleComponent_div_6_tr_15_Template, 9, 4, "tr", 18)(16, TirCompteDoubleComponent_div_6_tr_16_Template, 7, 2, "tr", 19);
+    \u0275\u0275template(15, TirCompteDoubleComponent_div_4_tr_15_Template, 9, 4, "tr", 19)(16, TirCompteDoubleComponent_div_4_tr_16_Template, 7, 2, "tr", 20);
     \u0275\u0275elementEnd()();
-    \u0275\u0275template(17, TirCompteDoubleComponent_div_6_div_17_Template, 8, 4, "div", 19);
+    \u0275\u0275template(17, TirCompteDoubleComponent_div_4_div_17_Template, 8, 4, "div", 20);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
@@ -42806,12 +46534,12 @@ function TirCompteDoubleComponent_div_6_Template(rf, ctx) {
     \u0275\u0275property("ngIf", ctx_r1.gameStarted && !ctx_r1.gameFinished);
   }
 }
-function TirCompteDoubleComponent_app_score_keyboard_7_Template(rf, ctx) {
+function TirCompteDoubleComponent_app_score_keyboard_5_Template(rf, ctx) {
   if (rf & 1) {
-    const _r8 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "app-score-keyboard", 25);
-    \u0275\u0275listener("scoreSelected", function TirCompteDoubleComponent_app_score_keyboard_7_Template_app_score_keyboard_scoreSelected_0_listener($event) {
-      \u0275\u0275restoreView(_r8);
+    const _r9 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "app-score-keyboard", 26);
+    \u0275\u0275listener("scoreSelected", function TirCompteDoubleComponent_app_score_keyboard_5_Template_app_score_keyboard_scoreSelected_0_listener($event) {
+      \u0275\u0275restoreView(_r9);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.addScore($event));
     });
@@ -42823,6 +46551,7 @@ function TirCompteDoubleComponent_app_score_keyboard_7_Template(rf, ctx) {
   }
 }
 var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
+  faRotateLeft = faRotateLeft;
   nbFlechesParVolee = 7;
   nbVolees = 6;
   gameStarted = false;
@@ -42905,12 +46634,12 @@ var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
     return "";
   }
   calculateScoreSum(scores) {
-    return scores.reduce((total, s) => {
-      if (s === "X")
+    return scores.reduce((total, s2) => {
+      if (s2 === "X")
         return total + 10;
-      if (s === "M")
+      if (s2 === "M")
         return total;
-      return total + s;
+      return total + s2;
     }, 0);
   }
   getTotalBestScore() {
@@ -42977,37 +46706,34 @@ var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
   static \u0275fac = function TirCompteDoubleComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _TirCompteDoubleComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TirCompteDoubleComponent, selectors: [["app-tir-compte-double"]], decls: 8, vars: 3, consts: [[1, "box", "is-flex", "is-justify-content-space-between", "is-align-items-center", "mb-2"], [1, "title", "is-4"], [1, "button", "is-danger", 3, "click"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "valeurs", "scoreSelected", 4, "ngIf"], [1, "box"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-warning", 3, "click", "disabled"], [3, "scoreSelected", "valeurs"]], template: function TirCompteDoubleComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TirCompteDoubleComponent, selectors: [["app-tir-compte-double"]], decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:rgb(235, 115, 115)", 3, "icon", "click", 4, "ngIf"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "valeurs", "scoreSelected", 4, "ngIf"], [2, "color", "rgb(235, 115, 115)", 3, "click", "icon"], [1, "box"], [1, "title", "is-4"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-warning", 3, "click", "disabled"], [3, "scoreSelected", "valeurs"]], template: function TirCompteDoubleComponent_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275elementStart(0, "div", 0)(1, "h1", 1);
-      \u0275\u0275text(2, "Tir compt\xE9 double");
+      \u0275\u0275elementStart(0, "h1", 0);
+      \u0275\u0275text(1, "Tir compt\xE9 double\n\xA0\xA0\xA0");
+      \u0275\u0275template(2, TirCompteDoubleComponent_fa_icon_2_Template, 1, 1, "fa-icon", 1);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(3, "button", 2);
-      \u0275\u0275listener("click", function TirCompteDoubleComponent_Template_button_click_3_listener() {
-        return ctx.resetGame();
-      });
-      \u0275\u0275text(4, "Recommencer");
-      \u0275\u0275elementEnd()();
-      \u0275\u0275template(5, TirCompteDoubleComponent_div_5_Template, 30, 2, "div", 3)(6, TirCompteDoubleComponent_div_6_Template, 18, 3, "div", 4)(7, TirCompteDoubleComponent_app_score_keyboard_7_Template, 1, 1, "app-score-keyboard", 5);
+      \u0275\u0275template(3, TirCompteDoubleComponent_div_3_Template, 30, 2, "div", 2)(4, TirCompteDoubleComponent_div_4_Template, 18, 3, "div", 3)(5, TirCompteDoubleComponent_app_score_keyboard_5_Template, 1, 1, "app-score-keyboard", 4);
     }
     if (rf & 2) {
-      \u0275\u0275advance(5);
+      \u0275\u0275advance(2);
+      \u0275\u0275property("ngIf", ctx.gameStarted);
+      \u0275\u0275advance();
       \u0275\u0275property("ngIf", !ctx.gameStarted);
       \u0275\u0275advance();
       \u0275\u0275property("ngIf", ctx.gameStarted);
       \u0275\u0275advance();
       \u0275\u0275property("ngIf", ctx.gameStarted && !ctx.gameFinished);
     }
-  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule, ScoreKeyboardComponent], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
+  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, FaIconComponent], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TirCompteDoubleComponent, [{
     type: Component,
-    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent], template: '<div\n  class="box is-flex is-justify-content-space-between is-align-items-center mb-2"\n>\n  <h1 class="title is-4">Tir compt\xE9 double</h1>\n  <button class="button is-danger" (click)="resetGame()">Recommencer</button>\n</div>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input\n          class="input is-small has-text-centered"\n          readonly\n          [value]="nbFlechesParVolee"\n          style="width: 60px"\n        />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input\n          class="input is-small has-text-centered"\n          readonly\n          [value]="nbVolees"\n          style="width: 60px"\n        />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>6 +</th>\n        <th>6 -</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVollees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span\n            *ngFor="let s of vol.details"\n            class="tag m-1"\n            [ngClass]="getScoreClass(s)"\n            >{{ s }}</span\n          >\n        </td>\n        <td>{{ vol.meilleuresScore }}</td>\n        <td>{{ vol.moinsBonnesScore }}</td>\n      </tr>\n      <tr *ngIf="historiqueVollees.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{ getTotalBestScore() }}</td>\n        <td>{{ getTotalWorstScore() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span\n        *ngFor="let s of currentVolee"\n        class="tag m-1"\n        [ngClass]="getScoreClass(s)"\n        >{{ s }}</span\n      >\n    </div>\n    <div class="has-text-centered mt-2">\n      <button\n        class="button is-warning"\n        (click)="removeLastScore()"\n        [disabled]="currentVolee.length === 0"\n      >\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues" (scoreSelected)="addScore($event)"></app-score-keyboard>\n', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
+    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule], template: '<h1 class="title is-5">Tir compt\xE9 double\n&nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()" style="color:rgb(235, 115, 115)"></fa-icon>\n</h1>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px" />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px" />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>6 +</th>\n        <th>6 -</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVollees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ vol.meilleuresScore }}</td>\n        <td>{{ vol.moinsBonnesScore }}</td>\n      </tr>\n      <tr *ngIf="historiqueVollees.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{ getTotalBestScore() }}</td>\n        <td>{{ getTotalWorstScore() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-warning" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues"\n  (scoreSelected)="addScore($event)"></app-score-keyboard>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TirCompteDoubleComponent, { className: "TirCompteDoubleComponent", filePath: "src/app/pages/tir-compte-double/tir-compte-double.component.ts", lineNumber: 13 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TirCompteDoubleComponent, { className: "TirCompteDoubleComponent", filePath: "src/app/pages/tir-compte-double/tir-compte-double.component.ts", lineNumber: 15 });
 })();
 
 // src/app/pages/accueil/accueil.component.ts
@@ -43062,7 +46788,7 @@ var AccueilComponent = class _AccueilComponent {
 })();
 
 // src/app/components/blason-interactif/blason-interactif.component.ts
-var _c0 = ["blasonSvg"];
+var _c02 = ["blasonSvg"];
 function BlasonInteractifComponent__svg_circle_3_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275namespaceSVG();
@@ -43132,12 +46858,13 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
   impactsMoyens = null;
   nouvelImpact = new EventEmitter();
   zones = [
-    { r: 60, color: "#05c1f2", strokeWidth: 0.2 },
-    { r: 50, color: "#05c1f2", strokeWidth: 0.5 },
-    { r: 40, color: "red", strokeWidth: 0.2 },
-    { r: 30, color: "red", strokeWidth: 0.5 },
-    { r: 20, color: "yellow", strokeWidth: 0.2 },
-    { r: 10, color: "yellow", strokeWidth: 0.5 }
+    { r: 84, color: "#05c1f2", strokeWidth: 0.2 },
+    { r: 70, color: "#05c1f2", strokeWidth: 0.5 },
+    { r: 56, color: "red", strokeWidth: 0.2 },
+    { r: 42, color: "red", strokeWidth: 0.5 },
+    { r: 28, color: "yellow", strokeWidth: 0.2 },
+    { r: 14, color: "yellow", strokeWidth: 0.5 },
+    { r: 7, color: "yellow", strokeWidth: 0.2 }
   ];
   moving = false;
   impactEnCours = null;
@@ -43148,10 +46875,10 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
   startDrag(event) {
     if (event.touches.length === 1) {
       const svg = this.blasonSvg.nativeElement;
-      const pt = svg.createSVGPoint();
-      pt.x = event.touches[0].clientX;
-      pt.y = event.touches[0].clientY - decalageVertical;
-      const cursorpt = pt.matrixTransform(svg.getScreenCTM().inverse());
+      const pt2 = svg.createSVGPoint();
+      pt2.x = event.touches[0].clientX;
+      pt2.y = event.touches[0].clientY - decalageVertical;
+      const cursorpt = pt2.matrixTransform(svg.getScreenCTM().inverse());
       this.impactEnCours = { x: cursorpt.x, y: cursorpt.y };
       const viewBoxSize = 200;
       const relX = cursorpt.x / viewBoxSize;
@@ -43167,10 +46894,10 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
   drag(event) {
     if (this.moving && event.touches.length === 1) {
       const svg = this.blasonSvg.nativeElement;
-      const pt = svg.createSVGPoint();
-      pt.x = event.touches[0].clientX;
-      pt.y = event.touches[0].clientY - decalageVertical;
-      const cursorpt = pt.matrixTransform(svg.getScreenCTM().inverse());
+      const pt2 = svg.createSVGPoint();
+      pt2.x = event.touches[0].clientX;
+      pt2.y = event.touches[0].clientY - decalageVertical;
+      const cursorpt = pt2.matrixTransform(svg.getScreenCTM().inverse());
       this.impactEnCours = { x: cursorpt.x, y: cursorpt.y };
       event.preventDefault();
     }
@@ -43192,15 +46919,15 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
     }
   }
   // Helper function to calculate text Y position
-  getTextY(cy, r, padding = 2) {
-    return cy - r - padding;
+  getTextY(cy, r2, padding = 2) {
+    return cy - r2 - padding;
   }
   static \u0275fac = function BlasonInteractifComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _BlasonInteractifComponent)();
   };
   static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BlasonInteractifComponent, selectors: [["app-blason-interactif"]], viewQuery: function BlasonInteractifComponent_Query(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275viewQuery(_c0, 5);
+      \u0275\u0275viewQuery(_c02, 5);
     }
     if (rf & 2) {
       let _t;
@@ -43275,13 +47002,13 @@ function TriDeFlechesComponent_button_2_Template(rf, ctx) {
 function TriDeFlechesComponent_div_3_Template(rf, ctx) {
   if (rf & 1) {
     const _r3 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div")(1, "h2", 0);
+    \u0275\u0275elementStart(0, "div")(1, "h2", 5);
     \u0275\u0275text(2, "Param\xE8tres");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "div", 5)(4, "label");
+    \u0275\u0275elementStart(3, "div", 6)(4, "label");
     \u0275\u0275text(5, "Nombre de fl\xE8ches :");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "input", 6);
+    \u0275\u0275elementStart(6, "input", 7);
     \u0275\u0275twoWayListener("ngModelChange", function TriDeFlechesComponent_div_3_Template_input_ngModelChange_6_listener($event) {
       \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
@@ -43289,7 +47016,7 @@ function TriDeFlechesComponent_div_3_Template(rf, ctx) {
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(7, "div", 7)(8, "button", 8);
+    \u0275\u0275elementStart(7, "div", 8)(8, "button", 9);
     \u0275\u0275listener("click", function TriDeFlechesComponent_div_3_Template_button_click_8_listener() {
       \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
@@ -43307,14 +47034,14 @@ function TriDeFlechesComponent_div_3_Template(rf, ctx) {
 function TriDeFlechesComponent_div_4_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div")(1, "app-blason-interactif", 9);
+    \u0275\u0275elementStart(0, "div")(1, "app-blason-interactif", 10);
     \u0275\u0275listener("nouvelImpact", function TriDeFlechesComponent_div_4_Template_app_blason_interactif_nouvelImpact_1_listener($event) {
       \u0275\u0275restoreView(_r4);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.onNouvelImpact($event));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(2, "button", 10);
+    \u0275\u0275elementStart(2, "button", 11);
     \u0275\u0275listener("click", function TriDeFlechesComponent_div_4_Template_button_click_2_listener() {
       \u0275\u0275restoreView(_r4);
       const ctx_r1 = \u0275\u0275nextContext();
@@ -43335,8 +47062,8 @@ function TriDeFlechesComponent_div_5_Template(rf, ctx) {
     \u0275\u0275elementStart(0, "div")(1, "h3");
     \u0275\u0275text(2, "Toutes les moyennes");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(3, "app-blason-interactif", 11);
-    \u0275\u0275elementStart(4, "button", 10);
+    \u0275\u0275element(3, "app-blason-interactif", 12);
+    \u0275\u0275elementStart(4, "button", 11);
     \u0275\u0275listener("click", function TriDeFlechesComponent_div_5_Template_button_click_4_listener() {
       \u0275\u0275restoreView(_r5);
       const ctx_r1 = \u0275\u0275nextContext();
@@ -43353,32 +47080,40 @@ function TriDeFlechesComponent_div_5_Template(rf, ctx) {
 }
 function TriDeFlechesComponent_div_6_button_7_Template(rf, ctx) {
   if (rf & 1) {
-    const _r6 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 19);
+    const _r7 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 21);
     \u0275\u0275listener("click", function TriDeFlechesComponent_div_6_button_7_Template_button_click_0_listener() {
-      const n_r7 = \u0275\u0275restoreView(_r6).$implicit;
+      const n_r8 = \u0275\u0275restoreView(_r7).$implicit;
       const ctx_r1 = \u0275\u0275nextContext(2);
-      return \u0275\u0275resetView(ctx_r1.affecterImpact(n_r7));
+      return \u0275\u0275resetView(ctx_r1.affecterImpact(n_r8));
     });
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const n_r7 = ctx.$implicit;
+    const n_r8 = ctx.$implicit;
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" ", n_r7, " ");
+    \u0275\u0275textInterpolate1(" ", n_r8, " ");
   }
 }
 function TriDeFlechesComponent_div_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 12);
-    \u0275\u0275element(1, "div", 13);
-    \u0275\u0275elementStart(2, "div", 14)(3, "header", 15)(4, "p", 16);
+    const _r6 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 13);
+    \u0275\u0275element(1, "div", 14);
+    \u0275\u0275elementStart(2, "div", 15)(3, "header", 16)(4, "p", 17);
     \u0275\u0275text(5, "Associer \xE0 quelle fl\xE8che ?");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "section", 17);
-    \u0275\u0275template(7, TriDeFlechesComponent_div_6_button_7_Template, 2, 1, "button", 18);
-    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(6, "section", 18);
+    \u0275\u0275template(7, TriDeFlechesComponent_div_6_button_7_Template, 2, 1, "button", 19);
+    \u0275\u0275elementStart(8, "button", 20);
+    \u0275\u0275listener("click", function TriDeFlechesComponent_div_6_Template_button_click_8_listener() {
+      \u0275\u0275restoreView(_r6);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.annulerAffectationImpact());
+    });
+    \u0275\u0275text(9, "Annuler");
+    \u0275\u0275elementEnd()()()();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
@@ -43450,6 +47185,11 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
     this.showModal = false;
     this.sauvegarder();
   }
+  annulerAffectationImpact() {
+    this.dernierImpact = null;
+    this.showModal = false;
+    this.sauvegarder();
+  }
   voirTout() {
     this.mode = "voirTout";
   }
@@ -43490,13 +47230,13 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
   static \u0275fac = function TriDeFlechesComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _TriDeFlechesComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TriDeFlechesComponent, selectors: [["app-tri-de-fleches"]], decls: 7, vars: 5, consts: [[1, "title", "is-4"], ["class", "button is-danger", 3, "click", 4, "ngIf"], [4, "ngIf"], ["class", "modal is-active", 4, "ngIf"], [1, "button", "is-danger", 3, "click"], [1, "field", "mb-4"], ["type", "number", "min", "1", "inputmode", "numeric", 3, "ngModelChange", "ngModel"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [3, "nouvelImpact", "autresImpacts", "impactsMoyens"], [1, "button", "is-warning", 3, "click"], [3, "autresImpacts", "impactsMoyens"], [1, "modal", "is-active"], [1, "modal-background"], [1, "modal-card"], [1, "modal-card-head"], [1, "modal-card-title"], [1, "modal-card-body"], ["class", "button m-1", 3, "click", 4, "ngFor", "ngForOf"], [1, "button", "m-1", 3, "click"]], template: function TriDeFlechesComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TriDeFlechesComponent, selectors: [["app-tri-de-fleches"]], decls: 7, vars: 5, consts: [[1, "title", "is-5"], ["class", "button is-danger is-small", 3, "click", 4, "ngIf"], [4, "ngIf"], ["class", "modal is-active", 4, "ngIf"], [1, "button", "is-danger", "is-small", 3, "click"], [1, "title", "is-4"], [1, "field", "mb-4"], ["type", "number", "min", "1", "inputmode", "numeric", 3, "ngModelChange", "ngModel"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [3, "nouvelImpact", "autresImpacts", "impactsMoyens"], [1, "button", "is-warning", 3, "click"], [3, "autresImpacts", "impactsMoyens"], [1, "modal", "is-active"], [1, "modal-background"], [1, "modal-card"], [1, "modal-card-head"], [1, "modal-card-title"], [1, "modal-card-body"], ["class", "button m-1", 3, "click", 4, "ngFor", "ngForOf"], [1, "button", "m-1", "is-danger", 3, "click"], [1, "button", "m-1", 3, "click"]], template: function TriDeFlechesComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "h2", 0);
-      \u0275\u0275text(1, "Tri de fl\xE8ches");
+      \u0275\u0275text(1, "Tri de fl\xE8ches ");
       \u0275\u0275template(2, TriDeFlechesComponent_button_2_Template, 2, 0, "button", 1);
       \u0275\u0275elementEnd();
-      \u0275\u0275template(3, TriDeFlechesComponent_div_3_Template, 10, 1, "div", 2)(4, TriDeFlechesComponent_div_4_Template, 4, 2, "div", 2)(5, TriDeFlechesComponent_div_5_Template, 6, 2, "div", 2)(6, TriDeFlechesComponent_div_6_Template, 8, 1, "div", 3);
+      \u0275\u0275template(3, TriDeFlechesComponent_div_3_Template, 10, 1, "div", 2)(4, TriDeFlechesComponent_div_4_Template, 4, 2, "div", 2)(5, TriDeFlechesComponent_div_5_Template, 6, 2, "div", 2)(6, TriDeFlechesComponent_div_6_Template, 10, 1, "div", 3);
     }
     if (rf & 2) {
       \u0275\u0275advance(2);
@@ -43515,7 +47255,7 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TriDeFlechesComponent, [{
     type: Component,
-    args: [{ selector: "app-tri-de-fleches", standalone: true, imports: [CommonModule, FormsModule, BlasonInteractifComponent], template: `<h2 class="title is-4">Tri de fl\xE8ches<button *ngIf="mode != 'parametrage'" (click)="relancer()" class="button is-danger">Relancer</button></h2>
+    args: [{ selector: "app-tri-de-fleches", standalone: true, imports: [CommonModule, FormsModule, BlasonInteractifComponent], template: `<h2 class="title is-5">Tri de fl\xE8ches <button *ngIf="mode != 'parametrage'" (click)="relancer()" class="button is-danger is-small">Relancer</button></h2>
 
 <!-- Param\xE9trage -->
 <div *ngIf="mode === 'parametrage'">
@@ -43559,6 +47299,7 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
             <button *ngFor="let n of getFlecheNums()" class="button m-1" (click)="affecterImpact(n)">
                 {{ n }}
             </button>
+            <button class="button m-1 is-danger" (click)="annulerAffectationImpact()">Annuler</button>
         </section>
     </div>
 </div>`, styles: [".grille{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}button.is-active{background-color:#a6c6f7}\n"] }]
@@ -43585,7 +47326,7 @@ var appConfig = {
 };
 
 // src/app/navbar/navbar.component.ts
-var _c02 = (a0) => ({ "is-active": a0 });
+var _c03 = (a0) => ({ "is-active": a0 });
 var NavbarComponent = class _NavbarComponent {
   isNavbarActive = false;
   toggleNavbar() {
@@ -43642,7 +47383,7 @@ var NavbarComponent = class _NavbarComponent {
     }
     if (rf & 2) {
       \u0275\u0275advance(9);
-      \u0275\u0275property("ngClass", \u0275\u0275pureFunction1(1, _c02, ctx.isNavbarActive));
+      \u0275\u0275property("ngClass", \u0275\u0275pureFunction1(1, _c03, ctx.isNavbarActive));
     }
   }, dependencies: [CommonModule, NgClass, RouterModule, RouterLink, RouterLinkActive], encapsulation: 2 });
 };
