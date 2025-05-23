@@ -1,4 +1,4 @@
-<h1 class="title is-5">Tir compté double
+<h1 class="title is-5">Tir compté
 &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()" style="color:rgb(235, 115, 115);cursor:pointer;"></fa-icon>
 </h1>
 
@@ -48,23 +48,22 @@
       <tr>
         <th>Volée</th>
         <th>Détails</th>
-        <th>6 +</th>
-        <th>6 -</th>
+        <th>Tot.</th>
+        <th>TC</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let vol of historiqueVollees; index as i">
+      <tr *ngFor="let vol of historiqueVolees; index as i">
         <td>{{ i + 1 }}</td>
         <td>
           <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
         </td>
-        <td>{{ vol.meilleuresScore }}</td>
-        <td>{{ vol.moinsBonnesScore }}</td>
+        <td>{{ vol.total }}</td>
+        <td>{{ getTotalCumule() }}</td>
       </tr>
-      <tr *ngIf="historiqueVollees.length > 0">
+      <tr *ngIf="historiqueVolees.length > 0">
         <td colspan="2">Total</td>
-        <td>{{ getTotalBestScore() }}</td>
-        <td>{{ getTotalWorstScore() }}</td>
+        <td colspan="2">{{ getTotalCumule() }}</td>
       </tr>
     </tbody>
   </table>
