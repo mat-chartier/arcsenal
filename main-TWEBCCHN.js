@@ -46706,7 +46706,7 @@ var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
   static \u0275fac = function TirCompteDoubleComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _TirCompteDoubleComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TirCompteDoubleComponent, selectors: [["app-tir-compte-double"]], decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:rgb(235, 115, 115)", 3, "icon", "click", 4, "ngIf"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "valeurs", "scoreSelected", 4, "ngIf"], [2, "color", "rgb(235, 115, 115)", 3, "click", "icon"], [1, "box"], [1, "title", "is-4"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-warning", 3, "click", "disabled"], [3, "scoreSelected", "valeurs"]], template: function TirCompteDoubleComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TirCompteDoubleComponent, selectors: [["app-tir-compte-double"]], decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:rgb(235, 115, 115);cursor:pointer;", 3, "icon", "click", 4, "ngIf"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "valeurs", "scoreSelected", 4, "ngIf"], [2, "color", "rgb(235, 115, 115)", "cursor", "pointer", 3, "click", "icon"], [1, "box"], [1, "title", "is-4"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-warning", 3, "click", "disabled"], [3, "scoreSelected", "valeurs"]], template: function TirCompteDoubleComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "h1", 0);
       \u0275\u0275text(1, "Tir compt\xE9 double\n\xA0\xA0\xA0");
@@ -46729,7 +46729,7 @@ var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TirCompteDoubleComponent, [{
     type: Component,
-    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule], template: '<h1 class="title is-5">Tir compt\xE9 double\n&nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()" style="color:rgb(235, 115, 115)"></fa-icon>\n</h1>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px" />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px" />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>6 +</th>\n        <th>6 -</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVollees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ vol.meilleuresScore }}</td>\n        <td>{{ vol.moinsBonnesScore }}</td>\n      </tr>\n      <tr *ngIf="historiqueVollees.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{ getTotalBestScore() }}</td>\n        <td>{{ getTotalWorstScore() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-warning" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues"\n  (scoreSelected)="addScore($event)"></app-score-keyboard>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
+    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule], template: '<h1 class="title is-5">Tir compt\xE9 double\n&nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()" style="color:rgb(235, 115, 115);cursor:pointer;"></fa-icon>\n</h1>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px" />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px" />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>6 +</th>\n        <th>6 -</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVollees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ vol.meilleuresScore }}</td>\n        <td>{{ vol.moinsBonnesScore }}</td>\n      </tr>\n      <tr *ngIf="historiqueVollees.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{ getTotalBestScore() }}</td>\n        <td>{{ getTotalWorstScore() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-warning" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues"\n  (scoreSelected)="addScore($event)"></app-score-keyboard>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
   }], null, null);
 })();
 (() => {
@@ -47271,6 +47271,7 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
     </div>
 </div>
 
+
 <!-- Blason interactif -->
 <div *ngIf="mode === 'blason'">
     <app-blason-interactif [autresImpacts]="getAllImpacts()" [impactsMoyens]="moyennesDesFleches()" (nouvelImpact)="onNouvelImpact($event)"></app-blason-interactif>
@@ -47278,6 +47279,7 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
     <button (click)="voirTout()" class="button is-warning">Voir tout</button>
     
 </div>
+
 
 <!-- Voir tout : moyennes et moyenne des moyennes -->
 <div *ngIf="mode === 'voirTout'">
@@ -47302,15 +47304,427 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
             <button class="button m-1 is-danger" (click)="annulerAffectationImpact()">Annuler</button>
         </section>
     </div>
-</div>`, styles: [".grille{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}button.is-active{background-color:#a6c6f7}\n"] }]
+</div>
+`, styles: [".grille{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}button.is-active{background-color:#a6c6f7}\n"] }]
   }], null, null);
 })();
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TriDeFlechesComponent, { className: "TriDeFlechesComponent", filePath: "src/app/pages/tri-de-fleches/tri-de-fleches.component.ts", lineNumber: 13 });
 })();
 
+// src/app/pages/tir-compte-simple/tir-compte-simple.component.ts
+function TirCompteSimpleComponent_fa_icon_2_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "fa-icon", 5);
+    \u0275\u0275listener("click", function TirCompteSimpleComponent_fa_icon_2_Template_fa_icon_click_0_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.resetGame());
+    });
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275property("icon", ctx_r1.faRotateLeft);
+  }
+}
+function TirCompteSimpleComponent_div_3_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r3 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 6)(1, "h2", 7);
+    \u0275\u0275text(2, "Param\xE8tres");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "div", 8)(4, "label", 9);
+    \u0275\u0275text(5, "Fl\xE8ches par vol\xE9e :");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(6, "div", 10)(7, "p", 11)(8, "button", 12);
+    \u0275\u0275listener("click", function TirCompteSimpleComponent_div_3_Template_button_click_8_listener() {
+      \u0275\u0275restoreView(_r3);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.decrementFleches());
+    });
+    \u0275\u0275text(9, "-");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(10, "p", 11);
+    \u0275\u0275element(11, "input", 13);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(12, "p", 11)(13, "button", 12);
+    \u0275\u0275listener("click", function TirCompteSimpleComponent_div_3_Template_button_click_13_listener() {
+      \u0275\u0275restoreView(_r3);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.incrementFleches());
+    });
+    \u0275\u0275text(14, "+");
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275elementStart(15, "div", 8)(16, "label", 9);
+    \u0275\u0275text(17, "Nombre de vol\xE9es :");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(18, "div", 10)(19, "p", 11)(20, "button", 12);
+    \u0275\u0275listener("click", function TirCompteSimpleComponent_div_3_Template_button_click_20_listener() {
+      \u0275\u0275restoreView(_r3);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.decrementVolees());
+    });
+    \u0275\u0275text(21, "-");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(22, "p", 11);
+    \u0275\u0275element(23, "input", 13);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(24, "p", 11)(25, "button", 12);
+    \u0275\u0275listener("click", function TirCompteSimpleComponent_div_3_Template_button_click_25_listener() {
+      \u0275\u0275restoreView(_r3);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.incrementVolees());
+    });
+    \u0275\u0275text(26, "+");
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275elementStart(27, "div", 14)(28, "button", 15);
+    \u0275\u0275listener("click", function TirCompteSimpleComponent_div_3_Template_button_click_28_listener() {
+      \u0275\u0275restoreView(_r3);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.startGame());
+    });
+    \u0275\u0275text(29, "D\xE9marrer");
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275advance(11);
+    \u0275\u0275property("value", ctx_r1.nbFlechesParVolee);
+    \u0275\u0275advance(12);
+    \u0275\u0275property("value", ctx_r1.nbVolees);
+  }
+}
+function TirCompteSimpleComponent_div_4_tr_15_span_4_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 22);
+    \u0275\u0275text(1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const s_r4 = ctx.$implicit;
+    const ctx_r1 = \u0275\u0275nextContext(3);
+    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(s_r4));
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate(s_r4);
+  }
+}
+function TirCompteSimpleComponent_div_4_tr_15_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "tr")(1, "td");
+    \u0275\u0275text(2);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "td");
+    \u0275\u0275template(4, TirCompteSimpleComponent_div_4_tr_15_span_4_Template, 2, 2, "span", 21);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(5, "td");
+    \u0275\u0275text(6);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(7, "td");
+    \u0275\u0275text(8);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const vol_r5 = ctx.$implicit;
+    const i_r6 = ctx.index;
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(i_r6 + 1);
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngForOf", vol_r5.details);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(vol_r5.total);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(ctx_r1.getTotalCumule());
+  }
+}
+function TirCompteSimpleComponent_div_4_tr_16_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "tr")(1, "td", 23);
+    \u0275\u0275text(2, "Total");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "td", 23);
+    \u0275\u0275text(4);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance(4);
+    \u0275\u0275textInterpolate(ctx_r1.getTotalCumule());
+  }
+}
+function TirCompteSimpleComponent_div_4_div_17_span_4_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 22);
+    \u0275\u0275text(1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const s_r8 = ctx.$implicit;
+    const ctx_r1 = \u0275\u0275nextContext(3);
+    \u0275\u0275property("ngClass", ctx_r1.getScoreClass(s_r8));
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate(s_r8);
+  }
+}
+function TirCompteSimpleComponent_div_4_div_17_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r7 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div")(1, "h2", 17);
+    \u0275\u0275text(2);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "div");
+    \u0275\u0275template(4, TirCompteSimpleComponent_div_4_div_17_span_4_Template, 2, 2, "span", 21);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(5, "div", 24)(6, "button", 25);
+    \u0275\u0275listener("click", function TirCompteSimpleComponent_div_4_div_17_Template_button_click_6_listener() {
+      \u0275\u0275restoreView(_r7);
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.removeLastScore());
+    });
+    \u0275\u0275text(7, " Annuler derni\xE8re fl\xE8che ");
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate2("Vol\xE9e ", ctx_r1.currentVoleeIndex + 1, " / ", ctx_r1.nbVolees, "");
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngForOf", ctx_r1.currentVolee);
+    \u0275\u0275advance(2);
+    \u0275\u0275property("disabled", ctx_r1.currentVolee.length === 0);
+  }
+}
+function TirCompteSimpleComponent_div_4_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 16)(1, "h2", 17);
+    \u0275\u0275text(2, "Vol\xE9es pass\xE9es");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "table", 18)(4, "thead")(5, "tr")(6, "th");
+    \u0275\u0275text(7, "Vol\xE9e");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(8, "th");
+    \u0275\u0275text(9, "D\xE9tails");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(10, "th");
+    \u0275\u0275text(11, "Tot.");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(12, "th");
+    \u0275\u0275text(13, "TC");
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(14, "tbody");
+    \u0275\u0275template(15, TirCompteSimpleComponent_div_4_tr_15_Template, 9, 4, "tr", 19)(16, TirCompteSimpleComponent_div_4_tr_16_Template, 5, 1, "tr", 20);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275template(17, TirCompteSimpleComponent_div_4_div_17_Template, 8, 4, "div", 20);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275advance(15);
+    \u0275\u0275property("ngForOf", ctx_r1.historiqueVolees);
+    \u0275\u0275advance();
+    \u0275\u0275property("ngIf", ctx_r1.historiqueVolees.length > 0);
+    \u0275\u0275advance();
+    \u0275\u0275property("ngIf", ctx_r1.gameStarted && !ctx_r1.gameFinished);
+  }
+}
+function TirCompteSimpleComponent_app_score_keyboard_5_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r9 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "app-score-keyboard", 26);
+    \u0275\u0275listener("scoreSelected", function TirCompteSimpleComponent_app_score_keyboard_5_Template_app_score_keyboard_scoreSelected_0_listener($event) {
+      \u0275\u0275restoreView(_r9);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.addScore($event));
+    });
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275property("valeurs", ctx_r1.scoreValues);
+  }
+}
+var TirCompteSimpleComponent = class _TirCompteSimpleComponent {
+  faRotateLeft = faRotateLeft;
+  nbFlechesParVolee = 6;
+  nbVolees = 6;
+  gameStarted = false;
+  gameFinished = false;
+  currentVolee = [];
+  currentVoleeIndex = 0;
+  historiqueVolees = [];
+  // Clavier
+  scoreValues = [
+    "X",
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1,
+    "M"
+  ];
+  localStorageName = "tirCompteSimpleGame";
+  startGame() {
+    this.gameStarted = true;
+    this.currentVolee = [];
+    this.currentVoleeIndex = 0;
+    this.historiqueVolees = [];
+  }
+  resetGame() {
+    this.gameStarted = false;
+    this.gameFinished = false;
+    this.nbFlechesParVolee = 6;
+    this.nbVolees = 6;
+    this.currentVolee = [];
+    this.historiqueVolees = [];
+    localStorage.removeItem("tirCompteDoubleGame");
+  }
+  addScore(score) {
+    if (this.currentVolee.length < this.nbFlechesParVolee) {
+      this.currentVolee.push(score);
+      if (this.currentVolee.length === this.nbFlechesParVolee) {
+        this.saveCurrentVolee();
+      }
+    }
+  }
+  saveCurrentVolee() {
+    const sortedScores = [...this.currentVolee].sort((a, b) => {
+      const valA = a === "X" ? 10 : a === "M" ? 0 : a;
+      const valB = b === "X" ? 10 : b === "M" ? 0 : b;
+      return valB - valA;
+    });
+    const total = this.calculateScoreSum(this.currentVolee);
+    this.historiqueVolees.push({
+      details: [...this.currentVolee],
+      total
+    });
+    this.currentVolee = [];
+    this.currentVoleeIndex++;
+    if (this.currentVoleeIndex >= this.nbVolees) {
+      this.gameFinished = true;
+      console.log("game finished");
+    }
+    this.saveToLocalStorage();
+  }
+  getScoreClass(score) {
+    if (score === "X" || score === 10 || score === 9)
+      return "yellow";
+    if (score === 7 || score === 8)
+      return "red";
+    if (score === 5 || score === 6)
+      return "blue";
+    if (score === 3 || score === 4)
+      return "black";
+    if (score === 2 || score === 1)
+      return "white";
+    if (score === "M")
+      return "gray";
+    return "";
+  }
+  calculateScoreSum(scores) {
+    return scores.reduce((total, s2) => {
+      if (s2 === "X")
+        return total + 10;
+      if (s2 === "M")
+        return total;
+      return total + s2;
+    }, 0);
+  }
+  getTotalCumule() {
+    if (this.historiqueVolees && this.historiqueVolees.length > 1) {
+      return "" + this.historiqueVolees.map((v) => v.total).reduce((p2, v) => p2 + v);
+    }
+    return "";
+  }
+  incrementFleches() {
+    this.nbFlechesParVolee++;
+  }
+  decrementFleches() {
+    if (this.nbFlechesParVolee > 7) {
+      this.nbFlechesParVolee--;
+    }
+  }
+  incrementVolees() {
+    this.nbVolees++;
+  }
+  decrementVolees() {
+    if (this.nbVolees > 1) {
+      this.nbVolees--;
+    }
+  }
+  removeLastScore() {
+    if (this.currentVolee.length > 0) {
+      this.currentVolee.pop();
+    }
+  }
+  saveToLocalStorage() {
+    const data = {
+      nbFlechesParVolee: this.nbFlechesParVolee,
+      nbVolees: this.nbVolees,
+      currentVolee: this.currentVolee,
+      currentVoleeIndex: this.currentVoleeIndex,
+      historiqueVolees: this.historiqueVolees
+    };
+    localStorage.setItem(this.localStorageName, JSON.stringify(data));
+  }
+  loadFromLocalStorage() {
+    const saved = localStorage.getItem(this.localStorageName);
+    if (saved) {
+      const data = JSON.parse(saved);
+      this.nbFlechesParVolee = data.nbFlechesParVolee;
+      this.nbVolees = data.nbVolees;
+      this.currentVolee = data.currentVolee;
+      this.currentVoleeIndex = data.currentVoleeIndex;
+      this.historiqueVolees = data.historiqueVolees;
+      this.gameStarted = true;
+      this.gameFinished = this.currentVoleeIndex >= this.nbVolees;
+    }
+  }
+  ngOnInit() {
+    this.loadFromLocalStorage();
+  }
+  static \u0275fac = function TirCompteSimpleComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _TirCompteSimpleComponent)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TirCompteSimpleComponent, selectors: [["app-tir-compte-double"]], decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:rgb(235, 115, 115);cursor:pointer;", 3, "icon", "click", 4, "ngIf"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "valeurs", "scoreSelected", 4, "ngIf"], [2, "color", "rgb(235, 115, 115)", "cursor", "pointer", 3, "click", "icon"], [1, "box"], [1, "title", "is-4"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-warning", 3, "click", "disabled"], [3, "scoreSelected", "valeurs"]], template: function TirCompteSimpleComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275elementStart(0, "h1", 0);
+      \u0275\u0275text(1, "Tir compt\xE9\n\xA0\xA0\xA0");
+      \u0275\u0275template(2, TirCompteSimpleComponent_fa_icon_2_Template, 1, 1, "fa-icon", 1);
+      \u0275\u0275elementEnd();
+      \u0275\u0275template(3, TirCompteSimpleComponent_div_3_Template, 30, 2, "div", 2)(4, TirCompteSimpleComponent_div_4_Template, 18, 3, "div", 3)(5, TirCompteSimpleComponent_app_score_keyboard_5_Template, 1, 1, "app-score-keyboard", 4);
+    }
+    if (rf & 2) {
+      \u0275\u0275advance(2);
+      \u0275\u0275property("ngIf", ctx.gameStarted);
+      \u0275\u0275advance();
+      \u0275\u0275property("ngIf", !ctx.gameStarted);
+      \u0275\u0275advance();
+      \u0275\u0275property("ngIf", ctx.gameStarted);
+      \u0275\u0275advance();
+      \u0275\u0275property("ngIf", ctx.gameStarted && !ctx.gameFinished);
+    }
+  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, FaIconComponent], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TirCompteSimpleComponent, [{
+    type: Component,
+    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule], template: '<h1 class="title is-5">Tir compt\xE9\n&nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()" style="color:rgb(235, 115, 115);cursor:pointer;"></fa-icon>\n</h1>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px" />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px" />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Tot.</th>\n        <th>TC</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVolees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ vol.total }}</td>\n        <td>{{ getTotalCumule() }}</td>\n      </tr>\n      <tr *ngIf="historiqueVolees.length > 0">\n        <td colspan="2">Total</td>\n        <td colspan="2">{{ getTotalCumule() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-warning" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues"\n  (scoreSelected)="addScore($event)"></app-score-keyboard>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
+  }], null, null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TirCompteSimpleComponent, { className: "TirCompteSimpleComponent", filePath: "src/app/pages/tir-compte-simple/tir-compte-simple.component.ts", lineNumber: 15 });
+})();
+
 // src/app/app.routes.ts
 var routes = [
+  { path: "tir-compte-simple", component: TirCompteSimpleComponent },
   { path: "gold-game", component: GoldGameComponent },
   { path: "tir-compte-double", component: TirCompteDoubleComponent },
   { path: "accueil", component: AccueilComponent },
@@ -47338,7 +47752,7 @@ var NavbarComponent = class _NavbarComponent {
   static \u0275fac = function NavbarComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _NavbarComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _NavbarComponent, selectors: [["app-navbar"]], decls: 30, vars: 3, consts: [["role", "navigation", "aria-label", "main navigation", 1, "navbar", "is-primary"], [1, "navbar-brand"], ["href", "#", 1, "navbar-item"], ["role", "button", "aria-label", "menu", "aria-expanded", "false", 1, "navbar-burger", 3, "click"], ["aria-hidden", "true"], ["id", "navbarBasic", 1, "navbar-menu", 3, "ngClass"], [1, "navbar-start"], [1, "navbar-item", "has-dropdown", "is-hoverable"], [1, "navbar-link"], [1, "navbar-dropdown"], ["target", "_blank", "href", "https://mat-chartier.github.io/simplevideocoach/", 1, "navbar-item"], [1, "navbar-divider"], ["target", "_blank", "href", "https://mat-chartier.github.io/tube-cutter-length-calculator/", 1, "navbar-item"], ["routerLink", "/gold-game", "routerLinkActive", "is-active", 1, "navbar-item", 3, "click"], ["routerLink", "/tir-compte-double", "routerLinkActive", "is-active", 1, "navbar-item", 3, "click"], ["routerLink", "/tri-de-fleches", "routerLinkActive", "is-active", 1, "navbar-item", 3, "click"]], template: function NavbarComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _NavbarComponent, selectors: [["app-navbar"]], decls: 32, vars: 3, consts: [["role", "navigation", "aria-label", "main navigation", 1, "navbar", "is-primary"], [1, "navbar-brand"], ["href", "#", 1, "navbar-item"], ["role", "button", "aria-label", "menu", "aria-expanded", "false", 1, "navbar-burger", 3, "click"], ["aria-hidden", "true"], ["id", "navbarBasic", 1, "navbar-menu", 3, "ngClass"], [1, "navbar-start"], [1, "navbar-item", "has-dropdown", "is-hoverable"], [1, "navbar-link"], [1, "navbar-dropdown"], ["target", "_blank", "href", "https://mat-chartier.github.io/simplevideocoach/", 1, "navbar-item"], [1, "navbar-divider"], ["target", "_blank", "href", "https://mat-chartier.github.io/tube-cutter-length-calculator/", 1, "navbar-item"], ["routerLink", "/tir-compte-simple", "routerLinkActive", "is-active", 1, "navbar-item", 3, "click"], ["routerLink", "/gold-game", "routerLinkActive", "is-active", 1, "navbar-item", 3, "click"], ["routerLink", "/tir-compte-double", "routerLinkActive", "is-active", 1, "navbar-item", 3, "click"], ["routerLink", "/tri-de-fleches", "routerLinkActive", "is-active", 1, "navbar-item", 3, "click"]], template: function NavbarComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "nav", 0)(1, "div", 1)(2, "a", 2)(3, "strong");
       \u0275\u0275text(4, "ArcSenal");
@@ -47366,19 +47780,25 @@ var NavbarComponent = class _NavbarComponent {
       \u0275\u0275listener("click", function NavbarComponent_Template_a_click_24_listener() {
         return ctx.closeNavbar();
       });
-      \u0275\u0275text(25, "Gold Game");
+      \u0275\u0275text(25, "Tir compt\xE9");
       \u0275\u0275elementEnd();
       \u0275\u0275elementStart(26, "a", 14);
       \u0275\u0275listener("click", function NavbarComponent_Template_a_click_26_listener() {
         return ctx.closeNavbar();
       });
-      \u0275\u0275text(27, "Tir compt\xE9 double");
+      \u0275\u0275text(27, "Gold Game");
       \u0275\u0275elementEnd();
       \u0275\u0275elementStart(28, "a", 15);
       \u0275\u0275listener("click", function NavbarComponent_Template_a_click_28_listener() {
         return ctx.closeNavbar();
       });
-      \u0275\u0275text(29, "Tri de fl\xE8ches");
+      \u0275\u0275text(29, "Tir compt\xE9 double");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(30, "a", 16);
+      \u0275\u0275listener("click", function NavbarComponent_Template_a_click_30_listener() {
+        return ctx.closeNavbar();
+      });
+      \u0275\u0275text(31, "Tri de fl\xE8ches");
       \u0275\u0275elementEnd()()()()()();
     }
     if (rf & 2) {
@@ -47423,6 +47843,7 @@ var NavbarComponent = class _NavbarComponent {
         </a>
 
         <div class="navbar-dropdown">
+          <a class="navbar-item" routerLink="/tir-compte-simple" routerLinkActive="is-active" (click)="closeNavbar()">Tir compt\xE9</a>
           <a class="navbar-item" routerLink="/gold-game" routerLinkActive="is-active" (click)="closeNavbar()">Gold Game</a>
           <a class="navbar-item" routerLink="/tir-compte-double" routerLinkActive="is-active" (click)="closeNavbar()">Tir compt\xE9 double</a>
           <a class="navbar-item" routerLink="/tri-de-fleches" routerLinkActive="is-active" (click)="closeNavbar()">Tri de fl\xE8ches</a>
