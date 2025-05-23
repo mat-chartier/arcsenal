@@ -1,5 +1,5 @@
 <h1 class="title is-5">Tir compté
-&nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()" style="color:rgb(235, 115, 115);cursor:pointer;"></fa-icon>
+&nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()" style="color:#66d1ff;cursor:pointer;"></fa-icon>
 </h1>
 
 <div class="box" *ngIf="!gameStarted">
@@ -75,7 +75,7 @@
       <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
     </div>
     <div class="has-text-centered mt-2">
-      <button class="button is-warning" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">
+      <button class="button is-danger is-light is-small" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">
         Annuler dernière flèche
       </button>
     </div>

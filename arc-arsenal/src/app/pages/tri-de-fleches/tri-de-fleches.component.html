@@ -1,4 +1,4 @@
-<h2 class="title is-5">Tri de flèches <button *ngIf="mode != 'parametrage'" (click)="relancer()" class="button is-danger is-small">Relancer</button></h2>
+<h2 class="title is-5">Tri de flèches <button *ngIf="mode != 'parametrage'" (click)="relancer()" class="button is-info is-light is-small is-pulled-right">Relancer</button></h2>
 
 <!-- Paramétrage -->
 <div *ngIf="mode === 'parametrage'">
@@ -19,7 +19,8 @@
 <div *ngIf="mode === 'blason'">
     <app-blason-interactif [autresImpacts]="getAllImpacts()" [impactsMoyens]="moyennesDesFleches()" (nouvelImpact)="onNouvelImpact($event)"></app-blason-interactif>
 
-    <button (click)="voirTout()" class="button is-warning">Voir tout</button>
+    <button (click)="annulerDernierImpact()" class="button is-danger is-small is-light">Annuler dernier impact</button>&nbsp;
+    <button (click)="voirTout()" class="button is-warning is-small is-pulled-right">Voir tout</button>
     
 </div>
 
@@ -30,7 +31,7 @@
     <app-blason-interactif [autresImpacts]="moyennesDesFleches()"
         [impactsMoyens]="moyenneDesMoyennes()"></app-blason-interactif>
 
-    <button (click)="mode='blason'" class="button is-warning">Retour</button>
+    <button (click)="mode='blason'" class="button is-warning is-small is-pulled-right">Retour</button>
 </div>
 
 <!-- Modal choix flèche -->
