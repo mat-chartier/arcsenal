@@ -2,15 +2,19 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ScoreKeyboardComponent } from '../../components/score-keyboard/score-keyboard.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faBackward, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-tir-compte-double',
   standalone: true,
-  imports: [CommonModule, FormsModule, ScoreKeyboardComponent],
+  imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule],
   templateUrl: './tir-compte-double.component.html',
   styleUrl: './tir-compte-double.component.scss',
 })
 export class TirCompteDoubleComponent {
+  faRotateLeft = faRotateLeft;
+
   nbFlechesParVolee: number = 7;
   nbVolees: number = 6;
   gameStarted: boolean = false;

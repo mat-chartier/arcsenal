@@ -1,16 +1,26 @@
 <div class="blason-container">
-    <svg #blasonSvg [attr.viewBox]="viewBoxX + ' ' + viewBoxY + ' 200 200'" class="blason"
-        (click)="placerFleche($event)" (touchstart)="startDrag($event)" (touchmove)="drag($event)"
-        (touchend)="endDrag()">
-        <!-- Zones concentriques -->
+    <svg #blasonSvg [attr.viewBox]="getViewBox()" class="blason" (touchstart)="startDrag($event)"
+        (touchmove)="drag($event)" (touchend)="endDrag()">
+        <!-- Blason -->
         <circle *ngFor="let zone of zones" [attr.r]="zone.r" [attr.fill]="zone.color" cx="100" cy="100" stroke="black"
             [attr.stroke-width]="zone.strokeWidth" />
 
-        <!-- Impacts déjà enregistrés (en noir) -->
-        <circle *ngFor="let f of autresImpacts" [attr.cx]="f.x" [attr.cy]="f.y" r="2" fill="#777" />
+        <!-- Impacts enregistrés -->
+        <ng-container *ngFor="let f of autresImpacts">
+            <circle [attr.cx]="f.x" [attr.cy]="f.y" r="2" fill="black" />
+            <text [attr.x]="f.x" [attr.y]="getTextY(f.y, 2)" text-anchor="middle" font-family="sans-serif"
+                font-size="0.2rem" fill="black">{{f.arrow}}</text>
+        </ng-container>
 
-        <!-- Moyenne (en vert) -->
-        <circle *ngIf="impactMoyen" [attr.cx]="impactMoyen.x" [attr.cy]="impactMoyen.y" r="3" fill="#55ff55" />
+        <!-- Moyenne -->
+        <ng-container *ngFor="let im of impactsMoyens">
+            <circle [attr.cx]="im.x" [attr.cy]="im.y" r="3" fill="#55ff55" />
+            <text [attr.x]="im.x" [attr.y]="getTextY(im.y, 3)" text-anchor="middle" font-family="sans-serif"
+                font-size="0.3rem" font-weight="bold" fill="black">{{im.arrow}}</text>
+        </ng-container>
+
+        <!-- Impact en cours -->
+        <circle *ngIf="impactEnCours" [attr.cx]="impactEnCours.x" [attr.cy]="impactEnCours.y" r="3" fill="white"
+            stroke="black" stroke-width="1" />
     </svg>
-    <div *ngIf="impactVisible" class="impact" [style.left.px]="impactScreenX" [style.top.px]="impactScreenY"></div>
 </div>
