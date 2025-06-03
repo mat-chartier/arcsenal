@@ -1,5 +1,6 @@
 <h1 class="title is-5">Tir compté double
-&nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()" style="color:#66d1ff;cursor:pointer;"></fa-icon>
+  &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"
+    style="color:#66d1ff;cursor:pointer;"></fa-icon>
 </h1>
 
 <div class="box" *ngIf="!gameStarted">
@@ -76,7 +77,8 @@
       <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
     </div>
     <div class="has-text-centered mt-2">
-      <button class="button is-danger is-small is-light" (click)="removeLastScore()" [disabled]="currentEnd.length === 0">
+      <button class="button is-danger is-small is-light" (click)="removeLastScore()"
+        [disabled]="currentEnd.length === 0">
         Annuler dernière flèche
       </button>
     </div>
@@ -84,5 +86,4 @@
 </div>
 
 <!-- Clavier -->
-<app-score-keyboard *ngIf="gameStarted && !gameFinished" [values]="scoreValues"
-  (scoreSelected)="addScore($event)"></app-score-keyboard>
+<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>

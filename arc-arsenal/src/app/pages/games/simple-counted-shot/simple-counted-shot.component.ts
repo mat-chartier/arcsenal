@@ -26,22 +26,6 @@ export class SimpleCountedShotGameComponent {
     total: number;
   }[] = [];
 
-  // Keyboard values
-  scoreValues: (number | 'X' | 'M')[] = [
-    'X',
-    10,
-    9,
-    8,
-    7,
-    6,
-    5,
-    4,
-    3,
-    2,
-    1,
-    'M',
-  ];
-
   private readonly localStorageItemName = 'simpleCountedShotGame';
 
   startGame() {

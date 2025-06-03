@@ -83,5 +83,4 @@
 </div>
 
 <!-- Clavier -->
-<app-score-keyboard *ngIf="gameStarted && !gameFinished" [values]="scoreValues"
-  (scoreSelected)="addScore($event)"></app-score-keyboard>
+<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>

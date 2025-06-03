@@ -25,22 +25,6 @@ export class GoldGameComponent {
     score: number;
   }[] = [];
 
-  // Clavier
-  scoreValues: (number | 'X' | 'M')[] = [
-    'X',
-    10,
-    9,
-    8,
-    7,
-    6,
-    5,
-    4,
-    3,
-    2,
-    1,
-    'M',
-  ];
-
   startGame() {
     this.gameStarted = true;
     this.currentEnd = [];

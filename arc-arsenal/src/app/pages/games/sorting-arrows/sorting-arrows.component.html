@@ -25,7 +25,7 @@
 </div>
 
 
-<!-- Show all: arrows impacts average and average of all impacts-->
+<!-- Show all: impacts average per arrow and average of all impacts-->
 <div *ngIf="mode === 'showAll'">
     <h3>Toutes les moyennes</h3>
     <app-interactive-target-face [otherImpacts]="arrowsAverage()"
@@ -34,7 +34,7 @@
     <button (click)="mode='targetFace'" class="button is-warning is-small is-pulled-right">Retour</button>
 </div>
 
-<!-- Modal arrows association -->
+<!-- Modal for arrows association -->
 <div class="modal is-active" *ngIf="showModal">
     <div class="modal-background"></div>
     <div class="modal-card">

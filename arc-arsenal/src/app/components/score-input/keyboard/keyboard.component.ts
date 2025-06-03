@@ -9,8 +9,21 @@ import { CommonModule } from '@angular/common';
   styleUrl: './keyboard.component.scss'
 })
 export class ScoreKeyboardComponent {
-  @Input() values: (number | 'X' | 'M')[] = [];
   @Output() scoreSelected = new EventEmitter<number | 'X' | 'M'>();
+  values: (number | 'X' | 'M')[] = [
+    'X',
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1,
+    'M',
+  ];
 
   selectScore(value: number | 'X' | 'M') {
     this.scoreSelected.emit(value);
