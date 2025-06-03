@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ScoreKeyboardComponent } from '../../components/score-keyboard/score-keyboard.component';
+import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
 
 @Component({
-  selector: 'app-tir-compte-double',
+  selector: 'app-gold-game',
   standalone: true,
   imports: [CommonModule, FormsModule, ScoreKeyboardComponent],
   templateUrl: './gold-game.component.html',
@@ -13,14 +13,14 @@ import { ScoreKeyboardComponent } from '../../components/score-keyboard/score-ke
 export class GoldGameComponent {
  readonly localStorageItemName = 'GoldGame';
 
-  nbFlechesParVolee: number = 7;
-  nbVolees: number = 6;
-  zoneReussite: number = 7;
+  arrowsPerEndCount: number = 7;
+  endsCount: number = 6;
+  successZone: number = 7;
   gameStarted: boolean = false;
   gameFinished: boolean = false;
-  currentVolee: (number | 'X' | 'M')[] = [];
-  currentVoleeIndex: number = 0;
-  historiqueVolees: {
+  currentEnd: (number | 'X' | 'M')[] = [];
+  currentEndIndex: number = 0;
+  pastEnds: {
     details: (number | 'X' | 'M')[];
     score: number;
   }[] = [];
@@ -43,43 +43,43 @@ export class GoldGameComponent {
 
   startGame() {
     this.gameStarted = true;
-    this.currentVolee = [];
-    this.currentVoleeIndex = 0;
-    this.historiqueVolees = [];
+    this.currentEnd = [];
+    this.currentEndIndex = 0;
+    this.pastEnds = [];
   }
 
   resetGame() {
     this.gameStarted = false;
     this.gameFinished = false;
-    this.nbFlechesParVolee = 7;
-    this.nbVolees = 6;
-    this.currentVolee = [];
-    this.historiqueVolees = [];
+    this.arrowsPerEndCount = 7;
+    this.endsCount = 6;
+    this.currentEnd = [];
+    this.pastEnds = [];
     localStorage.removeItem(this.localStorageItemName);
   }
 
   addScore(score: number | 'X' | 'M') {
-    if (this.currentVolee.length < this.nbFlechesParVolee) {
-      this.currentVolee.push(score);
+    if (this.currentEnd.length < this.arrowsPerEndCount) {
+      this.currentEnd.push(score);
 
-      if (this.currentVolee.length === this.nbFlechesParVolee) {
+      if (this.currentEnd.length === this.arrowsPerEndCount) {
         this.saveCurrentVolee();
       }
     }
   }
 
   saveCurrentVolee() {
-    const score = this.calculateScore(this.currentVolee);
+    const score = this.calculateScore(this.currentEnd);
 
-    this.historiqueVolees.push({
-      details: [...this.currentVolee],
+    this.pastEnds.push({
+      details: [...this.currentEnd],
       score,
     });
 
-    this.currentVolee = [];
-    this.currentVoleeIndex++;
+    this.currentEnd = [];
+    this.currentEndIndex++;
 
-    if (this.currentVoleeIndex >= this.nbVolees) {
+    if (this.currentEndIndex >= this.endsCount) {
       this.gameFinished = true;
       console.log('game finished');
     }
@@ -105,78 +105,78 @@ export class GoldGameComponent {
     return scores.reduce((total: number, s) => {
       if (s == 'M') s = 0;
       if (s == 'X') s = 11;
-      if (s == this.zoneReussite) return total;
-      if (s == this.zoneReussite + 1) return total + 1;
-      if (s > this.zoneReussite + 1) return total + 2;
+      if (s == this.successZone) return total;
+      if (s == this.successZone + 1) return total + 1;
+      if (s > this.successZone + 1) return total + 2;
       return total - 1;
     }, 0);
   }
 
   getTotalScore(): number {
     let total: number = 0;
-    this.historiqueVolees.forEach((hist) => {
+    this.pastEnds.forEach((hist) => {
       total += hist.score;
     });
     return total;
   }
 
   getZonePercent(): number {
-   return Math.trunc(this.historiqueVolees.reduce((total:number, hist) => {
+   return Math.trunc(this.pastEnds.reduce((total:number, hist) => {
       return total + hist.details.reduce((count: number, score) => {
         if (score == 'M') score = 0;
         if (score == 'X') score = 10;
-        if (score >= this.zoneReussite) return count + 1;
+        if (score >= this.successZone) return count + 1;
         return count;
       }, 0);
-    }, 0) / (this.currentVoleeIndex * this.nbFlechesParVolee) * 100);
+    }, 0) / (this.currentEndIndex * this.arrowsPerEndCount) * 100);
   }
 
   incrementFleches() {
-    this.nbFlechesParVolee++;
+    this.arrowsPerEndCount++;
   }
 
   decrementFleches() {
-    if (this.nbFlechesParVolee > 1) {
-      this.nbFlechesParVolee--;
+    if (this.arrowsPerEndCount > 1) {
+      this.arrowsPerEndCount--;
     }
   }
 
   incrementVolees() {
-    this.nbVolees++;
+    this.endsCount++;
   }
 
   decrementVolees() {
-    if (this.nbVolees > 1) {
-      this.nbVolees--;
+    if (this.endsCount > 1) {
+      this.endsCount--;
     }
   }
 
   incrementZone() {
-    if (this.zoneReussite < 10) {
-      this.zoneReussite++;
+    if (this.successZone < 10) {
+      this.successZone++;
     }
   }
 
   decrementZone() {
-    if (this.zoneReussite > 1) {
-      this.zoneReussite--;
+    if (this.successZone > 1) {
+      this.successZone--;
     }
   }
 
   removeLastScore() {
-  if (this.currentVolee.length > 0) {
-    this.currentVolee.pop();
+  if (this.currentEnd.length > 0) {
+    this.currentEnd.pop();
   }
 }
 
   saveToLocalStorage() {
     const data = {
-      nbFlechesParVolee: this.nbFlechesParVolee,
-      nbVolees: this.nbVolees,
-      zoneReussite: this.zoneReussite,
-      currentVolee: this.currentVolee,
-      currentVoleeIndex: this.currentVoleeIndex,
-      historiqueVollees: this.historiqueVolees,
+      nbFlechesParVolee: this.arrowsPerEndCount,
+      nbVolees: this.endsCount,
+      zoneReussite: this.successZone,
+      currentVolee: this.currentEnd,
+      currentVoleeIndex: this.currentEndIndex,
+      historiqueVollees: this.pastEnds,
     };
     localStorage.setItem(this.localStorageItemName, JSON.stringify(data));
   }
@@ -185,14 +185,14 @@ export class GoldGameComponent {
     const saved = localStorage.getItem(this.localStorageItemName);
     if (saved) {
       const data = JSON.parse(saved);
-      this.nbFlechesParVolee = data.nbFlechesParVolee;
-      this.nbVolees = data.nbVolees;
-      this.zoneReussite = data.zoneReussite;
-      this.currentVolee = data.currentVolee;
-      this.currentVoleeIndex = data.currentVoleeIndex;
-      this.historiqueVolees = data.historiqueVollees;
+      this.arrowsPerEndCount = data.nbFlechesParVolee;
+      this.endsCount = data.nbVolees;
+      this.successZone = data.zoneReussite;
+      this.currentEnd = data.currentVolee;
+      this.currentEndIndex = data.currentVoleeIndex;
+      this.pastEnds = data.historiqueVollees;
       this.gameStarted = true;
-      this.gameFinished = this.currentVoleeIndex >= this.nbVolees;
+      this.gameFinished = this.currentEndIndex >= this.endsCount;
     }
   }
 

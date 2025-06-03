@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TirCompteSimpleComponent } from './tir-compte-simple.component';
+import { ScoreKeyboardComponent } from './keyboard.component';
 
-describe('TirCompteSimpleComponent', () => {
-  let component: TirCompteSimpleComponent;
-  let fixture: ComponentFixture<TirCompteSimpleComponent>;
+describe('ScoreKeyboardComponent', () => {
+  let component: ScoreKeyboardComponent;
+  let fixture: ComponentFixture<ScoreKeyboardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TirCompteSimpleComponent]
+      imports: [ScoreKeyboardComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TirCompteSimpleComponent);
+    fixture = TestBed.createComponent(ScoreKeyboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

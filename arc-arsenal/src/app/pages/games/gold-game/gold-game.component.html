@@ -12,7 +12,7 @@
         <button class="button is-small" (click)="decrementFleches()">-</button>
       </p>
       <p class="control">
-        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px;">
+        <input class="input is-small has-text-centered" readonly [value]="arrowsPerEndCount" style="width: 60px;">
       </p>
       <p class="control">
         <button class="button is-small" (click)="incrementFleches()">+</button>
@@ -27,7 +27,7 @@
         <button class="button is-small" (click)="decrementVolees()">-</button>
       </p>
       <p class="control">
-        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px;">
+        <input class="input is-small has-text-centered" readonly [value]="endsCount" style="width: 60px;">
       </p>
       <p class="control">
         <button class="button is-small" (click)="incrementVolees()">+</button>
@@ -42,7 +42,7 @@
         <button class="button is-small" (click)="decrementZone()">-</button>
       </p>
       <p class="control">
-        <input class="input is-small has-text-centered" readonly [value]="zoneReussite" style="width: 60px;">
+        <input class="input is-small has-text-centered" readonly [value]="successZone" style="width: 60px;">
       </p>
       <p class="control">
         <button class="button is-small" (click)="incrementZone()">+</button>
@@ -57,7 +57,7 @@
 
 
 
-<!-- Résultats -->
+<!-- Results -->
 <div *ngIf="gameStarted" class="box content">
   <h2 class="subtitle is-5">Volées passées</h2>
   <table class="table is-fullwidth is-bordered is-striped is-narrow">
@@ -69,35 +69,35 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let vol of historiqueVolees; index as i">
+      <tr *ngFor="let end of pastEnds; index as i">
         <td>{{ i + 1 }}</td>
         <td>
-          <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
+          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
         </td>
-        <td>{{ vol.score }}</td>
+        <td>{{ end.score }}</td>
       </tr>
-      <tr *ngIf="historiqueVolees.length > 0">
+      <tr *ngIf="pastEnds.length > 0">
         <td colspan="2">Total</td>
         <td>{{getTotalScore()}}</td>
       </tr>
     </tbody>
   </table>
-  <span *ngIf="historiqueVolees.length > 0">({{getZonePercent()}} % en zone)</span>
+  <span *ngIf="pastEnds.length > 0">({{getZonePercent()}} % en zone)</span>
   <br />
   <br />
-  <!-- Volée en cours -->
+  <!-- Current end -->
   <div *ngIf="gameStarted && !gameFinished">
-    <h2 class="subtitle is-5">Volée {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>
+    <h2 class="subtitle is-5">Volée {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>
     <div>
-      <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
+      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
     </div>
     <div class="has-text-centered mt-2">
-      <button class="button is-danger is-small is-light" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">
+      <button class="button is-danger is-small is-light" (click)="removeLastScore()" [disabled]="currentEnd.length === 0">
         Annuler dernière flèche
       </button>
     </div>
   </div>
 </div>
 
-<!-- Clavier -->
-<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues" (scoreSelected)="addScore($event)"></app-score-keyboard>
+<!-- Keyboard -->
+<app-score-keyboard *ngIf="gameStarted && !gameFinished" [values]="scoreValues" (scoreSelected)="addScore($event)"></app-score-keyboard>

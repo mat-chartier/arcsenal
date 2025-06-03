@@ -5,18 +5,18 @@ import { CommonModule } from '@angular/common';
   selector: 'app-score-keyboard',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './score-keyboard.component.html',
-  styleUrl: './score-keyboard.component.scss'
+  templateUrl: './keyboard.component.html',
+  styleUrl: './keyboard.component.scss'
 })
 export class ScoreKeyboardComponent {
-  @Input() valeurs: (number | 'X' | 'M')[] = [];
+  @Input() values: (number | 'X' | 'M')[] = [];
   @Output() scoreSelected = new EventEmitter<number | 'X' | 'M'>();
 
   selectScore(value: number | 'X' | 'M') {
     this.scoreSelected.emit(value);
     setTimeout(() => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-  }, 100);
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }, 100);
   }
 
   getScoreClass(value: number | 'X' | 'M'): string {
@@ -28,5 +28,4 @@ export class ScoreKeyboardComponent {
     if (value === 'M') return 'grey';
     return '';
   }
-
 }
