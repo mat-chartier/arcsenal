@@ -18,6 +18,8 @@ export class TriDeFlechesComponent {
   impactsParFleche: Map<number, { x: number, y: number }[]> = new Map();
 
   dernierImpact: { x: number, y: number } | null = null;
+  historiqueImpacts: { numero: number, impact: { x: number, y: number } }[] = [];
+
   showModal = false;
 
   ngOnInit() {
@@ -85,6 +87,7 @@ export class TriDeFlechesComponent {
 
   affecterImpact(numero: number) {
     this.impactsParFleche.get(numero)?.push(this.dernierImpact!);
+    this.historiqueImpacts.push({ numero, impact: this.dernierImpact! });
     this.dernierImpact = null;
     this.showModal = false;
     this.sauvegarder();
@@ -95,6 +98,19 @@ export class TriDeFlechesComponent {
     this.showModal = false;
     this.sauvegarder();
   }
+
+  annulerDernierImpact() {
+    const dernier = this.historiqueImpacts.pop();
+    if (dernier) {
+      const liste = this.impactsParFleche.get(dernier.numero);
+      if (liste) {
+        // Retirer l'impact correspondant (le dernier de cette flèche)
+        liste.pop();
+        this.sauvegarder();
+      }
+    }
+  }
+
 
   voirTout() {
     this.mode = 'voirTout';
