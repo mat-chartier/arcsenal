@@ -42071,7 +42071,7 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
-// src/app/components/score-keyboard/score-keyboard.component.ts
+// src/app/components/score-input/keyboard/keyboard.component.ts
 function ScoreKeyboardComponent_div_2_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
@@ -42094,8 +42094,21 @@ function ScoreKeyboardComponent_div_2_Template(rf, ctx) {
   }
 }
 var ScoreKeyboardComponent = class _ScoreKeyboardComponent {
-  valeurs = [];
   scoreSelected = new EventEmitter();
+  values = [
+    "X",
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1,
+    "M"
+  ];
   selectScore(value) {
     this.scoreSelected.emit(value);
     setTimeout(() => {
@@ -42120,7 +42133,7 @@ var ScoreKeyboardComponent = class _ScoreKeyboardComponent {
   static \u0275fac = function ScoreKeyboardComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _ScoreKeyboardComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ScoreKeyboardComponent, selectors: [["app-score-keyboard"]], inputs: { valeurs: "valeurs" }, outputs: { scoreSelected: "scoreSelected" }, decls: 3, vars: 1, consts: [[1, "keyboard"], [1, "columns", "is-multiline", "is-mobile", "is-1"], ["class", "column is-one-quarter", 4, "ngFor", "ngForOf"], [1, "column", "is-one-quarter"], [1, "button", "custom-key", 2, "width", "100%", "height", "3rem", 3, "click", "ngClass"]], template: function ScoreKeyboardComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ScoreKeyboardComponent, selectors: [["app-score-keyboard"]], outputs: { scoreSelected: "scoreSelected" }, decls: 3, vars: 1, consts: [[1, "keyboard"], [1, "columns", "is-multiline", "is-mobile", "is-1"], ["class", "column is-one-quarter", 4, "ngFor", "ngForOf"], [1, "column", "is-one-quarter"], [1, "button", "custom-key", 2, "width", "100%", "height", "3rem", 3, "click", "ngClass"]], template: function ScoreKeyboardComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "div", 1);
       \u0275\u0275template(2, ScoreKeyboardComponent_div_2_Template, 3, 2, "div", 2);
@@ -42128,25 +42141,254 @@ var ScoreKeyboardComponent = class _ScoreKeyboardComponent {
     }
     if (rf & 2) {
       \u0275\u0275advance(2);
-      \u0275\u0275property("ngForOf", ctx.valeurs);
+      \u0275\u0275property("ngForOf", ctx.values);
     }
   }, dependencies: [CommonModule, NgClass, NgForOf], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}"] });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ScoreKeyboardComponent, [{
     type: Component,
-    args: [{ selector: "app-score-keyboard", standalone: true, imports: [CommonModule], template: '<div class="keyboard">\n  <div class="columns is-multiline is-mobile is-1">\n    <div *ngFor="let value of valeurs" class="column is-one-quarter">\n      <button\n        class="button custom-key"\n        [ngClass]="getScoreClass(value)"\n        (click)="selectScore(value)"\n        style="width: 100%; height: 3rem;"\n      >\n        {{ value }}\n      </button>\n    </div>\n  </div>\n</div>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}\n"] }]
-  }], null, { valeurs: [{
-    type: Input
-  }], scoreSelected: [{
+    args: [{ selector: "app-score-keyboard", standalone: true, imports: [CommonModule], template: '<div class="keyboard">\n  <div class="columns is-multiline is-mobile is-1">\n    <div *ngFor="let value of values" class="column is-one-quarter">\n      <button\n        class="button custom-key"\n        [ngClass]="getScoreClass(value)"\n        (click)="selectScore(value)"\n        style="width: 100%; height: 3rem;"\n      >\n        {{ value }}\n      </button>\n    </div>\n  </div>\n</div>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}\n"] }]
+  }], null, { scoreSelected: [{
     type: Output
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ScoreKeyboardComponent, { className: "ScoreKeyboardComponent", filePath: "src/app/components/score-keyboard/score-keyboard.component.ts", lineNumber: 11 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ScoreKeyboardComponent, { className: "ScoreKeyboardComponent", filePath: "src/app/components/score-input/keyboard/keyboard.component.ts", lineNumber: 11 });
 })();
 
-// src/app/pages/gold-game/gold-game.component.ts
+// src/app/components/settings/settings.component.ts
+function SettingsComponent_div_3_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 3)(1, "label", 4);
+    \u0275\u0275text(2, "Zone de r\xE9ussite :");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "div", 5)(4, "p", 6)(5, "button", 7);
+    \u0275\u0275listener("click", function SettingsComponent_div_3_Template_button_click_5_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.decrementSuccessZone());
+    });
+    \u0275\u0275text(6, "-");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(7, "p", 6);
+    \u0275\u0275element(8, "input", 8);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "p", 6)(10, "button", 7);
+    \u0275\u0275listener("click", function SettingsComponent_div_3_Template_button_click_10_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.incrementSuccessZone());
+    });
+    \u0275\u0275text(11, "+");
+    \u0275\u0275elementEnd()()()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275advance(8);
+    \u0275\u0275property("value", ctx_r1.successZone);
+  }
+}
+function SettingsComponent_div_16_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r3 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 3)(1, "label", 4);
+    \u0275\u0275text(2, "Fl\xE8ches compt\xE9es par vol\xE9e :");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "div", 5)(4, "p", 6)(5, "button", 7);
+    \u0275\u0275listener("click", function SettingsComponent_div_16_Template_button_click_5_listener() {
+      \u0275\u0275restoreView(_r3);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.decrementArrowsCount());
+    });
+    \u0275\u0275text(6, "-");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(7, "p", 6);
+    \u0275\u0275element(8, "input", 8);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "p", 6)(10, "button", 7);
+    \u0275\u0275listener("click", function SettingsComponent_div_16_Template_button_click_10_listener() {
+      \u0275\u0275restoreView(_r3);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.incrementArrowsCount());
+    });
+    \u0275\u0275text(11, "+");
+    \u0275\u0275elementEnd()()()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275advance(8);
+    \u0275\u0275property("value", ctx_r1.arrowsPerEndCount);
+  }
+}
+function SettingsComponent_div_17_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r4 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 3)(1, "label", 4);
+    \u0275\u0275text(2, "Nombre de vol\xE9es :");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "div", 5)(4, "p", 6)(5, "button", 7);
+    \u0275\u0275listener("click", function SettingsComponent_div_17_Template_button_click_5_listener() {
+      \u0275\u0275restoreView(_r4);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.decrementEndsCount());
+    });
+    \u0275\u0275text(6, "-");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(7, "p", 6);
+    \u0275\u0275element(8, "input", 8);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "p", 6)(10, "button", 7);
+    \u0275\u0275listener("click", function SettingsComponent_div_17_Template_button_click_10_listener() {
+      \u0275\u0275restoreView(_r4);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.incrementEndsCount());
+    });
+    \u0275\u0275text(11, "+");
+    \u0275\u0275elementEnd()()()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275advance(8);
+    \u0275\u0275property("value", ctx_r1.endsCount);
+  }
+}
+var SettingsComponent = class _SettingsComponent {
+  arrowsPerEndShotCount = 7;
+  // Default value, can be overridden by input
+  arrowsPerEndCount;
+  // Default value, can be overridden by input
+  endsCount;
+  // Default value, can be overridden by input
+  minimumArrowsPerEnd = 3;
+  // Default value, can be overridden by input
+  successZone;
+  // Default value, can be overridden by input
+  newSettings = new EventEmitter();
+  incrementArrowsShotCount() {
+    this.arrowsPerEndShotCount++;
+  }
+  decrementArrowsShotCount() {
+    if (this.arrowsPerEndShotCount > this.minimumArrowsPerEnd) {
+      this.arrowsPerEndShotCount--;
+    }
+  }
+  incrementArrowsCount() {
+    if (this.arrowsPerEndCount) {
+      this.arrowsPerEndCount++;
+    }
+  }
+  decrementArrowsCount() {
+    if (this.arrowsPerEndCount && this.arrowsPerEndCount > this.minimumArrowsPerEnd) {
+      this.arrowsPerEndCount--;
+    }
+  }
+  incrementEndsCount() {
+    if (this.endsCount) {
+      this.endsCount++;
+    }
+  }
+  decrementEndsCount() {
+    if (this.endsCount && this.endsCount > 1) {
+      this.endsCount--;
+    }
+  }
+  incrementSuccessZone() {
+    if (this.successZone) {
+      this.successZone++;
+    }
+  }
+  decrementSuccessZone() {
+    if (this.successZone && this.successZone > 1) {
+      this.successZone--;
+    }
+  }
+  saveSettings() {
+    let settings = {
+      arrowsPerEndShotCount: this.arrowsPerEndShotCount
+    };
+    if (this.endsCount) {
+      settings.endsCount = this.endsCount;
+    }
+    if (this.arrowsPerEndCount !== void 0) {
+      settings.arrowsPerEndCount = this.arrowsPerEndCount;
+    }
+    if (this.successZone !== void 0) {
+      settings.successZone = this.successZone;
+    }
+    this.newSettings.emit(settings);
+  }
+  static \u0275fac = function SettingsComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _SettingsComponent)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SettingsComponent, selectors: [["app-game-settings"]], inputs: { arrowsPerEndShotCount: "arrowsPerEndShotCount", arrowsPerEndCount: "arrowsPerEndCount", endsCount: "endsCount", minimumArrowsPerEnd: "minimumArrowsPerEnd", successZone: "successZone" }, outputs: { newSettings: "newSettings" }, decls: 21, vars: 4, consts: [[1, "box"], [1, "title", "is-4"], ["class", "field mb-4", 4, "ngIf"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"]], template: function SettingsComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275elementStart(0, "div", 0)(1, "h2", 1);
+      \u0275\u0275text(2, "Param\xE8tres");
+      \u0275\u0275elementEnd();
+      \u0275\u0275template(3, SettingsComponent_div_3_Template, 12, 1, "div", 2);
+      \u0275\u0275elementStart(4, "div", 3)(5, "label", 4);
+      \u0275\u0275text(6, "Fl\xE8ches tir\xE9es par vol\xE9e :");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(7, "div", 5)(8, "p", 6)(9, "button", 7);
+      \u0275\u0275listener("click", function SettingsComponent_Template_button_click_9_listener() {
+        return ctx.decrementArrowsShotCount();
+      });
+      \u0275\u0275text(10, "-");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(11, "p", 6);
+      \u0275\u0275element(12, "input", 8);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(13, "p", 6)(14, "button", 7);
+      \u0275\u0275listener("click", function SettingsComponent_Template_button_click_14_listener() {
+        return ctx.incrementArrowsShotCount();
+      });
+      \u0275\u0275text(15, "+");
+      \u0275\u0275elementEnd()()()();
+      \u0275\u0275template(16, SettingsComponent_div_16_Template, 12, 1, "div", 2)(17, SettingsComponent_div_17_Template, 12, 1, "div", 2);
+      \u0275\u0275elementStart(18, "div", 9)(19, "button", 10);
+      \u0275\u0275listener("click", function SettingsComponent_Template_button_click_19_listener() {
+        return ctx.saveSettings();
+      });
+      \u0275\u0275text(20, "D\xE9marrer");
+      \u0275\u0275elementEnd()()();
+    }
+    if (rf & 2) {
+      \u0275\u0275advance(3);
+      \u0275\u0275property("ngIf", ctx.successZone);
+      \u0275\u0275advance(9);
+      \u0275\u0275property("value", ctx.arrowsPerEndShotCount);
+      \u0275\u0275advance(4);
+      \u0275\u0275property("ngIf", ctx.arrowsPerEndCount);
+      \u0275\u0275advance();
+      \u0275\u0275property("ngIf", ctx.endsCount);
+    }
+  }, dependencies: [CommonModule, NgIf], encapsulation: 2 });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(SettingsComponent, [{
+    type: Component,
+    args: [{ selector: "app-game-settings", imports: [CommonModule], template: '<div class="box">\n    <h2 class="title is-4">Param\xE8tres</h2>\n\n    <div class="field mb-4" *ngIf="successZone">\n        <label class="label">Zone de r\xE9ussite :</label>\n        <div class="field has-addons is-justify-content-center">\n            <p class="control">\n                <button class="button is-small" (click)="decrementSuccessZone()">-</button>\n            </p>\n            <p class="control">\n                <input class="input is-small has-text-centered" readonly [value]="successZone" style="width: 60px;">\n            </p>\n            <p class="control">\n                <button class="button is-small" (click)="incrementSuccessZone()">+</button>\n            </p>\n        </div>\n    </div>\n\n    <div class="field mb-4">\n        <label class="label">Fl\xE8ches tir\xE9es par vol\xE9e :</label>\n        <div class="field has-addons is-justify-content-center">\n            <p class="control">\n                <button class="button is-small" (click)="decrementArrowsShotCount()">-</button>\n            </p>\n            <p class="control">\n                <input class="input is-small has-text-centered" readonly [value]="arrowsPerEndShotCount"\n                    style="width: 60px" />\n            </p>\n            <p class="control">\n                <button class="button is-small" (click)="incrementArrowsShotCount()">+</button>\n            </p>\n        </div>\n    </div>\n\n    <div class="field mb-4" *ngIf="arrowsPerEndCount">\n        <label class="label">Fl\xE8ches compt\xE9es par vol\xE9e :</label>\n        <div class="field has-addons is-justify-content-center">\n            <p class="control">\n                <button class="button is-small" (click)="decrementArrowsCount()">-</button>\n            </p>\n            <p class="control">\n                <input class="input is-small has-text-centered" readonly [value]="arrowsPerEndCount"\n                    style="width: 60px" />\n            </p>\n            <p class="control">\n                <button class="button is-small" (click)="incrementArrowsCount()">+</button>\n            </p>\n        </div>\n    </div>\n\n    <div class="field mb-4" *ngIf="endsCount">\n        <label class="label">Nombre de vol\xE9es :</label>\n        <div class="field has-addons is-justify-content-center">\n            <p class="control">\n                <button class="button is-small" (click)="decrementEndsCount()">-</button>\n            </p>\n            <p class="control">\n                <input class="input is-small has-text-centered" readonly [value]="endsCount" style="width: 60px" />\n            </p>\n            <p class="control">\n                <button class="button is-small" (click)="incrementEndsCount()">+</button>\n            </p>\n        </div>\n    </div>\n\n    <div class="has-text-centered mt-4">\n        <button class="button is-primary" (click)="saveSettings()">D\xE9marrer</button>\n    </div>\n</div>' }]
+  }], null, { arrowsPerEndShotCount: [{
+    type: Input
+  }], arrowsPerEndCount: [{
+    type: Input
+  }], endsCount: [{
+    type: Input
+  }], minimumArrowsPerEnd: [{
+    type: Input
+  }], successZone: [{
+    type: Input
+  }], newSettings: [{
+    type: Output
+  }] });
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SettingsComponent, { className: "SettingsComponent", filePath: "src/app/components/settings/settings.component.ts", lineNumber: 10 });
+})();
+
+// src/app/pages/games/gold-game/gold-game.component.ts
 function GoldGameComponent_button_2_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
@@ -42160,100 +42402,25 @@ function GoldGameComponent_button_2_Template(rf, ctx) {
     \u0275\u0275elementEnd();
   }
 }
-function GoldGameComponent_div_3_Template(rf, ctx) {
+function GoldGameComponent_app_game_settings_3_Template(rf, ctx) {
   if (rf & 1) {
     const _r3 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 6)(1, "h2", 7);
-    \u0275\u0275text(2, "Param\xE8tres");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "div", 8)(4, "label", 9);
-    \u0275\u0275text(5, "Fl\xE8ches par vol\xE9e :");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "div", 10)(7, "p", 11)(8, "button", 12);
-    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_8_listener() {
+    \u0275\u0275elementStart(0, "app-game-settings", 6);
+    \u0275\u0275listener("newSettings", function GoldGameComponent_app_game_settings_3_Template_app_game_settings_newSettings_0_listener($event) {
       \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.decrementFleches());
+      return \u0275\u0275resetView(ctx_r1.onNewSettings($event));
     });
-    \u0275\u0275text(9, "-");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(10, "p", 11);
-    \u0275\u0275element(11, "input", 13);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "p", 11)(13, "button", 12);
-    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_13_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.incrementFleches());
-    });
-    \u0275\u0275text(14, "+");
-    \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(15, "div", 8)(16, "label", 9);
-    \u0275\u0275text(17, "Nombre de vol\xE9es :");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(18, "div", 10)(19, "p", 11)(20, "button", 12);
-    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_20_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.decrementVolees());
-    });
-    \u0275\u0275text(21, "-");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(22, "p", 11);
-    \u0275\u0275element(23, "input", 13);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(24, "p", 11)(25, "button", 12);
-    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_25_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.incrementVolees());
-    });
-    \u0275\u0275text(26, "+");
-    \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(27, "div", 8)(28, "label", 9);
-    \u0275\u0275text(29, "Zone de r\xE9ussite :");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(30, "div", 10)(31, "p", 11)(32, "button", 12);
-    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_32_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.decrementZone());
-    });
-    \u0275\u0275text(33, "-");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(34, "p", 11);
-    \u0275\u0275element(35, "input", 13);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(36, "p", 11)(37, "button", 12);
-    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_37_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.incrementZone());
-    });
-    \u0275\u0275text(38, "+");
-    \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(39, "div", 14)(40, "button", 15);
-    \u0275\u0275listener("click", function GoldGameComponent_div_3_Template_button_click_40_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.startGame());
-    });
-    \u0275\u0275text(41, "D\xE9marrer");
-    \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275advance(11);
-    \u0275\u0275property("value", ctx_r1.nbFlechesParVolee);
-    \u0275\u0275advance(12);
-    \u0275\u0275property("value", ctx_r1.nbVolees);
-    \u0275\u0275advance(12);
-    \u0275\u0275property("value", ctx_r1.zoneReussite);
+    \u0275\u0275property("arrowsPerEndShotCount", ctx_r1.arrowsPerEndCount)("minimumArrowsPerEnd", 3)("endsCount", ctx_r1.endsCount)("successZone", ctx_r1.successZone);
   }
 }
 function GoldGameComponent_div_4_tr_13_span_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 22);
+    \u0275\u0275elementStart(0, "span", 13);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -42271,26 +42438,26 @@ function GoldGameComponent_div_4_tr_13_Template(rf, ctx) {
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "td");
-    \u0275\u0275template(4, GoldGameComponent_div_4_tr_13_span_4_Template, 2, 2, "span", 21);
+    \u0275\u0275template(4, GoldGameComponent_div_4_tr_13_span_4_Template, 2, 2, "span", 12);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(5, "td");
     \u0275\u0275text(6);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const vol_r5 = ctx.$implicit;
+    const end_r5 = ctx.$implicit;
     const i_r6 = ctx.index;
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate(i_r6 + 1);
     \u0275\u0275advance(2);
-    \u0275\u0275property("ngForOf", vol_r5.details);
+    \u0275\u0275property("ngForOf", end_r5.details);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(vol_r5.score);
+    \u0275\u0275textInterpolate(end_r5.score);
   }
 }
 function GoldGameComponent_div_4_tr_14_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "tr")(1, "td", 23);
+    \u0275\u0275elementStart(0, "tr")(1, "td", 14);
     \u0275\u0275text(2, "Total");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "td");
@@ -42317,7 +42484,7 @@ function GoldGameComponent_div_4_span_15_Template(rf, ctx) {
 }
 function GoldGameComponent_div_4_div_18_span_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 22);
+    \u0275\u0275elementStart(0, "span", 13);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -42332,13 +42499,13 @@ function GoldGameComponent_div_4_div_18_span_4_Template(rf, ctx) {
 function GoldGameComponent_div_4_div_18_Template(rf, ctx) {
   if (rf & 1) {
     const _r7 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div")(1, "h2", 17);
+    \u0275\u0275elementStart(0, "div")(1, "h2", 8);
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "div");
-    \u0275\u0275template(4, GoldGameComponent_div_4_div_18_span_4_Template, 2, 2, "span", 21);
+    \u0275\u0275template(4, GoldGameComponent_div_4_div_18_span_4_Template, 2, 2, "span", 12);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "div", 24)(6, "button", 25);
+    \u0275\u0275elementStart(5, "div", 15)(6, "button", 16);
     \u0275\u0275listener("click", function GoldGameComponent_div_4_div_18_Template_button_click_6_listener() {
       \u0275\u0275restoreView(_r7);
       const ctx_r1 = \u0275\u0275nextContext(2);
@@ -42350,19 +42517,19 @@ function GoldGameComponent_div_4_div_18_Template(rf, ctx) {
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext(2);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate2("Vol\xE9e ", ctx_r1.currentVoleeIndex + 1, " / ", ctx_r1.nbVolees, "");
+    \u0275\u0275textInterpolate2("Vol\xE9e ", ctx_r1.currentEndIndex + 1, " / ", ctx_r1.endsCount, "");
     \u0275\u0275advance(2);
-    \u0275\u0275property("ngForOf", ctx_r1.currentVolee);
+    \u0275\u0275property("ngForOf", ctx_r1.currentEnd);
     \u0275\u0275advance(2);
-    \u0275\u0275property("disabled", ctx_r1.currentVolee.length === 0);
+    \u0275\u0275property("disabled", ctx_r1.currentEnd.length === 0);
   }
 }
 function GoldGameComponent_div_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 16)(1, "h2", 17);
+    \u0275\u0275elementStart(0, "div", 7)(1, "h2", 8);
     \u0275\u0275text(2, "Vol\xE9es pass\xE9es");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "table", 18)(4, "thead")(5, "tr")(6, "th");
+    \u0275\u0275elementStart(3, "table", 9)(4, "thead")(5, "tr")(6, "th");
     \u0275\u0275text(7, "Vol\xE9e");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(8, "th");
@@ -42372,21 +42539,21 @@ function GoldGameComponent_div_4_Template(rf, ctx) {
     \u0275\u0275text(11, "Score");
     \u0275\u0275elementEnd()()();
     \u0275\u0275elementStart(12, "tbody");
-    \u0275\u0275template(13, GoldGameComponent_div_4_tr_13_Template, 7, 3, "tr", 19)(14, GoldGameComponent_div_4_tr_14_Template, 5, 1, "tr", 20);
+    \u0275\u0275template(13, GoldGameComponent_div_4_tr_13_Template, 7, 3, "tr", 10)(14, GoldGameComponent_div_4_tr_14_Template, 5, 1, "tr", 11);
     \u0275\u0275elementEnd()();
-    \u0275\u0275template(15, GoldGameComponent_div_4_span_15_Template, 2, 1, "span", 20);
+    \u0275\u0275template(15, GoldGameComponent_div_4_span_15_Template, 2, 1, "span", 11);
     \u0275\u0275element(16, "br")(17, "br");
-    \u0275\u0275template(18, GoldGameComponent_div_4_div_18_Template, 8, 4, "div", 20);
+    \u0275\u0275template(18, GoldGameComponent_div_4_div_18_Template, 8, 4, "div", 11);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
     \u0275\u0275advance(13);
-    \u0275\u0275property("ngForOf", ctx_r1.historiqueVolees);
+    \u0275\u0275property("ngForOf", ctx_r1.pastEnds);
     \u0275\u0275advance();
-    \u0275\u0275property("ngIf", ctx_r1.historiqueVolees.length > 0);
+    \u0275\u0275property("ngIf", ctx_r1.pastEnds.length > 0);
     \u0275\u0275advance();
-    \u0275\u0275property("ngIf", ctx_r1.historiqueVolees.length > 0);
+    \u0275\u0275property("ngIf", ctx_r1.pastEnds.length > 0);
     \u0275\u0275advance(3);
     \u0275\u0275property("ngIf", ctx_r1.gameStarted && !ctx_r1.gameFinished);
   }
@@ -42394,7 +42561,7 @@ function GoldGameComponent_div_4_Template(rf, ctx) {
 function GoldGameComponent_app_score_keyboard_5_Template(rf, ctx) {
   if (rf & 1) {
     const _r9 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "app-score-keyboard", 26);
+    \u0275\u0275elementStart(0, "app-score-keyboard", 17);
     \u0275\u0275listener("scoreSelected", function GoldGameComponent_app_score_keyboard_5_Template_app_score_keyboard_scoreSelected_0_listener($event) {
       \u0275\u0275restoreView(_r9);
       const ctx_r1 = \u0275\u0275nextContext();
@@ -42402,87 +42569,65 @@ function GoldGameComponent_app_score_keyboard_5_Template(rf, ctx) {
     });
     \u0275\u0275elementEnd();
   }
-  if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275property("valeurs", ctx_r1.scoreValues);
-  }
 }
 var GoldGameComponent = class _GoldGameComponent {
   localStorageItemName = "GoldGame";
-  nbFlechesParVolee = 7;
-  nbVolees = 6;
-  zoneReussite = 7;
+  scoreKeyboard;
+  arrowsPerEndCount = 7;
+  endsCount = 6;
+  successZone = 7;
   gameStarted = false;
   gameFinished = false;
-  currentVolee = [];
-  currentVoleeIndex = 0;
-  historiqueVolees = [];
-  // Clavier
-  scoreValues = [
-    "X",
-    10,
-    9,
-    8,
-    7,
-    6,
-    5,
-    4,
-    3,
-    2,
-    1,
-    "M"
-  ];
+  currentEnd = [];
+  currentEndIndex = 0;
+  pastEnds = [];
+  onNewSettings(settings) {
+    if (settings) {
+      this.arrowsPerEndCount = settings.arrowsPerEndShotCount;
+      this.endsCount = settings.endsCount;
+      this.successZone = settings.successZone;
+      this.startGame();
+    } else {
+      this.resetGame();
+    }
+  }
   startGame() {
     this.gameStarted = true;
-    this.currentVolee = [];
-    this.currentVoleeIndex = 0;
-    this.historiqueVolees = [];
+    this.currentEnd = [];
+    this.currentEndIndex = 0;
+    this.pastEnds = [];
   }
   resetGame() {
     this.gameStarted = false;
     this.gameFinished = false;
-    this.nbFlechesParVolee = 7;
-    this.nbVolees = 6;
-    this.currentVolee = [];
-    this.historiqueVolees = [];
+    this.currentEnd = [];
+    this.pastEnds = [];
     localStorage.removeItem(this.localStorageItemName);
   }
   addScore(score) {
-    if (this.currentVolee.length < this.nbFlechesParVolee) {
-      this.currentVolee.push(score);
-      if (this.currentVolee.length === this.nbFlechesParVolee) {
+    if (this.currentEnd.length < this.arrowsPerEndCount) {
+      this.currentEnd.push(score);
+      if (this.currentEnd.length === this.arrowsPerEndCount) {
         this.saveCurrentVolee();
       }
     }
   }
   saveCurrentVolee() {
-    const score = this.calculateScore(this.currentVolee);
-    this.historiqueVolees.push({
-      details: [...this.currentVolee],
+    const score = this.calculateScore(this.currentEnd);
+    this.pastEnds.push({
+      details: [...this.currentEnd],
       score
     });
-    this.currentVolee = [];
-    this.currentVoleeIndex++;
-    if (this.currentVoleeIndex >= this.nbVolees) {
+    this.currentEnd = [];
+    this.currentEndIndex++;
+    if (this.currentEndIndex >= this.endsCount) {
       this.gameFinished = true;
       console.log("game finished");
     }
     this.saveToLocalStorage();
   }
   getScoreClass(score) {
-    if (score === "X" || score === 10 || score === 9)
-      return "yellow";
-    if (score === 7 || score === 8)
-      return "red";
-    if (score === 5 || score === 6)
-      return "blue";
-    if (score === 3 || score === 4)
-      return "black";
-    if (score === 2 || score === 1)
-      return "white";
-    if (score === "M")
-      return "gray";
-    return "";
+    return this.scoreKeyboard.getScoreClass(score);
   }
   calculateScore(scores) {
     return scores.reduce((total, s2) => {
@@ -42490,74 +42635,48 @@ var GoldGameComponent = class _GoldGameComponent {
         s2 = 0;
       if (s2 == "X")
         s2 = 11;
-      if (s2 == this.zoneReussite)
+      if (s2 == this.successZone)
         return total;
-      if (s2 == this.zoneReussite + 1)
+      if (s2 == this.successZone + 1)
         return total + 1;
-      if (s2 > this.zoneReussite + 1)
+      if (s2 > this.successZone + 1)
         return total + 2;
       return total - 1;
     }, 0);
   }
   getTotalScore() {
     let total = 0;
-    this.historiqueVolees.forEach((hist) => {
+    this.pastEnds.forEach((hist) => {
       total += hist.score;
     });
     return total;
   }
   getZonePercent() {
-    return Math.trunc(this.historiqueVolees.reduce((total, hist) => {
+    return Math.trunc(this.pastEnds.reduce((total, hist) => {
       return total + hist.details.reduce((count, score) => {
         if (score == "M")
           score = 0;
         if (score == "X")
           score = 10;
-        if (score >= this.zoneReussite)
+        if (score >= this.successZone)
           return count + 1;
         return count;
       }, 0);
-    }, 0) / (this.currentVoleeIndex * this.nbFlechesParVolee) * 100);
-  }
-  incrementFleches() {
-    this.nbFlechesParVolee++;
-  }
-  decrementFleches() {
-    if (this.nbFlechesParVolee > 1) {
-      this.nbFlechesParVolee--;
-    }
-  }
-  incrementVolees() {
-    this.nbVolees++;
-  }
-  decrementVolees() {
-    if (this.nbVolees > 1) {
-      this.nbVolees--;
-    }
-  }
-  incrementZone() {
-    if (this.zoneReussite < 10) {
-      this.zoneReussite++;
-    }
-  }
-  decrementZone() {
-    if (this.zoneReussite > 1) {
-      this.zoneReussite--;
-    }
+    }, 0) / (this.currentEndIndex * this.arrowsPerEndCount) * 100);
   }
   removeLastScore() {
-    if (this.currentVolee.length > 0) {
-      this.currentVolee.pop();
+    if (this.currentEnd.length > 0) {
+      this.currentEnd.pop();
     }
   }
   saveToLocalStorage() {
     const data = {
-      nbFlechesParVolee: this.nbFlechesParVolee,
-      nbVolees: this.nbVolees,
-      zoneReussite: this.zoneReussite,
-      currentVolee: this.currentVolee,
-      currentVoleeIndex: this.currentVoleeIndex,
-      historiqueVollees: this.historiqueVolees
+      nbFlechesParVolee: this.arrowsPerEndCount,
+      nbVolees: this.endsCount,
+      zoneReussite: this.successZone,
+      currentVolee: this.currentEnd,
+      currentVoleeIndex: this.currentEndIndex,
+      historiqueVollees: this.pastEnds
     };
     localStorage.setItem(this.localStorageItemName, JSON.stringify(data));
   }
@@ -42565,14 +42684,14 @@ var GoldGameComponent = class _GoldGameComponent {
     const saved = localStorage.getItem(this.localStorageItemName);
     if (saved) {
       const data = JSON.parse(saved);
-      this.nbFlechesParVolee = data.nbFlechesParVolee;
-      this.nbVolees = data.nbVolees;
-      this.zoneReussite = data.zoneReussite;
-      this.currentVolee = data.currentVolee;
-      this.currentVoleeIndex = data.currentVoleeIndex;
-      this.historiqueVolees = data.historiqueVollees;
+      this.arrowsPerEndCount = data.nbFlechesParVolee;
+      this.endsCount = data.nbVolees;
+      this.successZone = data.zoneReussite;
+      this.currentEnd = data.currentVolee;
+      this.currentEndIndex = data.currentVoleeIndex;
+      this.pastEnds = data.historiqueVollees;
       this.gameStarted = true;
-      this.gameFinished = this.currentVoleeIndex >= this.nbVolees;
+      this.gameFinished = this.currentEndIndex >= this.endsCount;
     }
   }
   ngOnInit() {
@@ -42581,13 +42700,21 @@ var GoldGameComponent = class _GoldGameComponent {
   static \u0275fac = function GoldGameComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _GoldGameComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _GoldGameComponent, selectors: [["app-tir-compte-double"]], decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["class", "button is-info is-small is-light is-pulled-right", 3, "click", 4, "ngIf"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "valeurs", "scoreSelected", 4, "ngIf"], [1, "button", "is-info", "is-small", "is-light", "is-pulled-right", 3, "click"], [1, "box"], [1, "title", "is-4"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-small", "is-light", 3, "click", "disabled"], [3, "scoreSelected", "valeurs"]], template: function GoldGameComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _GoldGameComponent, selectors: [["app-gold-game"]], viewQuery: function GoldGameComponent_Query(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275viewQuery(ScoreKeyboardComponent, 5);
+    }
+    if (rf & 2) {
+      let _t;
+      \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.scoreKeyboard = _t.first);
+    }
+  }, decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["class", "button is-info is-small is-light is-pulled-right", 3, "click", 4, "ngIf"], [3, "arrowsPerEndShotCount", "minimumArrowsPerEnd", "endsCount", "successZone", "newSettings", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "scoreSelected", 4, "ngIf"], [1, "button", "is-info", "is-small", "is-light", "is-pulled-right", 3, "click"], [3, "newSettings", "arrowsPerEndShotCount", "minimumArrowsPerEnd", "endsCount", "successZone"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-small", "is-light", 3, "click", "disabled"], [3, "scoreSelected"]], template: function GoldGameComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "h1", 0);
       \u0275\u0275text(1, "Gold Game ");
       \u0275\u0275template(2, GoldGameComponent_button_2_Template, 2, 0, "button", 1);
       \u0275\u0275elementEnd();
-      \u0275\u0275template(3, GoldGameComponent_div_3_Template, 42, 3, "div", 2)(4, GoldGameComponent_div_4_Template, 19, 4, "div", 3)(5, GoldGameComponent_app_score_keyboard_5_Template, 1, 1, "app-score-keyboard", 4);
+      \u0275\u0275template(3, GoldGameComponent_app_game_settings_3_Template, 1, 4, "app-game-settings", 2)(4, GoldGameComponent_div_4_Template, 19, 4, "div", 3)(5, GoldGameComponent_app_score_keyboard_5_Template, 1, 0, "app-score-keyboard", 4);
     }
     if (rf & 2) {
       \u0275\u0275advance(2);
@@ -42599,16 +42726,19 @@ var GoldGameComponent = class _GoldGameComponent {
       \u0275\u0275advance();
       \u0275\u0275property("ngIf", ctx.gameStarted && !ctx.gameFinished);
     }
-  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule, ScoreKeyboardComponent], styles: ["table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
+  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule, ScoreKeyboardComponent, SettingsComponent], styles: ["table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(GoldGameComponent, [{
     type: Component,
-    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent], template: '  <h1 class="title is-5">Gold Game\n    <button *ngIf="gameStarted" class="button is-info is-small is-light is-pulled-right" (click)="resetGame()">Recommencer</button>\n  </h1>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Zone de r\xE9ussite :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementZone()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="zoneReussite" style="width: 60px;">\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementZone()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Score</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVolees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ vol.score }}</td>\n      </tr>\n      <tr *ngIf="historiqueVolees.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{getTotalScore()}}</td>\n      </tr>\n    </tbody>\n  </table>\n  <span *ngIf="historiqueVolees.length > 0">({{getZonePercent()}} % en zone)</span>\n  <br />\n  <br />\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-small is-light" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues" (scoreSelected)="addScore($event)"></app-score-keyboard>\n', styles: ["table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
-  }], null, null);
+    args: [{ selector: "app-gold-game", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, SettingsComponent], template: '  <h1 class="title is-5">Gold Game\n    <button *ngIf="gameStarted" class="button is-info is-small is-light is-pulled-right" (click)="resetGame()">Recommencer</button>\n  </h1>\n\n<!-- Settings-->\n<app-game-settings *ngIf="!gameStarted"\n [arrowsPerEndShotCount]="arrowsPerEndCount"\n [minimumArrowsPerEnd]="3"\n [endsCount]="endsCount"\n [successZone]="successZone"\n (newSettings)="onNewSettings($event)"></app-game-settings>\n\n<!-- Results -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Score</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let end of pastEnds; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ end.score }}</td>\n      </tr>\n      <tr *ngIf="pastEnds.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{getTotalScore()}}</td>\n      </tr>\n    </tbody>\n  </table>\n  <span *ngIf="pastEnds.length > 0">({{getZonePercent()}} % en zone)</span>\n  <br />\n  <br />\n  <!-- Current end -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>\n    <div>\n      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-small is-light" (click)="removeLastScore()" [disabled]="currentEnd.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Keyboard -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>\n', styles: ["table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
+  }], null, { scoreKeyboard: [{
+    type: ViewChild,
+    args: [ScoreKeyboardComponent]
+  }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(GoldGameComponent, { className: "GoldGameComponent", filePath: "src/app/pages/gold-game/gold-game.component.ts", lineNumber: 13 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(GoldGameComponent, { className: "GoldGameComponent", filePath: "src/app/pages/games/gold-game/gold-game.component.ts", lineNumber: 14 });
 })();
 
 // node_modules/@fortawesome/fontawesome-svg-core/index.mjs
@@ -46313,12 +46443,12 @@ var faRotateLeft = {
   icon: [512, 512, ["rotate-back", "rotate-backward", "undo-alt"], "f2ea", "M48.5 224L40 224c-13.3 0-24-10.7-24-24L16 72c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2L98.6 96.6c87.6-86.5 228.7-86.2 315.8 1c87.5 87.5 87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3c-62.2-62.2-162.7-62.5-225.3-1L185 183c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8L48.5 224z"]
 };
 
-// src/app/pages/tir-compte-double/tir-compte-double.component.ts
-function TirCompteDoubleComponent_fa_icon_2_Template(rf, ctx) {
+// src/app/pages/games/double-counted-shot/double-counted-shot.component.ts
+function DoubleCountedShotGameComponent_fa_icon_2_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "fa-icon", 5);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_fa_icon_2_Template_fa_icon_click_0_listener() {
+    \u0275\u0275listener("click", function DoubleCountedShotGameComponent_fa_icon_2_Template_fa_icon_click_0_listener() {
       \u0275\u0275restoreView(_r1);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.resetGame());
@@ -46330,76 +46460,25 @@ function TirCompteDoubleComponent_fa_icon_2_Template(rf, ctx) {
     \u0275\u0275property("icon", ctx_r1.faRotateLeft);
   }
 }
-function TirCompteDoubleComponent_div_3_Template(rf, ctx) {
+function DoubleCountedShotGameComponent_app_game_settings_3_Template(rf, ctx) {
   if (rf & 1) {
     const _r3 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 6)(1, "h2", 7);
-    \u0275\u0275text(2, "Param\xE8tres");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "div", 8)(4, "label", 9);
-    \u0275\u0275text(5, "Fl\xE8ches par vol\xE9e :");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "div", 10)(7, "p", 11)(8, "button", 12);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_3_Template_button_click_8_listener() {
+    \u0275\u0275elementStart(0, "app-game-settings", 6);
+    \u0275\u0275listener("newSettings", function DoubleCountedShotGameComponent_app_game_settings_3_Template_app_game_settings_newSettings_0_listener($event) {
       \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.decrementFleches());
+      return \u0275\u0275resetView(ctx_r1.onNewSettings($event));
     });
-    \u0275\u0275text(9, "-");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(10, "p", 11);
-    \u0275\u0275element(11, "input", 13);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "p", 11)(13, "button", 12);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_3_Template_button_click_13_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.incrementFleches());
-    });
-    \u0275\u0275text(14, "+");
-    \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(15, "div", 8)(16, "label", 9);
-    \u0275\u0275text(17, "Nombre de vol\xE9es :");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(18, "div", 10)(19, "p", 11)(20, "button", 12);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_3_Template_button_click_20_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.decrementVolees());
-    });
-    \u0275\u0275text(21, "-");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(22, "p", 11);
-    \u0275\u0275element(23, "input", 13);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(24, "p", 11)(25, "button", 12);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_3_Template_button_click_25_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.incrementVolees());
-    });
-    \u0275\u0275text(26, "+");
-    \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(27, "div", 14)(28, "button", 15);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_3_Template_button_click_28_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.startGame());
-    });
-    \u0275\u0275text(29, "D\xE9marrer");
-    \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275advance(11);
-    \u0275\u0275property("value", ctx_r1.nbFlechesParVolee);
-    \u0275\u0275advance(12);
-    \u0275\u0275property("value", ctx_r1.nbVolees);
+    \u0275\u0275property("arrowsPerEndShotCount", ctx_r1.arrowsPerEndShotCount)("arrowsPerEndCount", ctx_r1.arrowsPerEndCount)("endsCount", ctx_r1.endsCount);
   }
 }
-function TirCompteDoubleComponent_div_4_tr_15_span_4_Template(rf, ctx) {
+function DoubleCountedShotGameComponent_div_4_tr_15_span_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 22);
+    \u0275\u0275elementStart(0, "span", 13);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -46411,13 +46490,13 @@ function TirCompteDoubleComponent_div_4_tr_15_span_4_Template(rf, ctx) {
     \u0275\u0275textInterpolate(s_r4);
   }
 }
-function TirCompteDoubleComponent_div_4_tr_15_Template(rf, ctx) {
+function DoubleCountedShotGameComponent_div_4_tr_15_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "tr")(1, "td");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "td");
-    \u0275\u0275template(4, TirCompteDoubleComponent_div_4_tr_15_span_4_Template, 2, 2, "span", 21);
+    \u0275\u0275template(4, DoubleCountedShotGameComponent_div_4_tr_15_span_4_Template, 2, 2, "span", 12);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(5, "td");
     \u0275\u0275text(6);
@@ -46427,21 +46506,21 @@ function TirCompteDoubleComponent_div_4_tr_15_Template(rf, ctx) {
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const vol_r5 = ctx.$implicit;
+    const end_r5 = ctx.$implicit;
     const i_r6 = ctx.index;
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate(i_r6 + 1);
     \u0275\u0275advance(2);
-    \u0275\u0275property("ngForOf", vol_r5.details);
+    \u0275\u0275property("ngForOf", end_r5.details);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(vol_r5.meilleuresScore);
+    \u0275\u0275textInterpolate(end_r5.bestScore);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(vol_r5.moinsBonnesScore);
+    \u0275\u0275textInterpolate(end_r5.lowestScore);
   }
 }
-function TirCompteDoubleComponent_div_4_tr_16_Template(rf, ctx) {
+function DoubleCountedShotGameComponent_div_4_tr_16_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "tr")(1, "td", 23);
+    \u0275\u0275elementStart(0, "tr")(1, "td", 14);
     \u0275\u0275text(2, "Total");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "td");
@@ -46456,12 +46535,12 @@ function TirCompteDoubleComponent_div_4_tr_16_Template(rf, ctx) {
     \u0275\u0275advance(4);
     \u0275\u0275textInterpolate(ctx_r1.getTotalBestScore());
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r1.getTotalWorstScore());
+    \u0275\u0275textInterpolate(ctx_r1.getTotalLowestScore());
   }
 }
-function TirCompteDoubleComponent_div_4_div_17_span_4_Template(rf, ctx) {
+function DoubleCountedShotGameComponent_div_4_div_17_span_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 22);
+    \u0275\u0275elementStart(0, "span", 13);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -46473,17 +46552,17 @@ function TirCompteDoubleComponent_div_4_div_17_span_4_Template(rf, ctx) {
     \u0275\u0275textInterpolate(s_r8);
   }
 }
-function TirCompteDoubleComponent_div_4_div_17_Template(rf, ctx) {
+function DoubleCountedShotGameComponent_div_4_div_17_Template(rf, ctx) {
   if (rf & 1) {
     const _r7 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div")(1, "h2", 17);
+    \u0275\u0275elementStart(0, "div")(1, "h2", 8);
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "div");
-    \u0275\u0275template(4, TirCompteDoubleComponent_div_4_div_17_span_4_Template, 2, 2, "span", 21);
+    \u0275\u0275template(4, DoubleCountedShotGameComponent_div_4_div_17_span_4_Template, 2, 2, "span", 12);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "div", 24)(6, "button", 25);
-    \u0275\u0275listener("click", function TirCompteDoubleComponent_div_4_div_17_Template_button_click_6_listener() {
+    \u0275\u0275elementStart(5, "div", 15)(6, "button", 16);
+    \u0275\u0275listener("click", function DoubleCountedShotGameComponent_div_4_div_17_Template_button_click_6_listener() {
       \u0275\u0275restoreView(_r7);
       const ctx_r1 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r1.removeLastScore());
@@ -46494,144 +46573,129 @@ function TirCompteDoubleComponent_div_4_div_17_Template(rf, ctx) {
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext(2);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate2("Vol\xE9e ", ctx_r1.currentVoleeIndex + 1, " / ", ctx_r1.nbVolees, "");
+    \u0275\u0275textInterpolate2("Vol\xE9e ", ctx_r1.currentEndIndex + 1, " / ", ctx_r1.endsCount, "");
     \u0275\u0275advance(2);
-    \u0275\u0275property("ngForOf", ctx_r1.currentVolee);
+    \u0275\u0275property("ngForOf", ctx_r1.currentEnd);
     \u0275\u0275advance(2);
-    \u0275\u0275property("disabled", ctx_r1.currentVolee.length === 0);
+    \u0275\u0275property("disabled", ctx_r1.currentEnd.length === 0);
   }
 }
-function TirCompteDoubleComponent_div_4_Template(rf, ctx) {
+function DoubleCountedShotGameComponent_div_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 16)(1, "h2", 17);
+    \u0275\u0275elementStart(0, "div", 7)(1, "h2", 8);
     \u0275\u0275text(2, "Vol\xE9es pass\xE9es");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "table", 18)(4, "thead")(5, "tr")(6, "th");
+    \u0275\u0275elementStart(3, "table", 9)(4, "thead")(5, "tr")(6, "th");
     \u0275\u0275text(7, "Vol\xE9e");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(8, "th");
     \u0275\u0275text(9, "D\xE9tails");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(10, "th");
-    \u0275\u0275text(11, "6 +");
+    \u0275\u0275text(11);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(12, "th");
-    \u0275\u0275text(13, "6 -");
+    \u0275\u0275text(13);
     \u0275\u0275elementEnd()()();
     \u0275\u0275elementStart(14, "tbody");
-    \u0275\u0275template(15, TirCompteDoubleComponent_div_4_tr_15_Template, 9, 4, "tr", 19)(16, TirCompteDoubleComponent_div_4_tr_16_Template, 7, 2, "tr", 20);
+    \u0275\u0275template(15, DoubleCountedShotGameComponent_div_4_tr_15_Template, 9, 4, "tr", 10)(16, DoubleCountedShotGameComponent_div_4_tr_16_Template, 7, 2, "tr", 11);
     \u0275\u0275elementEnd()();
-    \u0275\u0275template(17, TirCompteDoubleComponent_div_4_div_17_Template, 8, 4, "div", 20);
+    \u0275\u0275template(17, DoubleCountedShotGameComponent_div_4_div_17_Template, 8, 4, "div", 11);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275advance(15);
-    \u0275\u0275property("ngForOf", ctx_r1.historiqueVollees);
+    \u0275\u0275advance(11);
+    \u0275\u0275textInterpolate1("", ctx_r1.arrowsPerEndCount, " +");
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate1("", ctx_r1.arrowsPerEndCount, " -");
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngForOf", ctx_r1.pastEnds);
     \u0275\u0275advance();
-    \u0275\u0275property("ngIf", ctx_r1.historiqueVollees.length > 0);
+    \u0275\u0275property("ngIf", ctx_r1.pastEnds.length > 0);
     \u0275\u0275advance();
     \u0275\u0275property("ngIf", ctx_r1.gameStarted && !ctx_r1.gameFinished);
   }
 }
-function TirCompteDoubleComponent_app_score_keyboard_5_Template(rf, ctx) {
+function DoubleCountedShotGameComponent_app_score_keyboard_5_Template(rf, ctx) {
   if (rf & 1) {
     const _r9 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "app-score-keyboard", 26);
-    \u0275\u0275listener("scoreSelected", function TirCompteDoubleComponent_app_score_keyboard_5_Template_app_score_keyboard_scoreSelected_0_listener($event) {
+    \u0275\u0275elementStart(0, "app-score-keyboard", 17);
+    \u0275\u0275listener("scoreSelected", function DoubleCountedShotGameComponent_app_score_keyboard_5_Template_app_score_keyboard_scoreSelected_0_listener($event) {
       \u0275\u0275restoreView(_r9);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.addScore($event));
     });
     \u0275\u0275elementEnd();
   }
-  if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275property("valeurs", ctx_r1.scoreValues);
-  }
 }
-var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
+var DoubleCountedShotGameComponent = class _DoubleCountedShotGameComponent {
+  scoreKeyboard;
   faRotateLeft = faRotateLeft;
-  nbFlechesParVolee = 7;
-  nbVolees = 6;
+  arrowsPerEndShotCount = 7;
+  arrowsPerEndCount = 6;
+  // This is the number of arrows per end to use for counting the end, not the shot count
+  endsCount = 6;
   gameStarted = false;
   gameFinished = false;
-  currentVolee = [];
-  currentVoleeIndex = 0;
-  historiqueVollees = [];
-  // Clavier
-  scoreValues = [
-    "X",
-    10,
-    9,
-    8,
-    7,
-    6,
-    5,
-    4,
-    3,
-    2,
-    1,
-    "M"
-  ];
+  currentEnd = [];
+  currentEndIndex = 0;
+  pastEnds = [];
+  localStorageItemName = "doubleCountedGame";
+  onNewSettings(settings) {
+    if (settings) {
+      this.arrowsPerEndShotCount = settings.arrowsPerEndShotCount;
+      this.arrowsPerEndCount = settings.arrowsPerEndCount;
+      this.endsCount = settings.endsCount;
+      this.startGame();
+    } else {
+      this.resetGame();
+    }
+  }
   startGame() {
     this.gameStarted = true;
-    this.currentVolee = [];
-    this.currentVoleeIndex = 0;
-    this.historiqueVollees = [];
+    this.currentEnd = [];
+    this.currentEndIndex = 0;
+    this.pastEnds = [];
   }
   resetGame() {
     this.gameStarted = false;
     this.gameFinished = false;
-    this.nbFlechesParVolee = 7;
-    this.nbVolees = 6;
-    this.currentVolee = [];
-    this.historiqueVollees = [];
-    localStorage.removeItem("tirCompteDoubleGame");
+    this.currentEnd = [];
+    this.pastEnds = [];
+    localStorage.removeItem(this.localStorageItemName);
   }
   addScore(score) {
-    if (this.currentVolee.length < this.nbFlechesParVolee) {
-      this.currentVolee.push(score);
-      if (this.currentVolee.length === this.nbFlechesParVolee) {
+    if (this.currentEnd.length < this.arrowsPerEndShotCount) {
+      this.currentEnd.push(score);
+      if (this.currentEnd.length === this.arrowsPerEndShotCount) {
         this.saveCurrentVolee();
       }
     }
   }
   saveCurrentVolee() {
-    const sortedScores = [...this.currentVolee].sort((a, b) => {
+    const sortedScores = [...this.currentEnd].sort((a, b) => {
       const valA = a === "X" ? 10 : a === "M" ? 0 : a;
       const valB = b === "X" ? 10 : b === "M" ? 0 : b;
       return valB - valA;
     });
-    const meilleuresScore = this.calculateScoreSum(sortedScores.slice(0, 6));
-    const moinsBonnesScore = this.calculateScoreSum(sortedScores.slice(-6));
-    this.historiqueVollees.push({
-      details: [...this.currentVolee],
-      meilleuresScore,
-      moinsBonnesScore
+    const bestScore = this.calculateScoreSum(sortedScores.slice(0, this.arrowsPerEndCount));
+    const lowestScore = this.calculateScoreSum(sortedScores.slice(-1 * this.arrowsPerEndCount));
+    this.pastEnds.push({
+      details: [...this.currentEnd],
+      bestScore,
+      lowestScore
     });
-    this.currentVolee = [];
-    this.currentVoleeIndex++;
-    if (this.currentVoleeIndex >= this.nbVolees) {
+    this.currentEnd = [];
+    this.currentEndIndex++;
+    if (this.currentEndIndex >= this.endsCount) {
       this.gameFinished = true;
       console.log("game finished");
     }
     this.saveToLocalStorage();
   }
   getScoreClass(score) {
-    if (score === "X" || score === 10 || score === 9)
-      return "yellow";
-    if (score === 7 || score === 8)
-      return "red";
-    if (score === 5 || score === 6)
-      return "blue";
-    if (score === 3 || score === 4)
-      return "black";
-    if (score === 2 || score === 1)
-      return "white";
-    if (score === "M")
-      return "gray";
-    return "";
+    return this.scoreKeyboard.getScoreClass(score);
   }
   calculateScoreSum(scores) {
     return scores.reduce((total, s2) => {
@@ -46644,75 +46708,67 @@ var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
   }
   getTotalBestScore() {
     let total = 0;
-    this.historiqueVollees.forEach((hist) => {
-      total += hist.meilleuresScore;
+    this.pastEnds.forEach((hist) => {
+      total += hist.bestScore;
     });
     return total;
   }
-  getTotalWorstScore() {
+  getTotalLowestScore() {
     let total = 0;
-    this.historiqueVollees.forEach((hist) => {
-      total += hist.moinsBonnesScore;
+    this.pastEnds.forEach((hist) => {
+      total += hist.lowestScore;
     });
     return total;
-  }
-  incrementFleches() {
-    this.nbFlechesParVolee++;
-  }
-  decrementFleches() {
-    if (this.nbFlechesParVolee > 7) {
-      this.nbFlechesParVolee--;
-    }
-  }
-  incrementVolees() {
-    this.nbVolees++;
-  }
-  decrementVolees() {
-    if (this.nbVolees > 1) {
-      this.nbVolees--;
-    }
   }
   removeLastScore() {
-    if (this.currentVolee.length > 0) {
-      this.currentVolee.pop();
+    if (this.currentEnd.length > 0) {
+      this.currentEnd.pop();
     }
   }
   saveToLocalStorage() {
     const data = {
-      nbFlechesParVolee: this.nbFlechesParVolee,
-      nbVolees: this.nbVolees,
-      currentVolee: this.currentVolee,
-      currentVoleeIndex: this.currentVoleeIndex,
-      historiqueVollees: this.historiqueVollees
+      arrowsPerEndCount: this.arrowsPerEndShotCount,
+      endsCount: this.endsCount,
+      currentEnd: this.currentEnd,
+      currentEndIndex: this.currentEndIndex,
+      pastEnds: this.pastEnds
     };
-    localStorage.setItem("tirCompteDoubleGame", JSON.stringify(data));
+    localStorage.setItem(this.localStorageItemName, JSON.stringify(data));
   }
   loadFromLocalStorage() {
-    const saved = localStorage.getItem("tirCompteDoubleGame");
+    const saved = localStorage.getItem(this.localStorageItemName);
     if (saved) {
       const data = JSON.parse(saved);
-      this.nbFlechesParVolee = data.nbFlechesParVolee;
-      this.nbVolees = data.nbVolees;
-      this.currentVolee = data.currentVolee;
-      this.currentVoleeIndex = data.currentVoleeIndex;
-      this.historiqueVollees = data.historiqueVollees;
+      this.arrowsPerEndShotCount = data.arrowsPerEndCount;
+      this.endsCount = data.endsCount;
+      this.currentEnd = data.currentEnd;
+      this.currentEndIndex = data.currentEndIndex;
+      this.pastEnds = data.pastEnds;
       this.gameStarted = true;
-      this.gameFinished = this.currentVoleeIndex >= this.nbVolees;
+      this.gameFinished = this.currentEndIndex >= this.endsCount;
     }
   }
   ngOnInit() {
     this.loadFromLocalStorage();
   }
-  static \u0275fac = function TirCompteDoubleComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _TirCompteDoubleComponent)();
+  static \u0275fac = function DoubleCountedShotGameComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _DoubleCountedShotGameComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TirCompteDoubleComponent, selectors: [["app-tir-compte-double"]], decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:#66d1ff;cursor:pointer;", 3, "icon", "click", 4, "ngIf"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "valeurs", "scoreSelected", 4, "ngIf"], [2, "color", "#66d1ff", "cursor", "pointer", 3, "click", "icon"], [1, "box"], [1, "title", "is-4"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-small", "is-light", 3, "click", "disabled"], [3, "scoreSelected", "valeurs"]], template: function TirCompteDoubleComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DoubleCountedShotGameComponent, selectors: [["app-tir-compte-double"]], viewQuery: function DoubleCountedShotGameComponent_Query(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275viewQuery(ScoreKeyboardComponent, 5);
+    }
+    if (rf & 2) {
+      let _t;
+      \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.scoreKeyboard = _t.first);
+    }
+  }, decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:#66d1ff;cursor:pointer;", 3, "icon", "click", 4, "ngIf"], [3, "arrowsPerEndShotCount", "arrowsPerEndCount", "endsCount", "newSettings", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "scoreSelected", 4, "ngIf"], [2, "color", "#66d1ff", "cursor", "pointer", 3, "click", "icon"], [3, "newSettings", "arrowsPerEndShotCount", "arrowsPerEndCount", "endsCount"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-small", "is-light", 3, "click", "disabled"], [3, "scoreSelected"]], template: function DoubleCountedShotGameComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "h1", 0);
-      \u0275\u0275text(1, "Tir compt\xE9 double\n\xA0\xA0\xA0");
-      \u0275\u0275template(2, TirCompteDoubleComponent_fa_icon_2_Template, 1, 1, "fa-icon", 1);
+      \u0275\u0275text(1, "Tir compt\xE9 double \xA0\xA0\xA0");
+      \u0275\u0275template(2, DoubleCountedShotGameComponent_fa_icon_2_Template, 1, 1, "fa-icon", 1);
       \u0275\u0275elementEnd();
-      \u0275\u0275template(3, TirCompteDoubleComponent_div_3_Template, 30, 2, "div", 2)(4, TirCompteDoubleComponent_div_4_Template, 18, 3, "div", 3)(5, TirCompteDoubleComponent_app_score_keyboard_5_Template, 1, 1, "app-score-keyboard", 4);
+      \u0275\u0275template(3, DoubleCountedShotGameComponent_app_game_settings_3_Template, 1, 3, "app-game-settings", 2)(4, DoubleCountedShotGameComponent_div_4_Template, 18, 5, "div", 3)(5, DoubleCountedShotGameComponent_app_score_keyboard_5_Template, 1, 0, "app-score-keyboard", 4);
     }
     if (rf & 2) {
       \u0275\u0275advance(2);
@@ -46724,24 +46780,27 @@ var TirCompteDoubleComponent = class _TirCompteDoubleComponent {
       \u0275\u0275advance();
       \u0275\u0275property("ngIf", ctx.gameStarted && !ctx.gameFinished);
     }
-  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, FaIconComponent], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
+  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, FaIconComponent, SettingsComponent], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TirCompteDoubleComponent, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DoubleCountedShotGameComponent, [{
     type: Component,
-    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule], template: '<h1 class="title is-5">Tir compt\xE9 double\n&nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()" style="color:#66d1ff;cursor:pointer;"></fa-icon>\n</h1>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px" />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px" />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>6 +</th>\n        <th>6 -</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVollees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ vol.meilleuresScore }}</td>\n        <td>{{ vol.moinsBonnesScore }}</td>\n      </tr>\n      <tr *ngIf="historiqueVollees.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{ getTotalBestScore() }}</td>\n        <td>{{ getTotalWorstScore() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-small is-light" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues"\n  (scoreSelected)="addScore($event)"></app-score-keyboard>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
-  }], null, null);
+    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, SettingsComponent], template: '<h1 class="title is-5">Tir compt\xE9 double\n  &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"\n    style="color:#66d1ff;cursor:pointer;"></fa-icon>\n</h1>\n\n<!-- Settings -->\n<app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" \n  [arrowsPerEndCount]="arrowsPerEndCount" [endsCount]="endsCount"\n (newSettings)="onNewSettings($event)"></app-game-settings>\n\n<!-- Results -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>{{arrowsPerEndCount}} +</th>\n        <th>{{arrowsPerEndCount}} -</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let end of pastEnds; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ end.bestScore }}</td>\n        <td>{{ end.lowestScore }}</td>\n      </tr>\n      <tr *ngIf="pastEnds.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{ getTotalBestScore() }}</td>\n        <td>{{ getTotalLowestScore() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Current end -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>\n    <div>\n      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-small is-light" (click)="removeLastScore()"\n        [disabled]="currentEnd.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
+  }], null, { scoreKeyboard: [{
+    type: ViewChild,
+    args: [ScoreKeyboardComponent]
+  }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TirCompteDoubleComponent, { className: "TirCompteDoubleComponent", filePath: "src/app/pages/tir-compte-double/tir-compte-double.component.ts", lineNumber: 15 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DoubleCountedShotGameComponent, { className: "DoubleCountedShotGameComponent", filePath: "src/app/pages/games/double-counted-shot/double-counted-shot.component.ts", lineNumber: 16 });
 })();
 
-// src/app/pages/accueil/accueil.component.ts
-var AccueilComponent = class _AccueilComponent {
-  static \u0275fac = function AccueilComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _AccueilComponent)();
+// src/app/pages/home/home.component.ts
+var HomeComponent = class _HomeComponent {
+  static \u0275fac = function HomeComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _HomeComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AccueilComponent, selectors: [["app-accueil"]], decls: 12, vars: 0, consts: [[1, "content"], ["href", "https://github.com/mat-chartier/arcsenal", "target", "_blank"]], template: function AccueilComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HomeComponent, selectors: [["app-home"]], decls: 12, vars: 0, consts: [[1, "content"], ["href", "https://github.com/mat-chartier/arcsenal", "target", "_blank"]], template: function HomeComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "p");
       \u0275\u0275text(2, " Un petit arsenal pour les arch\xE8res et archers, sans installation d'app, tout dans un navigateur ! ");
@@ -46761,9 +46820,9 @@ var AccueilComponent = class _AccueilComponent {
   }, encapsulation: 2 });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AccueilComponent, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HomeComponent, [{
     type: Component,
-    args: [{ selector: "app-accueil", imports: [], template: `<div class="content">
+    args: [{ selector: "app-home", imports: [], template: `<div class="content">
   <p>
     Un petit arsenal pour les arch\xE8res et archers, sans installation d'app, tout
     dans un navigateur !
@@ -46784,12 +46843,12 @@ var AccueilComponent = class _AccueilComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AccueilComponent, { className: "AccueilComponent", filePath: "src/app/pages/accueil/accueil.component.ts", lineNumber: 9 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HomeComponent, { className: "HomeComponent", filePath: "src/app/pages/home/home.component.ts", lineNumber: 9 });
 })();
 
-// src/app/components/blason-interactif/blason-interactif.component.ts
-var _c02 = ["blasonSvg"];
-function BlasonInteractifComponent__svg_circle_3_Template(rf, ctx) {
+// src/app/components/score-input/target-face/target-face.component.ts
+var _c02 = ["targetFaceSvg"];
+function InteractiveTargetFaceComponent__svg_circle_3_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275namespaceSVG();
     \u0275\u0275element(0, "circle", 6);
@@ -46799,7 +46858,7 @@ function BlasonInteractifComponent__svg_circle_3_Template(rf, ctx) {
     \u0275\u0275attribute("r", zone_r2.r)("fill", zone_r2.color)("stroke-width", zone_r2.strokeWidth);
   }
 }
-function BlasonInteractifComponent__svg_ng_container_4_Template(rf, ctx) {
+function InteractiveTargetFaceComponent__svg_ng_container_4_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275namespaceSVG();
     \u0275\u0275elementContainerStart(0);
@@ -46820,7 +46879,7 @@ function BlasonInteractifComponent__svg_ng_container_4_Template(rf, ctx) {
     \u0275\u0275textInterpolate(f_r3.arrow);
   }
 }
-function BlasonInteractifComponent__svg_ng_container_5_Template(rf, ctx) {
+function InteractiveTargetFaceComponent__svg_ng_container_5_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275namespaceSVG();
     \u0275\u0275elementContainerStart(0);
@@ -46841,22 +46900,22 @@ function BlasonInteractifComponent__svg_ng_container_5_Template(rf, ctx) {
     \u0275\u0275textInterpolate(im_r5.arrow);
   }
 }
-function BlasonInteractifComponent__svg_circle_6_Template(rf, ctx) {
+function InteractiveTargetFaceComponent__svg_circle_6_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275namespaceSVG();
     \u0275\u0275element(0, "circle", 11);
   }
   if (rf & 2) {
     const ctx_r3 = \u0275\u0275nextContext();
-    \u0275\u0275attribute("cx", ctx_r3.impactEnCours.x)("cy", ctx_r3.impactEnCours.y);
+    \u0275\u0275attribute("cx", ctx_r3.currentImpact.x)("cy", ctx_r3.currentImpact.y);
   }
 }
 var decalageVertical = 40;
-var BlasonInteractifComponent = class _BlasonInteractifComponent {
-  blasonSvg;
-  autresImpacts = [];
-  impactsMoyens = null;
-  nouvelImpact = new EventEmitter();
+var InteractiveTargetFaceComponent = class _InteractiveTargetFaceComponent {
+  targetFaceSvg;
+  otherImpacts = [];
+  averageImpacts = null;
+  newImpact = new EventEmitter();
   zones = [
     { r: 84, color: "#05c1f2", strokeWidth: 0.2 },
     { r: 70, color: "#05c1f2", strokeWidth: 0.5 },
@@ -46867,19 +46926,19 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
     { r: 7, color: "yellow", strokeWidth: 0.2 }
   ];
   moving = false;
-  impactEnCours = null;
+  currentImpact = null;
   zoomActive = false;
   zoomFactor = 2;
   zoomRefX = 0;
   zoomRefY = 0;
   startDrag(event) {
     if (event.touches.length === 1) {
-      const svg = this.blasonSvg.nativeElement;
+      const svg = this.targetFaceSvg.nativeElement;
       const pt2 = svg.createSVGPoint();
       pt2.x = event.touches[0].clientX;
       pt2.y = event.touches[0].clientY - decalageVertical;
       const cursorpt = pt2.matrixTransform(svg.getScreenCTM().inverse());
-      this.impactEnCours = { x: cursorpt.x, y: cursorpt.y };
+      this.currentImpact = { x: cursorpt.x, y: cursorpt.y };
       const viewBoxSize = 200;
       const relX = cursorpt.x / viewBoxSize;
       const relY = cursorpt.y / viewBoxSize;
@@ -46893,19 +46952,19 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
   }
   drag(event) {
     if (this.moving && event.touches.length === 1) {
-      const svg = this.blasonSvg.nativeElement;
+      const svg = this.targetFaceSvg.nativeElement;
       const pt2 = svg.createSVGPoint();
       pt2.x = event.touches[0].clientX;
       pt2.y = event.touches[0].clientY - decalageVertical;
       const cursorpt = pt2.matrixTransform(svg.getScreenCTM().inverse());
-      this.impactEnCours = { x: cursorpt.x, y: cursorpt.y };
+      this.currentImpact = { x: cursorpt.x, y: cursorpt.y };
       event.preventDefault();
     }
   }
   endDrag() {
-    if (this.moving && this.impactEnCours) {
-      this.nouvelImpact.emit({ x: this.impactEnCours.x, y: this.impactEnCours.y });
-      this.impactEnCours = null;
+    if (this.moving && this.currentImpact) {
+      this.newImpact.emit({ x: this.currentImpact.x, y: this.currentImpact.y });
+      this.currentImpact = null;
       this.zoomActive = false;
       this.moving = false;
     }
@@ -46922,34 +46981,34 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
   getTextY(cy, r2, padding = 2) {
     return cy - r2 - padding;
   }
-  static \u0275fac = function BlasonInteractifComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BlasonInteractifComponent)();
+  static \u0275fac = function InteractiveTargetFaceComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _InteractiveTargetFaceComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BlasonInteractifComponent, selectors: [["app-blason-interactif"]], viewQuery: function BlasonInteractifComponent_Query(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _InteractiveTargetFaceComponent, selectors: [["app-interactive-target-face"]], viewQuery: function InteractiveTargetFaceComponent_Query(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275viewQuery(_c02, 5);
     }
     if (rf & 2) {
       let _t;
-      \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.blasonSvg = _t.first);
+      \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.targetFaceSvg = _t.first);
     }
-  }, inputs: { autresImpacts: "autresImpacts", impactsMoyens: "impactsMoyens" }, outputs: { nouvelImpact: "nouvelImpact" }, decls: 7, vars: 5, consts: [["blasonSvg", ""], [1, "blason-container"], [1, "blason", 3, "touchstart", "touchmove", "touchend"], ["cx", "100", "cy", "100", "stroke", "black", 4, "ngFor", "ngForOf"], [4, "ngFor", "ngForOf"], ["r", "3", "fill", "white", "stroke", "black", "stroke-width", "1", 4, "ngIf"], ["cx", "100", "cy", "100", "stroke", "black"], ["r", "2", "fill", "black"], ["text-anchor", "middle", "font-family", "sans-serif", "font-size", "0.2rem", "fill", "black"], ["r", "3", "fill", "#55ff55"], ["text-anchor", "middle", "font-family", "sans-serif", "font-size", "0.3rem", "font-weight", "bold", "fill", "black"], ["r", "3", "fill", "white", "stroke", "black", "stroke-width", "1"]], template: function BlasonInteractifComponent_Template(rf, ctx) {
+  }, inputs: { otherImpacts: "otherImpacts", averageImpacts: "averageImpacts" }, outputs: { newImpact: "newImpact" }, decls: 7, vars: 5, consts: [["targetFaceSvg", ""], [1, "target-face-container"], [1, "target-face", 3, "touchstart", "touchmove", "touchend"], ["cx", "100", "cy", "100", "stroke", "black", 4, "ngFor", "ngForOf"], [4, "ngFor", "ngForOf"], ["r", "3", "fill", "white", "stroke", "black", "stroke-width", "1", 4, "ngIf"], ["cx", "100", "cy", "100", "stroke", "black"], ["r", "2", "fill", "black"], ["text-anchor", "middle", "font-family", "sans-serif", "font-size", "0.2rem", "fill", "black"], ["r", "3", "fill", "#55ff55"], ["text-anchor", "middle", "font-family", "sans-serif", "font-size", "0.3rem", "font-weight", "bold", "fill", "black"], ["r", "3", "fill", "white", "stroke", "black", "stroke-width", "1"]], template: function InteractiveTargetFaceComponent_Template(rf, ctx) {
     if (rf & 1) {
       const _r1 = \u0275\u0275getCurrentView();
       \u0275\u0275elementStart(0, "div", 1);
       \u0275\u0275namespaceSVG();
       \u0275\u0275elementStart(1, "svg", 2, 0);
-      \u0275\u0275listener("touchstart", function BlasonInteractifComponent_Template_svg_touchstart_1_listener($event) {
+      \u0275\u0275listener("touchstart", function InteractiveTargetFaceComponent_Template_svg_touchstart_1_listener($event) {
         \u0275\u0275restoreView(_r1);
         return \u0275\u0275resetView(ctx.startDrag($event));
-      })("touchmove", function BlasonInteractifComponent_Template_svg_touchmove_1_listener($event) {
+      })("touchmove", function InteractiveTargetFaceComponent_Template_svg_touchmove_1_listener($event) {
         \u0275\u0275restoreView(_r1);
         return \u0275\u0275resetView(ctx.drag($event));
-      })("touchend", function BlasonInteractifComponent_Template_svg_touchend_1_listener() {
+      })("touchend", function InteractiveTargetFaceComponent_Template_svg_touchend_1_listener() {
         \u0275\u0275restoreView(_r1);
         return \u0275\u0275resetView(ctx.endDrag());
       });
-      \u0275\u0275template(3, BlasonInteractifComponent__svg_circle_3_Template, 1, 3, "circle", 3)(4, BlasonInteractifComponent__svg_ng_container_4_Template, 4, 5, "ng-container", 4)(5, BlasonInteractifComponent__svg_ng_container_5_Template, 4, 5, "ng-container", 4)(6, BlasonInteractifComponent__svg_circle_6_Template, 1, 2, "circle", 5);
+      \u0275\u0275template(3, InteractiveTargetFaceComponent__svg_circle_3_Template, 1, 3, "circle", 3)(4, InteractiveTargetFaceComponent__svg_ng_container_4_Template, 4, 5, "ng-container", 4)(5, InteractiveTargetFaceComponent__svg_ng_container_5_Template, 4, 5, "ng-container", 4)(6, InteractiveTargetFaceComponent__svg_circle_6_Template, 1, 2, "circle", 5);
       \u0275\u0275elementEnd()();
     }
     if (rf & 2) {
@@ -46958,103 +47017,87 @@ var BlasonInteractifComponent = class _BlasonInteractifComponent {
       \u0275\u0275advance(2);
       \u0275\u0275property("ngForOf", ctx.zones);
       \u0275\u0275advance();
-      \u0275\u0275property("ngForOf", ctx.autresImpacts);
+      \u0275\u0275property("ngForOf", ctx.otherImpacts);
       \u0275\u0275advance();
-      \u0275\u0275property("ngForOf", ctx.impactsMoyens);
+      \u0275\u0275property("ngForOf", ctx.averageImpacts);
       \u0275\u0275advance();
-      \u0275\u0275property("ngIf", ctx.impactEnCours);
+      \u0275\u0275property("ngIf", ctx.currentImpact);
     }
-  }, dependencies: [CommonModule, NgForOf, NgIf], styles: ['@charset "UTF-8";.blason[_ngcontent-%COMP%]{width:100%;max-width:400px;height:auto;border:1px solid #ccc;touch-action:none}.blason-container[_ngcontent-%COMP%]{position:relative}.impact[_ngcontent-%COMP%]{position:absolute;width:12px;height:12px;background:#fff;border:2px solid #ddd;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}'] });
+  }, dependencies: [CommonModule, NgForOf, NgIf], styles: ['@charset "UTF-8";.target-face[_ngcontent-%COMP%]{width:100%;max-width:400px;height:auto;border:1px solid #ccc;touch-action:none}.target-face-container[_ngcontent-%COMP%]{position:relative}.impact[_ngcontent-%COMP%]{position:absolute;width:12px;height:12px;background:#fff;border:2px solid #ddd;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}'] });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BlasonInteractifComponent, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(InteractiveTargetFaceComponent, [{
     type: Component,
-    args: [{ selector: "app-blason-interactif", standalone: true, imports: [CommonModule], template: '<div class="blason-container">\n    <svg #blasonSvg [attr.viewBox]="getViewBox()" class="blason" (touchstart)="startDrag($event)"\n        (touchmove)="drag($event)" (touchend)="endDrag()">\n        <!-- Blason -->\n        <circle *ngFor="let zone of zones" [attr.r]="zone.r" [attr.fill]="zone.color" cx="100" cy="100" stroke="black"\n            [attr.stroke-width]="zone.strokeWidth" />\n\n        <!-- Impacts enregistr\xE9s -->\n        <ng-container *ngFor="let f of autresImpacts">\n            <circle [attr.cx]="f.x" [attr.cy]="f.y" r="2" fill="black" />\n            <text [attr.x]="f.x" [attr.y]="getTextY(f.y, 2)" text-anchor="middle" font-family="sans-serif"\n                font-size="0.2rem" fill="black">{{f.arrow}}</text>\n        </ng-container>\n\n        <!-- Moyenne -->\n        <ng-container *ngFor="let im of impactsMoyens">\n            <circle [attr.cx]="im.x" [attr.cy]="im.y" r="3" fill="#55ff55" />\n            <text [attr.x]="im.x" [attr.y]="getTextY(im.y, 3)" text-anchor="middle" font-family="sans-serif"\n                font-size="0.3rem" font-weight="bold" fill="black">{{im.arrow}}</text>\n        </ng-container>\n\n        <!-- Impact en cours -->\n        <circle *ngIf="impactEnCours" [attr.cx]="impactEnCours.x" [attr.cy]="impactEnCours.y" r="3" fill="white"\n            stroke="black" stroke-width="1" />\n    </svg>\n</div>', styles: ['@charset "UTF-8";.blason{width:100%;max-width:400px;height:auto;border:1px solid #ccc;touch-action:none}.blason-container{position:relative}.impact{position:absolute;width:12px;height:12px;background:#fff;border:2px solid #ddd;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}\n'] }]
-  }], null, { blasonSvg: [{
+    args: [{ selector: "app-interactive-target-face", standalone: true, imports: [CommonModule], template: '<div class="target-face-container">\n    <svg #targetFaceSvg [attr.viewBox]="getViewBox()" class="target-face" (touchstart)="startDrag($event)"\n        (touchmove)="drag($event)" (touchend)="endDrag()">\n        <!-- Target face -->\n        <circle *ngFor="let zone of zones" [attr.r]="zone.r" [attr.fill]="zone.color" cx="100" cy="100" stroke="black"\n            [attr.stroke-width]="zone.strokeWidth" />\n\n        <!-- Impacts -->\n        <ng-container *ngFor="let f of otherImpacts">\n            <circle [attr.cx]="f.x" [attr.cy]="f.y" r="2" fill="black" />\n            <text [attr.x]="f.x" [attr.y]="getTextY(f.y, 2)" text-anchor="middle" font-family="sans-serif"\n                font-size="0.2rem" fill="black">{{f.arrow}}</text>\n        </ng-container>\n\n        <!-- Average -->\n        <ng-container *ngFor="let im of averageImpacts">\n            <circle [attr.cx]="im.x" [attr.cy]="im.y" r="3" fill="#55ff55" />\n            <text [attr.x]="im.x" [attr.y]="getTextY(im.y, 3)" text-anchor="middle" font-family="sans-serif"\n                font-size="0.3rem" font-weight="bold" fill="black">{{im.arrow}}</text>\n        </ng-container>\n\n        <!-- Current Impact -->\n        <circle *ngIf="currentImpact" [attr.cx]="currentImpact.x" [attr.cy]="currentImpact.y" r="3" fill="white"\n            stroke="black" stroke-width="1" />\n    </svg>\n</div>', styles: ['@charset "UTF-8";.target-face{width:100%;max-width:400px;height:auto;border:1px solid #ccc;touch-action:none}.target-face-container{position:relative}.impact{position:absolute;width:12px;height:12px;background:#fff;border:2px solid #ddd;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}\n'] }]
+  }], null, { targetFaceSvg: [{
     type: ViewChild,
-    args: ["blasonSvg"]
-  }], autresImpacts: [{
+    args: ["targetFaceSvg"]
+  }], otherImpacts: [{
     type: Input
-  }], impactsMoyens: [{
+  }], averageImpacts: [{
     type: Input
-  }], nouvelImpact: [{
+  }], newImpact: [{
     type: Output
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BlasonInteractifComponent, { className: "BlasonInteractifComponent", filePath: "src/app/components/blason-interactif/blason-interactif.component.ts", lineNumber: 12 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(InteractiveTargetFaceComponent, { className: "InteractiveTargetFaceComponent", filePath: "src/app/components/score-input/target-face/target-face.component.ts", lineNumber: 12 });
 })();
 
-// src/app/pages/tri-de-fleches/tri-de-fleches.component.ts
-function TriDeFlechesComponent_button_2_Template(rf, ctx) {
+// src/app/pages/games/sorting-arrows/sorting-arrows.component.ts
+function SortingArrowsGameComponent_button_2_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 4);
-    \u0275\u0275listener("click", function TriDeFlechesComponent_button_2_Template_button_click_0_listener() {
+    \u0275\u0275elementStart(0, "button", 5);
+    \u0275\u0275listener("click", function SortingArrowsGameComponent_button_2_Template_button_click_0_listener() {
       \u0275\u0275restoreView(_r1);
       const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.relancer());
+      return \u0275\u0275resetView(ctx_r1.resetGame());
     });
     \u0275\u0275text(1, "Relancer");
     \u0275\u0275elementEnd();
   }
 }
-function TriDeFlechesComponent_div_3_Template(rf, ctx) {
+function SortingArrowsGameComponent_app_game_settings_3_Template(rf, ctx) {
   if (rf & 1) {
     const _r3 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div")(1, "h2", 5);
-    \u0275\u0275text(2, "Param\xE8tres");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "div", 6)(4, "label");
-    \u0275\u0275text(5, "Nombre de fl\xE8ches :");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "input", 7);
-    \u0275\u0275twoWayListener("ngModelChange", function TriDeFlechesComponent_div_3_Template_input_ngModelChange_6_listener($event) {
+    \u0275\u0275elementStart(0, "app-game-settings", 6);
+    \u0275\u0275listener("newSettings", function SortingArrowsGameComponent_app_game_settings_3_Template_app_game_settings_newSettings_0_listener($event) {
       \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
-      \u0275\u0275twoWayBindingSet(ctx_r1.nbFleches, $event) || (ctx_r1.nbFleches = $event);
-      return \u0275\u0275resetView($event);
+      return \u0275\u0275resetView(ctx_r1.onNewSettings($event));
     });
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(7, "div", 8)(8, "button", 9);
-    \u0275\u0275listener("click", function TriDeFlechesComponent_div_3_Template_button_click_8_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.validerParametrage());
-    });
-    \u0275\u0275text(9, "Valider");
-    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275advance(6);
-    \u0275\u0275twoWayProperty("ngModel", ctx_r1.nbFleches);
+    \u0275\u0275property("arrowsPerEndShotCount", ctx_r1.arrowsCount)("minimumArrowsPerEnd", 1);
   }
 }
-function TriDeFlechesComponent_div_4_Template(rf, ctx) {
+function SortingArrowsGameComponent_div_4_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div")(1, "app-blason-interactif", 10);
-    \u0275\u0275listener("nouvelImpact", function TriDeFlechesComponent_div_4_Template_app_blason_interactif_nouvelImpact_1_listener($event) {
+    \u0275\u0275elementStart(0, "div")(1, "app-interactive-target-face", 7);
+    \u0275\u0275listener("newImpact", function SortingArrowsGameComponent_div_4_Template_app_interactive_target_face_newImpact_1_listener($event) {
       \u0275\u0275restoreView(_r4);
       const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.onNouvelImpact($event));
+      return \u0275\u0275resetView(ctx_r1.onNewImpact($event));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(2, "button", 11);
-    \u0275\u0275listener("click", function TriDeFlechesComponent_div_4_Template_button_click_2_listener() {
+    \u0275\u0275elementStart(2, "button", 8);
+    \u0275\u0275listener("click", function SortingArrowsGameComponent_div_4_Template_button_click_2_listener() {
       \u0275\u0275restoreView(_r4);
       const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.annulerDernierImpact());
+      return \u0275\u0275resetView(ctx_r1.cancelLastImpact());
     });
     \u0275\u0275text(3, "Annuler dernier impact");
     \u0275\u0275elementEnd();
     \u0275\u0275text(4, "\xA0 ");
-    \u0275\u0275elementStart(5, "button", 12);
-    \u0275\u0275listener("click", function TriDeFlechesComponent_div_4_Template_button_click_5_listener() {
+    \u0275\u0275elementStart(5, "button", 9);
+    \u0275\u0275listener("click", function SortingArrowsGameComponent_div_4_Template_button_click_5_listener() {
       \u0275\u0275restoreView(_r4);
       const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.voirTout());
+      return \u0275\u0275resetView(ctx_r1.showAllImpacts());
     });
     \u0275\u0275text(6, "Voir tout");
     \u0275\u0275elementEnd()();
@@ -47062,21 +47105,21 @@ function TriDeFlechesComponent_div_4_Template(rf, ctx) {
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
     \u0275\u0275advance();
-    \u0275\u0275property("autresImpacts", ctx_r1.getAllImpacts())("impactsMoyens", ctx_r1.moyennesDesFleches());
+    \u0275\u0275property("otherImpacts", ctx_r1.getAllImpacts())("averageImpacts", ctx_r1.arrowsAverage());
   }
 }
-function TriDeFlechesComponent_div_5_Template(rf, ctx) {
+function SortingArrowsGameComponent_div_5_Template(rf, ctx) {
   if (rf & 1) {
     const _r5 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "div")(1, "h3");
     \u0275\u0275text(2, "Toutes les moyennes");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(3, "app-blason-interactif", 13);
-    \u0275\u0275elementStart(4, "button", 12);
-    \u0275\u0275listener("click", function TriDeFlechesComponent_div_5_Template_button_click_4_listener() {
+    \u0275\u0275element(3, "app-interactive-target-face", 10);
+    \u0275\u0275elementStart(4, "button", 9);
+    \u0275\u0275listener("click", function SortingArrowsGameComponent_div_5_Template_button_click_4_listener() {
       \u0275\u0275restoreView(_r5);
       const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.mode = "blason");
+      return \u0275\u0275resetView(ctx_r1.mode = "targetFace");
     });
     \u0275\u0275text(5, "Retour");
     \u0275\u0275elementEnd()();
@@ -47084,17 +47127,17 @@ function TriDeFlechesComponent_div_5_Template(rf, ctx) {
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
     \u0275\u0275advance(3);
-    \u0275\u0275property("autresImpacts", ctx_r1.moyennesDesFleches())("impactsMoyens", ctx_r1.moyenneDesMoyennes());
+    \u0275\u0275property("otherImpacts", ctx_r1.arrowsAverage())("averageImpacts", ctx_r1.globalAverage());
   }
 }
-function TriDeFlechesComponent_div_6_button_7_Template(rf, ctx) {
+function SortingArrowsGameComponent_div_6_button_7_Template(rf, ctx) {
   if (rf & 1) {
     const _r7 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 22);
-    \u0275\u0275listener("click", function TriDeFlechesComponent_div_6_button_7_Template_button_click_0_listener() {
+    \u0275\u0275elementStart(0, "button", 19);
+    \u0275\u0275listener("click", function SortingArrowsGameComponent_div_6_button_7_Template_button_click_0_listener() {
       const n_r8 = \u0275\u0275restoreView(_r7).$implicit;
       const ctx_r1 = \u0275\u0275nextContext(2);
-      return \u0275\u0275resetView(ctx_r1.affecterImpact(n_r8));
+      return \u0275\u0275resetView(ctx_r1.associateImpactToArrow(n_r8));
     });
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
@@ -47105,21 +47148,21 @@ function TriDeFlechesComponent_div_6_button_7_Template(rf, ctx) {
     \u0275\u0275textInterpolate1(" ", n_r8, " ");
   }
 }
-function TriDeFlechesComponent_div_6_Template(rf, ctx) {
+function SortingArrowsGameComponent_div_6_Template(rf, ctx) {
   if (rf & 1) {
     const _r6 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 14);
-    \u0275\u0275element(1, "div", 15);
-    \u0275\u0275elementStart(2, "div", 16)(3, "header", 17)(4, "p", 18);
+    \u0275\u0275elementStart(0, "div", 11);
+    \u0275\u0275element(1, "div", 12);
+    \u0275\u0275elementStart(2, "div", 13)(3, "header", 14)(4, "p", 15);
     \u0275\u0275text(5, "Associer \xE0 quelle fl\xE8che ?");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "section", 19);
-    \u0275\u0275template(7, TriDeFlechesComponent_div_6_button_7_Template, 2, 1, "button", 20);
-    \u0275\u0275elementStart(8, "button", 21);
-    \u0275\u0275listener("click", function TriDeFlechesComponent_div_6_Template_button_click_8_listener() {
+    \u0275\u0275elementStart(6, "section", 16);
+    \u0275\u0275template(7, SortingArrowsGameComponent_div_6_button_7_Template, 2, 1, "button", 17);
+    \u0275\u0275elementStart(8, "button", 18);
+    \u0275\u0275listener("click", function SortingArrowsGameComponent_div_6_Template_button_click_8_listener() {
       \u0275\u0275restoreView(_r6);
       const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.annulerAffectationImpact());
+      return \u0275\u0275resetView(ctx_r1.cancelImpactAssociation());
     });
     \u0275\u0275text(9, "Annuler");
     \u0275\u0275elementEnd()()()();
@@ -47127,45 +47170,54 @@ function TriDeFlechesComponent_div_6_Template(rf, ctx) {
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
     \u0275\u0275advance(7);
-    \u0275\u0275property("ngForOf", ctx_r1.getFlecheNums());
+    \u0275\u0275property("ngForOf", ctx_r1.getAllArrowsIndices());
   }
 }
-var TriDeFlechesComponent = class _TriDeFlechesComponent {
-  mode = "parametrage";
-  nbFleches = 6;
-  impactsParFleche = /* @__PURE__ */ new Map();
-  dernierImpact = null;
-  historiqueImpacts = [];
+var SortingArrowsGameComponent = class _SortingArrowsGameComponent {
+  mode = "settings";
+  arrowsCount = 6;
+  impactsPerArrows = /* @__PURE__ */ new Map();
+  lastImpact = null;
+  pastImpacts = [];
   showModal = false;
+  localStorageItemName = "tri-de-fleches";
   ngOnInit() {
     this.initImpacts();
   }
   initImpacts() {
-    const dataStr = localStorage.getItem("tri-de-fleches");
+    const dataStr = localStorage.getItem(this.localStorageItemName);
     if (dataStr === null) {
-      this.impactsParFleche = /* @__PURE__ */ new Map();
-      for (let i = 1; i <= this.nbFleches; i++) {
-        this.impactsParFleche.set(i, []);
+      this.impactsPerArrows = /* @__PURE__ */ new Map();
+      for (let i = 1; i <= this.arrowsCount; i++) {
+        this.impactsPerArrows.set(i, []);
       }
     } else {
       const data = JSON.parse(dataStr);
       if (data != null) {
         console.log(data);
-        this.nbFleches = data.nbFleches;
-        this.impactsParFleche = new Map(data.impactsParFleche);
-        this.mode = "blason";
+        this.arrowsCount = data.arrowsCount;
+        this.impactsPerArrows = new Map(data.impactsPerArrows);
+        this.mode = "targetFace";
       }
     }
   }
-  validerParametrage() {
-    if (this.nbFleches >= 1) {
+  onNewSettings(settings) {
+    if (settings) {
+      this.arrowsCount = settings.arrowsPerEndShotCount;
+      this.startGame();
+    } else {
+      this.resetGame();
+    }
+  }
+  startGame() {
+    if (this.arrowsCount >= 1) {
       this.initImpacts();
-      this.mode = "blason";
+      this.mode = "targetFace";
     }
   }
   getAllImpacts() {
-    if (this.impactsParFleche) {
-      return Array.from(this.impactsParFleche.entries()).flatMap(([arrowKey, coordinatesArray]) => {
+    if (this.impactsPerArrows) {
+      return Array.from(this.impactsPerArrows.entries()).flatMap(([arrowKey, coordinatesArray]) => {
         return coordinatesArray.map((coord) => ({
           x: coord.x,
           y: coord.y,
@@ -47176,143 +47228,138 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
     }
     return [];
   }
-  getFlecheNums() {
-    return Array.from({ length: this.nbFleches }, (_, i) => i + 1);
+  /* Get all arrow indices from 1 to arrowsCount
+   * @returns {number[]} An array of arrow indices
+   */
+  getAllArrowsIndices() {
+    return Array.from({ length: this.arrowsCount }, (_, i) => i + 1);
   }
-  moyennesDesFleches() {
-    if (this.impactsParFleche) {
-      return this.getFlecheNums().map((n) => this.moyenne(this.impactsParFleche.get(n), n)).filter((m) => m !== null);
+  arrowsAverage() {
+    if (this.impactsPerArrows) {
+      return this.getAllArrowsIndices().map((n) => this.average(this.impactsPerArrows.get(n), n)).filter((m) => m !== null);
     }
     return [];
   }
-  onNouvelImpact(impact) {
-    this.dernierImpact = impact;
+  onNewImpact(impact) {
+    this.lastImpact = impact;
     this.showModal = true;
   }
-  affecterImpact(numero) {
-    this.impactsParFleche.get(numero)?.push(this.dernierImpact);
-    this.historiqueImpacts.push({ numero, impact: this.dernierImpact });
-    this.dernierImpact = null;
+  associateImpactToArrow(numero) {
+    this.impactsPerArrows.get(numero)?.push(this.lastImpact);
+    this.pastImpacts.push({ index: numero, impact: this.lastImpact });
+    this.lastImpact = null;
     this.showModal = false;
-    this.sauvegarder();
+    this.save();
   }
-  annulerAffectationImpact() {
-    this.dernierImpact = null;
+  cancelImpactAssociation() {
+    this.lastImpact = null;
     this.showModal = false;
-    this.sauvegarder();
+    this.save();
   }
-  annulerDernierImpact() {
-    const dernier = this.historiqueImpacts.pop();
+  cancelLastImpact() {
+    const dernier = this.pastImpacts.pop();
     if (dernier) {
-      const liste = this.impactsParFleche.get(dernier.numero);
-      if (liste) {
-        liste.pop();
-        this.sauvegarder();
+      const impactsList = this.impactsPerArrows.get(dernier.index);
+      if (impactsList) {
+        impactsList.pop();
+        this.save();
       }
     }
   }
-  voirTout() {
-    this.mode = "voirTout";
+  showAllImpacts() {
+    this.mode = "showAll";
   }
-  moyenne(impacts, n) {
+  average(impacts, n) {
     if (impacts.length === 0)
       return null;
     const sumX = impacts.reduce((acc, val) => acc + val.x, 0);
     const sumY = impacts.reduce((acc, val) => acc + val.y, 0);
     return { x: sumX / impacts.length, y: sumY / impacts.length, arrow: n };
   }
-  moyenneDesMoyennes() {
-    const moyennes = Array.from(this.impactsParFleche.values()).map((impacts) => this.moyenne(impacts, 0)).filter((m) => m);
-    if (moyennes.length === 0)
+  globalAverage() {
+    const allAverages = Array.from(this.impactsPerArrows.values()).map((impacts) => this.average(impacts, 0)).filter((m) => m);
+    if (allAverages.length === 0)
       return null;
-    const sumX = moyennes.reduce((acc, m) => acc + m.x, 0);
-    const sumY = moyennes.reduce((acc, m) => acc + m.y, 0);
+    const sumX = allAverages.reduce((acc, m) => acc + m.x, 0);
+    const sumY = allAverages.reduce((acc, m) => acc + m.y, 0);
     return [{
-      x: sumX / moyennes.length,
-      y: sumY / moyennes.length,
+      x: sumX / allAverages.length,
+      y: sumY / allAverages.length,
       arrow: 0
     }];
   }
-  relancer() {
-    this.nbFleches = 6;
-    this.mode = "parametrage";
-    if (this.impactsParFleche) {
-      this.impactsParFleche.clear();
+  resetGame() {
+    this.arrowsCount = 6;
+    this.mode = "settings";
+    if (this.impactsPerArrows) {
+      this.impactsPerArrows.clear();
     }
-    localStorage.removeItem("tri-de-fleches");
+    localStorage.removeItem(this.localStorageItemName);
   }
-  sauvegarder() {
+  save() {
     const data = {
-      nbFleches: this.nbFleches,
-      impactsParFleche: Array.from(this.impactsParFleche.entries())
+      arrowsCount: this.arrowsCount,
+      impactsPerArrows: Array.from(this.impactsPerArrows.entries())
     };
-    localStorage.setItem("tri-de-fleches", JSON.stringify(data));
+    localStorage.setItem(this.localStorageItemName, JSON.stringify(data));
   }
-  static \u0275fac = function TriDeFlechesComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _TriDeFlechesComponent)();
+  static \u0275fac = function SortingArrowsGameComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _SortingArrowsGameComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TriDeFlechesComponent, selectors: [["app-tri-de-fleches"]], decls: 7, vars: 5, consts: [[1, "title", "is-5"], ["class", "button is-info is-light is-small is-pulled-right", 3, "click", 4, "ngIf"], [4, "ngIf"], ["class", "modal is-active", 4, "ngIf"], [1, "button", "is-info", "is-light", "is-small", "is-pulled-right", 3, "click"], [1, "title", "is-4"], [1, "field", "mb-4"], ["type", "number", "min", "1", "inputmode", "numeric", 3, "ngModelChange", "ngModel"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [3, "nouvelImpact", "autresImpacts", "impactsMoyens"], [1, "button", "is-danger", "is-small", "is-light", 3, "click"], [1, "button", "is-warning", "is-small", "is-pulled-right", 3, "click"], [3, "autresImpacts", "impactsMoyens"], [1, "modal", "is-active"], [1, "modal-background"], [1, "modal-card"], [1, "modal-card-head"], [1, "modal-card-title"], [1, "modal-card-body"], ["class", "button m-1", 3, "click", 4, "ngFor", "ngForOf"], [1, "button", "m-1", "is-danger", 3, "click"], [1, "button", "m-1", 3, "click"]], template: function TriDeFlechesComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SortingArrowsGameComponent, selectors: [["app-sorting-arrows"]], decls: 7, vars: 5, consts: [[1, "title", "is-5"], ["class", "button is-info is-light is-small is-pulled-right", 3, "click", 4, "ngIf"], [3, "arrowsPerEndShotCount", "minimumArrowsPerEnd", "newSettings", 4, "ngIf"], [4, "ngIf"], ["class", "modal is-active", 4, "ngIf"], [1, "button", "is-info", "is-light", "is-small", "is-pulled-right", 3, "click"], [3, "newSettings", "arrowsPerEndShotCount", "minimumArrowsPerEnd"], [3, "newImpact", "otherImpacts", "averageImpacts"], [1, "button", "is-danger", "is-small", "is-light", 3, "click"], [1, "button", "is-warning", "is-small", "is-pulled-right", 3, "click"], [3, "otherImpacts", "averageImpacts"], [1, "modal", "is-active"], [1, "modal-background"], [1, "modal-card"], [1, "modal-card-head"], [1, "modal-card-title"], [1, "modal-card-body"], ["class", "button m-1", 3, "click", 4, "ngFor", "ngForOf"], [1, "button", "m-1", "is-danger", 3, "click"], [1, "button", "m-1", 3, "click"]], template: function SortingArrowsGameComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "h2", 0);
       \u0275\u0275text(1, "Tri de fl\xE8ches ");
-      \u0275\u0275template(2, TriDeFlechesComponent_button_2_Template, 2, 0, "button", 1);
+      \u0275\u0275template(2, SortingArrowsGameComponent_button_2_Template, 2, 0, "button", 1);
       \u0275\u0275elementEnd();
-      \u0275\u0275template(3, TriDeFlechesComponent_div_3_Template, 10, 1, "div", 2)(4, TriDeFlechesComponent_div_4_Template, 7, 2, "div", 2)(5, TriDeFlechesComponent_div_5_Template, 6, 2, "div", 2)(6, TriDeFlechesComponent_div_6_Template, 10, 1, "div", 3);
+      \u0275\u0275template(3, SortingArrowsGameComponent_app_game_settings_3_Template, 1, 2, "app-game-settings", 2)(4, SortingArrowsGameComponent_div_4_Template, 7, 2, "div", 3)(5, SortingArrowsGameComponent_div_5_Template, 6, 2, "div", 3)(6, SortingArrowsGameComponent_div_6_Template, 10, 1, "div", 4);
     }
     if (rf & 2) {
       \u0275\u0275advance(2);
-      \u0275\u0275property("ngIf", ctx.mode != "parametrage");
+      \u0275\u0275property("ngIf", ctx.mode != "settings");
       \u0275\u0275advance();
-      \u0275\u0275property("ngIf", ctx.mode === "parametrage");
+      \u0275\u0275property("ngIf", ctx.mode === "settings");
       \u0275\u0275advance();
-      \u0275\u0275property("ngIf", ctx.mode === "blason");
+      \u0275\u0275property("ngIf", ctx.mode === "targetFace");
       \u0275\u0275advance();
-      \u0275\u0275property("ngIf", ctx.mode === "voirTout");
+      \u0275\u0275property("ngIf", ctx.mode === "showAll");
       \u0275\u0275advance();
       \u0275\u0275property("ngIf", ctx.showModal);
     }
-  }, dependencies: [CommonModule, NgForOf, NgIf, FormsModule, DefaultValueAccessor, NumberValueAccessor, NgControlStatus, MinValidator, NgModel, BlasonInteractifComponent], styles: [".grille[_ngcontent-%COMP%]{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}button.is-active[_ngcontent-%COMP%]{background-color:#a6c6f7}"] });
+  }, dependencies: [CommonModule, NgForOf, NgIf, FormsModule, InteractiveTargetFaceComponent, SettingsComponent], styles: [".grille[_ngcontent-%COMP%]{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}button.is-active[_ngcontent-%COMP%]{background-color:#a6c6f7}"] });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TriDeFlechesComponent, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(SortingArrowsGameComponent, [{
     type: Component,
-    args: [{ selector: "app-tri-de-fleches", standalone: true, imports: [CommonModule, FormsModule, BlasonInteractifComponent], template: `<h2 class="title is-5">Tri de fl\xE8ches <button *ngIf="mode != 'parametrage'" (click)="relancer()" class="button is-info is-light is-small is-pulled-right">Relancer</button></h2>
+    args: [{ selector: "app-sorting-arrows", standalone: true, imports: [CommonModule, FormsModule, InteractiveTargetFaceComponent, SettingsComponent], template: `<h2 class="title is-5">Tri de fl\xE8ches <button *ngIf="mode != 'settings'" (click)="resetGame()" class="button is-info is-light is-small is-pulled-right">Relancer</button></h2>
 
-<!-- Param\xE9trage -->
-<div *ngIf="mode === 'parametrage'">
-    <h2 class="title is-4">Param\xE8tres</h2>
+<!-- Settings -->
+<!-- Settings-->
+<app-game-settings *ngIf="mode === 'settings'"
+ [arrowsPerEndShotCount]="arrowsCount"
+ [minimumArrowsPerEnd]="1"
+ (newSettings)="onNewSettings($event)"></app-game-settings>
+ 
+<!-- Interactive target face -->
+<div *ngIf="mode === 'targetFace'">
+    <app-interactive-target-face [otherImpacts]="getAllImpacts()" [averageImpacts]="arrowsAverage()" (newImpact)="onNewImpact($event)"></app-interactive-target-face>
 
-    <div class="field mb-4">
-        <label>Nombre de fl\xE8ches :</label>
-        <input type="number" [(ngModel)]="nbFleches" min="1" inputmode="numeric" />
-        </div>
-
-    <div class="has-text-centered mt-4">
-        <button (click)="validerParametrage()" class="button is-primary">Valider</button>
-    </div>
-</div>
-
-
-<!-- Blason interactif -->
-<div *ngIf="mode === 'blason'">
-    <app-blason-interactif [autresImpacts]="getAllImpacts()" [impactsMoyens]="moyennesDesFleches()" (nouvelImpact)="onNouvelImpact($event)"></app-blason-interactif>
-
-    <button (click)="annulerDernierImpact()" class="button is-danger is-small is-light">Annuler dernier impact</button>&nbsp;
-    <button (click)="voirTout()" class="button is-warning is-small is-pulled-right">Voir tout</button>
+    <button (click)="cancelLastImpact()" class="button is-danger is-small is-light">Annuler dernier impact</button>&nbsp;
+    <button (click)="showAllImpacts()" class="button is-warning is-small is-pulled-right">Voir tout</button>
     
 </div>
 
 
-<!-- Voir tout : moyennes et moyenne des moyennes -->
-<div *ngIf="mode === 'voirTout'">
+<!-- Show all: impacts average per arrow and average of all impacts-->
+<div *ngIf="mode === 'showAll'">
     <h3>Toutes les moyennes</h3>
-    <app-blason-interactif [autresImpacts]="moyennesDesFleches()"
-        [impactsMoyens]="moyenneDesMoyennes()"></app-blason-interactif>
+    <app-interactive-target-face [otherImpacts]="arrowsAverage()"
+        [averageImpacts]="globalAverage()"></app-interactive-target-face>
 
-    <button (click)="mode='blason'" class="button is-warning is-small is-pulled-right">Retour</button>
+    <button (click)="mode='targetFace'" class="button is-warning is-small is-pulled-right">Retour</button>
 </div>
 
-<!-- Modal choix fl\xE8che -->
+<!-- Modal for arrows association -->
 <div class="modal is-active" *ngIf="showModal">
     <div class="modal-background"></div>
     <div class="modal-card">
@@ -47320,10 +47367,10 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
             <p class="modal-card-title">Associer \xE0 quelle fl\xE8che ?</p>
         </header>
         <section class="modal-card-body">
-            <button *ngFor="let n of getFlecheNums()" class="button m-1" (click)="affecterImpact(n)">
+            <button *ngFor="let n of getAllArrowsIndices()" class="button m-1" (click)="associateImpactToArrow(n)">
                 {{ n }}
             </button>
-            <button class="button m-1 is-danger" (click)="annulerAffectationImpact()">Annuler</button>
+            <button class="button m-1 is-danger" (click)="cancelImpactAssociation()">Annuler</button>
         </section>
     </div>
 </div>
@@ -47331,15 +47378,15 @@ var TriDeFlechesComponent = class _TriDeFlechesComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TriDeFlechesComponent, { className: "TriDeFlechesComponent", filePath: "src/app/pages/tri-de-fleches/tri-de-fleches.component.ts", lineNumber: 13 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SortingArrowsGameComponent, { className: "SortingArrowsGameComponent", filePath: "src/app/pages/games/sorting-arrows/sorting-arrows.component.ts", lineNumber: 14 });
 })();
 
-// src/app/pages/tir-compte-simple/tir-compte-simple.component.ts
-function TirCompteSimpleComponent_fa_icon_2_Template(rf, ctx) {
+// src/app/pages/games/simple-counted-shot/simple-counted-shot.component.ts
+function SimpleCountedShotGameComponent_fa_icon_2_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "fa-icon", 5);
-    \u0275\u0275listener("click", function TirCompteSimpleComponent_fa_icon_2_Template_fa_icon_click_0_listener() {
+    \u0275\u0275listener("click", function SimpleCountedShotGameComponent_fa_icon_2_Template_fa_icon_click_0_listener() {
       \u0275\u0275restoreView(_r1);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.resetGame());
@@ -47351,76 +47398,25 @@ function TirCompteSimpleComponent_fa_icon_2_Template(rf, ctx) {
     \u0275\u0275property("icon", ctx_r1.faRotateLeft);
   }
 }
-function TirCompteSimpleComponent_div_3_Template(rf, ctx) {
+function SimpleCountedShotGameComponent_app_game_settings_3_Template(rf, ctx) {
   if (rf & 1) {
     const _r3 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 6)(1, "h2", 7);
-    \u0275\u0275text(2, "Param\xE8tres");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "div", 8)(4, "label", 9);
-    \u0275\u0275text(5, "Fl\xE8ches par vol\xE9e :");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "div", 10)(7, "p", 11)(8, "button", 12);
-    \u0275\u0275listener("click", function TirCompteSimpleComponent_div_3_Template_button_click_8_listener() {
+    \u0275\u0275elementStart(0, "app-game-settings", 6);
+    \u0275\u0275listener("newSettings", function SimpleCountedShotGameComponent_app_game_settings_3_Template_app_game_settings_newSettings_0_listener($event) {
       \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.decrementFleches());
+      return \u0275\u0275resetView(ctx_r1.onNewSettings($event));
     });
-    \u0275\u0275text(9, "-");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(10, "p", 11);
-    \u0275\u0275element(11, "input", 13);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "p", 11)(13, "button", 12);
-    \u0275\u0275listener("click", function TirCompteSimpleComponent_div_3_Template_button_click_13_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.incrementFleches());
-    });
-    \u0275\u0275text(14, "+");
-    \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(15, "div", 8)(16, "label", 9);
-    \u0275\u0275text(17, "Nombre de vol\xE9es :");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(18, "div", 10)(19, "p", 11)(20, "button", 12);
-    \u0275\u0275listener("click", function TirCompteSimpleComponent_div_3_Template_button_click_20_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.decrementVolees());
-    });
-    \u0275\u0275text(21, "-");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(22, "p", 11);
-    \u0275\u0275element(23, "input", 13);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(24, "p", 11)(25, "button", 12);
-    \u0275\u0275listener("click", function TirCompteSimpleComponent_div_3_Template_button_click_25_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.incrementVolees());
-    });
-    \u0275\u0275text(26, "+");
-    \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(27, "div", 14)(28, "button", 15);
-    \u0275\u0275listener("click", function TirCompteSimpleComponent_div_3_Template_button_click_28_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.startGame());
-    });
-    \u0275\u0275text(29, "D\xE9marrer");
-    \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275advance(11);
-    \u0275\u0275property("value", ctx_r1.nbFlechesParVolee);
-    \u0275\u0275advance(12);
-    \u0275\u0275property("value", ctx_r1.nbVolees);
+    \u0275\u0275property("arrowsPerEndShotCount", ctx_r1.arrowsPerEndShotCount)("minimumArrowsPerEnd", 3)("endsCount", ctx_r1.endsCount);
   }
 }
-function TirCompteSimpleComponent_div_4_tr_15_span_4_Template(rf, ctx) {
+function SimpleCountedShotGameComponent_div_4_tr_15_span_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 22);
+    \u0275\u0275elementStart(0, "span", 13);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -47432,13 +47428,13 @@ function TirCompteSimpleComponent_div_4_tr_15_span_4_Template(rf, ctx) {
     \u0275\u0275textInterpolate(s_r4);
   }
 }
-function TirCompteSimpleComponent_div_4_tr_15_Template(rf, ctx) {
+function SimpleCountedShotGameComponent_div_4_tr_15_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "tr")(1, "td");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "td");
-    \u0275\u0275template(4, TirCompteSimpleComponent_div_4_tr_15_span_4_Template, 2, 2, "span", 21);
+    \u0275\u0275template(4, SimpleCountedShotGameComponent_div_4_tr_15_span_4_Template, 2, 2, "span", 12);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(5, "td");
     \u0275\u0275text(6);
@@ -47448,37 +47444,37 @@ function TirCompteSimpleComponent_div_4_tr_15_Template(rf, ctx) {
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const vol_r5 = ctx.$implicit;
+    const end_r5 = ctx.$implicit;
     const i_r6 = ctx.index;
     const ctx_r1 = \u0275\u0275nextContext(2);
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate(i_r6 + 1);
     \u0275\u0275advance(2);
-    \u0275\u0275property("ngForOf", vol_r5.details);
+    \u0275\u0275property("ngForOf", end_r5.details);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(vol_r5.total);
+    \u0275\u0275textInterpolate(end_r5.total);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r1.getTotalCumule());
+    \u0275\u0275textInterpolate(ctx_r1.getTotalCumule(i_r6));
   }
 }
-function TirCompteSimpleComponent_div_4_tr_16_Template(rf, ctx) {
+function SimpleCountedShotGameComponent_div_4_tr_16_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "tr")(1, "td", 23);
+    \u0275\u0275elementStart(0, "tr")(1, "td", 14);
     \u0275\u0275text(2, "Total");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "td", 23);
+    \u0275\u0275elementStart(3, "td", 14);
     \u0275\u0275text(4);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext(2);
     \u0275\u0275advance(4);
-    \u0275\u0275textInterpolate(ctx_r1.getTotalCumule());
+    \u0275\u0275textInterpolate(ctx_r1.getTotal());
   }
 }
-function TirCompteSimpleComponent_div_4_div_17_span_4_Template(rf, ctx) {
+function SimpleCountedShotGameComponent_div_4_div_17_span_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 22);
+    \u0275\u0275elementStart(0, "span", 13);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -47490,17 +47486,17 @@ function TirCompteSimpleComponent_div_4_div_17_span_4_Template(rf, ctx) {
     \u0275\u0275textInterpolate(s_r8);
   }
 }
-function TirCompteSimpleComponent_div_4_div_17_Template(rf, ctx) {
+function SimpleCountedShotGameComponent_div_4_div_17_Template(rf, ctx) {
   if (rf & 1) {
     const _r7 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div")(1, "h2", 17);
+    \u0275\u0275elementStart(0, "div")(1, "h2", 8);
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "div");
-    \u0275\u0275template(4, TirCompteSimpleComponent_div_4_div_17_span_4_Template, 2, 2, "span", 21);
+    \u0275\u0275template(4, SimpleCountedShotGameComponent_div_4_div_17_span_4_Template, 2, 2, "span", 12);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "div", 24)(6, "button", 25);
-    \u0275\u0275listener("click", function TirCompteSimpleComponent_div_4_div_17_Template_button_click_6_listener() {
+    \u0275\u0275elementStart(5, "div", 15)(6, "button", 16);
+    \u0275\u0275listener("click", function SimpleCountedShotGameComponent_div_4_div_17_Template_button_click_6_listener() {
       \u0275\u0275restoreView(_r7);
       const ctx_r1 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r1.removeLastScore());
@@ -47511,19 +47507,19 @@ function TirCompteSimpleComponent_div_4_div_17_Template(rf, ctx) {
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext(2);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate2("Vol\xE9e ", ctx_r1.currentVoleeIndex + 1, " / ", ctx_r1.nbVolees, "");
+    \u0275\u0275textInterpolate2("Vol\xE9e ", ctx_r1.currentEndIndex + 1, " / ", ctx_r1.endsCount, "");
     \u0275\u0275advance(2);
-    \u0275\u0275property("ngForOf", ctx_r1.currentVolee);
+    \u0275\u0275property("ngForOf", ctx_r1.currentEnd);
     \u0275\u0275advance(2);
-    \u0275\u0275property("disabled", ctx_r1.currentVolee.length === 0);
+    \u0275\u0275property("disabled", ctx_r1.currentEnd.length === 0);
   }
 }
-function TirCompteSimpleComponent_div_4_Template(rf, ctx) {
+function SimpleCountedShotGameComponent_div_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 16)(1, "h2", 17);
+    \u0275\u0275elementStart(0, "div", 7)(1, "h2", 8);
     \u0275\u0275text(2, "Vol\xE9es pass\xE9es");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "table", 18)(4, "thead")(5, "tr")(6, "th");
+    \u0275\u0275elementStart(3, "table", 9)(4, "thead")(5, "tr")(6, "th");
     \u0275\u0275text(7, "Vol\xE9e");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(8, "th");
@@ -47536,118 +47532,95 @@ function TirCompteSimpleComponent_div_4_Template(rf, ctx) {
     \u0275\u0275text(13, "TC");
     \u0275\u0275elementEnd()()();
     \u0275\u0275elementStart(14, "tbody");
-    \u0275\u0275template(15, TirCompteSimpleComponent_div_4_tr_15_Template, 9, 4, "tr", 19)(16, TirCompteSimpleComponent_div_4_tr_16_Template, 5, 1, "tr", 20);
+    \u0275\u0275template(15, SimpleCountedShotGameComponent_div_4_tr_15_Template, 9, 4, "tr", 10)(16, SimpleCountedShotGameComponent_div_4_tr_16_Template, 5, 1, "tr", 11);
     \u0275\u0275elementEnd()();
-    \u0275\u0275template(17, TirCompteSimpleComponent_div_4_div_17_Template, 8, 4, "div", 20);
+    \u0275\u0275template(17, SimpleCountedShotGameComponent_div_4_div_17_Template, 8, 4, "div", 11);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
     \u0275\u0275advance(15);
-    \u0275\u0275property("ngForOf", ctx_r1.historiqueVolees);
+    \u0275\u0275property("ngForOf", ctx_r1.pastEnds);
     \u0275\u0275advance();
-    \u0275\u0275property("ngIf", ctx_r1.historiqueVolees.length > 0);
+    \u0275\u0275property("ngIf", ctx_r1.pastEnds.length > 0);
     \u0275\u0275advance();
     \u0275\u0275property("ngIf", ctx_r1.gameStarted && !ctx_r1.gameFinished);
   }
 }
-function TirCompteSimpleComponent_app_score_keyboard_5_Template(rf, ctx) {
+function SimpleCountedShotGameComponent_app_score_keyboard_5_Template(rf, ctx) {
   if (rf & 1) {
     const _r9 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "app-score-keyboard", 26);
-    \u0275\u0275listener("scoreSelected", function TirCompteSimpleComponent_app_score_keyboard_5_Template_app_score_keyboard_scoreSelected_0_listener($event) {
+    \u0275\u0275elementStart(0, "app-score-keyboard", 17);
+    \u0275\u0275listener("scoreSelected", function SimpleCountedShotGameComponent_app_score_keyboard_5_Template_app_score_keyboard_scoreSelected_0_listener($event) {
       \u0275\u0275restoreView(_r9);
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.addScore($event));
     });
     \u0275\u0275elementEnd();
   }
-  if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275property("valeurs", ctx_r1.scoreValues);
-  }
 }
-var TirCompteSimpleComponent = class _TirCompteSimpleComponent {
+var SimpleCountedShotGameComponent = class _SimpleCountedShotGameComponent {
+  scoreKeyboard;
   faRotateLeft = faRotateLeft;
-  nbFlechesParVolee = 6;
-  nbVolees = 6;
+  arrowsPerEndShotCount = 6;
+  endsCount = 6;
   gameStarted = false;
   gameFinished = false;
-  currentVolee = [];
-  currentVoleeIndex = 0;
-  historiqueVolees = [];
-  // Clavier
-  scoreValues = [
-    "X",
-    10,
-    9,
-    8,
-    7,
-    6,
-    5,
-    4,
-    3,
-    2,
-    1,
-    "M"
-  ];
-  localStorageName = "tirCompteSimpleGame";
+  currentEnd = [];
+  currentEndIndex = 0;
+  pastEnds = [];
+  localStorageItemName = "simpleCountedShotGame";
+  onNewSettings(settings) {
+    if (settings) {
+      this.arrowsPerEndShotCount = settings.arrowsPerEndShotCount;
+      this.endsCount = settings.endsCount;
+      this.startGame();
+    } else {
+      this.resetGame();
+    }
+  }
   startGame() {
     this.gameStarted = true;
-    this.currentVolee = [];
-    this.currentVoleeIndex = 0;
-    this.historiqueVolees = [];
+    this.currentEnd = [];
+    this.currentEndIndex = 0;
+    this.pastEnds = [];
   }
   resetGame() {
     this.gameStarted = false;
     this.gameFinished = false;
-    this.nbFlechesParVolee = 6;
-    this.nbVolees = 6;
-    this.currentVolee = [];
-    this.historiqueVolees = [];
-    localStorage.removeItem("tirCompteDoubleGame");
+    this.currentEnd = [];
+    this.pastEnds = [];
+    localStorage.removeItem(this.localStorageItemName);
   }
   addScore(score) {
-    if (this.currentVolee.length < this.nbFlechesParVolee) {
-      this.currentVolee.push(score);
-      if (this.currentVolee.length === this.nbFlechesParVolee) {
-        this.saveCurrentVolee();
+    if (this.currentEnd.length < this.arrowsPerEndShotCount) {
+      this.currentEnd.push(score);
+      if (this.currentEnd.length === this.arrowsPerEndShotCount) {
+        this.saveCurrentEnd();
       }
     }
   }
-  saveCurrentVolee() {
-    const sortedScores = [...this.currentVolee].sort((a, b) => {
+  saveCurrentEnd() {
+    const sortedScores = [...this.currentEnd].sort((a, b) => {
       const valA = a === "X" ? 10 : a === "M" ? 0 : a;
       const valB = b === "X" ? 10 : b === "M" ? 0 : b;
       return valB - valA;
     });
-    const total = this.calculateScoreSum(this.currentVolee);
-    this.historiqueVolees.push({
-      details: [...this.currentVolee],
+    const total = this.calculateScoreSum(this.currentEnd);
+    this.pastEnds.push({
+      details: [...this.currentEnd],
       total
     });
-    this.currentVolee = [];
-    this.currentVoleeIndex++;
-    if (this.currentVoleeIndex >= this.nbVolees) {
+    this.currentEnd = [];
+    this.currentEndIndex++;
+    if (this.currentEndIndex >= this.endsCount) {
       this.gameFinished = true;
       console.log("game finished");
     }
     this.saveToLocalStorage();
   }
   getScoreClass(score) {
-    if (score === "X" || score === 10 || score === 9)
-      return "yellow";
-    if (score === 7 || score === 8)
-      return "red";
-    if (score === 5 || score === 6)
-      return "blue";
-    if (score === 3 || score === 4)
-      return "black";
-    if (score === 2 || score === 1)
-      return "white";
-    if (score === "M")
-      return "gray";
-    return "";
+    return this.scoreKeyboard.getScoreClass(score);
   }
   calculateScoreSum(scores) {
     return scores.reduce((total, s2) => {
@@ -47658,69 +47631,67 @@ var TirCompteSimpleComponent = class _TirCompteSimpleComponent {
       return total + s2;
     }, 0);
   }
-  getTotalCumule() {
-    if (this.historiqueVolees && this.historiqueVolees.length > 1) {
-      return "" + this.historiqueVolees.map((v) => v.total).reduce((p2, v) => p2 + v);
+  getTotalCumule(i) {
+    if (this.pastEnds && this.pastEnds.length > 1) {
+      return "" + this.pastEnds.slice(0, i + 1).map((v) => v.total).reduce((p2, v) => p2 + v);
     }
     return "";
   }
-  incrementFleches() {
-    this.nbFlechesParVolee++;
-  }
-  decrementFleches() {
-    if (this.nbFlechesParVolee > 7) {
-      this.nbFlechesParVolee--;
+  getTotal() {
+    if (this.pastEnds && this.pastEnds.length > 1) {
+      return "" + this.pastEnds.map((v) => v.total).reduce((p2, v) => p2 + v);
     }
-  }
-  incrementVolees() {
-    this.nbVolees++;
-  }
-  decrementVolees() {
-    if (this.nbVolees > 1) {
-      this.nbVolees--;
-    }
+    return "";
   }
   removeLastScore() {
-    if (this.currentVolee.length > 0) {
-      this.currentVolee.pop();
+    if (this.currentEnd.length > 0) {
+      this.currentEnd.pop();
     }
   }
   saveToLocalStorage() {
     const data = {
-      nbFlechesParVolee: this.nbFlechesParVolee,
-      nbVolees: this.nbVolees,
-      currentVolee: this.currentVolee,
-      currentVoleeIndex: this.currentVoleeIndex,
-      historiqueVolees: this.historiqueVolees
+      arrowsPerEndCount: this.arrowsPerEndShotCount,
+      endsCount: this.endsCount,
+      currentEnd: this.currentEnd,
+      currentEndIndex: this.currentEndIndex,
+      pastEnds: this.pastEnds
     };
-    localStorage.setItem(this.localStorageName, JSON.stringify(data));
+    localStorage.setItem(this.localStorageItemName, JSON.stringify(data));
   }
   loadFromLocalStorage() {
-    const saved = localStorage.getItem(this.localStorageName);
+    const saved = localStorage.getItem(this.localStorageItemName);
     if (saved) {
       const data = JSON.parse(saved);
-      this.nbFlechesParVolee = data.nbFlechesParVolee;
-      this.nbVolees = data.nbVolees;
-      this.currentVolee = data.currentVolee;
-      this.currentVoleeIndex = data.currentVoleeIndex;
-      this.historiqueVolees = data.historiqueVolees;
+      this.arrowsPerEndShotCount = data.arrowsPerEndCount;
+      this.endsCount = data.endsCount;
+      this.currentEnd = data.currentEnd;
+      this.currentEndIndex = data.currentEndIndex;
+      this.pastEnds = data.pastEnds;
       this.gameStarted = true;
-      this.gameFinished = this.currentVoleeIndex >= this.nbVolees;
+      this.gameFinished = this.currentEndIndex >= this.endsCount;
     }
   }
   ngOnInit() {
     this.loadFromLocalStorage();
   }
-  static \u0275fac = function TirCompteSimpleComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _TirCompteSimpleComponent)();
+  static \u0275fac = function SimpleCountedShotGameComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _SimpleCountedShotGameComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TirCompteSimpleComponent, selectors: [["app-tir-compte-double"]], decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:#66d1ff;cursor:pointer;", 3, "icon", "click", 4, "ngIf"], ["class", "box", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "valeurs", "scoreSelected", 4, "ngIf"], [2, "color", "#66d1ff", "cursor", "pointer", 3, "click", "icon"], [1, "box"], [1, "title", "is-4"], [1, "field", "mb-4"], [1, "label"], [1, "field", "has-addons", "is-justify-content-center"], [1, "control"], [1, "button", "is-small", 3, "click"], ["readonly", "", 1, "input", "is-small", "has-text-centered", 2, "width", "60px", 3, "value"], [1, "has-text-centered", "mt-4"], [1, "button", "is-primary", 3, "click"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-light", "is-small", 3, "click", "disabled"], [3, "scoreSelected", "valeurs"]], template: function TirCompteSimpleComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SimpleCountedShotGameComponent, selectors: [["app-tir-compte-double"]], viewQuery: function SimpleCountedShotGameComponent_Query(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275viewQuery(ScoreKeyboardComponent, 5);
+    }
+    if (rf & 2) {
+      let _t;
+      \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.scoreKeyboard = _t.first);
+    }
+  }, decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:#66d1ff;cursor:pointer;", 3, "icon", "click", 4, "ngIf"], [3, "arrowsPerEndShotCount", "minimumArrowsPerEnd", "endsCount", "newSettings", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "scoreSelected", 4, "ngIf"], [2, "color", "#66d1ff", "cursor", "pointer", 3, "click", "icon"], [3, "newSettings", "arrowsPerEndShotCount", "minimumArrowsPerEnd", "endsCount"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-light", "is-small", 3, "click", "disabled"], [3, "scoreSelected"]], template: function SimpleCountedShotGameComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "h1", 0);
-      \u0275\u0275text(1, "Tir compt\xE9\n\xA0\xA0\xA0");
-      \u0275\u0275template(2, TirCompteSimpleComponent_fa_icon_2_Template, 1, 1, "fa-icon", 1);
+      \u0275\u0275text(1, "Tir compt\xE9 \xA0\xA0\xA0");
+      \u0275\u0275template(2, SimpleCountedShotGameComponent_fa_icon_2_Template, 1, 1, "fa-icon", 1);
       \u0275\u0275elementEnd();
-      \u0275\u0275template(3, TirCompteSimpleComponent_div_3_Template, 30, 2, "div", 2)(4, TirCompteSimpleComponent_div_4_Template, 18, 3, "div", 3)(5, TirCompteSimpleComponent_app_score_keyboard_5_Template, 1, 1, "app-score-keyboard", 4);
+      \u0275\u0275template(3, SimpleCountedShotGameComponent_app_game_settings_3_Template, 1, 3, "app-game-settings", 2)(4, SimpleCountedShotGameComponent_div_4_Template, 18, 3, "div", 3)(5, SimpleCountedShotGameComponent_app_score_keyboard_5_Template, 1, 0, "app-score-keyboard", 4);
     }
     if (rf & 2) {
       \u0275\u0275advance(2);
@@ -47732,25 +47703,28 @@ var TirCompteSimpleComponent = class _TirCompteSimpleComponent {
       \u0275\u0275advance();
       \u0275\u0275property("ngIf", ctx.gameStarted && !ctx.gameFinished);
     }
-  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, FaIconComponent], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
+  }, dependencies: [CommonModule, NgClass, NgForOf, NgIf, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, FaIconComponent, SettingsComponent], styles: [".keyboard[_ngcontent-%COMP%]{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key[_ngcontent-%COMP%]{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{text-align:center}table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   tfoot[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{font-weight:700}"] });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TirCompteSimpleComponent, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(SimpleCountedShotGameComponent, [{
     type: Component,
-    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule], template: '<h1 class="title is-5">Tir compt\xE9\n&nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()" style="color:#66d1ff;cursor:pointer;"></fa-icon>\n</h1>\n\n<div class="box" *ngIf="!gameStarted">\n  <h2 class="title is-4">Param\xE8tres</h2>\n\n  <div class="field mb-4">\n    <label class="label">Fl\xE8ches par vol\xE9e :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementFleches()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbFlechesParVolee" style="width: 60px" />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementFleches()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="field mb-4">\n    <label class="label">Nombre de vol\xE9es :</label>\n    <div class="field has-addons is-justify-content-center">\n      <p class="control">\n        <button class="button is-small" (click)="decrementVolees()">-</button>\n      </p>\n      <p class="control">\n        <input class="input is-small has-text-centered" readonly [value]="nbVolees" style="width: 60px" />\n      </p>\n      <p class="control">\n        <button class="button is-small" (click)="incrementVolees()">+</button>\n      </p>\n    </div>\n  </div>\n\n  <div class="has-text-centered mt-4">\n    <button class="button is-primary" (click)="startGame()">D\xE9marrer</button>\n  </div>\n</div>\n\n<!-- R\xE9sultats -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Tot.</th>\n        <th>TC</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let vol of historiqueVolees; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of vol.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ vol.total }}</td>\n        <td>{{ getTotalCumule() }}</td>\n      </tr>\n      <tr *ngIf="historiqueVolees.length > 0">\n        <td colspan="2">Total</td>\n        <td colspan="2">{{ getTotalCumule() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Vol\xE9e en cours -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentVoleeIndex + 1 }} / {{ nbVolees }}</h2>\n    <div>\n      <span *ngFor="let s of currentVolee" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-light is-small" (click)="removeLastScore()" [disabled]="currentVolee.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" [valeurs]="scoreValues"\n  (scoreSelected)="addScore($event)"></app-score-keyboard>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
-  }], null, null);
+    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, SettingsComponent], template: '<h1 class="title is-5">Tir compt\xE9\n  &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"\n    style="color:#66d1ff;cursor:pointer;"></fa-icon>\n</h1>\n\n<!-- Settings-->\n<app-game-settings *ngIf="!gameStarted"\n [arrowsPerEndShotCount]="arrowsPerEndShotCount"\n [minimumArrowsPerEnd]="3"\n [endsCount]="endsCount"\n (newSettings)="onNewSettings($event)"></app-game-settings>\n\n<!-- Results -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Tot.</th>\n        <th>TC</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let end of pastEnds; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ end.total }}</td>\n        <td>{{ getTotalCumule(i) }}</td>\n      </tr>\n      <tr *ngIf="pastEnds.length > 0">\n        <td colspan="2">Total</td>\n        <td colspan="2">{{ getTotal() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Current end -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>\n    <div>\n      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-light is-small" (click)="removeLastScore()"\n        [disabled]="currentEnd.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Keyboard -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
+  }], null, { scoreKeyboard: [{
+    type: ViewChild,
+    args: [ScoreKeyboardComponent]
+  }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TirCompteSimpleComponent, { className: "TirCompteSimpleComponent", filePath: "src/app/pages/tir-compte-simple/tir-compte-simple.component.ts", lineNumber: 15 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SimpleCountedShotGameComponent, { className: "SimpleCountedShotGameComponent", filePath: "src/app/pages/games/simple-counted-shot/simple-counted-shot.component.ts", lineNumber: 16 });
 })();
 
 // src/app/app.routes.ts
 var routes = [
-  { path: "tir-compte-simple", component: TirCompteSimpleComponent },
+  { path: "tir-compte-simple", component: SimpleCountedShotGameComponent },
   { path: "gold-game", component: GoldGameComponent },
-  { path: "tir-compte-double", component: TirCompteDoubleComponent },
-  { path: "accueil", component: AccueilComponent },
-  { path: "tri-de-fleches", component: TriDeFlechesComponent },
+  { path: "tir-compte-double", component: DoubleCountedShotGameComponent },
+  { path: "accueil", component: HomeComponent },
+  { path: "tri-de-fleches", component: SortingArrowsGameComponent },
   { path: "", redirectTo: "accueil", pathMatch: "full" },
   // optionnel: page par défaut
   { path: "**", redirectTo: "accueil" }
