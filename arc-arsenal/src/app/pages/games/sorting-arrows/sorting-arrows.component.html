@@ -1,20 +1,12 @@
-<h2 class="title is-5">Tri de flèches <button *ngIf="mode != 'settings'" (click)="reset()" class="button is-info is-light is-small is-pulled-right">Relancer</button></h2>
+<h2 class="title is-5">Tri de flèches <button *ngIf="mode != 'settings'" (click)="resetGame()" class="button is-info is-light is-small is-pulled-right">Relancer</button></h2>
 
 <!-- Settings -->
-<div *ngIf="mode === 'settings'">
-    <h2 class="title is-4">Paramètres</h2>
-
-    <div class="field mb-4">
-        <label>Nombre de flèches :</label>
-        <input type="number" [(ngModel)]="arrowsCount" min="1" inputmode="numeric" />
-        </div>
-
-    <div class="has-text-centered mt-4">
-        <button (click)="saveSettings()" class="button is-primary">Valider</button>
-    </div>
-</div>
-
-
+<!-- Settings-->
+<app-game-settings *ngIf="mode === 'settings'"
+ [arrowsPerEndShotCount]="arrowsCount"
+ [minimumArrowsPerEnd]="1"
+ (newSettings)="onNewSettings($event)"></app-game-settings>
+ 
 <!-- Interactive target face -->
 <div *ngIf="mode === 'targetFace'">
     <app-interactive-target-face [otherImpacts]="getAllImpacts()" [averageImpacts]="arrowsAverage()" (newImpact)="onNewImpact($event)"></app-interactive-target-face>

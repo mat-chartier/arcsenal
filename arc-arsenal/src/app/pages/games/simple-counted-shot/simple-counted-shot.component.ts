@@ -1,21 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBackward, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { SettingsComponent } from "../../../components/settings/settings.component";
 
 @Component({
   selector: 'app-tir-compte-double',
   standalone: true,
-  imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule],
+  imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, SettingsComponent],
   templateUrl: './simple-counted-shot.component.html',
   styleUrl: './simple-counted-shot.component.scss',
 })
 export class SimpleCountedShotGameComponent {
+
+  @ViewChild(ScoreKeyboardComponent) scoreKeyboard!: ScoreKeyboardComponent;
+
   faRotateLeft = faRotateLeft;
 
-  arrowsPerEndCount: number = 6;
+  arrowsPerEndShotCount: number = 6;
   endsCount: number = 6;
   gameStarted: boolean = false;
   gameFinished: boolean = false;
@@ -28,6 +32,16 @@ export class SimpleCountedShotGameComponent {
 
   private readonly localStorageItemName = 'simpleCountedShotGame';
 
+  onNewSettings(settings: any | null) {
+    if (settings) {
+      this.arrowsPerEndShotCount = settings.arrowsPerEndShotCount;
+      this.endsCount = settings.endsCount;
+      this.startGame();
+    } else {
+      this.resetGame();
+    }
+  }
+
   startGame() {
     this.gameStarted = true;
     this.currentEnd = [];
@@ -38,18 +52,16 @@ export class SimpleCountedShotGameComponent {
   resetGame() {
     this.gameStarted = false;
     this.gameFinished = false;
-    this.arrowsPerEndCount = 6;
-    this.endsCount = 6;
     this.currentEnd = [];
     this.pastEnds = [];
     localStorage.removeItem(this.localStorageItemName);
   }
 
   addScore(score: number | 'X' | 'M') {
-    if (this.currentEnd.length < this.arrowsPerEndCount) {
+    if (this.currentEnd.length < this.arrowsPerEndShotCount) {
       this.currentEnd.push(score);
 
-      if (this.currentEnd.length === this.arrowsPerEndCount) {
+      if (this.currentEnd.length === this.arrowsPerEndShotCount) {
         this.saveCurrentEnd();
       }
     }
@@ -81,17 +93,7 @@ export class SimpleCountedShotGameComponent {
   }
 
   getScoreClass(score: number | 'X' | 'M') {
-    if (score === 'X' || score === 10 || score === 9)
-      return 'yellow';
-    if (score === 7 || score === 8)
-      return 'red';
-    if (score === 5 || score === 6) return 'blue';
-    if (score === 3 || score === 4)
-      return 'black';
-    if (score === 2 || score === 1)
-      return 'white';
-    if (score === 'M') return 'gray';
-    return '';
+    return this.scoreKeyboard.getScoreClass(score);
   }
 
   calculateScoreSum(scores: (number | 'X' | 'M')[]): number {
@@ -102,33 +104,20 @@ export class SimpleCountedShotGameComponent {
     }, 0);
   }
 
-  getTotalCumule(): string {
+  getTotalCumule(i: number): string {
+    if (this.pastEnds && this.pastEnds.length > 1) {
+      return "" + this.pastEnds.slice(0, i + 1).map(v => v.total).reduce((p, v) => p + v);
+    }
+    return "";
+  }
+
+  getTotal(): string {
     if (this.pastEnds && this.pastEnds.length > 1) {
       return "" + this.pastEnds.map(v => v.total).reduce((p, v) => p + v);
     }
     return "";
   }
- 
-  incrementArrowsCount() {
-    this.arrowsPerEndCount++;
-  }
 
-  decrementArrowsCount() {
-    if (this.arrowsPerEndCount > 7) {
-      this.arrowsPerEndCount--;
-    }
-  }
-
-  incrementEndsCount() {
-    this.endsCount++;
-  }
-
-  decrementEndsCount() {
-    if (this.endsCount > 1) {
-      this.endsCount--;
-    }
-  }
-  
   removeLastScore() {
     if (this.currentEnd.length > 0) {
       this.currentEnd.pop();
@@ -136,7 +125,7 @@ export class SimpleCountedShotGameComponent {
   }
   saveToLocalStorage() {
     const data = {
-      arrowsPerEndCount: this.arrowsPerEndCount,
+      arrowsPerEndCount: this.arrowsPerEndShotCount,
       endsCount: this.endsCount,
       currentEnd: this.currentEnd,
       currentEndIndex: this.currentEndIndex,
@@ -149,7 +138,7 @@ export class SimpleCountedShotGameComponent {
     const saved = localStorage.getItem(this.localStorageItemName);
     if (saved) {
       const data = JSON.parse(saved);
-      this.arrowsPerEndCount = data.arrowsPerEndCount;
+      this.arrowsPerEndShotCount = data.arrowsPerEndCount;
       this.endsCount = data.endsCount;
       this.currentEnd = data.currentEnd;
       this.currentEndIndex = data.currentEndIndex;

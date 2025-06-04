@@ -1,21 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBackward, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { SettingsComponent } from "../../../components/settings/settings.component";
 
 @Component({
   selector: 'app-tir-compte-double',
   standalone: true,
-  imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule],
+  imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, SettingsComponent],
   templateUrl: './double-counted-shot.component.html',
   styleUrl: './double-counted-shot.component.scss',
 })
 export class DoubleCountedShotGameComponent {
+
+  @ViewChild(ScoreKeyboardComponent) scoreKeyboard!: ScoreKeyboardComponent;
+
   faRotateLeft = faRotateLeft;
 
-  arrowsPerEndCount: number = 7;
+  arrowsPerEndShotCount: number = 7;
+  arrowsPerEndCount: number = 6; // This is the number of arrows per end to use for counting the end, not the shot count
   endsCount: number = 6;
   gameStarted: boolean = false;
   gameFinished: boolean = false;
@@ -29,6 +34,17 @@ export class DoubleCountedShotGameComponent {
 
   private readonly localStorageItemName = 'doubleCountedGame';
 
+
+  onNewSettings(settings: any | null) {
+    if (settings) {
+      this.arrowsPerEndShotCount = settings.arrowsPerEndShotCount;
+      this.arrowsPerEndCount = settings.arrowsPerEndCount!;
+      this.endsCount = settings.endsCount;
+      this.startGame();
+    } else {
+      this.resetGame();
+    }
+  }
   startGame() {
     this.gameStarted = true;
     this.currentEnd = [];
@@ -39,18 +55,16 @@ export class DoubleCountedShotGameComponent {
   resetGame() {
     this.gameStarted = false;
     this.gameFinished = false;
-    this.arrowsPerEndCount = 7;
-    this.endsCount = 6;
     this.currentEnd = [];
     this.pastEnds = [];
     localStorage.removeItem(this.localStorageItemName);
   }
 
   addScore(score: number | 'X' | 'M') {
-    if (this.currentEnd.length < this.arrowsPerEndCount) {
+    if (this.currentEnd.length < this.arrowsPerEndShotCount) {
       this.currentEnd.push(score);
 
-      if (this.currentEnd.length === this.arrowsPerEndCount) {
+      if (this.currentEnd.length === this.arrowsPerEndShotCount) {
         this.saveCurrentVolee();
       }
     }
@@ -63,8 +77,8 @@ export class DoubleCountedShotGameComponent {
       return valB - valA;
     });
 
-    const bestScore = this.calculateScoreSum(sortedScores.slice(0, 6));
-    const lowestScore = this.calculateScoreSum(sortedScores.slice(-6));
+    const bestScore = this.calculateScoreSum(sortedScores.slice(0, this.arrowsPerEndCount));
+    const lowestScore = this.calculateScoreSum(sortedScores.slice(-1 * this.arrowsPerEndCount));
 
     this.pastEnds.push({
       details: [...this.currentEnd],
@@ -84,17 +98,7 @@ export class DoubleCountedShotGameComponent {
   }
 
   getScoreClass(score: number | 'X' | 'M') {
-    if (score === 'X' || score === 10 || score === 9)
-      return 'yellow';
-    if (score === 7 || score === 8)
-      return 'red';
-    if (score === 5 || score === 6) return 'blue';
-    if (score === 3 || score === 4)
-      return 'black';
-    if (score === 2 || score === 1)
-      return 'white';
-    if (score === 'M') return 'gray';
-    return '';
+    return this.scoreKeyboard.getScoreClass(score);
   }
 
   calculateScoreSum(scores: (number | 'X' | 'M')[]): number {
@@ -120,26 +124,7 @@ export class DoubleCountedShotGameComponent {
     });
     return total;
   }
-  incrementArrowsCount() {
-    this.arrowsPerEndCount++;
-  }
 
-  decrementArrowsCount() {
-    if (this.arrowsPerEndCount > 7) {
-      this.arrowsPerEndCount--;
-    }
-  }
-
-  incrementEndsCount() {
-    this.endsCount++;
-  }
-
-  decrementEndsCount() {
-    if (this.endsCount > 1) {
-      this.endsCount--;
-    }
-  }
-  
   removeLastScore() {
     if (this.currentEnd.length > 0) {
       this.currentEnd.pop();
@@ -147,7 +132,7 @@ export class DoubleCountedShotGameComponent {
   }
   saveToLocalStorage() {
     const data = {
-      arrowsPerEndCount: this.arrowsPerEndCount,
+      arrowsPerEndCount: this.arrowsPerEndShotCount,
       endsCount: this.endsCount,
       currentEnd: this.currentEnd,
       currentEndIndex: this.currentEndIndex,
@@ -160,7 +145,7 @@ export class DoubleCountedShotGameComponent {
     const saved = localStorage.getItem(this.localStorageItemName);
     if (saved) {
       const data = JSON.parse(saved);
-      this.arrowsPerEndCount = data.arrowsPerEndCount;
+      this.arrowsPerEndShotCount = data.arrowsPerEndCount;
       this.endsCount = data.endsCount;
       this.currentEnd = data.currentEnd;
       this.currentEndIndex = data.currentEndIndex;

@@ -3,43 +3,10 @@
     style="color:#66d1ff;cursor:pointer;"></fa-icon>
 </h1>
 
-<div class="box" *ngIf="!gameStarted">
-  <h2 class="title is-4">Paramètres</h2>
-
-  <div class="field mb-4">
-    <label class="label">Flèches par volée :</label>
-    <div class="field has-addons is-justify-content-center">
-      <p class="control">
-        <button class="button is-small" (click)="decrementArrowsCount()">-</button>
-      </p>
-      <p class="control">
-        <input class="input is-small has-text-centered" readonly [value]="arrowsPerEndCount" style="width: 60px" />
-      </p>
-      <p class="control">
-        <button class="button is-small" (click)="incrementArrowsCount()">+</button>
-      </p>
-    </div>
-  </div>
-
-  <div class="field mb-4">
-    <label class="label">Nombre de volées :</label>
-    <div class="field has-addons is-justify-content-center">
-      <p class="control">
-        <button class="button is-small" (click)="decrementEndsCount()">-</button>
-      </p>
-      <p class="control">
-        <input class="input is-small has-text-centered" readonly [value]="endsCount" style="width: 60px" />
-      </p>
-      <p class="control">
-        <button class="button is-small" (click)="incrementEndsCount()">+</button>
-      </p>
-    </div>
-  </div>
-
-  <div class="has-text-centered mt-4">
-    <button class="button is-primary" (click)="startGame()">Démarrer</button>
-  </div>
-</div>
+<!-- Settings -->
+<app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" 
+  [arrowsPerEndCount]="arrowsPerEndCount" [endsCount]="endsCount"
+ (newSettings)="onNewSettings($event)"></app-game-settings>
 
 <!-- Results -->
 <div *ngIf="gameStarted" class="box content">
@@ -49,8 +16,8 @@
       <tr>
         <th>Volée</th>
         <th>Détails</th>
-        <th>6 +</th>
-        <th>6 -</th>
+        <th>{{arrowsPerEndCount}} +</th>
+        <th>{{arrowsPerEndCount}} -</th>
       </tr>
     </thead>
     <tbody>

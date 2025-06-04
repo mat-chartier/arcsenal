@@ -2,60 +2,13 @@
     <button *ngIf="gameStarted" class="button is-info is-small is-light is-pulled-right" (click)="resetGame()">Recommencer</button>
   </h1>
 
-<div class="box" *ngIf="!gameStarted">
-  <h2 class="title is-4">Paramètres</h2>
-
-  <div class="field mb-4">
-    <label class="label">Flèches par volée :</label>
-    <div class="field has-addons is-justify-content-center">
-      <p class="control">
-        <button class="button is-small" (click)="decrementFleches()">-</button>
-      </p>
-      <p class="control">
-        <input class="input is-small has-text-centered" readonly [value]="arrowsPerEndCount" style="width: 60px;">
-      </p>
-      <p class="control">
-        <button class="button is-small" (click)="incrementFleches()">+</button>
-      </p>
-    </div>
-  </div>
-
-  <div class="field mb-4">
-    <label class="label">Nombre de volées :</label>
-    <div class="field has-addons is-justify-content-center">
-      <p class="control">
-        <button class="button is-small" (click)="decrementVolees()">-</button>
-      </p>
-      <p class="control">
-        <input class="input is-small has-text-centered" readonly [value]="endsCount" style="width: 60px;">
-      </p>
-      <p class="control">
-        <button class="button is-small" (click)="incrementVolees()">+</button>
-      </p>
-    </div>
-  </div>
-
-  <div class="field mb-4">
-    <label class="label">Zone de réussite :</label>
-    <div class="field has-addons is-justify-content-center">
-      <p class="control">
-        <button class="button is-small" (click)="decrementZone()">-</button>
-      </p>
-      <p class="control">
-        <input class="input is-small has-text-centered" readonly [value]="successZone" style="width: 60px;">
-      </p>
-      <p class="control">
-        <button class="button is-small" (click)="incrementZone()">+</button>
-      </p>
-    </div>
-  </div>
-
-  <div class="has-text-centered mt-4">
-    <button class="button is-primary" (click)="startGame()">Démarrer</button>
-  </div>
-</div>
-
-
+<!-- Settings-->
+<app-game-settings *ngIf="!gameStarted"
+ [arrowsPerEndShotCount]="arrowsPerEndCount"
+ [minimumArrowsPerEnd]="3"
+ [endsCount]="endsCount"
+ [successZone]="successZone"
+ (newSettings)="onNewSettings($event)"></app-game-settings>
 
 <!-- Results -->
 <div *ngIf="gameStarted" class="box content">

@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InteractiveTargetFaceComponent } from '../../../components/score-input/target-face/target-face.component';
+import { SettingsComponent } from "../../../components/settings/settings.component";
 
 @Component({
   selector: 'app-sorting-arrows',
   standalone: true,
-  imports: [CommonModule, FormsModule, InteractiveTargetFaceComponent],
+  imports: [CommonModule, FormsModule, InteractiveTargetFaceComponent, SettingsComponent],
   templateUrl: './sorting-arrows.component.html',
   styleUrl: './sorting-arrows.component.scss'
 })
@@ -47,7 +48,15 @@ export class SortingArrowsGameComponent {
     }
   }
 
-  saveSettings() {
+  onNewSettings(settings: any | null) {
+    if (settings) {
+      this.arrowsCount = settings.arrowsPerEndShotCount;
+      this.startGame();
+    } else {
+      this.resetGame();
+    }
+  }
+  startGame() {
     if (this.arrowsCount >= 1) {
       this.initImpacts();
       this.mode = 'targetFace';
@@ -116,7 +125,6 @@ export class SortingArrowsGameComponent {
     }
   }
 
-
   showAllImpacts() {
     this.mode = 'showAll';
   }
@@ -145,7 +153,7 @@ export class SortingArrowsGameComponent {
     }];
   }
 
-  reset() {
+  resetGame() {
     this.arrowsCount = 6;
     this.mode = 'settings';
     if (this.impactsPerArrows) {

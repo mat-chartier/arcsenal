@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
+import { SettingsComponent } from "../../../components/settings/settings.component";
 
 @Component({
   selector: 'app-gold-game',
   standalone: true,
-  imports: [CommonModule, FormsModule, ScoreKeyboardComponent],
+  imports: [CommonModule, FormsModule, ScoreKeyboardComponent, SettingsComponent],
   templateUrl: './gold-game.component.html',
   styleUrl: './gold-game.component.scss',
 })
 export class GoldGameComponent {
- readonly localStorageItemName = 'GoldGame';
+  readonly localStorageItemName = 'GoldGame';
+
+  @ViewChild(ScoreKeyboardComponent) scoreKeyboard!: ScoreKeyboardComponent;
 
   arrowsPerEndCount: number = 7;
   endsCount: number = 6;
@@ -25,6 +28,16 @@ export class GoldGameComponent {
     score: number;
   }[] = [];
 
+  onNewSettings(settings: any | null) {
+    if (settings) {
+      this.arrowsPerEndCount = settings.arrowsPerEndShotCount;
+      this.endsCount = settings.endsCount;
+      this.successZone = settings.successZone;
+      this.startGame();
+    } else {
+      this.resetGame();
+    }
+  }
   startGame() {
     this.gameStarted = true;
     this.currentEnd = [];
@@ -35,8 +48,6 @@ export class GoldGameComponent {
   resetGame() {
     this.gameStarted = false;
     this.gameFinished = false;
-    this.arrowsPerEndCount = 7;
-    this.endsCount = 6;
     this.currentEnd = [];
     this.pastEnds = [];
     localStorage.removeItem(this.localStorageItemName);
@@ -72,17 +83,7 @@ export class GoldGameComponent {
   }
 
   getScoreClass(score: number | 'X' | 'M') {
-    if (score === 'X' || score === 10 || score === 9)
-      return 'yellow';
-    if (score === 7 || score === 8)
-      return 'red';
-    if (score === 5 || score === 6) return 'blue';
-    if (score === 3 || score === 4)
-      return 'black';
-    if (score === 2 || score === 1)
-      return 'white';
-    if (score === 'M') return 'gray';
-    return '';
+    return this.scoreKeyboard.getScoreClass(score);
   }
 
   calculateScore(scores: (number | 'X' | 'M')[]): number {
@@ -105,7 +106,7 @@ export class GoldGameComponent {
   }
 
   getZonePercent(): number {
-   return Math.trunc(this.pastEnds.reduce((total:number, hist) => {
+    return Math.trunc(this.pastEnds.reduce((total: number, hist) => {
       return total + hist.details.reduce((count: number, score) => {
         if (score == 'M') score = 0;
         if (score == 'X') score = 10;
@@ -115,43 +116,11 @@ export class GoldGameComponent {
     }, 0) / (this.currentEndIndex * this.arrowsPerEndCount) * 100);
   }
 
-  incrementFleches() {
-    this.arrowsPerEndCount++;
-  }
-
-  decrementFleches() {
-    if (this.arrowsPerEndCount > 1) {
-      this.arrowsPerEndCount--;
-    }
-  }
-
-  incrementVolees() {
-    this.endsCount++;
-  }
-
-  decrementVolees() {
-    if (this.endsCount > 1) {
-      this.endsCount--;
-    }
-  }
-
-  incrementZone() {
-    if (this.successZone < 10) {
-      this.successZone++;
-    }
-  }
-
-  decrementZone() {
-    if (this.successZone > 1) {
-      this.successZone--;
-    }
-  }
-
   removeLastScore() {
-  if (this.currentEnd.length > 0) {
-    this.currentEnd.pop();
+    if (this.currentEnd.length > 0) {
+      this.currentEnd.pop();
+    }
   }
-}
 
   saveToLocalStorage() {
     const data = {
