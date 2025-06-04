@@ -1,0 +1,43 @@
+<h2 class="title is-5">Tri de flèches <button *ngIf="mode != 'settings'" (click)="resetGame()" class="button is-info is-light is-small is-pulled-right">Relancer</button></h2>
+
+<!-- Settings -->
+<!-- Settings-->
+<app-game-settings *ngIf="mode === 'settings'"
+ [arrowsPerEndShotCount]="arrowsCount"
+ [minimumArrowsPerEnd]="1"
+ (newSettings)="onNewSettings($event)"></app-game-settings>
+ 
+<!-- Interactive target face -->
+<div *ngIf="mode === 'targetFace'">
+    <app-interactive-target-face [otherImpacts]="getAllImpacts()" [averageImpacts]="arrowsAverage()" (newImpact)="onNewImpact($event)"></app-interactive-target-face>
+
+    <button (click)="cancelLastImpact()" class="button is-danger is-small is-light">Annuler dernier impact</button>&nbsp;
+    <button (click)="showAllImpacts()" class="button is-warning is-small is-pulled-right">Voir tout</button>
+    
+</div>
+
+
+<!-- Show all: impacts average per arrow and average of all impacts-->
+<div *ngIf="mode === 'showAll'">
+    <h3>Toutes les moyennes</h3>
+    <app-interactive-target-face [otherImpacts]="arrowsAverage()"
+        [averageImpacts]="globalAverage()"></app-interactive-target-face>
+
+    <button (click)="mode='targetFace'" class="button is-warning is-small is-pulled-right">Retour</button>
+</div>
+
+<!-- Modal for arrows association -->
+<div class="modal is-active" *ngIf="showModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Associer à quelle flèche ?</p>
+        </header>
+        <section class="modal-card-body">
+            <button *ngFor="let n of getAllArrowsIndices()" class="button m-1" (click)="associateImpactToArrow(n)">
+                {{ n }}
+            </button>
+            <button class="button m-1 is-danger" (click)="cancelImpactAssociation()">Annuler</button>
+        </section>
+    </div>
+</div>

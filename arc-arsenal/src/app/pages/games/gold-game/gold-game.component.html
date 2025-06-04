@@ -1,0 +1,56 @@
+  <h1 class="title is-5">Gold Game
+    <button *ngIf="gameStarted" class="button is-info is-small is-light is-pulled-right" (click)="resetGame()">Recommencer</button>
+  </h1>
+
+<!-- Settings-->
+<app-game-settings *ngIf="!gameStarted"
+ [arrowsPerEndShotCount]="arrowsPerEndCount"
+ [minimumArrowsPerEnd]="3"
+ [endsCount]="endsCount"
+ [successZone]="successZone"
+ (newSettings)="onNewSettings($event)"></app-game-settings>
+
+<!-- Results -->
+<div *ngIf="gameStarted" class="box content">
+  <h2 class="subtitle is-5">Volées passées</h2>
+  <table class="table is-fullwidth is-bordered is-striped is-narrow">
+    <thead>
+      <tr>
+        <th>Volée</th>
+        <th>Détails</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let end of pastEnds; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>
+          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
+        </td>
+        <td>{{ end.score }}</td>
+      </tr>
+      <tr *ngIf="pastEnds.length > 0">
+        <td colspan="2">Total</td>
+        <td>{{getTotalScore()}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <span *ngIf="pastEnds.length > 0">({{getZonePercent()}} % en zone)</span>
+  <br />
+  <br />
+  <!-- Current end -->
+  <div *ngIf="gameStarted && !gameFinished">
+    <h2 class="subtitle is-5">Volée {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>
+    <div>
+      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
+    </div>
+    <div class="has-text-centered mt-2">
+      <button class="button is-danger is-small is-light" (click)="removeLastScore()" [disabled]="currentEnd.length === 0">
+        Annuler dernière flèche
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Keyboard -->
+<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>

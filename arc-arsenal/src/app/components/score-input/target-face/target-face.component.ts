@@ -3,19 +3,19 @@ import { CommonModule } from '@angular/common';
 
 const decalageVertical = 40;
 @Component({
-  selector: 'app-blason-interactif',
+  selector: 'app-interactive-target-face',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './blason-interactif.component.html',
-  styleUrl: './blason-interactif.component.scss'
+  templateUrl: './target-face.component.html',
+  styleUrl: './target-face.component.scss'
 })
-export class BlasonInteractifComponent {
+export class InteractiveTargetFaceComponent {
 
-  @ViewChild('blasonSvg') blasonSvg!: ElementRef<SVGSVGElement>;
+  @ViewChild('targetFaceSvg') targetFaceSvg!: ElementRef<SVGSVGElement>;
 
-  @Input() autresImpacts: { x: number, y: number, arrow: number }[] = [];
-  @Input() impactsMoyens: { x: number, y: number, arrow: number }[] | null = null;
-  @Output() nouvelImpact = new EventEmitter<{ x: number, y: number }>();
+  @Input() otherImpacts: { x: number, y: number, arrow: number }[] = [];
+  @Input() averageImpacts: { x: number, y: number, arrow: number }[] | null = null;
+  @Output() newImpact = new EventEmitter<{ x: number, y: number }>();
 
   zones = [
     { r: 84, color: '#05c1f2', strokeWidth: 0.2 },
@@ -28,7 +28,7 @@ export class BlasonInteractifComponent {
   ];
 
   moving = false;
-  impactEnCours: { x: number, y: number } | null = null;
+  currentImpact: { x: number, y: number } | null = null;
 
   zoomActive = false;
   zoomFactor = 2;
@@ -37,23 +37,23 @@ export class BlasonInteractifComponent {
 
   startDrag(event: TouchEvent) {
     if (event.touches.length === 1) {
-      const svg = this.blasonSvg.nativeElement;
+      const svg = this.targetFaceSvg.nativeElement;
       const pt = svg.createSVGPoint();
       pt.x = event.touches[0].clientX;
       pt.y = event.touches[0].clientY - decalageVertical;
       const cursorpt = pt.matrixTransform(svg.getScreenCTM()!.inverse());
 
-      this.impactEnCours = { x: cursorpt.x, y: cursorpt.y };
+      this.currentImpact = { x: cursorpt.x, y: cursorpt.y };
 
-      // Calcul position relative dans le viewBox initial
+      // Get relative position relative in initial viewBox
       const viewBoxSize = 200;
       const relX = cursorpt.x / viewBoxSize;
       const relY = cursorpt.y / viewBoxSize;
 
-      // Nouvelle taille du viewBox après zoom
+      // viewBox new size after zoom
       const newSize = viewBoxSize / this.zoomFactor;
 
-      // Calcul du nouveau viewBox pour garder le point fixe à l'écran
+      // Compute new viewBox to keep the impact static on screen
       this.zoomRefX = cursorpt.x - relX * newSize;
       this.zoomRefY = cursorpt.y - relY * newSize;
 
@@ -64,28 +64,26 @@ export class BlasonInteractifComponent {
     }
   }
 
-
-
   drag(event: TouchEvent) {
     if (this.moving && event.touches.length === 1) {
-      const svg = this.blasonSvg.nativeElement;
+      const svg = this.targetFaceSvg.nativeElement;
       const pt = svg.createSVGPoint();
       pt.x = event.touches[0].clientX;
       pt.y = event.touches[0].clientY - decalageVertical;
       const cursorpt = pt.matrixTransform(svg.getScreenCTM()!.inverse());
 
-      // Mettre à jour position de l'impact en cours
-      this.impactEnCours = { x: cursorpt.x, y: cursorpt.y };
+      // Update current impact position
+      this.currentImpact = { x: cursorpt.x, y: cursorpt.y };
       event.preventDefault();
     }
   }
 
   endDrag() {
-    if (this.moving && this.impactEnCours) {
-      this.nouvelImpact.emit({ x: this.impactEnCours.x, y: this.impactEnCours.y });
+    if (this.moving && this.currentImpact) {
+      this.newImpact.emit({ x: this.currentImpact.x, y: this.currentImpact.y });
 
-      // Remise à zéro
-      this.impactEnCours = null;
+      // Reset
+      this.currentImpact = null;
       this.zoomActive = false;
       this.moving = false;
     }

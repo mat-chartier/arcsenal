@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScoreKeyboardComponent } from './score-keyboard.component';
+import { ScoreKeyboardComponent } from './keyboard.component';
 
 describe('ScoreKeyboardComponent', () => {
   let component: ScoreKeyboardComponent;

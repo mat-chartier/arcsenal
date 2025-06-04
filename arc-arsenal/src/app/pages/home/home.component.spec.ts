@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TriDeFlechesComponent } from './tri-de-fleches.component';
+import { HomeComponent } from './home.component';
 
-describe('TriDeFlechesComponent', () => {
-  let component: TriDeFlechesComponent;
-  let fixture: ComponentFixture<TriDeFlechesComponent>;
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TriDeFlechesComponent]
+      imports: [HomeComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TriDeFlechesComponent);
+    fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

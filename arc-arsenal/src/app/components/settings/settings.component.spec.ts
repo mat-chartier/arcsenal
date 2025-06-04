@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TirCompteSimpleComponent } from './tir-compte-simple.component';
+import { SettingsComponent } from './settings.component';
 
-describe('TirCompteSimpleComponent', () => {
-  let component: TirCompteSimpleComponent;
-  let fixture: ComponentFixture<TirCompteSimpleComponent>;
+describe('SettingsComponent', () => {
+  let component: SettingsComponent;
+  let fixture: ComponentFixture<SettingsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TirCompteSimpleComponent]
+      imports: [SettingsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TirCompteSimpleComponent);
+    fixture = TestBed.createComponent(SettingsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
