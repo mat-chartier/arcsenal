@@ -52,7 +52,7 @@ Actuellement, l'application propose :
 
 - **Volée de référence glissante**
   - Paramétrez le nombre de flèches par volée, le nombre de volées et la valeur initiale de la volée de référence
-  - La volée de référence évolue après chaque valoée:
+  - La volée de référence évolue après chaque volée:
     - volée < réf - 3 => réf = réf - 2 
     - volée < réf - 1 => réf = réf - 1
     - volée > réf + 1 => réf = réf + 1 
