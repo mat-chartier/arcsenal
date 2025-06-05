@@ -47474,7 +47474,7 @@ function SimpleCountedShotGameComponent_div_4_tr_15_Template(rf, ctx) {
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate(end_r5.total);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r1.getTotalCumule(i_r6));
+    \u0275\u0275textInterpolate(ctx_r1.getGrandTotal(i_r6));
   }
 }
 function SimpleCountedShotGameComponent_div_4_tr_16_Template(rf, ctx) {
@@ -47647,7 +47647,7 @@ var SimpleCountedShotGameComponent = class _SimpleCountedShotGameComponent {
       return total + s2;
     }, 0);
   }
-  getTotalCumule(i) {
+  getGrandTotal(i) {
     if (this.pastEnds && this.pastEnds.length > 1) {
       return "" + this.pastEnds.slice(0, i + 1).map((v) => v.total).reduce((p2, v) => p2 + v);
     }
@@ -47716,7 +47716,7 @@ var SimpleCountedShotGameComponent = class _SimpleCountedShotGameComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(SimpleCountedShotGameComponent, [{
     type: Component,
-    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, SettingsComponent], template: '<h1 class="title is-5">Tir compt\xE9\n  &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"\n    style="color:#66d1ff;cursor:pointer;"></fa-icon>\n</h1>\n\n<!-- Settings-->\n<app-game-settings *ngIf="!gameStarted"\n [arrowsPerEndShotCount]="arrowsPerEndShotCount"\n [minimumArrowsPerEnd]="3"\n [endsCount]="endsCount"\n (newSettings)="onNewSettings($event)"></app-game-settings>\n\n<!-- Results -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Tot.</th>\n        <th>TC</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let end of pastEnds; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ end.total }}</td>\n        <td>{{ getTotalCumule(i) }}</td>\n      </tr>\n      <tr *ngIf="pastEnds.length > 0">\n        <td colspan="2">Total</td>\n        <td colspan="2">{{ getTotal() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Current end -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>\n    <div>\n      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-light is-small" (click)="removeLastScore()"\n        [disabled]="currentEnd.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Keyboard -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
+    args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, SettingsComponent], template: '<h1 class="title is-5">Tir compt\xE9\n  &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"\n    style="color:#66d1ff;cursor:pointer;"></fa-icon>\n</h1>\n\n<!-- Settings-->\n<app-game-settings *ngIf="!gameStarted"\n [arrowsPerEndShotCount]="arrowsPerEndShotCount"\n [minimumArrowsPerEnd]="3"\n [endsCount]="endsCount"\n (newSettings)="onNewSettings($event)"></app-game-settings>\n\n<!-- Results -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Tot.</th>\n        <th>TC</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let end of pastEnds; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ end.total }}</td>\n        <td>{{ getGrandTotal(i) }}</td>\n      </tr>\n      <tr *ngIf="pastEnds.length > 0">\n        <td colspan="2">Total</td>\n        <td colspan="2">{{ getTotal() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Current end -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>\n    <div>\n      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-light is-small" (click)="removeLastScore()"\n        [disabled]="currentEnd.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Keyboard -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
   }], null, null);
 })();
 (() => {
@@ -47982,15 +47982,15 @@ var DynamicRefEndScoreComponent = class _DynamicRefEndScoreComponent {
       return valB - valA;
     });
     const total = this.calculateScoreSum(this.currentEnd);
-    const ecart = total - this.referenceScore;
+    const diff = total - this.referenceScore;
     const previousReferenceScore = this.referenceScore;
-    if (ecart <= -4)
+    if (diff <= -4)
       this.referenceScore -= 2;
-    else if (ecart === -3 || ecart === -2)
+    else if (diff === -3 || diff === -2)
       this.referenceScore -= 1;
-    else if (ecart === 2 || ecart === 3)
+    else if (diff === 2 || diff === 3)
       this.referenceScore += 1;
-    else if (ecart >= 4)
+    else if (diff >= 4)
       this.referenceScore += 2;
     this.pastEnds.push({ score: total, refScore: previousReferenceScore, newRefScore: this.referenceScore, details: [...this.currentEnd] });
     this.currentEndIndex++;
