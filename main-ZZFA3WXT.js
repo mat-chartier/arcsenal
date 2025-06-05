@@ -42071,6 +42071,17 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
+// src/app/utils/score-utils.ts
+function getScoreClass(value) {
+  if (value === "X" || value === 10 || value === 9) return "yellow";
+  if (value === 8 || value === 7) return "red";
+  if (value === 6 || value === 5) return "blue";
+  if (value === 4 || value === 3) return "black";
+  if (value === 2 || value === 1) return "white";
+  if (value === "M") return "grey";
+  return "";
+}
+
 // src/app/components/score-input/keyboard/keyboard.component.ts
 function ScoreKeyboardComponent_div_2_Template(rf, ctx) {
   if (rf & 1) {
@@ -42115,21 +42126,7 @@ var ScoreKeyboardComponent = class _ScoreKeyboardComponent {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }, 100);
   }
-  getScoreClass(value) {
-    if (value === "X" || value === 10 || value === 9)
-      return "yellow";
-    if (value === 8 || value === 7)
-      return "red";
-    if (value === 6 || value === 5)
-      return "blue";
-    if (value === 4 || value === 3)
-      return "black";
-    if (value === 2 || value === 1)
-      return "white";
-    if (value === "M")
-      return "grey";
-    return "";
-  }
+  getScoreClass = getScoreClass;
   static \u0275fac = function ScoreKeyboardComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _ScoreKeyboardComponent)();
   };
@@ -42154,7 +42151,7 @@ var ScoreKeyboardComponent = class _ScoreKeyboardComponent {
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ScoreKeyboardComponent, { className: "ScoreKeyboardComponent", filePath: "src/app/components/score-input/keyboard/keyboard.component.ts", lineNumber: 11 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ScoreKeyboardComponent, { className: "ScoreKeyboardComponent", filePath: "src/app/components/score-input/keyboard/keyboard.component.ts", lineNumber: 12 });
 })();
 
 // src/app/components/settings/settings.component.ts
@@ -42623,7 +42620,6 @@ function GoldGameComponent_app_score_keyboard_5_Template(rf, ctx) {
 }
 var GoldGameComponent = class _GoldGameComponent {
   localStorageItemName = "GoldGame";
-  scoreKeyboard;
   arrowsPerEndCount = 7;
   endsCount = 6;
   successZone = 7;
@@ -42677,9 +42673,7 @@ var GoldGameComponent = class _GoldGameComponent {
     }
     this.saveToLocalStorage();
   }
-  getScoreClass(score) {
-    return this.scoreKeyboard.getScoreClass(score);
-  }
+  getScoreClass = getScoreClass;
   calculateScore(scores) {
     return scores.reduce((total, s2) => {
       if (s2 == "M")
@@ -42751,15 +42745,7 @@ var GoldGameComponent = class _GoldGameComponent {
   static \u0275fac = function GoldGameComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _GoldGameComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _GoldGameComponent, selectors: [["app-gold-game"]], viewQuery: function GoldGameComponent_Query(rf, ctx) {
-    if (rf & 1) {
-      \u0275\u0275viewQuery(ScoreKeyboardComponent, 5);
-    }
-    if (rf & 2) {
-      let _t;
-      \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.scoreKeyboard = _t.first);
-    }
-  }, decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["class", "button is-info is-small is-light is-pulled-right", 3, "click", 4, "ngIf"], [3, "arrowsPerEndShotCount", "minimumArrowsPerEnd", "endsCount", "successZone", "newSettings", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "scoreSelected", 4, "ngIf"], [1, "button", "is-info", "is-small", "is-light", "is-pulled-right", 3, "click"], [3, "newSettings", "arrowsPerEndShotCount", "minimumArrowsPerEnd", "endsCount", "successZone"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-small", "is-light", 3, "click", "disabled"], [3, "scoreSelected"]], template: function GoldGameComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _GoldGameComponent, selectors: [["app-gold-game"]], decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["class", "button is-info is-small is-light is-pulled-right", 3, "click", 4, "ngIf"], [3, "arrowsPerEndShotCount", "minimumArrowsPerEnd", "endsCount", "successZone", "newSettings", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "scoreSelected", 4, "ngIf"], [1, "button", "is-info", "is-small", "is-light", "is-pulled-right", 3, "click"], [3, "newSettings", "arrowsPerEndShotCount", "minimumArrowsPerEnd", "endsCount", "successZone"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-small", "is-light", 3, "click", "disabled"], [3, "scoreSelected"]], template: function GoldGameComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "h1", 0);
       \u0275\u0275text(1, "Gold Game ");
@@ -42783,13 +42769,10 @@ var GoldGameComponent = class _GoldGameComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(GoldGameComponent, [{
     type: Component,
     args: [{ selector: "app-gold-game", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, SettingsComponent], template: '  <h1 class="title is-5">Gold Game\n    <button *ngIf="gameStarted" class="button is-info is-small is-light is-pulled-right" (click)="resetGame()">Recommencer</button>\n  </h1>\n\n<!-- Settings-->\n<app-game-settings *ngIf="!gameStarted"\n [arrowsPerEndShotCount]="arrowsPerEndCount"\n [minimumArrowsPerEnd]="3"\n [endsCount]="endsCount"\n [successZone]="successZone"\n (newSettings)="onNewSettings($event)"></app-game-settings>\n\n<!-- Results -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Score</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let end of pastEnds; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ end.score }}</td>\n      </tr>\n      <tr *ngIf="pastEnds.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{getTotalScore()}}</td>\n      </tr>\n    </tbody>\n  </table>\n  <span *ngIf="pastEnds.length > 0">({{getZonePercent()}} % en zone)</span>\n  <br />\n  <br />\n  <!-- Current end -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>\n    <div>\n      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-small is-light" (click)="removeLastScore()" [disabled]="currentEnd.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Keyboard -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>\n', styles: ["table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
-  }], null, { scoreKeyboard: [{
-    type: ViewChild,
-    args: [ScoreKeyboardComponent]
-  }] });
+  }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(GoldGameComponent, { className: "GoldGameComponent", filePath: "src/app/pages/games/gold-game/gold-game.component.ts", lineNumber: 14 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(GoldGameComponent, { className: "GoldGameComponent", filePath: "src/app/pages/games/gold-game/gold-game.component.ts", lineNumber: 15 });
 })();
 
 // node_modules/@fortawesome/fontawesome-svg-core/index.mjs
@@ -46681,7 +46664,6 @@ function DoubleCountedShotGameComponent_app_score_keyboard_5_Template(rf, ctx) {
   }
 }
 var DoubleCountedShotGameComponent = class _DoubleCountedShotGameComponent {
-  scoreKeyboard;
   faRotateLeft = faRotateLeft;
   arrowsPerEndShotCount = 7;
   arrowsPerEndCount = 6;
@@ -46745,9 +46727,7 @@ var DoubleCountedShotGameComponent = class _DoubleCountedShotGameComponent {
     }
     this.saveToLocalStorage();
   }
-  getScoreClass(score) {
-    return this.scoreKeyboard.getScoreClass(score);
-  }
+  getScoreClass = getScoreClass;
   calculateScoreSum(scores) {
     return scores.reduce((total, s2) => {
       if (s2 === "X")
@@ -46805,15 +46785,7 @@ var DoubleCountedShotGameComponent = class _DoubleCountedShotGameComponent {
   static \u0275fac = function DoubleCountedShotGameComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _DoubleCountedShotGameComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DoubleCountedShotGameComponent, selectors: [["app-tir-compte-double"]], viewQuery: function DoubleCountedShotGameComponent_Query(rf, ctx) {
-    if (rf & 1) {
-      \u0275\u0275viewQuery(ScoreKeyboardComponent, 5);
-    }
-    if (rf & 2) {
-      let _t;
-      \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.scoreKeyboard = _t.first);
-    }
-  }, decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:#66d1ff;cursor:pointer;", 3, "icon", "click", 4, "ngIf"], [3, "arrowsPerEndShotCount", "arrowsPerEndCount", "endsCount", "newSettings", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "scoreSelected", 4, "ngIf"], [2, "color", "#66d1ff", "cursor", "pointer", 3, "click", "icon"], [3, "newSettings", "arrowsPerEndShotCount", "arrowsPerEndCount", "endsCount"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-small", "is-light", 3, "click", "disabled"], [3, "scoreSelected"]], template: function DoubleCountedShotGameComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DoubleCountedShotGameComponent, selectors: [["app-tir-compte-double"]], decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:#66d1ff;cursor:pointer;", 3, "icon", "click", 4, "ngIf"], [3, "arrowsPerEndShotCount", "arrowsPerEndCount", "endsCount", "newSettings", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "scoreSelected", 4, "ngIf"], [2, "color", "#66d1ff", "cursor", "pointer", 3, "click", "icon"], [3, "newSettings", "arrowsPerEndShotCount", "arrowsPerEndCount", "endsCount"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-small", "is-light", 3, "click", "disabled"], [3, "scoreSelected"]], template: function DoubleCountedShotGameComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "h1", 0);
       \u0275\u0275text(1, "Tir compt\xE9 double \xA0\xA0\xA0");
@@ -46837,13 +46809,10 @@ var DoubleCountedShotGameComponent = class _DoubleCountedShotGameComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DoubleCountedShotGameComponent, [{
     type: Component,
     args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, SettingsComponent], template: '<h1 class="title is-5">Tir compt\xE9 double\n  &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"\n    style="color:#66d1ff;cursor:pointer;"></fa-icon>\n</h1>\n\n<!-- Settings -->\n<app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" \n  [arrowsPerEndCount]="arrowsPerEndCount" [endsCount]="endsCount"\n (newSettings)="onNewSettings($event)"></app-game-settings>\n\n<!-- Results -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>{{arrowsPerEndCount}} +</th>\n        <th>{{arrowsPerEndCount}} -</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let end of pastEnds; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ end.bestScore }}</td>\n        <td>{{ end.lowestScore }}</td>\n      </tr>\n      <tr *ngIf="pastEnds.length > 0">\n        <td colspan="2">Total</td>\n        <td>{{ getTotalBestScore() }}</td>\n        <td>{{ getTotalLowestScore() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Current end -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>\n    <div>\n      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-small is-light" (click)="removeLastScore()"\n        [disabled]="currentEnd.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Clavier -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
-  }], null, { scoreKeyboard: [{
-    type: ViewChild,
-    args: [ScoreKeyboardComponent]
-  }] });
+  }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DoubleCountedShotGameComponent, { className: "DoubleCountedShotGameComponent", filePath: "src/app/pages/games/double-counted-shot/double-counted-shot.component.ts", lineNumber: 16 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DoubleCountedShotGameComponent, { className: "DoubleCountedShotGameComponent", filePath: "src/app/pages/games/double-counted-shot/double-counted-shot.component.ts", lineNumber: 17 });
 })();
 
 // src/app/pages/home/home.component.ts
@@ -47611,7 +47580,6 @@ function SimpleCountedShotGameComponent_app_score_keyboard_5_Template(rf, ctx) {
   }
 }
 var SimpleCountedShotGameComponent = class _SimpleCountedShotGameComponent {
-  scoreKeyboard;
   faRotateLeft = faRotateLeft;
   arrowsPerEndShotCount = 6;
   endsCount = 6;
@@ -47669,9 +47637,7 @@ var SimpleCountedShotGameComponent = class _SimpleCountedShotGameComponent {
     }
     this.saveToLocalStorage();
   }
-  getScoreClass(score) {
-    return this.scoreKeyboard.getScoreClass(score);
-  }
+  getScoreClass = getScoreClass;
   calculateScoreSum(scores) {
     return scores.reduce((total, s2) => {
       if (s2 === "X")
@@ -47727,15 +47693,7 @@ var SimpleCountedShotGameComponent = class _SimpleCountedShotGameComponent {
   static \u0275fac = function SimpleCountedShotGameComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _SimpleCountedShotGameComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SimpleCountedShotGameComponent, selectors: [["app-tir-compte-double"]], viewQuery: function SimpleCountedShotGameComponent_Query(rf, ctx) {
-    if (rf & 1) {
-      \u0275\u0275viewQuery(ScoreKeyboardComponent, 5);
-    }
-    if (rf & 2) {
-      let _t;
-      \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.scoreKeyboard = _t.first);
-    }
-  }, decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:#66d1ff;cursor:pointer;", 3, "icon", "click", 4, "ngIf"], [3, "arrowsPerEndShotCount", "minimumArrowsPerEnd", "endsCount", "newSettings", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "scoreSelected", 4, "ngIf"], [2, "color", "#66d1ff", "cursor", "pointer", 3, "click", "icon"], [3, "newSettings", "arrowsPerEndShotCount", "minimumArrowsPerEnd", "endsCount"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-light", "is-small", 3, "click", "disabled"], [3, "scoreSelected"]], template: function SimpleCountedShotGameComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SimpleCountedShotGameComponent, selectors: [["app-tir-compte-double"]], decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:#66d1ff;cursor:pointer;", 3, "icon", "click", 4, "ngIf"], [3, "arrowsPerEndShotCount", "minimumArrowsPerEnd", "endsCount", "newSettings", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "scoreSelected", 4, "ngIf"], [2, "color", "#66d1ff", "cursor", "pointer", 3, "click", "icon"], [3, "newSettings", "arrowsPerEndShotCount", "minimumArrowsPerEnd", "endsCount"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], ["colspan", "2"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-light", "is-small", 3, "click", "disabled"], [3, "scoreSelected"]], template: function SimpleCountedShotGameComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "h1", 0);
       \u0275\u0275text(1, "Tir compt\xE9 \xA0\xA0\xA0");
@@ -47759,13 +47717,10 @@ var SimpleCountedShotGameComponent = class _SimpleCountedShotGameComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(SimpleCountedShotGameComponent, [{
     type: Component,
     args: [{ selector: "app-tir-compte-double", standalone: true, imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, SettingsComponent], template: '<h1 class="title is-5">Tir compt\xE9\n  &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"\n    style="color:#66d1ff;cursor:pointer;"></fa-icon>\n</h1>\n\n<!-- Settings-->\n<app-game-settings *ngIf="!gameStarted"\n [arrowsPerEndShotCount]="arrowsPerEndShotCount"\n [minimumArrowsPerEnd]="3"\n [endsCount]="endsCount"\n (newSettings)="onNewSettings($event)"></app-game-settings>\n\n<!-- Results -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Tot.</th>\n        <th>TC</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let end of pastEnds; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ end.total }}</td>\n        <td>{{ getTotalCumule(i) }}</td>\n      </tr>\n      <tr *ngIf="pastEnds.length > 0">\n        <td colspan="2">Total</td>\n        <td colspan="2">{{ getTotal() }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Current end -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>\n    <div>\n      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-light is-small" (click)="removeLastScore()"\n        [disabled]="currentEnd.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Keyboard -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>', styles: [".keyboard{position:sticky;bottom:0;background:#f5f5f5;padding:.5rem;border-top:1px solid #ccc}.custom-key{font-size:1rem;padding:.4rem 0;margin:.1rem 0}table th,table td{text-align:center}table tfoot th,table tfoot td{font-weight:700}\n"] }]
-  }], null, { scoreKeyboard: [{
-    type: ViewChild,
-    args: [ScoreKeyboardComponent]
-  }] });
+  }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SimpleCountedShotGameComponent, { className: "SimpleCountedShotGameComponent", filePath: "src/app/pages/games/simple-counted-shot/simple-counted-shot.component.ts", lineNumber: 16 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SimpleCountedShotGameComponent, { className: "SimpleCountedShotGameComponent", filePath: "src/app/pages/games/simple-counted-shot/simple-counted-shot.component.ts", lineNumber: 17 });
 })();
 
 // src/app/pages/games/dynamic-ref-end-score/dynamic-ref-end-score.component.ts
@@ -47801,7 +47756,7 @@ function DynamicRefEndScoreComponent_app_game_settings_3_Template(rf, ctx) {
     \u0275\u0275property("arrowsPerEndShotCount", ctx_r1.arrowsPerEndShotCount)("endsCount", ctx_r1.endsCount)("referenceScore", ctx_r1.referenceScore);
   }
 }
-function DynamicRefEndScoreComponent_div_4_tr_17_span_4_Template(rf, ctx) {
+function DynamicRefEndScoreComponent_div_4_tr_13_span_4_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "span", 13);
     \u0275\u0275text(1);
@@ -47815,23 +47770,32 @@ function DynamicRefEndScoreComponent_div_4_tr_17_span_4_Template(rf, ctx) {
     \u0275\u0275textInterpolate(s_r4);
   }
 }
-function DynamicRefEndScoreComponent_div_4_tr_17_Template(rf, ctx) {
+function DynamicRefEndScoreComponent_div_4_tr_13_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "tr")(1, "td");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "td");
-    \u0275\u0275template(4, DynamicRefEndScoreComponent_div_4_tr_17_span_4_Template, 2, 2, "span", 12);
+    \u0275\u0275template(4, DynamicRefEndScoreComponent_div_4_tr_13_span_4_Template, 2, 2, "span", 12);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "td");
-    \u0275\u0275text(6);
+    \u0275\u0275elementStart(5, "td")(6, "table")(7, "tr")(8, "td");
+    \u0275\u0275text(9, "V");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "td");
-    \u0275\u0275text(8);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(9, "td");
-    \u0275\u0275text(10);
+    \u0275\u0275elementStart(10, "td");
+    \u0275\u0275text(11);
     \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(12, "tr")(13, "td");
+    \u0275\u0275text(14, "R");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(15, "td");
+    \u0275\u0275text(16);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(17, "tr")(18, "td");
+    \u0275\u0275text(19, "NR");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(20, "td");
+    \u0275\u0275text(21);
+    \u0275\u0275elementEnd()()()()();
   }
   if (rf & 2) {
     const end_r5 = ctx.$implicit;
@@ -47840,15 +47804,15 @@ function DynamicRefEndScoreComponent_div_4_tr_17_Template(rf, ctx) {
     \u0275\u0275textInterpolate(i_r6 + 1);
     \u0275\u0275advance(2);
     \u0275\u0275property("ngForOf", end_r5.details);
-    \u0275\u0275advance(2);
+    \u0275\u0275advance(7);
     \u0275\u0275textInterpolate(end_r5.score);
-    \u0275\u0275advance(2);
+    \u0275\u0275advance(5);
     \u0275\u0275textInterpolate(end_r5.refScore);
-    \u0275\u0275advance(2);
+    \u0275\u0275advance(5);
     \u0275\u0275textInterpolate(end_r5.newRefScore);
   }
 }
-function DynamicRefEndScoreComponent_div_4_div_18_span_4_Template(rf, ctx) {
+function DynamicRefEndScoreComponent_div_4_div_14_span_4_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "span", 13);
     \u0275\u0275text(1);
@@ -47862,17 +47826,17 @@ function DynamicRefEndScoreComponent_div_4_div_18_span_4_Template(rf, ctx) {
     \u0275\u0275textInterpolate(s_r8);
   }
 }
-function DynamicRefEndScoreComponent_div_4_div_18_Template(rf, ctx) {
+function DynamicRefEndScoreComponent_div_4_div_14_Template(rf, ctx) {
   if (rf & 1) {
     const _r7 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "div")(1, "h2", 8);
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "div");
-    \u0275\u0275template(4, DynamicRefEndScoreComponent_div_4_div_18_span_4_Template, 2, 2, "span", 12);
+    \u0275\u0275template(4, DynamicRefEndScoreComponent_div_4_div_14_span_4_Template, 2, 2, "span", 12);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(5, "div", 14)(6, "button", 15);
-    \u0275\u0275listener("click", function DynamicRefEndScoreComponent_div_4_div_18_Template_button_click_6_listener() {
+    \u0275\u0275listener("click", function DynamicRefEndScoreComponent_div_4_div_14_Template_button_click_6_listener() {
       \u0275\u0275restoreView(_r7);
       const ctx_r1 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r1.removeLastScore());
@@ -47903,22 +47867,16 @@ function DynamicRefEndScoreComponent_div_4_Template(rf, ctx) {
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(10, "th");
     \u0275\u0275text(11, "Score");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "th");
-    \u0275\u0275text(13, "R\xE9f");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(14, "th");
-    \u0275\u0275text(15, "New R\xE9f");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(16, "tbody");
-    \u0275\u0275template(17, DynamicRefEndScoreComponent_div_4_tr_17_Template, 11, 5, "tr", 10);
+    \u0275\u0275elementStart(12, "tbody");
+    \u0275\u0275template(13, DynamicRefEndScoreComponent_div_4_tr_13_Template, 22, 5, "tr", 10);
     \u0275\u0275elementEnd()();
-    \u0275\u0275template(18, DynamicRefEndScoreComponent_div_4_div_18_Template, 8, 4, "div", 11);
+    \u0275\u0275template(14, DynamicRefEndScoreComponent_div_4_div_14_Template, 8, 4, "div", 11);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275advance(17);
+    \u0275\u0275advance(13);
     \u0275\u0275property("ngForOf", ctx_r1.pastEnds);
     \u0275\u0275advance();
     \u0275\u0275property("ngIf", ctx_r1.gameStarted && !ctx_r1.gameFinished);
@@ -47938,7 +47896,6 @@ function DynamicRefEndScoreComponent_app_score_keyboard_5_Template(rf, ctx) {
 }
 var DynamicRefEndScoreComponent = class _DynamicRefEndScoreComponent {
   localStorageItemName = "dynamicRefScoreGame";
-  scoreKeyboard;
   faRotateLeft = faRotateLeft;
   arrowsPerEndShotCount = 6;
   // This is the number of arrows per end to use for counting the end, not the shot count
@@ -48004,9 +47961,7 @@ var DynamicRefEndScoreComponent = class _DynamicRefEndScoreComponent {
   ngOnInit() {
     this.loadFromLocalStorage();
   }
-  getScoreClass(score) {
-    return this.scoreKeyboard.getScoreClass(score);
-  }
+  getScoreClass = getScoreClass;
   addScore(score) {
     if (this.currentEnd.length < this.arrowsPerEndShotCount) {
       this.currentEnd.push(score);
@@ -48057,21 +48012,13 @@ var DynamicRefEndScoreComponent = class _DynamicRefEndScoreComponent {
   static \u0275fac = function DynamicRefEndScoreComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _DynamicRefEndScoreComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DynamicRefEndScoreComponent, selectors: [["app-dynamic-ref-end-score"]], viewQuery: function DynamicRefEndScoreComponent_Query(rf, ctx) {
-    if (rf & 1) {
-      \u0275\u0275viewQuery(ScoreKeyboardComponent, 5);
-    }
-    if (rf & 2) {
-      let _t;
-      \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.scoreKeyboard = _t.first);
-    }
-  }, decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:#66d1ff;cursor:pointer;", 3, "icon", "click", 4, "ngIf"], [3, "arrowsPerEndShotCount", "endsCount", "referenceScore", "newSettings", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "scoreSelected", 4, "ngIf"], [2, "color", "#66d1ff", "cursor", "pointer", 3, "click", "icon"], [3, "newSettings", "arrowsPerEndShotCount", "endsCount", "referenceScore"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-light", "is-small", 3, "click", "disabled"], [3, "scoreSelected"]], template: function DynamicRefEndScoreComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DynamicRefEndScoreComponent, selectors: [["app-dynamic-ref-end-score"]], decls: 6, vars: 4, consts: [[1, "title", "is-5"], ["style", "color:#66d1ff;cursor:pointer;", 3, "icon", "click", 4, "ngIf"], [3, "arrowsPerEndShotCount", "endsCount", "referenceScore", "newSettings", 4, "ngIf"], ["class", "box content", 4, "ngIf"], [3, "scoreSelected", 4, "ngIf"], [2, "color", "#66d1ff", "cursor", "pointer", 3, "click", "icon"], [3, "newSettings", "arrowsPerEndShotCount", "endsCount", "referenceScore"], [1, "box", "content"], [1, "subtitle", "is-5"], [1, "table", "is-fullwidth", "is-bordered", "is-striped", "is-narrow"], [4, "ngFor", "ngForOf"], [4, "ngIf"], ["class", "tag m-1", 3, "ngClass", 4, "ngFor", "ngForOf"], [1, "tag", "m-1", 3, "ngClass"], [1, "has-text-centered", "mt-2"], [1, "button", "is-danger", "is-light", "is-small", 3, "click", "disabled"], [3, "scoreSelected"]], template: function DynamicRefEndScoreComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "h1", 0);
       \u0275\u0275text(1, "Vol\xE9e de r\xE9f\xE9rence glissante \xA0\xA0\xA0");
       \u0275\u0275template(2, DynamicRefEndScoreComponent_fa_icon_2_Template, 1, 1, "fa-icon", 1);
       \u0275\u0275elementEnd();
-      \u0275\u0275template(3, DynamicRefEndScoreComponent_app_game_settings_3_Template, 1, 3, "app-game-settings", 2)(4, DynamicRefEndScoreComponent_div_4_Template, 19, 2, "div", 3)(5, DynamicRefEndScoreComponent_app_score_keyboard_5_Template, 1, 0, "app-score-keyboard", 4);
+      \u0275\u0275template(3, DynamicRefEndScoreComponent_app_game_settings_3_Template, 1, 3, "app-game-settings", 2)(4, DynamicRefEndScoreComponent_div_4_Template, 15, 2, "div", 3)(5, DynamicRefEndScoreComponent_app_score_keyboard_5_Template, 1, 0, "app-score-keyboard", 4);
     }
     if (rf & 2) {
       \u0275\u0275advance(2);
@@ -48088,14 +48035,11 @@ var DynamicRefEndScoreComponent = class _DynamicRefEndScoreComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DynamicRefEndScoreComponent, [{
     type: Component,
-    args: [{ standalone: true, selector: "app-dynamic-ref-end-score", imports: [CommonModule, FormsModule, SettingsComponent, ScoreKeyboardComponent, FontAwesomeModule], template: '<h1 class="title is-5">Vol\xE9e de r\xE9f\xE9rence glissante\n  &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"\n    style="color:#66d1ff;cursor:pointer;"></fa-icon>\n</h1>\n\n<!-- Settings -->\n<app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" \n  [endsCount]="endsCount" [referenceScore]="referenceScore"\n (newSettings)="onNewSettings($event)"></app-game-settings>\n\n <!-- Results -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Score</th>\n        <th>R\xE9f</th>\n        <th>New R\xE9f</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let end of pastEnds; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>{{ end.score }}</td>\n        <td>{{ end.refScore }}</td>\n        <td>{{ end.newRefScore }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Current end -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>\n    <div>\n      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-light is-small" (click)="removeLastScore()"\n        [disabled]="currentEnd.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Keyboard -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>' }]
-  }], null, { scoreKeyboard: [{
-    type: ViewChild,
-    args: [ScoreKeyboardComponent]
-  }] });
+    args: [{ standalone: true, selector: "app-dynamic-ref-end-score", imports: [CommonModule, FormsModule, SettingsComponent, ScoreKeyboardComponent, FontAwesomeModule], template: '<h1 class="title is-5">Vol\xE9e de r\xE9f\xE9rence glissante\n  &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"\n    style="color:#66d1ff;cursor:pointer;"></fa-icon>\n</h1>\n\n<!-- Settings -->\n<app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" \n  [endsCount]="endsCount" [referenceScore]="referenceScore"\n (newSettings)="onNewSettings($event)"></app-game-settings>\n\n <!-- Results -->\n<div *ngIf="gameStarted" class="box content">\n  <h2 class="subtitle is-5">Vol\xE9es pass\xE9es</h2>\n  <table class="table is-fullwidth is-bordered is-striped is-narrow">\n    <thead>\n      <tr>\n        <th>Vol\xE9e</th>\n        <th>D\xE9tails</th>\n        <th>Score</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor="let end of pastEnds; index as i">\n        <td>{{ i + 1 }}</td>\n        <td>\n          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n        </td>\n        <td>\n            <table>\n              <tr>\n                <td>V</td>\n                <td>{{ end.score }}</td>\n              </tr>\n              <tr>\n                <td>R</td>\n                <td>{{ end.refScore }}</td>\n              </tr>\n              <tr>\n                <td>NR</td>\n                <td>{{ end.newRefScore }}</td>\n              </tr>\n            </table>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n\n  <!-- Current end -->\n  <div *ngIf="gameStarted && !gameFinished">\n    <h2 class="subtitle is-5">Vol\xE9e {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>\n    <div>\n      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>\n    </div>\n    <div class="has-text-centered mt-2">\n      <button class="button is-danger is-light is-small" (click)="removeLastScore()"\n        [disabled]="currentEnd.length === 0">\n        Annuler derni\xE8re fl\xE8che\n      </button>\n    </div>\n  </div>\n</div>\n\n<!-- Keyboard -->\n<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>' }]
+  }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DynamicRefEndScoreComponent, { className: "DynamicRefEndScoreComponent", filePath: "src/app/pages/games/dynamic-ref-end-score/dynamic-ref-end-score.component.ts", lineNumber: 16 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DynamicRefEndScoreComponent, { className: "DynamicRefEndScoreComponent", filePath: "src/app/pages/games/dynamic-ref-end-score/dynamic-ref-end-score.component.ts", lineNumber: 17 });
 })();
 
 // src/app/app.routes.ts
