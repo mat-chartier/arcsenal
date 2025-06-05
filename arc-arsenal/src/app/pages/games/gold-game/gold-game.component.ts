@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
 import { SettingsComponent } from "../../../components/settings/settings.component";
+import { getScoreClass } from '../../../utils/score-utils';
 
 @Component({
   selector: 'app-gold-game',
@@ -13,8 +14,6 @@ import { SettingsComponent } from "../../../components/settings/settings.compone
 })
 export class GoldGameComponent {
   readonly localStorageItemName = 'GoldGame';
-
-  @ViewChild(ScoreKeyboardComponent) scoreKeyboard!: ScoreKeyboardComponent;
 
   arrowsPerEndCount: number = 7;
   endsCount: number = 6;
@@ -82,9 +81,7 @@ export class GoldGameComponent {
     this.saveToLocalStorage();
   }
 
-  getScoreClass(score: number | 'X' | 'M') {
-    return this.scoreKeyboard.getScoreClass(score);
-  }
+  getScoreClass = getScoreClass;
 
   calculateScore(scores: (number | 'X' | 'M')[]): number {
     return scores.reduce((total: number, s) => {

@@ -4,6 +4,7 @@ import { DoubleCountedShotGameComponent } from './pages/games/double-counted-sho
 import { HomeComponent } from './pages/home/home.component';
 import { SortingArrowsGameComponent } from './pages/games/sorting-arrows/sorting-arrows.component';
 import { SimpleCountedShotGameComponent } from './pages/games/simple-counted-shot/simple-counted-shot.component';
+import { DynamicRefEndScoreComponent } from './pages/games/dynamic-ref-end-score/dynamic-ref-end-score.component';
 
 export const routes: Routes = [
   { path: 'tir-compte-simple', component: SimpleCountedShotGameComponent },
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: 'tir-compte-double', component: DoubleCountedShotGameComponent },
   { path: 'accueil', component: HomeComponent },
   { path: 'tri-de-fleches', component: SortingArrowsGameComponent },
-  { path: '', redirectTo: 'accueil', pathMatch: 'full' }, // optionnel: page par défaut
+  { path: 'volee-ref-glissante', component: DynamicRefEndScoreComponent },
+    { path: '', redirectTo: 'accueil', pathMatch: 'full' }, // optionnel: page par défaut
   { path: '**', redirectTo: 'accueil' }
 ];

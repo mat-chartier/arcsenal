@@ -14,8 +14,9 @@ export class SettingsComponent {
   @Input() endsCount?: number; // Default value, can be overridden by input
   @Input() minimumArrowsPerEnd: number = 3; // Default value, can be overridden by input
   @Input() successZone?: number; // Default value, can be overridden by input
+  @Input() referenceScore?: number; // Default value, can be overridden by input
 
-  @Output() newSettings = new EventEmitter<{ arrowsPerEndShotCount: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number } | null>();
+  @Output() newSettings = new EventEmitter<{ arrowsPerEndShotCount: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number, referenceScore?: number } | null>();
 
   incrementArrowsShotCount() {
     this.arrowsPerEndShotCount++;
@@ -62,9 +63,19 @@ export class SettingsComponent {
       this.successZone--;
     }
   }
+  incrementReferenceScore() {
+    if (this.referenceScore) {
+      this.referenceScore++;
+    }
+  }
+  decrementReferenceScore() {
+    if (this.referenceScore && this.referenceScore > 0) {
+      this.referenceScore--;
+    }
+  }
 
   saveSettings() {
-    let settings: { arrowsPerEndShotCount: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number } = {
+    let settings: { arrowsPerEndShotCount: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number, referenceScore?: number } = {
       arrowsPerEndShotCount: this.arrowsPerEndShotCount,
     };
     if (this.endsCount) {
@@ -75,6 +86,9 @@ export class SettingsComponent {
     }
     if (this.successZone !== undefined) {
       settings.successZone = this.successZone;
+    }
+    if (this.referenceScore !== undefined) {
+      settings.referenceScore = this.referenceScore;
     }
     this.newSettings.emit(settings);
   }
