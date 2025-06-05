@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { getScoreClass } from '../../../utils/score-utils';
 
 @Component({
   selector: 'app-score-keyboard',
@@ -32,13 +33,5 @@ export class ScoreKeyboardComponent {
     }, 100);
   }
 
-  getScoreClass(value: number | 'X' | 'M'): string {
-    if (value === 'X' || value === 10 || value === 9) return 'yellow';
-    if (value === 8 || value === 7) return 'red';
-    if (value === 6 || value === 5) return 'blue';
-    if (value === 4 || value === 3) return 'black';
-    if (value === 2 || value === 1) return 'white';
-    if (value === 'M') return 'grey';
-    return '';
-  }
+  getScoreClass = getScoreClass;
 }

@@ -5,6 +5,7 @@ import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBackward, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { SettingsComponent } from "../../../components/settings/settings.component";
+import { getScoreClass } from '../../../utils/score-utils';
 
 @Component({
   selector: 'app-tir-compte-double',
@@ -14,8 +15,6 @@ import { SettingsComponent } from "../../../components/settings/settings.compone
   styleUrl: './double-counted-shot.component.scss',
 })
 export class DoubleCountedShotGameComponent {
-
-  @ViewChild(ScoreKeyboardComponent) scoreKeyboard!: ScoreKeyboardComponent;
 
   faRotateLeft = faRotateLeft;
 
@@ -97,9 +96,7 @@ export class DoubleCountedShotGameComponent {
     this.saveToLocalStorage();
   }
 
-  getScoreClass(score: number | 'X' | 'M') {
-    return this.scoreKeyboard.getScoreClass(score);
-  }
+  getScoreClass = getScoreClass;
 
   calculateScoreSum(scores: (number | 'X' | 'M')[]): number {
     return scores.reduce((total: number, s) => {

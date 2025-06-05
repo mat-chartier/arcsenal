@@ -5,6 +5,7 @@ import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { SettingsComponent } from "../../../components/settings/settings.component";
+import { getScoreClass } from '../../../utils/score-utils';
 
 @Component({
   selector: 'app-tir-compte-double',
@@ -14,8 +15,6 @@ import { SettingsComponent } from "../../../components/settings/settings.compone
   styleUrl: './simple-counted-shot.component.scss',
 })
 export class SimpleCountedShotGameComponent {
-
-  @ViewChild(ScoreKeyboardComponent) scoreKeyboard!: ScoreKeyboardComponent;
 
   faRotateLeft = faRotateLeft;
 
@@ -86,15 +85,12 @@ export class SimpleCountedShotGameComponent {
 
     if (this.currentEndIndex >= this.endsCount) {
       this.gameFinished = true;
-      console.log('game finished');
     }
 
     this.saveToLocalStorage();
   }
 
-  getScoreClass(score: number | 'X' | 'M') {
-    return this.scoreKeyboard.getScoreClass(score);
-  }
+  getScoreClass = getScoreClass;
 
   calculateScoreSum(scores: (number | 'X' | 'M')[]): number {
     return scores.reduce((total: number, s) => {
@@ -104,7 +100,7 @@ export class SimpleCountedShotGameComponent {
     }, 0);
   }
 
-  getTotalCumule(i: number): string {
+  getGrandTotal(i: number): string {
     if (this.pastEnds && this.pastEnds.length > 1) {
       return "" + this.pastEnds.slice(0, i + 1).map(v => v.total).reduce((p, v) => p + v);
     }

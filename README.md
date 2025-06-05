@@ -50,6 +50,15 @@ Actuellement, l'application propose :
   - Visualisez les impacts et la moyenne pour l'ensemble des flèches
   - Effacement des impacts individuellement et relance possible
 
+- **Volée de référence glissante**
+  - Paramétrez le nombre de flèches par volée, le nombre de volées et la valeur initiale de la volée de référence
+  - La volée de référence évolue après chaque valoée:
+    - volée < réf - 3 => réf = réf - 2 
+    - volée < réf - 1 => réf = réf - 1
+    - volée > réf + 1 => réf = réf + 1 
+    - volée > réf + 3 => réf = réf + 2
+  - Le but est de finir avec la volée de référence la plus haute possible 
+
 ---
 
 ### 📱 Fonctionnalités techniques

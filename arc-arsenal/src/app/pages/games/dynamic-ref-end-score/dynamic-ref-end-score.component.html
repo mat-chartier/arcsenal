@@ -1,16 +1,14 @@
-<h1 class="title is-5">Tir compté
+<h1 class="title is-5">Volée de référence glissante
   &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"
     style="color:#66d1ff;cursor:pointer;"></fa-icon>
 </h1>
 
-<!-- Settings-->
-<app-game-settings *ngIf="!gameStarted"
- [arrowsPerEndShotCount]="arrowsPerEndShotCount"
- [minimumArrowsPerEnd]="3"
- [endsCount]="endsCount"
+<!-- Settings -->
+<app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" 
+  [endsCount]="endsCount" [referenceScore]="referenceScore"
  (newSettings)="onNewSettings($event)"></app-game-settings>
 
-<!-- Results -->
+ <!-- Results -->
 <div *ngIf="gameStarted" class="box content">
   <h2 class="subtitle is-5">Volées passées</h2>
   <table class="table is-fullwidth is-bordered is-striped is-narrow">
@@ -18,8 +16,7 @@
       <tr>
         <th>Volée</th>
         <th>Détails</th>
-        <th>Tot.</th>
-        <th>TC</th>
+        <th>Score</th>
       </tr>
     </thead>
     <tbody>
@@ -28,12 +25,22 @@
         <td>
           <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
         </td>
-        <td>{{ end.total }}</td>
-        <td>{{ getGrandTotal(i) }}</td>
-      </tr>
-      <tr *ngIf="pastEnds.length > 0">
-        <td colspan="2">Total</td>
-        <td colspan="2">{{ getTotal() }}</td>
+        <td>
+            <table>
+              <tr>
+                <td>V</td>
+                <td>{{ end.score }}</td>
+              </tr>
+              <tr>
+                <td>R</td>
+                <td>{{ end.refScore }}</td>
+              </tr>
+              <tr>
+                <td>NR</td>
+                <td>{{ end.newRefScore }}</td>
+              </tr>
+            </table>
+        </td>
       </tr>
     </tbody>
   </table>

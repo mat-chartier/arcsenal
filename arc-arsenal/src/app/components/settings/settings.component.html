@@ -62,6 +62,20 @@
             </p>
         </div>
     </div>
+    <div class="field mb-4" *ngIf="referenceScore">
+        <label class="label">Volée de référence :</label>
+        <div class="field has-addons is-justify-content-center">
+            <p class="control">
+                <button class="button is-small" (click)="decrementReferenceScore()">-</button>
+            </p>
+            <p class="control">
+                <input class="input is-small has-text-centered" readonly [value]="referenceScore" style="width: 60px" />
+            </p>
+            <p class="control">
+                <button class="button is-small" (click)="incrementReferenceScore()">+</button>
+            </p>
+        </div>
+    </div>
 
     <div class="has-text-centered mt-4">
         <button class="button is-primary" (click)="saveSettings()">Démarrer</button>
