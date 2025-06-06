@@ -4,11 +4,15 @@
 </h1>
 
 <!-- Settings-->
-<app-game-settings *ngIf="!gameStarted"
- [arrowsPerEndShotCount]="arrowsPerEndShotCount"
- [minimumArrowsPerEnd]="3"
- [endsCount]="endsCount"
- (newSettings)="onNewSettings($event)"></app-game-settings>
+<app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" [minimumArrowsPerEnd]="3"
+  [endsCount]="endsCount" (newSettings)="onNewSettings($event)"></app-game-settings>
+
+<!-- Past games -->
+<app-past-games
+  *ngIf="!gameStarted"
+  [localStorageItemName]="localStorageItemName"
+  (viewGame)="loadGame($event)"
+></app-past-games>
 
 <!-- Results -->
 <div *ngIf="gameStarted" class="box content">

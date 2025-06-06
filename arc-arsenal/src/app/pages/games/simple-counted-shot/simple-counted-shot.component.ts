@@ -6,11 +6,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { SettingsComponent } from "../../../components/settings/settings.component";
 import { getScoreClass } from '../../../utils/score-utils';
+import { PastGamesComponent } from "../../../components/past-games/past-games.component";
+import { addPastGame, resetCurrentGame, saveCurrentGame } from '../../../utils/past-games-utils';
 
 @Component({
   selector: 'app-tir-compte-double',
   standalone: true,
-  imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, SettingsComponent],
+  imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, SettingsComponent, PastGamesComponent],
   templateUrl: './simple-counted-shot.component.html',
   styleUrl: './simple-counted-shot.component.scss',
 })
@@ -18,6 +20,7 @@ export class SimpleCountedShotGameComponent {
 
   faRotateLeft = faRotateLeft;
 
+  startDate: Date | null = null;
   arrowsPerEndShotCount: number = 6;
   endsCount: number = 6;
   gameStarted: boolean = false;
@@ -29,7 +32,7 @@ export class SimpleCountedShotGameComponent {
     total: number;
   }[] = [];
 
-  private readonly localStorageItemName = 'simpleCountedShotGame';
+  readonly localStorageItemName = 'simpleCountedShotGame';
 
   onNewSettings(settings: any | null) {
     if (settings) {
@@ -42,6 +45,7 @@ export class SimpleCountedShotGameComponent {
   }
 
   startGame() {
+    this.startDate = new Date();
     this.gameStarted = true;
     this.currentEnd = [];
     this.currentEndIndex = 0;
@@ -53,7 +57,8 @@ export class SimpleCountedShotGameComponent {
     this.gameFinished = false;
     this.currentEnd = [];
     this.pastEnds = [];
-    localStorage.removeItem(this.localStorageItemName);
+
+    resetCurrentGame(this.localStorageItemName);
   }
 
   addScore(score: number | 'X' | 'M') {
@@ -83,11 +88,12 @@ export class SimpleCountedShotGameComponent {
     this.currentEnd = [];
     this.currentEndIndex++;
 
+    saveCurrentGame(this.getGameData(), this.localStorageItemName);
+
     if (this.currentEndIndex >= this.endsCount) {
       this.gameFinished = true;
+      addPastGame(this.getGameData(), this.localStorageItemName);
     }
-
-    this.saveToLocalStorage();
   }
 
   getScoreClass = getScoreClass;
@@ -119,32 +125,38 @@ export class SimpleCountedShotGameComponent {
       this.currentEnd.pop();
     }
   }
-  saveToLocalStorage() {
-    const data = {
+
+  private getGameData() {
+    return {
+      startDate: this.startDate,
       arrowsPerEndCount: this.arrowsPerEndShotCount,
       endsCount: this.endsCount,
       currentEnd: this.currentEnd,
       currentEndIndex: this.currentEndIndex,
       pastEnds: this.pastEnds,
+      gameStarted: this.gameStarted,
+      gameFinished: this.gameFinished
     };
-    localStorage.setItem(this.localStorageItemName, JSON.stringify(data));
   }
 
-  loadFromLocalStorage() {
-    const saved = localStorage.getItem(this.localStorageItemName);
-    if (saved) {
-      const data = JSON.parse(saved);
-      this.arrowsPerEndShotCount = data.arrowsPerEndCount;
-      this.endsCount = data.endsCount;
-      this.currentEnd = data.currentEnd;
-      this.currentEndIndex = data.currentEndIndex;
-      this.pastEnds = data.pastEnds;
-      this.gameStarted = true;
-      this.gameFinished = this.currentEndIndex >= this.endsCount;
-    }
+  loadGame(game: any) {
+    this.startDate = new Date(game.startDate);
+    this.arrowsPerEndShotCount = game.arrowsPerEndCount;
+    this.endsCount = game.endsCount;
+    this.currentEnd = game.currentEnd || [];
+    this.currentEndIndex = game.currentEndIndex || 0;
+    this.pastEnds = game.pastEnds || [];
+    this.gameStarted = true;
+    this.gameFinished = this.currentEndIndex >= this.endsCount;
   }
 
   ngOnInit() {
-    this.loadFromLocalStorage();
+    const saved = localStorage.getItem(this.localStorageItemName);
+    if (saved) {
+      const data = JSON.parse(saved).current;
+      if (data) {
+        this.loadGame(data);
+      }
+    }
   }
 }
