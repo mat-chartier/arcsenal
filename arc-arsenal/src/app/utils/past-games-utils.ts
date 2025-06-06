@@ -56,7 +56,6 @@ export function addPastGame(pastGame: any, localStorageItemName: string | null) 
 export function resetCurrentGame(localStorageItemName: string | null) {
     if (!localStorageItemName) return;
     const saved = localStorage.getItem(localStorageItemName);
-    console.log("resetCurrentGame", localStorageItemName, saved);
     if (saved) {
         let data = JSON.parse(saved);
         data.current = null;
