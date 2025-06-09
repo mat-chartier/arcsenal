@@ -6,11 +6,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBackward, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { SettingsComponent } from "../../../components/settings/settings.component";
 import { getScoreClass } from '../../../utils/score-utils';
+import { PastGamesComponent } from "../../../components/past-games/past-games.component";
+import { addPastGame, resetCurrentGame, saveCurrentGame } from '../../../utils/past-games-utils';
 
 @Component({
   selector: 'app-tir-compte-double',
   standalone: true,
-  imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, SettingsComponent],
+  imports: [CommonModule, FormsModule, ScoreKeyboardComponent, FontAwesomeModule, SettingsComponent, PastGamesComponent],
   templateUrl: './double-counted-shot.component.html',
   styleUrl: './double-counted-shot.component.scss',
 })
@@ -18,6 +20,7 @@ export class DoubleCountedShotGameComponent {
 
   faRotateLeft = faRotateLeft;
 
+  startDate: Date | null = null;
   arrowsPerEndShotCount: number = 7;
   arrowsPerEndCount: number = 6; // This is the number of arrows per end to use for counting the end, not the shot count
   endsCount: number = 6;
@@ -31,7 +34,7 @@ export class DoubleCountedShotGameComponent {
     lowestScore: number;
   }[] = [];
 
-  private readonly localStorageItemName = 'doubleCountedGame';
+  readonly localStorageItemName = 'doubleCountedGame';
 
 
   onNewSettings(settings: any | null) {
@@ -45,6 +48,7 @@ export class DoubleCountedShotGameComponent {
     }
   }
   startGame() {
+    this.startDate = new Date();
     this.gameStarted = true;
     this.currentEnd = [];
     this.currentEndIndex = 0;
@@ -56,7 +60,7 @@ export class DoubleCountedShotGameComponent {
     this.gameFinished = false;
     this.currentEnd = [];
     this.pastEnds = [];
-    localStorage.removeItem(this.localStorageItemName);
+    resetCurrentGame(this.localStorageItemName);
   }
 
   addScore(score: number | 'X' | 'M') {
@@ -64,12 +68,12 @@ export class DoubleCountedShotGameComponent {
       this.currentEnd.push(score);
 
       if (this.currentEnd.length === this.arrowsPerEndShotCount) {
-        this.saveCurrentVolee();
+        this.saveCurrentEnd();
       }
     }
   }
 
-  saveCurrentVolee() {
+  saveCurrentEnd() {
     const sortedScores = [...this.currentEnd].sort((a, b) => {
       const valA = a === 'X' ? 10 : a === 'M' ? 0 : a;
       const valB = b === 'X' ? 10 : b === 'M' ? 0 : b;
@@ -88,12 +92,12 @@ export class DoubleCountedShotGameComponent {
     this.currentEnd = [];
     this.currentEndIndex++;
 
+    saveCurrentGame(this.getGameData(), this.localStorageItemName);
+
     if (this.currentEndIndex >= this.endsCount) {
       this.gameFinished = true;
-      console.log('game finished');
+      addPastGame(this.getGameData(), this.localStorageItemName);
     }
-
-    this.saveToLocalStorage();
   }
 
   getScoreClass = getScoreClass;
@@ -127,32 +131,38 @@ export class DoubleCountedShotGameComponent {
       this.currentEnd.pop();
     }
   }
-  saveToLocalStorage() {
-    const data = {
-      arrowsPerEndCount: this.arrowsPerEndShotCount,
+  
+  getGameData() {
+    return {
+      startDate: this.startDate,
+      arrowsPerEndCount: this.arrowsPerEndCount,
       endsCount: this.endsCount,
       currentEnd: this.currentEnd,
       currentEndIndex: this.currentEndIndex,
       pastEnds: this.pastEnds,
+      gameStarted: this.gameStarted,
+      gameFinished: this.gameFinished,
     };
-    localStorage.setItem(this.localStorageItemName, JSON.stringify(data));
   }
 
-  loadFromLocalStorage() {
-    const saved = localStorage.getItem(this.localStorageItemName);
-    if (saved) {
-      const data = JSON.parse(saved);
-      this.arrowsPerEndShotCount = data.arrowsPerEndCount;
-      this.endsCount = data.endsCount;
-      this.currentEnd = data.currentEnd;
-      this.currentEndIndex = data.currentEndIndex;
-      this.pastEnds = data.pastEnds;
-      this.gameStarted = true;
-      this.gameFinished = this.currentEndIndex >= this.endsCount;
-    }
+  loadGame(data: any) {
+    this.startDate = data.startDate;
+    this.arrowsPerEndShotCount = data.arrowsPerEndCount;
+    this.endsCount = data.endsCount;
+    this.currentEnd = data.currentEnd;
+    this.currentEndIndex = data.currentEndIndex;
+    this.pastEnds = data.pastEnds;
+    this.gameStarted = data.gameStarted;
+    this.gameFinished = this.currentEndIndex >= this.endsCount;
   }
 
   ngOnInit() {
-    this.loadFromLocalStorage();
+    const saved = localStorage.getItem(this.localStorageItemName);
+    if (saved) {
+      const data = JSON.parse(saved).current;
+      if (data) {
+        this.loadGame(data);
+      }
+    }
   }
 }

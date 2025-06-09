@@ -4,17 +4,24 @@ import { FormsModule } from '@angular/forms';
 import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
 import { SettingsComponent } from "../../../components/settings/settings.component";
 import { getScoreClass } from '../../../utils/score-utils';
+import { PastGamesComponent } from "../../../components/past-games/past-games.component";
+import { addPastGame, resetCurrentGame, saveCurrentGame } from '../../../utils/past-games-utils';
+import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-gold-game',
   standalone: true,
-  imports: [CommonModule, FormsModule, ScoreKeyboardComponent, SettingsComponent],
+  imports: [CommonModule, FormsModule, ScoreKeyboardComponent, SettingsComponent, PastGamesComponent, FontAwesomeModule],
   templateUrl: './gold-game.component.html',
   styleUrl: './gold-game.component.scss',
 })
 export class GoldGameComponent {
   readonly localStorageItemName = 'GoldGame';
 
+  faRotateLeft = faRotateLeft;
+
+  startDate: Date | null = null;
   arrowsPerEndCount: number = 7;
   endsCount: number = 6;
   successZone: number = 7;
@@ -38,6 +45,7 @@ export class GoldGameComponent {
     }
   }
   startGame() {
+    this.startDate = new Date();
     this.gameStarted = true;
     this.currentEnd = [];
     this.currentEndIndex = 0;
@@ -49,7 +57,7 @@ export class GoldGameComponent {
     this.gameFinished = false;
     this.currentEnd = [];
     this.pastEnds = [];
-    localStorage.removeItem(this.localStorageItemName);
+    resetCurrentGame(this.localStorageItemName);
   }
 
   addScore(score: number | 'X' | 'M') {
@@ -57,12 +65,12 @@ export class GoldGameComponent {
       this.currentEnd.push(score);
 
       if (this.currentEnd.length === this.arrowsPerEndCount) {
-        this.saveCurrentVolee();
+        this.saveCurrentEnd();
       }
     }
   }
 
-  saveCurrentVolee() {
+  saveCurrentEnd() {
     const score = this.calculateScore(this.currentEnd);
 
     this.pastEnds.push({
@@ -73,12 +81,12 @@ export class GoldGameComponent {
     this.currentEnd = [];
     this.currentEndIndex++;
 
+    saveCurrentGame(this.getGameData(), this.localStorageItemName);
+
     if (this.currentEndIndex >= this.endsCount) {
       this.gameFinished = true;
-      console.log('game finished');
+      addPastGame(this.getGameData(), this.localStorageItemName);
     }
-
-    this.saveToLocalStorage();
   }
 
   getScoreClass = getScoreClass;
@@ -119,34 +127,37 @@ export class GoldGameComponent {
     }
   }
 
-  saveToLocalStorage() {
-    const data = {
-      nbFlechesParVolee: this.arrowsPerEndCount,
-      nbVolees: this.endsCount,
-      zoneReussite: this.successZone,
-      currentVolee: this.currentEnd,
-      currentVoleeIndex: this.currentEndIndex,
-      historiqueVollees: this.pastEnds,
+  getGameData() {
+    return {
+      startDate: this.startDate,
+      arrowsPerEndCount: this.arrowsPerEndCount,
+      endsCount: this.endsCount,
+      successZone: this.successZone,
+      currentEnd: this.currentEnd,
+      currentEndIndex: this.currentEndIndex,
+      pastEnds: this.pastEnds,
     };
-    localStorage.setItem(this.localStorageItemName, JSON.stringify(data));
   }
 
-  loadFromLocalStorage() {
-    const saved = localStorage.getItem(this.localStorageItemName);
-    if (saved) {
-      const data = JSON.parse(saved);
-      this.arrowsPerEndCount = data.nbFlechesParVolee;
-      this.endsCount = data.nbVolees;
-      this.successZone = data.zoneReussite;
-      this.currentEnd = data.currentVolee;
-      this.currentEndIndex = data.currentVoleeIndex;
-      this.pastEnds = data.historiqueVollees;
-      this.gameStarted = true;
-      this.gameFinished = this.currentEndIndex >= this.endsCount;
-    }
+  loadGame(gameData: any) {
+    this.startDate = new Date(gameData.startDate);
+    this.arrowsPerEndCount = gameData.arrowsPerEndCount;
+    this.endsCount = gameData.endsCount;
+    this.successZone = gameData.successZone;
+    this.currentEnd = gameData.currentEnd || [];
+    this.currentEndIndex = gameData.currentEndIndex || 0;
+    this.pastEnds = gameData.pastEnds || [];
+    this.gameStarted = true;
+    this.gameFinished = this.currentEndIndex >= this.endsCount;
   }
 
   ngOnInit() {
-    this.loadFromLocalStorage();
+    const saved = localStorage.getItem(this.localStorageItemName);
+    if (saved) {
+      const data = JSON.parse(saved).current;
+      if (data) {
+        this.loadGame(data);
+      }
+    }
   }
 }

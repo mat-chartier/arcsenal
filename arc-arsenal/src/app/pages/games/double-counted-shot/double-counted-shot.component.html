@@ -8,6 +8,13 @@
   [arrowsPerEndCount]="arrowsPerEndCount" [endsCount]="endsCount"
  (newSettings)="onNewSettings($event)"></app-game-settings>
 
+<!-- Past games -->
+<app-past-games
+  *ngIf="!gameStarted"
+  [localStorageItemName]="localStorageItemName"
+  (viewGame)="loadGame($event)"
+></app-past-games>
+
 <!-- Results -->
 <div *ngIf="gameStarted" class="box content">
   <h2 class="subtitle is-5">Volées passées</h2>

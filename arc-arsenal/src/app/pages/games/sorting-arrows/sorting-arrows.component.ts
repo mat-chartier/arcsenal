@@ -3,47 +3,48 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InteractiveTargetFaceComponent } from '../../../components/score-input/target-face/target-face.component';
 import { SettingsComponent } from "../../../components/settings/settings.component";
+import { PastGamesComponent } from "../../../components/past-games/past-games.component";
+import { addPastGame, resetCurrentGame, saveCurrentGame } from '../../../utils/past-games-utils';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sorting-arrows',
   standalone: true,
-  imports: [CommonModule, FormsModule, InteractiveTargetFaceComponent, SettingsComponent],
+  imports: [CommonModule, FormsModule, InteractiveTargetFaceComponent, SettingsComponent, PastGamesComponent, FontAwesomeModule],
   templateUrl: './sorting-arrows.component.html',
   styleUrl: './sorting-arrows.component.scss'
 })
 export class SortingArrowsGameComponent {
+  readonly localStorageItemName = 'tri-de-fleches';
 
   mode: 'settings' | 'targetFace' | 'showAll' = 'settings';
+  faRotateLeft = faRotateLeft;
+
+  startDate: Date | null = null;
   arrowsCount = 6;
-
   impactsPerArrows: Map<number, { x: number, y: number }[]> = new Map();
-
   lastImpact: { x: number, y: number } | null = null;
   pastImpacts: { index: number, impact: { x: number, y: number } }[] = [];
 
   showModal = false;
 
-  private readonly localStorageItemName = 'tri-de-fleches';
 
   ngOnInit() {
     this.initImpacts();
   }
 
   initImpacts() {
-    const dataStr = localStorage.getItem(this.localStorageItemName);
-    if (dataStr === null) {
+    const saved = localStorage.getItem(this.localStorageItemName);
+    if (saved) {
+      const data = JSON.parse(saved).current;
+      if (data) {
+        this.loadGame(data);
+      }
+    } else {
       this.impactsPerArrows = new Map();
       for (let i = 1; i <= this.arrowsCount; i++) {
         this.impactsPerArrows.set(i, []);
-      }
-
-    } else {
-      const data: { arrowsCount: number, impactsPerArrows: any } | null = JSON.parse(dataStr);
-      if (data != null) {
-        console.log(data);
-        this.arrowsCount = data.arrowsCount;
-        this.impactsPerArrows = new Map(data.impactsPerArrows);
-        this.mode = 'targetFace';
       }
     }
   }
@@ -60,6 +61,7 @@ export class SortingArrowsGameComponent {
     if (this.arrowsCount >= 1) {
       this.initImpacts();
       this.mode = 'targetFace';
+      this.startDate = new Date();
     }
   }
 
@@ -104,13 +106,13 @@ export class SortingArrowsGameComponent {
     this.pastImpacts.push({ index: numero, impact: this.lastImpact! });
     this.lastImpact = null;
     this.showModal = false;
-    this.save();
+    saveCurrentGame(this.getGameData(), this.localStorageItemName);
   }
 
   cancelImpactAssociation() {
     this.lastImpact = null;
     this.showModal = false;
-    this.save();
+    saveCurrentGame(this.getGameData(), this.localStorageItemName);
   }
 
   cancelLastImpact() {
@@ -120,7 +122,7 @@ export class SortingArrowsGameComponent {
       if (impactsList) {
         // Remove last corresponding impact (last impact for this given arrow)
         impactsList.pop();
-        this.save();
+        saveCurrentGame(this.getGameData(), this.localStorageItemName);
       }
     }
   }
@@ -154,19 +156,31 @@ export class SortingArrowsGameComponent {
   }
 
   resetGame() {
+    addPastGame(this.getGameData(), this.localStorageItemName);
     this.arrowsCount = 6;
     this.mode = 'settings';
     if (this.impactsPerArrows) {
       this.impactsPerArrows.clear();
     }
-    localStorage.removeItem(this.localStorageItemName);
+    resetCurrentGame(this.localStorageItemName);
   }
 
-  save() {
-    const data = {
+  getGameData() {
+    return {
+      startDate: this.startDate,
       arrowsCount: this.arrowsCount,
-      impactsPerArrows: Array.from(this.impactsPerArrows.entries())
+      impactsPerArrows: Array.from(this.impactsPerArrows.entries()),
+      lastImpact: this.lastImpact,
+      pastImpacts: this.pastImpacts
     };
-    localStorage.setItem(this.localStorageItemName, JSON.stringify(data));
+  }
+
+  loadGame(data: any) {
+    this.startDate = data.startDate;
+    this.arrowsCount = data.arrowsCount;
+    this.impactsPerArrows = new Map(data.impactsPerArrows);
+    this.lastImpact = data.lastImpact || null;
+    this.pastImpacts = data.pastImpacts || [];
+    this.mode = 'targetFace';
   }
 }

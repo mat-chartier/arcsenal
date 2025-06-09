@@ -1,5 +1,6 @@
   <h1 class="title is-5">Gold Game
-    <button *ngIf="gameStarted" class="button is-info is-small is-light is-pulled-right" (click)="resetGame()">Recommencer</button>
+     &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"
+    style="color:#66d1ff;cursor:pointer;"></fa-icon>
   </h1>
 
 <!-- Settings-->
@@ -9,6 +10,13 @@
  [endsCount]="endsCount"
  [successZone]="successZone"
  (newSettings)="onNewSettings($event)"></app-game-settings>
+
+ <!-- Past games -->
+<app-past-games
+  *ngIf="!gameStarted"
+  [localStorageItemName]="localStorageItemName"
+  (viewGame)="loadGame($event)"
+></app-past-games>
 
 <!-- Results -->
 <div *ngIf="gameStarted" class="box content">
