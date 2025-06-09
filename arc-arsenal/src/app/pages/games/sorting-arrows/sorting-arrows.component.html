@@ -1,4 +1,7 @@
-<h2 class="title is-5">Tri de flèches <button *ngIf="mode != 'settings'" (click)="resetGame()" class="button is-info is-light is-small is-pulled-right">Relancer</button></h2>
+<h2 class="title is-5">Tri de flèches 
+ &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="mode !== 'settings'" (click)="resetGame()"
+    style="color:#66d1ff;cursor:pointer;"></fa-icon>    
+</h2>
 
 <!-- Settings -->
 <!-- Settings-->
@@ -6,6 +9,13 @@
  [arrowsPerEndShotCount]="arrowsCount"
  [minimumArrowsPerEnd]="1"
  (newSettings)="onNewSettings($event)"></app-game-settings>
+
+<!-- Past games -->
+<app-past-games
+  *ngIf="mode === 'settings'"
+  [localStorageItemName]="localStorageItemName"
+  (viewGame)="loadGame($event)"
+></app-past-games> 
  
 <!-- Interactive target face -->
 <div *ngIf="mode === 'targetFace'">

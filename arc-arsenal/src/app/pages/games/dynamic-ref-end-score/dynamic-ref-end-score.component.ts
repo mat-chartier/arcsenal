@@ -6,19 +6,22 @@ import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { getScoreClass } from '../../../utils/score-utils';
+import { PastGamesComponent } from "../../../components/past-games/past-games.component";
+import { addPastGame, resetCurrentGame, saveCurrentGame } from '../../../utils/past-games-utils';
 
 @Component({
   standalone: true,
   selector: 'app-dynamic-ref-end-score',
-  imports: [CommonModule, FormsModule, SettingsComponent, ScoreKeyboardComponent, FontAwesomeModule],
+  imports: [CommonModule, FormsModule, SettingsComponent, ScoreKeyboardComponent, FontAwesomeModule, PastGamesComponent],
   templateUrl: './dynamic-ref-end-score.component.html',
   styleUrl: './dynamic-ref-end-score.component.scss'
 })
 export class DynamicRefEndScoreComponent {
-  private readonly localStorageItemName = 'dynamicRefScoreGame';
+  readonly localStorageItemName = 'dynamicRefScoreGame';
 
   faRotateLeft = faRotateLeft;
 
+  startDate: Date | null = null;
   arrowsPerEndShotCount: number = 6; // This is the number of arrows per end to use for counting the end, not the shot count
   endsCount: number = 6;
   referenceScore: number = 45; // Initial reference score for the first end
@@ -34,6 +37,7 @@ export class DynamicRefEndScoreComponent {
   }[] = [];
 
   startGame() {
+    this.startDate = new Date();
     this.gameStarted = true;
     this.gameFinished = false;
     this.currentEnd = [];
@@ -46,7 +50,7 @@ export class DynamicRefEndScoreComponent {
     this.gameFinished = false;
     this.currentEnd = [];
     this.pastEnds = [];
-    localStorage.removeItem(this.localStorageItemName);
+    resetCurrentGame(this.localStorageItemName);
   }
 
   onNewSettings(settings: any | null) {
@@ -60,8 +64,9 @@ export class DynamicRefEndScoreComponent {
     }
   }
 
-  saveToLocalStorage() {
-    const data = {
+  getGameData() {
+    return {
+      startDate: this.startDate,
       arrowsPerEndCount: this.arrowsPerEndShotCount,
       endsCount: this.endsCount,
       referenceScore: this.referenceScore,
@@ -71,30 +76,32 @@ export class DynamicRefEndScoreComponent {
       gameStarted: this.gameStarted,
       gameFinished: this.gameFinished,
     };
-    localStorage.setItem(this.localStorageItemName, JSON.stringify(data));
   }
 
-  loadFromLocalStorage() {
-    const saved = localStorage.getItem(this.localStorageItemName);
-    if (saved) {
-      const data = JSON.parse(saved);
-      this.arrowsPerEndShotCount = data.arrowsPerEndCount;
-      this.endsCount = data.endsCount;
-      this.referenceScore = data.referenceScore;
-      this.currentEnd = data.currentEnd || [];
-      this.currentEndIndex = data.currentEndIndex || 0;
-      this.pastEnds = data.pastEnds || [];
-      this.gameStarted = data.gameStarted || false;
-      this.gameFinished = data.gameFinished || false;
-    }
+  loadGame(data: any) {
+    this.startDate = data.startDate;
+    this.arrowsPerEndShotCount = data.arrowsPerEndCount;
+    this.endsCount = data.endsCount;
+    this.referenceScore = data.referenceScore;
+    this.currentEnd = data.currentEnd || [];
+    this.currentEndIndex = data.currentEndIndex || 0;
+    this.pastEnds = data.pastEnds || [];
+    this.gameStarted = data.gameStarted || false;
+    this.gameFinished = data.gameFinished || false;
   }
 
   ngOnInit() {
-    this.loadFromLocalStorage();
+    const saved = localStorage.getItem(this.localStorageItemName);
+    if (saved) {
+      const data = JSON.parse(saved).current;
+      if (data) {
+        this.loadGame(data);
+      }
+    }
   }
 
   getScoreClass = getScoreClass;
-  
+
 
   addScore(score: number | 'X' | 'M') {
     if (this.currentEnd.length < this.arrowsPerEndShotCount) {
@@ -137,11 +144,12 @@ export class DynamicRefEndScoreComponent {
     this.currentEndIndex++;
     this.currentEnd = [];
 
+    saveCurrentGame(this.getGameData(), this.localStorageItemName);
+
     if (this.currentEndIndex >= this.endsCount) {
       this.gameFinished = true;
+      addPastGame(this.getGameData(), this.localStorageItemName);
     }
-
-    this.saveToLocalStorage();
   }
 
   calculateScoreSum(scores: (number | 'X' | 'M')[]): number {
