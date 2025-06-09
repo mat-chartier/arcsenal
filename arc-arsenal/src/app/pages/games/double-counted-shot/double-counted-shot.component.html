@@ -13,6 +13,7 @@
   *ngIf="!gameStarted"
   [localStorageItemName]="localStorageItemName"
   (viewGame)="loadGame($event)"
+  [reloadPastGamesTrigger]="reloadPastGamesEventEmitter"
 ></app-past-games>
 
 <!-- Results -->

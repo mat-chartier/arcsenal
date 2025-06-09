@@ -1,16 +1,20 @@
-<div class="section" *ngIf="games().length > 0">
+<div class="section" *ngIf="authDone">
   <h2 class="subtitle is-5">Historique</h2>
-  <table class="table is-fullwidth is-bordered is-striped is-narrow">
+  <table *ngIf="pastGames.length > 0" class="table is-fullwidth is-bordered is-striped is-narrow">
     <tbody>
-      <tr *ngFor="let game of games(); index as i">
+      <tr *ngFor="let game of pastGames">
         <td>
-          <span class="tag is-light m-1">{{ game.startDate | date: 'short' }}</span>
+          <span class="tag is-light m-1">{{(game.startDate.toDate ? game.startDate.toDate() : game.startDate) | date: 'dd/MM/yy HH:mm' }}</span>
         </td>
         <td>
           <button class="button is-small is-info" (click)="viewGame.emit(game)">Voir</button>
-          <button class="button is-small is-danger is-pulled-right" (click)="deletePastGame(i)">Sup.</button>
+          <button class="button is-small is-danger is-pulled-right" (click)="deletePastGame(game)">Sup.</button>
         </td>
       </tr>
     </tbody>
   </table>
+  <p *ngIf="pastGames.length == 0">Vous n'avez pas encore joué à ce jeu</p>
+</div>
+<div class="section" *ngIf="!authDone">
+  <p>Chargement...</p>
 </div>

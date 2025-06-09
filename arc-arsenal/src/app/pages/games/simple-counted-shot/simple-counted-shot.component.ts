@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
@@ -7,7 +7,8 @@ import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { SettingsComponent } from "../../../components/settings/settings.component";
 import { getScoreClass } from '../../../utils/score-utils';
 import { PastGamesComponent } from "../../../components/past-games/past-games.component";
-import { addPastGame, resetCurrentGame, saveCurrentGame } from '../../../utils/past-games-utils';
+import { GameService } from '../../../services/game.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-tir-compte-double',
@@ -16,7 +17,9 @@ import { addPastGame, resetCurrentGame, saveCurrentGame } from '../../../utils/p
   templateUrl: './simple-counted-shot.component.html',
   styleUrl: './simple-counted-shot.component.scss',
 })
-export class SimpleCountedShotGameComponent {
+export class SimpleCountedShotGameComponent implements OnDestroy{
+
+  reloadPastGamesEventEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   faRotateLeft = faRotateLeft;
 
@@ -33,6 +36,13 @@ export class SimpleCountedShotGameComponent {
   }[] = [];
 
   readonly localStorageItemName = 'simpleCountedShotGame';
+
+  constructor(private gameService: GameService, private authService: AuthService) { }
+
+  ngOnDestroy(): void {
+    // Clean up any subscriptions or resources if necessary
+    this.reloadPastGamesEventEmitter.complete();
+  }
 
   onNewSettings(settings: any | null) {
     if (settings) {
@@ -57,8 +67,8 @@ export class SimpleCountedShotGameComponent {
     this.gameFinished = false;
     this.currentEnd = [];
     this.pastEnds = [];
-
-    resetCurrentGame(this.localStorageItemName);
+    this.reloadPastGamesEventEmitter.emit();
+    this.gameService.resetCurrentGame(this.localStorageItemName);
   }
 
   addScore(score: number | 'X' | 'M') {
@@ -88,11 +98,11 @@ export class SimpleCountedShotGameComponent {
     this.currentEnd = [];
     this.currentEndIndex++;
 
-    saveCurrentGame(this.getGameData(), this.localStorageItemName);
+    this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
 
     if (this.currentEndIndex >= this.endsCount) {
       this.gameFinished = true;
-      addPastGame(this.getGameData(), this.localStorageItemName);
+      this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
     }
   }
 
@@ -150,13 +160,11 @@ export class SimpleCountedShotGameComponent {
     this.gameFinished = this.currentEndIndex >= this.endsCount;
   }
 
-  ngOnInit() {
-    const saved = localStorage.getItem(this.localStorageItemName);
-    if (saved) {
-      const data = JSON.parse(saved).current;
-      if (data) {
-        this.loadGame(data);
-      }
+  async ngOnInit() {
+    await this.authService.waitForAuth();
+    const currentGame = await this.gameService.loadCurrentGame(this.localStorageItemName);
+    if (currentGame) {
+      this.loadGame(currentGame);
     }
   }
 }

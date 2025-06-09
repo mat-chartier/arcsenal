@@ -4,6 +4,7 @@
       <strong>ArcSenal</strong>
     </a>
 
+
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" (click)="toggleNavbar()">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -19,9 +20,11 @@
         </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item" target="_blank" href="https://mat-chartier.github.io/simplevideocoach/">Video avec délai</a>
-          <hr class="navbar-divider"/>
-          <a class="navbar-item" target="_blank" href="https://mat-chartier.github.io/tube-cutter-length-calculator/">Réglage du Coupe-tube</a>
+          <a class="navbar-item" target="_blank" href="https://mat-chartier.github.io/simplevideocoach/">Video avec
+            délai</a>
+          <hr class="navbar-divider" />
+          <a class="navbar-item" target="_blank"
+            href="https://mat-chartier.github.io/tube-cutter-length-calculator/">Réglage du Coupe-tube</a>
         </div>
       </div>
 
@@ -31,13 +34,27 @@
         </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item" routerLink="/tir-compte-simple" routerLinkActive="is-active" (click)="closeNavbar()">Tir compté</a>
-          <a class="navbar-item" routerLink="/gold-game" routerLinkActive="is-active" (click)="closeNavbar()">Gold Game</a>
-          <a class="navbar-item" routerLink="/tir-compte-double" routerLinkActive="is-active" (click)="closeNavbar()">Tir compté double</a>
-          <a class="navbar-item" routerLink="/tri-de-fleches" routerLinkActive="is-active" (click)="closeNavbar()">Tri de flèches</a>
-          <a class="navbar-item" routerLink="/volee-ref-glissante" routerLinkActive="is-active" (click)="closeNavbar()">Volée de référence glissante</a>
+          <a class="navbar-item" routerLink="/tir-compte-simple" routerLinkActive="is-active"
+            (click)="closeNavbar()">Tir compté</a>
+          <a class="navbar-item" routerLink="/gold-game" routerLinkActive="is-active" (click)="closeNavbar()">Gold
+            Game</a>
+          <a class="navbar-item" routerLink="/tir-compte-double" routerLinkActive="is-active"
+            (click)="closeNavbar()">Tir compté double</a>
+          <a class="navbar-item" routerLink="/tri-de-fleches" routerLinkActive="is-active" (click)="closeNavbar()">Tri
+            de flèches</a>
+          <a class="navbar-item" routerLink="/volee-ref-glissante" routerLinkActive="is-active"
+            (click)="closeNavbar()">Volée de référence glissante</a>
         </div>
       </div>
     </div>
   </div>
 </nav>
+<div class="notification is-size-7 m-0 p-2 is-radiusless has-text-right">
+  <span *ngIf="authDone && auth.user">Connecté en tant que <strong>{{ userService.profile?.prenom || auth.user.displayName
+      }}</strong>&nbsp;(<a (click)="auth.logout()">déconnexion</a>)</span>
+  <span *ngIf="authDone && !auth.user">Non connecté&nbsp;(<a (click)="showLoginForm=true">connexion</a>)</span>
+  <span *ngIf="!authDone">Chargement...</span>
+</div>
+<div *ngIf="showLoginForm">
+  <app-login-form (loginSuccess)="showLoginForm=false"></app-login-form>
+</div>
