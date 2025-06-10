@@ -63527,6 +63527,7 @@ var AuthService = class _AuthService {
       const provider = new GoogleAuthProvider();
       const result = yield signInWithPopup(this.auth, provider);
       this.user = result.user;
+      localStorage.setItem(this.localStorageKey, JSON.stringify(this.user));
       const additionalInfo = getAdditionalUserInfo(result);
       const profile = additionalInfo?.profile;
       const profileData = {
@@ -63535,7 +63536,6 @@ var AuthService = class _AuthService {
         email: this.user.email,
         photoURL: this.user.photoURL || ""
       };
-      localStorage.setItem(this.localStorageKey, JSON.stringify(profileData));
       yield this.userService.loadUserProfile(this.user.uid, profileData);
     });
   }
@@ -63690,6 +63690,8 @@ var GameStorageService = class _GameStorageService {
     return __async(this, null, function* () {
       if (this.isConnected) {
         try {
+          console.log("Loading past games for:", gameName);
+          console.log("User ID:", this.auth.user.uid);
           const docSnap = yield getDoc(doc(db, `users/${this.auth.user.uid}/games/${gameName}`));
           if (!docSnap.exists())
             return [];
