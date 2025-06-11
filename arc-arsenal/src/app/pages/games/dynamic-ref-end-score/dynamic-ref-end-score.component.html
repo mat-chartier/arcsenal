@@ -4,18 +4,14 @@
 </h1>
 
 <!-- Settings -->
-<app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" 
-  [endsCount]="endsCount" [referenceScore]="referenceScore"
- (newSettings)="onNewSettings($event)"></app-game-settings>
+<app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" [endsCount]="endsCount"
+  [referenceScore]="referenceScore" (newSettings)="onNewSettings($event)"></app-game-settings>
 
- <!-- Past games -->
-<app-past-games
-  *ngIf="!gameStarted"
-  [localStorageItemName]="localStorageItemName"
-  (viewGame)="loadGame($event)"
-></app-past-games>
+<!-- Past games -->
+<app-past-games *ngIf="!gameStarted" [localStorageItemName]="localStorageItemName" (viewGame)="loadGame($event)"
+  [reloadPastGamesTrigger]="reloadPastGamesEventEmitter"></app-past-games>
 
- <!-- Results -->
+<!-- Results -->
 <div *ngIf="gameStarted" class="box content">
   <h2 class="subtitle is-5">Volées passées</h2>
   <table class="table is-fullwidth is-bordered is-striped is-narrow">
@@ -33,20 +29,20 @@
           <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
         </td>
         <td>
-            <table>
-              <tr>
-                <td>V</td>
-                <td>{{ end.score }}</td>
-              </tr>
-              <tr>
-                <td>R</td>
-                <td>{{ end.refScore }}</td>
-              </tr>
-              <tr>
-                <td>NR</td>
-                <td>{{ end.newRefScore }}</td>
-              </tr>
-            </table>
+          <table>
+            <tr>
+              <td>V</td>
+              <td>{{ end.score }}</td>
+            </tr>
+            <tr>
+              <td>R</td>
+              <td>{{ end.refScore }}</td>
+            </tr>
+            <tr>
+              <td>NR</td>
+              <td>{{ end.newRefScore }}</td>
+            </tr>
+          </table>
         </td>
       </tr>
     </tbody>

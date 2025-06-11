@@ -1,22 +1,15 @@
-  <h1 class="title is-5">Gold Game
-     &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"
+<h1 class="title is-5">Gold Game
+  &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"
     style="color:#66d1ff;cursor:pointer;"></fa-icon>
-  </h1>
+</h1>
 
 <!-- Settings-->
-<app-game-settings *ngIf="!gameStarted"
- [arrowsPerEndShotCount]="arrowsPerEndCount"
- [minimumArrowsPerEnd]="3"
- [endsCount]="endsCount"
- [successZone]="successZone"
- (newSettings)="onNewSettings($event)"></app-game-settings>
+<app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndCount" [minimumArrowsPerEnd]="3"
+  [endsCount]="endsCount" [successZone]="successZone" (newSettings)="onNewSettings($event)"></app-game-settings>
 
- <!-- Past games -->
-<app-past-games
-  *ngIf="!gameStarted"
-  [localStorageItemName]="localStorageItemName"
-  (viewGame)="loadGame($event)"
-></app-past-games>
+<!-- Past games -->
+<app-past-games *ngIf="!gameStarted" [localStorageItemName]="localStorageItemName" (viewGame)="loadGame($event)"
+  [reloadPastGamesTrigger]="reloadPastGamesEventEmitter"></app-past-games>
 
 <!-- Results -->
 <div *ngIf="gameStarted" class="box content">
@@ -53,7 +46,8 @@
       <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
     </div>
     <div class="has-text-centered mt-2">
-      <button class="button is-danger is-small is-light" (click)="removeLastScore()" [disabled]="currentEnd.length === 0">
+      <button class="button is-danger is-small is-light" (click)="removeLastScore()"
+        [disabled]="currentEnd.length === 0">
         Annuler dernière flèche
       </button>
     </div>

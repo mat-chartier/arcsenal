@@ -1,13 +1,14 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
 import { SettingsComponent } from "../../../components/settings/settings.component";
 import { getScoreClass } from '../../../utils/score-utils';
 import { PastGamesComponent } from "../../../components/past-games/past-games.component";
-import { addPastGame, resetCurrentGame, saveCurrentGame } from '../../../utils/past-games-utils';
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { GameService } from '../../../services/game.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-gold-game',
@@ -18,6 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class GoldGameComponent {
   readonly localStorageItemName = 'GoldGame';
+  reloadPastGamesEventEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   faRotateLeft = faRotateLeft;
 
@@ -33,6 +35,21 @@ export class GoldGameComponent {
     details: (number | 'X' | 'M')[];
     score: number;
   }[] = [];
+
+  constructor(private gameService: GameService, private authService: AuthService) { }
+
+  ngOnDestroy(): void {
+    // Clean up any subscriptions or resources if necessary
+    this.reloadPastGamesEventEmitter.complete();
+  }
+  
+  async ngOnInit() {
+    await this.authService.waitForAuth();
+    const currentGame = await this.gameService.loadCurrentGame(this.localStorageItemName);
+    if (currentGame) {
+      this.loadGame(currentGame);
+    }
+  }
 
   onNewSettings(settings: any | null) {
     if (settings) {
@@ -57,7 +74,8 @@ export class GoldGameComponent {
     this.gameFinished = false;
     this.currentEnd = [];
     this.pastEnds = [];
-    resetCurrentGame(this.localStorageItemName);
+    this.reloadPastGamesEventEmitter.emit();
+    this.gameService.resetCurrentGame(this.localStorageItemName);
   }
 
   addScore(score: number | 'X' | 'M') {
@@ -81,11 +99,11 @@ export class GoldGameComponent {
     this.currentEnd = [];
     this.currentEndIndex++;
 
-    saveCurrentGame(this.getGameData(), this.localStorageItemName);
+    this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
 
     if (this.currentEndIndex >= this.endsCount) {
       this.gameFinished = true;
-      addPastGame(this.getGameData(), this.localStorageItemName);
+      this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
     }
   }
 
@@ -149,15 +167,5 @@ export class GoldGameComponent {
     this.pastEnds = gameData.pastEnds || [];
     this.gameStarted = true;
     this.gameFinished = this.currentEndIndex >= this.endsCount;
-  }
-
-  ngOnInit() {
-    const saved = localStorage.getItem(this.localStorageItemName);
-    if (saved) {
-      const data = JSON.parse(saved).current;
-      if (data) {
-        this.loadGame(data);
-      }
-    }
   }
 }

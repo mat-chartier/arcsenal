@@ -1,13 +1,14 @@
-import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SettingsComponent } from "../../../components/settings/settings.component";
-import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
-import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { getScoreClass } from '../../../utils/score-utils';
+import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { PastGamesComponent } from "../../../components/past-games/past-games.component";
-import { addPastGame, resetCurrentGame, saveCurrentGame } from '../../../utils/past-games-utils';
+import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
+import { SettingsComponent } from "../../../components/settings/settings.component";
+import { AuthService } from '../../../services/auth.service';
+import { GameService } from '../../../services/game.service';
+import { getScoreClass } from '../../../utils/score-utils';
 
 @Component({
   standalone: true,
@@ -18,6 +19,7 @@ import { addPastGame, resetCurrentGame, saveCurrentGame } from '../../../utils/p
 })
 export class DynamicRefEndScoreComponent {
   readonly localStorageItemName = 'dynamicRefScoreGame';
+  reloadPastGamesEventEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   faRotateLeft = faRotateLeft;
 
@@ -36,6 +38,19 @@ export class DynamicRefEndScoreComponent {
     newRefScore?: number; // Optional new reference score after the end
   }[] = [];
 
+  constructor(private gameService: GameService, private authService: AuthService) { }
+  ngOnDestroy(): void {
+    // Clean up any subscriptions or resources if necessary
+    this.reloadPastGamesEventEmitter.complete();
+  }
+  async ngOnInit() {
+    await this.authService.waitForAuth();
+    const currentGame = await this.gameService.loadCurrentGame(this.localStorageItemName);
+    if (currentGame) {
+      this.loadGame(currentGame);
+    }
+  }
+
   startGame() {
     this.startDate = new Date();
     this.gameStarted = true;
@@ -50,7 +65,8 @@ export class DynamicRefEndScoreComponent {
     this.gameFinished = false;
     this.currentEnd = [];
     this.pastEnds = [];
-    resetCurrentGame(this.localStorageItemName);
+    this.reloadPastGamesEventEmitter.emit();
+    this.gameService.resetCurrentGame(this.localStorageItemName);
   }
 
   onNewSettings(settings: any | null) {
@@ -90,16 +106,6 @@ export class DynamicRefEndScoreComponent {
     this.gameFinished = data.gameFinished || false;
   }
 
-  ngOnInit() {
-    const saved = localStorage.getItem(this.localStorageItemName);
-    if (saved) {
-      const data = JSON.parse(saved).current;
-      if (data) {
-        this.loadGame(data);
-      }
-    }
-  }
-
   getScoreClass = getScoreClass;
 
 
@@ -120,7 +126,6 @@ export class DynamicRefEndScoreComponent {
   }
 
   saveCurrentEnd() {
-
     const sortedScores = [...this.currentEnd].sort((a, b) => {
       const valA = a === 'X' ? 10 : a === 'M' ? 0 : a;
       const valB = b === 'X' ? 10 : b === 'M' ? 0 : b;
@@ -144,11 +149,11 @@ export class DynamicRefEndScoreComponent {
     this.currentEndIndex++;
     this.currentEnd = [];
 
-    saveCurrentGame(this.getGameData(), this.localStorageItemName);
+    this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
 
     if (this.currentEndIndex >= this.endsCount) {
       this.gameFinished = true;
-      addPastGame(this.getGameData(), this.localStorageItemName);
+      this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
     }
   }
 
