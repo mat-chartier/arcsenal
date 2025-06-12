@@ -45,14 +45,14 @@ export class DoubleCountedShotGameComponent {
     this.reloadPastGamesEventEmitter.complete();
   }
 
-  onNewSettings(settings: any | null) {
+  async onNewSettings(settings: any | null) {
     if (settings) {
       this.arrowsPerEndShotCount = settings.arrowsPerEndShotCount;
       this.arrowsPerEndCount = settings.arrowsPerEndCount!;
       this.endsCount = settings.endsCount;
       this.startGame();
     } else {
-      this.resetGame();
+      await this.resetGame();
     }
   }
   startGame() {
@@ -63,26 +63,26 @@ export class DoubleCountedShotGameComponent {
     this.pastEnds = [];
   }
 
-  resetGame() {
+  async resetGame() {
     this.gameStarted = false;
     this.gameFinished = false;
     this.currentEnd = [];
     this.pastEnds = [];
+    await this.gameService.resetCurrentGame(this.localStorageItemName);
     this.reloadPastGamesEventEmitter.emit();
-    this.gameService.resetCurrentGame(this.localStorageItemName);
   }
 
-  addScore(score: number | 'X' | 'M') {
+  async addScore(score: number | 'X' | 'M') {
     if (this.currentEnd.length < this.arrowsPerEndShotCount) {
       this.currentEnd.push(score);
 
       if (this.currentEnd.length === this.arrowsPerEndShotCount) {
-        this.saveCurrentEnd();
+        await this.saveCurrentEnd();
       }
     }
   }
 
-  saveCurrentEnd() {
+  async saveCurrentEnd() {
     const sortedScores = [...this.currentEnd].sort((a, b) => {
       const valA = a === 'X' ? 10 : a === 'M' ? 0 : a;
       const valB = b === 'X' ? 10 : b === 'M' ? 0 : b;
@@ -100,12 +100,12 @@ export class DoubleCountedShotGameComponent {
 
     this.currentEnd = [];
     this.currentEndIndex++;
+    this.gameFinished = this.currentEndIndex >= this.endsCount;
+    
+    await this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
 
-    this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
-
-    if (this.currentEndIndex >= this.endsCount) {
-      this.gameFinished = true;
-      this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
+    if (this.gameFinished) {
+      await this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
     }
   }
 

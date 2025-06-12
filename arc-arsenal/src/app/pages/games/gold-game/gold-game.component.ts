@@ -51,14 +51,14 @@ export class GoldGameComponent {
     }
   }
 
-  onNewSettings(settings: any | null) {
+  async onNewSettings(settings: any | null) {
     if (settings) {
       this.arrowsPerEndCount = settings.arrowsPerEndShotCount;
       this.endsCount = settings.endsCount;
       this.successZone = settings.successZone;
       this.startGame();
     } else {
-      this.resetGame();
+      await this.resetGame();
     }
   }
   startGame() {
@@ -69,13 +69,13 @@ export class GoldGameComponent {
     this.pastEnds = [];
   }
 
-  resetGame() {
+  async resetGame() {
     this.gameStarted = false;
     this.gameFinished = false;
     this.currentEnd = [];
     this.pastEnds = [];
+    await this.gameService.resetCurrentGame(this.localStorageItemName);
     this.reloadPastGamesEventEmitter.emit();
-    this.gameService.resetCurrentGame(this.localStorageItemName);
   }
 
   addScore(score: number | 'X' | 'M') {
@@ -88,7 +88,7 @@ export class GoldGameComponent {
     }
   }
 
-  saveCurrentEnd() {
+  async saveCurrentEnd() {
     const score = this.calculateScore(this.currentEnd);
 
     this.pastEnds.push({
@@ -98,12 +98,12 @@ export class GoldGameComponent {
 
     this.currentEnd = [];
     this.currentEndIndex++;
+    this.gameFinished = this.currentEndIndex >= this.endsCount;
 
-    this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
+    await this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
 
-    if (this.currentEndIndex >= this.endsCount) {
-      this.gameFinished = true;
-      this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
+    if (this.gameFinished) {
+      await this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
     }
   }
 

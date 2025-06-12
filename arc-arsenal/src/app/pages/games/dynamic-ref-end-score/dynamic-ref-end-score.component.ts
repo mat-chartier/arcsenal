@@ -60,23 +60,23 @@ export class DynamicRefEndScoreComponent {
     this.pastEnds = [];
   }
 
-  resetGame() {
+  async resetGame() {
     this.gameStarted = false;
     this.gameFinished = false;
     this.currentEnd = [];
     this.pastEnds = [];
+    await this.gameService.resetCurrentGame(this.localStorageItemName);
     this.reloadPastGamesEventEmitter.emit();
-    this.gameService.resetCurrentGame(this.localStorageItemName);
   }
 
-  onNewSettings(settings: any | null) {
+  async onNewSettings(settings: any | null) {
     if (settings) {
       this.arrowsPerEndShotCount = settings.arrowsPerEndShotCount;
       this.endsCount = settings.endsCount;
       this.referenceScore = settings.referenceScore;
       this.startGame();
     } else {
-      this.resetGame();
+      await this.resetGame();
     }
   }
 
@@ -125,7 +125,7 @@ export class DynamicRefEndScoreComponent {
     }
   }
 
-  saveCurrentEnd() {
+  async saveCurrentEnd() {
     const sortedScores = [...this.currentEnd].sort((a, b) => {
       const valA = a === 'X' ? 10 : a === 'M' ? 0 : a;
       const valB = b === 'X' ? 10 : b === 'M' ? 0 : b;
@@ -148,12 +148,12 @@ export class DynamicRefEndScoreComponent {
 
     this.currentEndIndex++;
     this.currentEnd = [];
+    this.gameFinished = this.currentEndIndex >= this.endsCount;
 
-    this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
+    await this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
 
-    if (this.currentEndIndex >= this.endsCount) {
-      this.gameFinished = true;
-      this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
+    if (this.gameFinished) {
+      await this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
     }
   }
 
