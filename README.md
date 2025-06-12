@@ -65,7 +65,7 @@ Actuellement, l'application propose :
 
 - Application Angular standalone (sans modules)
 - CSS basé sur **Bulma**
-- Persistance automatique via **localStorage**
+- Persistance automatique via **localStorage** ou **FireStore** après connexion via **Google** ou **Email/mot de passe**
 - Composants réutilisables (ex : clavier de score, blason interactif SVG)
 - Support tactile mobile : touchstart / drag / end pour positionner les flèches sur le blason
 
@@ -84,10 +84,9 @@ ng serve --open
 
 ### 🌐 Déploiement
 
-Déployée en production sur GitHub Pages via :
+Déployée en production sur Firebase Hosting :
 ```bash
-ng build --configuration production
-npx angular-cli-ghpages --dir=dist/arc-senal/browser
+npm run deploy
 ```
 
 ---
