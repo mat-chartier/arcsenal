@@ -44,13 +44,13 @@ export class SimpleCountedShotGameComponent implements OnDestroy{
     this.reloadPastGamesEventEmitter.complete();
   }
 
-  onNewSettings(settings: any | null) {
+  async onNewSettings(settings: any | null) {
     if (settings) {
       this.arrowsPerEndShotCount = settings.arrowsPerEndShotCount;
       this.endsCount = settings.endsCount;
       this.startGame();
     } else {
-      this.resetGame();
+      await this.resetGame();
     }
   }
 
@@ -62,13 +62,13 @@ export class SimpleCountedShotGameComponent implements OnDestroy{
     this.pastEnds = [];
   }
 
-  resetGame() {
+  async resetGame() {
     this.gameStarted = false;
     this.gameFinished = false;
     this.currentEnd = [];
     this.pastEnds = [];
+    await this.gameService.resetCurrentGame(this.localStorageItemName);
     this.reloadPastGamesEventEmitter.emit();
-    this.gameService.resetCurrentGame(this.localStorageItemName);
   }
 
   addScore(score: number | 'X' | 'M') {
@@ -81,7 +81,7 @@ export class SimpleCountedShotGameComponent implements OnDestroy{
     }
   }
 
-  saveCurrentEnd() {
+  async saveCurrentEnd() {
     const sortedScores = [...this.currentEnd].sort((a, b) => {
       const valA = a === 'X' ? 10 : a === 'M' ? 0 : a;
       const valB = b === 'X' ? 10 : b === 'M' ? 0 : b;
@@ -97,12 +97,11 @@ export class SimpleCountedShotGameComponent implements OnDestroy{
 
     this.currentEnd = [];
     this.currentEndIndex++;
+    this.gameFinished = this.currentEndIndex >= this.endsCount;
+    await this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
 
-    this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
-
-    if (this.currentEndIndex >= this.endsCount) {
-      this.gameFinished = true;
-      this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
+    if (this.gameFinished) {
+      await this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
     }
   }
 

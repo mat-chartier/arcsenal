@@ -105,28 +105,28 @@ export class SortingArrowsGameComponent {
     this.showModal = true;
   }
 
-  associateImpactToArrow(numero: number) {
+  async associateImpactToArrow(numero: number) {
     this.impactsPerArrows.get(numero)?.push(this.lastImpact!);
     this.pastImpacts.push({ index: numero, impact: this.lastImpact! });
     this.lastImpact = null;
     this.showModal = false;
-    this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
+    await this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
   }
 
-  cancelImpactAssociation() {
+  async cancelImpactAssociation() {
     this.lastImpact = null;
     this.showModal = false;
-    this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
+    await this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
   }
 
-  cancelLastImpact() {
+  async cancelLastImpact() {
     const dernier = this.pastImpacts.pop();
     if (dernier) {
       const impactsList = this.impactsPerArrows.get(dernier.index);
       if (impactsList) {
         // Remove last corresponding impact (last impact for this given arrow)
         impactsList.pop();
-        this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
+        await this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
       }
     }
   }
