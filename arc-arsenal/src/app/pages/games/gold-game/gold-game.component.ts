@@ -1,14 +1,14 @@
-import { Component, EventEmitter, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faInfo, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { PastGamesComponent } from "../../../components/past-games/past-games.component";
 import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
 import { SettingsComponent } from "../../../components/settings/settings.component";
-import { getScoreClass } from '../../../utils/score-utils';
-import { PastGamesComponent } from "../../../components/past-games/past-games.component";
-import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { GameService } from '../../../services/game.service';
 import { AuthService } from '../../../services/auth.service';
+import { GameService } from '../../../services/game.service';
+import { getScoreClass } from '../../../utils/score-utils';
 
 @Component({
   selector: 'app-gold-game',
@@ -22,6 +22,9 @@ export class GoldGameComponent {
   reloadPastGamesEventEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   faRotateLeft = faRotateLeft;
+  faInfo = faInfo;
+  helpModalOpen: boolean = false;
+
 
   startDate: Date | null = null;
   arrowsPerEndCount: number = 7;
@@ -42,7 +45,7 @@ export class GoldGameComponent {
     // Clean up any subscriptions or resources if necessary
     this.reloadPastGamesEventEmitter.complete();
   }
-  
+
   async ngOnInit() {
     await this.authService.waitForAuth();
     const currentGame = await this.gameService.loadCurrentGame(this.localStorageItemName);

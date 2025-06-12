@@ -1,7 +1,62 @@
-<h1 class="title is-5">Volée de référence glissante
+<h1 class="title is-6">Volée de référence glissante
   &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"
     style="color:#66d1ff;cursor:pointer;"></fa-icon>
+  <fa-icon class="is-pulled-right" [icon]="faInfo" (click)="helpModalOpen = true"
+    style="color:#3d7bec;cursor:pointer;"></fa-icon>
 </h1>
+
+<!-- Help -->
+<div class="modal content is-size-7" [ngClass]="{'is-active': helpModalOpen}">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head p-3 is-vcentered">
+      <p class="modal-card-title m-0 is-size-6">Description du jeu</p>
+      <button class="delete" aria-label="close" (click)="helpModalOpen=false"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>
+        Paramétrez le nombre de flèches par volée, le nombre de volées et la valeur initiale de la volée de référence
+      </p>
+      <p>
+        La volée de référence évolue après chaque volée:
+      </p>
+      <ul>
+        <li>volée < réf - 3=> réf = réf - 2</li>
+        <li>volée < réf - 1=> réf = réf - 1</li>
+        <li>volée > réf + 1 => réf = réf + 1</li>
+        <li>volée > réf + 3 => réf = réf + 2</li>
+      </ul>
+      <p>
+        Le but est de finir avec la volée de référence la plus haute possible
+      </p>
+      <p>
+        Légende de la colonne score <br />
+        V = score de la volée, <br />
+        R = score de référence pour cette volée, <br />
+        NR = nouveau score de référence pour la prochaine volée
+      </p>
+      <p>
+        Exemple avec une volée de référence initiale de 45, 9 volées et 6 flèches par volée:
+      </p>
+      <ul>
+        <li>Volée 1: 41 (réf - 4) => nouvelle réf = 43 (-2)</li>
+        <li>Volée 2: 40 (réf - 3) => nouvelle réf = 42 (-1)</li>
+        <li>Volée 3: 40 (réf - 2) => nouvelle réf = 41 (-1)</li>
+        <li>Volée 4: 40 (réf - 1) => nouvelle réf = 41 </li>
+        <li>Volée 5: 41 (réf - 0) => nouvelle réf = 41 </li>
+        <li>Volée 6: 42 (réf + 1) => nouvelle réf = 41 </li>
+        <li>Volée 7: 43 (réf + 2) => nouvelle réf = 42 (+1)</li>
+        <li>Volée 8: 45 (réf + 3) => nouvelle réf = 43 (+1)</li>
+        <li>Volée 9: 47 (réf + 4) => nouvelle réf = 45 (+2)</li>
+      </ul>
+    </section>
+    <footer class="modal-card-foot">
+      <div class="buttons">
+        <button class="button" (click)="helpModalOpen=false">Fermer</button>
+      </div>
+    </footer>
+  </div>
+</div>
 
 <!-- Settings -->
 <app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" [endsCount]="endsCount"
@@ -13,11 +68,11 @@
 
 <!-- Results -->
 <div *ngIf="gameStarted" class="box content">
-  <h2 class="subtitle is-5">Volées passées</h2>
+  <h2 class="subtitle is-7">Volées passées</h2>
   <table class="table is-fullwidth is-bordered is-striped is-narrow">
     <thead>
       <tr>
-        <th>Volée</th>
+        <th><span class="is-7">Volée</span></th>
         <th>Détails</th>
         <th>Score</th>
       </tr>

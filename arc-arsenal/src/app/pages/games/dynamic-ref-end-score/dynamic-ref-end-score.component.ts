@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { faInfo, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { PastGamesComponent } from "../../../components/past-games/past-games.component";
 import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
 import { SettingsComponent } from "../../../components/settings/settings.component";
@@ -22,6 +22,8 @@ export class DynamicRefEndScoreComponent {
   reloadPastGamesEventEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   faRotateLeft = faRotateLeft;
+  faInfo = faInfo
+  helpModalOpen: boolean = false;
 
   startDate: Date | null = null;
   arrowsPerEndShotCount: number = 6; // This is the number of arrows per end to use for counting the end, not the shot count

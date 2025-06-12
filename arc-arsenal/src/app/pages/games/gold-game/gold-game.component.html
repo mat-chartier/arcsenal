@@ -1,7 +1,52 @@
-<h1 class="title is-5">Gold Game
+<h1 class="title is-6">Gold Game
   &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"
     style="color:#66d1ff;cursor:pointer;"></fa-icon>
+  <fa-icon class="is-pulled-right" [icon]="faInfo" (click)="helpModalOpen = true"
+    style="color:#3d7bec;cursor:pointer;"></fa-icon>
 </h1>
+
+<!-- Help -->
+<div class="modal content is-size-7" [ngClass]="{'is-active': helpModalOpen}">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head p-3 is-vcentered">
+      <p class="modal-card-title m-0 is-size-6">Description du jeu</p>
+      <button class="delete" aria-label="close" (click)="helpModalOpen=false"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>
+        Paramétrez le nombre de flèches par volée, le nombre de volées et la zone de réussite
+      </p>
+      <p>
+        Les flèches rapportent des points selon leur valeur par rapport à cette zone
+      </p>
+      <ul>
+        <li>Flèche < Zone => -1 pt</li>
+        <li>Flèche = Zone => 0 pt</li>
+        <li>Flèche = Zone + 1 => 1 pt</li>
+        <li>Flèche > Zone + 1 => 2 pt</li>
+      </ul>
+        <p>
+          Le but est de finir avec le score le plus élevé possible
+        </p>
+        <p>
+          Exemple avec une zone de réussite au 7
+        </p>
+        <ul>
+          <li>Flèche 1: 6 (zone - 1) => score = -1 (-1)</li>
+          <li>Flèche 2: 7 (zone) => score = -1 </li>
+          <li>Flèche 3: 8 (zone + 1) => score = 0 (+1)</li>
+          <li>Flèche 4: 9 (zone + 2) => score = 2 (+2)</li>
+          <li>Flèche 5: 10 (zone + 3) => score = 4 (+2)</li>
+        </ul>
+    </section>
+    <footer class="modal-card-foot">
+      <div class="buttons">
+        <button class="button" (click)="helpModalOpen=false">Fermer</button>
+      </div>
+    </footer>
+  </div>
+</div>
 
 <!-- Settings-->
 <app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndCount" [minimumArrowsPerEnd]="3"
