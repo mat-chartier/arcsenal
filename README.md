@@ -59,6 +59,17 @@ Actuellement, l'application propose :
     - volée > réf + 3 => réf = réf + 2
   - Le but est de finir avec la volée de référence la plus haute possible 
 
+- **Jeu de Zone**
+  - Paramétrez la zone de réussite.
+  - Les volées rapportent des points en fonction du nombre de flèches dans la zone de réussite.
+    - 9/9 => + 4pts
+    - 8/9 => + 2pts
+    - 7/9 => + 1pt
+    - 6/9 => + 0pt
+    - 5/9 => - 1pt
+    - 4/9 et moins => - 2pts
+  - L'objectif du jeu est d'atteindre 20 points le plus rapidememnt possible en faisant des volées de 9 flèches. 
+
 ---
 
 ### 📱 Fonctionnalités techniques
