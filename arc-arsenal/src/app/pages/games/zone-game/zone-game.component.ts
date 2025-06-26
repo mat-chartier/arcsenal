@@ -11,14 +11,14 @@ import { GameService } from '../../../services/game.service';
 import { getScoreClass } from '../../../utils/score-utils';
 
 @Component({
-  selector: 'app-gold-game',
+  selector: 'app-zone-game',
   standalone: true,
   imports: [CommonModule, FormsModule, ScoreKeyboardComponent, SettingsComponent, PastGamesComponent, FontAwesomeModule],
-  templateUrl: './gold-game.component.html',
-  styleUrl: './gold-game.component.scss',
+  templateUrl: './zone-game.component.html',
+  styleUrl: './zone-game.component.scss',
 })
-export class GoldGameComponent {
-  readonly localStorageItemName = 'GoldGame';
+export class ZoneGameComponent {
+  readonly localStorageItemName = 'ZoneGame';
   reloadPastGamesEventEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   faRotateLeft = faRotateLeft;
@@ -27,8 +27,7 @@ export class GoldGameComponent {
 
 
   startDate: Date | null = null;
-  arrowsPerEndCount: number = 7;
-  endsCount: number = 6;
+  arrowsPerEndCount: number = 9;
   successZone: number = 7;
   gameStarted: boolean = false;
   gameFinished: boolean = false;
@@ -56,8 +55,6 @@ export class GoldGameComponent {
 
   async onNewSettings(settings: any | null) {
     if (settings) {
-      this.arrowsPerEndCount = settings.arrowsPerEndShotCount;
-      this.endsCount = settings.endsCount;
       this.successZone = settings.successZone;
       this.startGame();
     } else {
@@ -101,26 +98,28 @@ export class GoldGameComponent {
 
     this.currentEnd = [];
     this.currentEndIndex++;
-    this.gameFinished = this.currentEndIndex >= this.endsCount;
+    this.gameFinished = this.getTotalScore() >= 20;
 
     await this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
 
-    if (this.gameFinished) {
-      await this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
-    }
+    await this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
   }
 
   getScoreClass = getScoreClass;
 
   calculateScore(scores: (number | 'X' | 'M')[]): number {
-    return scores.reduce((total: number, s) => {
+    const arrowsInZoneCount = scores.reduce((total: number, s) => {
       if (s == 'M') s = 0;
       if (s == 'X') s = 11;
-      if (s == this.successZone) return total;
-      if (s == this.successZone + 1) return total + 1;
-      if (s > this.successZone + 1) return total + 2;
-      return total - 1;
+      if (s < this.successZone) return total;
+      return total + 1;
     }, 0);
+    if (arrowsInZoneCount >= 9) return 4;
+    if (arrowsInZoneCount >= 8) return 2;
+    if (arrowsInZoneCount >= 7) return 1;
+    if (arrowsInZoneCount >= 6) return 0;
+    if (arrowsInZoneCount >= 5) return -1;
+    return -2;
   }
 
   getTotalScore(): number {
@@ -152,7 +151,6 @@ export class GoldGameComponent {
     return {
       startDate: this.startDate,
       arrowsPerEndCount: this.arrowsPerEndCount,
-      endsCount: this.endsCount,
       successZone: this.successZone,
       currentEnd: this.currentEnd,
       currentEndIndex: this.currentEndIndex,
@@ -166,13 +164,13 @@ export class GoldGameComponent {
     } else {
       this.startDate = new Date(gameData.startDate);
     }
+    console.log('Start date loaded:', this.startDate);
     this.arrowsPerEndCount = gameData.arrowsPerEndCount;
-    this.endsCount = gameData.endsCount;
     this.successZone = gameData.successZone;
     this.currentEnd = gameData.currentEnd || [];
     this.currentEndIndex = gameData.currentEndIndex || 0;
     this.pastEnds = gameData.pastEnds || [];
     this.gameStarted = true;
-    this.gameFinished = this.currentEndIndex >= this.endsCount;
+    this.gameFinished = this.getTotalScore() >= 20;
   }
 }

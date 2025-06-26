@@ -9,21 +9,23 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class SettingsComponent {
 
-  @Input() arrowsPerEndShotCount: number = 7; // Default value, can be overridden by input
+  @Input() arrowsPerEndShotCount?: number; // Default value, can be overridden by input
   @Input() arrowsPerEndCount?: number; // Default value, can be overridden by input
   @Input() endsCount?: number; // Default value, can be overridden by input
   @Input() minimumArrowsPerEnd: number = 3; // Default value, can be overridden by input
   @Input() successZone?: number; // Default value, can be overridden by input
   @Input() referenceScore?: number; // Default value, can be overridden by input
 
-  @Output() newSettings = new EventEmitter<{ arrowsPerEndShotCount: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number, referenceScore?: number } | null>();
+  @Output() newSettings = new EventEmitter<{ arrowsPerEndShotCount?: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number, referenceScore?: number } | null>();
 
   incrementArrowsShotCount() {
-    this.arrowsPerEndShotCount++;
+    if (this.arrowsPerEndShotCount) {
+      this.arrowsPerEndShotCount++;
+    }
   }
 
   decrementArrowsShotCount() {
-    if (this.arrowsPerEndShotCount > this.minimumArrowsPerEnd) {
+    if (this.arrowsPerEndShotCount && this.arrowsPerEndShotCount > this.minimumArrowsPerEnd) {
       this.arrowsPerEndShotCount--;
     }
   }
@@ -75,9 +77,11 @@ export class SettingsComponent {
   }
 
   saveSettings() {
-    let settings: { arrowsPerEndShotCount: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number, referenceScore?: number } = {
-      arrowsPerEndShotCount: this.arrowsPerEndShotCount,
+    let settings: { arrowsPerEndShotCount?: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number, referenceScore?: number } = {
     };
+    if (this.arrowsPerEndShotCount) {
+      settings.arrowsPerEndShotCount = this.arrowsPerEndShotCount;
+    }
     if (this.endsCount) {
       settings.endsCount = this.endsCount
     }
