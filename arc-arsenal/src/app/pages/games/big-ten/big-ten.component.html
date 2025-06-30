@@ -1,0 +1,62 @@
+<h1 class="title is-5">Tir compté
+  &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"
+    style="color:#66d1ff;cursor:pointer;"></fa-icon>
+</h1>
+
+<!-- Settings-->
+<app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" [minimumArrowsPerEnd]="3"
+  [endsCount]="endsCount" (newSettings)="onNewSettings($event)"></app-game-settings>
+
+<!-- Past games -->
+<app-past-games
+  *ngIf="!gameStarted"
+  [localStorageItemName]="localStorageItemName"
+  (viewGame)="loadGame($event)"
+  [reloadPastGamesTrigger]="reloadPastGamesEventEmitter"
+></app-past-games>
+
+<!-- Results -->
+<div *ngIf="gameStarted" class="box content">
+  <h2 class="subtitle is-5">Volées passées</h2>
+  <table class="table is-fullwidth is-bordered is-striped is-narrow">
+    <thead>
+      <tr>
+        <th>Volée</th>
+        <th>Détails</th>
+        <th>Tot.</th>
+        <th>TC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let end of pastEnds; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>
+          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
+        </td>
+        <td>{{ end.total }}</td>
+        <td>{{ getGrandTotal(i) }}</td>
+      </tr>
+      <tr *ngIf="pastEnds.length > 0">
+        <td colspan="2">Total</td>
+        <td colspan="2">{{ getTotal() }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Current end -->
+  <div *ngIf="gameStarted && !gameFinished">
+    <h2 class="subtitle is-5">Volée {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>
+    <div>
+      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
+    </div>
+    <div class="has-text-centered mt-2">
+      <button class="button is-danger is-light is-small" (click)="removeLastScore()"
+        [disabled]="currentEnd.length === 0">
+        Annuler dernière flèche
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Keyboard -->
+<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>
