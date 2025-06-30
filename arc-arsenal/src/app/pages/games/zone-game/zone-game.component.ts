@@ -37,6 +37,7 @@ export class ZoneGameComponent {
     details: (number | 'X' | 'M')[];
     score: number;
   }[] = [];
+  currentGameId: any = null;
 
   constructor(private gameService: GameService, private authService: AuthService) { }
 
@@ -100,9 +101,12 @@ export class ZoneGameComponent {
     this.currentEndIndex++;
     this.gameFinished = this.getTotalScore() >= 20;
 
-    await this.gameService.saveCurrentGame(this.getGameData(), this.localStorageItemName);
+    const gameData = this.getGameData();
+    await this.gameService.saveCurrentGame(gameData, this.localStorageItemName);
+    
+    this.currentGameId = gameData.id;
 
-    await this.gameService.addOrUpdatePastGame(this.getGameData(), this.localStorageItemName);
+    await this.gameService.addOrUpdatePastGame(gameData, this.localStorageItemName);
   }
 
   getScoreClass = getScoreClass;
@@ -149,6 +153,7 @@ export class ZoneGameComponent {
 
   getGameData() {
     return {
+      id: this.currentGameId,
       startDate: this.startDate,
       arrowsPerEndCount: this.arrowsPerEndCount,
       successZone: this.successZone,
@@ -164,7 +169,7 @@ export class ZoneGameComponent {
     } else {
       this.startDate = new Date(gameData.startDate);
     }
-    console.log('Start date loaded:', this.startDate);
+    this.currentGameId = gameData.id;
     this.arrowsPerEndCount = gameData.arrowsPerEndCount;
     this.successZone = gameData.successZone;
     this.currentEnd = gameData.currentEnd || [];

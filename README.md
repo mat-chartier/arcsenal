@@ -70,6 +70,10 @@ Actuellement, l'application propose :
     - 4/9 et moins => - 2pts
   - L'objectif du jeu est d'atteindre 20 points le plus rapidememnt possible en faisant des volées de 9 flèches. 
 
+- **Big Ten**
+  - Paramétrez le nombre de volées et le nombre de flèches par volée.
+  - Tout le jaune vaut 10 pts !
+
 ---
 
 ### 📱 Fonctionnalités techniques
