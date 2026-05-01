@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#f7f6f2">
+<title>Tir à l'arc — Scores</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green: #1D9E75;
+  --green-light: #E1F5EE;
+  --green-dark: #0F6E56;
+  --red-light: #FCEBEB;
+  --red-mid: #F7C1C1;
+  --red: #A32D2D;
+  --border: #e0ddd5;
+  --border-strong: #c8c5bc;
+  --bg: #f7f6f2;
+  --bg-card: #ffffff;
+  --bg-muted: #f0ede8;
+  --text: #1a1a18;
+  --text-muted: #6b6963;
+  --text-hint: #aaa89f;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+html, body {
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  touch-action: manipulation;
+}
+body { display: flex; flex-direction: column; }
+
+#app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* ===== SCREENS ===== */
+.screen { display: none; flex-direction: column; height: 100dvh; overflow: hidden; }
+.screen.active { display: flex; }
+
+/* Register: simple scroll */
+#screen-register {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px 14px 32px;
+}
+
+/* Score: 3 fixed zones */
+.zone-header {
+  flex-shrink: 0;
+  padding: 10px 14px 8px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.zone-middle {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 14px 6px;
+}
+.zone-footer {
+  flex-shrink: 0;
+  padding: 8px 14px 18px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
+
+/* ===== CARD ===== */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+/* ===== INPUTS ===== */
+input[type="text"] {
+  width: 100%; height: 44px; padding: 0 12px;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 16px; font-family: inherit;
+  background: var(--bg-card); color: var(--text);
+  outline: none; transition: border-color .15s;
+}
+input[type="text"]:focus { border-color: var(--green); }
+
+/* ===== BUTTONS ===== */
+button {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 44px; padding: 0 16px;
+  border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+  background: var(--bg-card); color: var(--text);
+  font-size: 15px; font-family: inherit; font-weight: 500;
+  cursor: pointer; white-space: nowrap;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+  user-select: none; transition: background .1s, transform .08s;
+}
+button:active { transform: scale(0.95); }
+
+.btn-primary { background: var(--text); color: #fff; border-color: transparent; }
+.btn-primary:active { background: #333; transform: scale(0.95); }
+
+.btn-green {
+  background: var(--green); color: #fff; border-color: transparent;
+  font-size: 16px; height: 50px; border-radius: var(--radius); width: 100%; margin-top: 4px;
+}
+.btn-green:active { background: var(--green-dark); }
+.btn-green:disabled { opacity: .4; cursor: default; }
+
+.btn-ghost {
+  background: transparent; border-color: var(--border);
+  color: var(--text-muted); font-size: 13px; height: 36px; padding: 0 10px;
+}
+.btn-danger {
+  background: transparent; border-color: var(--red-mid);
+  color: var(--red); font-size: 13px; height: 36px; padding: 0 10px;
+}
+.btn-danger:active { background: var(--red-light); }
+
+.btn-nav {
+  background: var(--bg-muted); border-color: var(--border);
+  height: 44px; width: 44px; padding: 0; font-size: 18px;
+  border-radius: var(--radius-sm); flex-shrink: 0;
+}
+
+/* ===== REGISTER ===== */
+.add-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.add-row input { flex: 1; }
+.add-row button { flex-shrink: 0; }
+
+.archer-list { display: flex; flex-direction: column; gap: 6px; }
+.archer-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 5px 12px; background: var(--bg-muted); border-radius: var(--radius-sm); font-size: 15px;
+  margin: 5px;
+}
+.archer-label { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+.archer-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.del-btn {
+  height: 32px; width: 32px; padding: 0; background: transparent;
+  border: none; color: var(--text-hint); font-size: 18px; flex-shrink: 0;
+}
+.del-btn:active { color: var(--red); transform: none; }
+
+.badge-done {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; background: var(--green-light);
+  color: var(--green-dark); border-radius: 50%; font-size: 11px; font-weight: 700; flex-shrink: 0;
+}
+.empty-msg { text-align: center; color: var(--text-hint); font-size: 14px; padding: 12px 0; }
+.bottom-bar { display: flex; gap: 10px; margin-top: 12px; }
+
+/* ===== SCORE HEADER ===== */
+.score-nav { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.score-subnav { display: flex; gap: 6px; justify-content: flex-end; }
+.archer-info { flex: 1; min-width: 0; text-align: center; }
+.archer-info .name {
+  font-size: 16px; font-weight: 600;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.archer-info .counter { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+
+/* ===== TABLE ===== */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; font-size: 13px; min-width: 100%; }
+th {
+  font-weight: 600; color: var(--text-muted); padding: 6px 3px;
+  text-align: center; border-bottom: 1px solid var(--border);
+  font-size: 12px; white-space: nowrap;
+  background: var(--bg); position: sticky; top: 0; z-index: 1;
+}
+th.th-left { text-align: left; padding-left: 4px; }
+td { padding: 4px 2px; text-align: center; border-bottom: 1px solid var(--border); }
+td.td-label {
+  text-align: left; padding-left: 4px;
+  font-size: 12px; color: var(--text-muted); white-space: nowrap; font-weight: 500;
+}
+td.td-total {
+  font-weight: 700; border-left: 1px solid var(--border); color: var(--text); font-size: 13px; padding-left: 6px;
+}
+tr.row-grand td { background: var(--bg-muted); font-weight: 700; border-bottom: none; }
+
+.cell-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1.5px solid transparent; font-size: 13px; font-weight: 600;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation; background: none; color: var(--text);
+  transition: transform .08s;
+}
+.cell-btn.empty { border-color: var(--border); color: var(--text-hint); }
+.cell-btn.filled { background: var(--bg-muted); border-color: var(--border-strong); }
+.cell-btn.active { background: var(--green-light); border-color: var(--green); color: var(--green-dark); }
+.cell-btn:active { transform: scale(0.88); }
+
+/* ===== KEYBOARD ===== */
+.kbd-hint { font-size: 11px; color: var(--text-hint); text-align: center; margin-bottom: 7px; }
+.keyboard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+.key {
+  display: flex; align-items: center; justify-content: center;
+  height: 50px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--bg-muted);
+  font-size: 18px; font-weight: 700; cursor: pointer; color: var(--text);
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+  user-select: none; transition: transform .08s, opacity .08s;
+}
+.key:active { transform: scale(0.91); opacity: .75; }
+.key.key-zero   { background: #b0aba3; color: #fff; border-color: #b0aba3; }
+.key.key-white  { background: #ffffff; color: #1a1a18; border-color: #c8c5bc; }
+.key.key-black  { background: #1a1a18; color: #ffffff; border-color: #1a1a18; }
+.key.key-blue   { background: #00b4df; color: #fff; border-color: #00b4df; }
+.key.key-red    { background: #fd2218; color: #fff; border-color: #fd2218; }
+.key.key-yellow { background: #ffea1a; color: #1a1a18; border-color: #e0cf00; }
+.key.key-del    { background: var(--red-light); border-color: var(--red-mid); color: var(--red); font-size: 20px; }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== ÉCRAN 1 : INSCRIPTION ===== -->
+  <div id="screen-register" class="screen active">
+    <h1>🏹 Passage de Flèches</h1>
+    <p class="subtitle">6 volées · 6 flèches</p>
+
+    <div class="card">
+      <div class="add-row">
+        <input type="text" id="archer-input" placeholder="Nom de l'archer" maxlength="40" autocomplete="off" />
+        <button class="btn-primary" onclick="addArcher()">Ajouter</button>
+      </div>
+      <div id="archer-list">
+        <div class="empty-msg">Aucun archer pour l'instant</div>
+      </div>
+    </div>
+
+    <button class="btn-green" id="btn-start" onclick="startEvent()" disabled>Démarrer l'épreuve →</button>
+
+    <div class="bottom-bar">
+      <button class="btn-danger" onclick="resetAll()" style="flex:1;height:44px;">↺ Remise à zéro</button>
+    </div>
+  </div>
+
+  <!-- ===== ÉCRAN 2 : SAISIE ===== -->
+  <div id="screen-score" class="screen">
+
+    <!-- ZONE HAUTE : toujours visible -->
+    <div class="zone-header">
+      <div class="score-nav">
+        <button class="btn-nav" onclick="prevArcher()">←</button>
+        <div class="archer-info">
+          <div class="name" id="current-name"></div>
+          <div class="counter" id="current-counter"></div>
+        </div>
+        <button class="btn-nav" onclick="nextArcher()">→</button>
+      </div>
+      <div class="score-subnav">
+        <button class="btn-ghost" onclick="goRegister()">✎ Archers</button>
+        <button class="btn-danger" onclick="resetAll()">↺ Zéro</button>
+      </div>
+    </div>
+
+    <!-- ZONE CENTRALE : tableau scrollable -->
+    <div class="zone-middle">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="th-left">Volée</th>
+              <th>F1</th><th>F2</th><th>F3</th><th>F4</th><th>F5</th><th>F6</th>
+              <th style="border-left:1px solid var(--border);">Tot.</th>
+            </tr>
+          </thead>
+          <tbody id="score-body"></tbody>
+          <tfoot>
+            <tr class="row-grand">
+              <td class="td-label">Total</td>
+              <td colspan="6"></td>
+              <td class="td-total" id="grand-total">0</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- ZONE BASSE : clavier toujours visible -->
+    <div class="zone-footer">
+      <div class="kbd-hint" id="kbd-hint"></div>
+      <div class="keyboard" id="keyboard"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const VOLEES = 6, FLECHES = 6, LS = 'archery_v3';
+let archers = [], scores = {}, currentIdx = 0, active = {v:0, f:0};
+
+function save() {
+  try { localStorage.setItem(LS, JSON.stringify({archers, scores, currentIdx, active})); } catch(e) {}
+}
+function load() {
+  try {
+    const d = JSON.parse(localStorage.getItem(LS) || 'null');
+    if (d && Array.isArray(d.archers)) {
+      archers = d.archers; scores = d.scores || {};
+      currentIdx = d.currentIdx || 0; active = d.active || {v:0, f:0};
+      archers.forEach(n => { if (!scores[n]) scores[n] = emptyScore(); });
+    }
+  } catch(e) {}
+}
+
+function emptyScore() { return Array.from({length:VOLEES}, () => Array(FLECHES).fill(null)); }
+function archerDone(n) { return scores[n] && scores[n].every(r => r.every(v => v !== null)); }
+function findFirstEmpty() {
+  const sc = scores[archers[currentIdx]];
+  for (let v = 0; v < VOLEES; v++)
+    for (let f = 0; f < FLECHES; f++)
+      if (sc[v][f] === null) return {v, f};
+  return {v:0, f:0};
+}
+
+function resetAll() {
+  if (!confirm('Effacer toutes les données et repartir à zéro ?')) return;
+  archers = []; scores = {}; currentIdx = 0; active = {v:0, f:0};
+  save(); show('screen-register'); renderArcherList();
+}
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function goRegister() { save(); show('screen-register'); renderArcherList(); }
+
+function addArcher() {
+  const inp = document.getElementById('archer-input');
+  const name = inp.value.trim();
+  if (!name) return;
+  archers.push(name); scores[name] = emptyScore();
+  inp.value = ''; save(); renderArcherList(); inp.focus();
+}
+document.getElementById('archer-input').addEventListener('keydown', e => { if (e.key === 'Enter') addArcher(); });
+
+function removeArcher(i) {
+  const name = archers[i]; archers.splice(i, 1); delete scores[name];
+  save(); renderArcherList();
+}
+
+function renderArcherList() {
+  const el = document.getElementById('archer-list');
+  document.getElementById('btn-start').disabled = archers.length === 0;
+  if (!archers.length) { el.innerHTML = '<div class="empty-msg">Aucun archer pour l\'instant</div>'; return; }
+  el.innerHTML = archers.map((a, i) => `
+    <div class="archer-item">
+      <div class="archer-label">
+        ${archerDone(a) ? '<span class="badge-done">✓</span>' : ''}
+        <span class="archer-name">${esc(a)}</span>
+      </div>
+      <button class="del-btn" onclick="removeArcher(${i})">✕</button>
+    </div>`).join('');
+}
+
+function startEvent() {
+  if (!archers.length) return;
+  currentIdx = 0; active = findFirstEmpty();
+  save(); show('screen-score'); renderScoreScreen();
+}
+
+function prevArcher() {
+  currentIdx = (currentIdx - 1 + archers.length) % archers.length;
+  active = findFirstEmpty(); save(); renderScoreScreen();
+}
+function nextArcher() {
+  currentIdx = (currentIdx + 1) % archers.length;
+  active = findFirstEmpty(); save(); renderScoreScreen();
+}
+
+function renderScoreScreen() {
+  document.getElementById('current-name').textContent = archers[currentIdx];
+  document.getElementById('current-counter').textContent = `${currentIdx + 1} / ${archers.length}`;
+  renderTable(); renderKeyboard();
+}
+
+function setActive(v, f) { active = {v, f}; renderTable(); renderKeyboard(); }
+
+function renderTable() {
+  const sc = scores[archers[currentIdx]];
+  let html = '', grand = 0;
+  for (let v = 0; v < VOLEES; v++) {
+    let tot = 0, complete = true, cells = '';
+    for (let f = 0; f < FLECHES; f++) {
+      const val = sc[v][f];
+      const isActive = active.v === v && active.f === f;
+      const filled = val !== null;
+      const cls = 'cell-btn' + (isActive ? ' active' : filled ? ' filled' : ' empty');
+      const label = filled ? (val === 0 ? 'M' : val) : (isActive ? '▸' : '·');
+      cells += `<td><button class="${cls}" onclick="setActive(${v},${f})">${label}</button></td>`;
+      if (val !== null) tot += val; else complete = false;
+    }
+    if (complete) grand += tot;
+    const totStr = complete ? tot : (tot > 0 ? tot + '*' : '–');
+    html += `<tr><td class="td-label">V${v+1}</td>${cells}<td class="td-total">${totStr}</td></tr>`;
+  }
+  document.getElementById('score-body').innerHTML = html;
+  const allDone = scores[archers[currentIdx]].every(r => r.every(v => v !== null));
+  document.getElementById('grand-total').textContent = allDone ? grand : grand + '*';
+}
+
+function pressKey(val) {
+  scores[archers[currentIdx]][active.v][active.f] = val;
+  advance(); save(); renderTable(); renderKeyboard();
+}
+function deleteKey() {
+  const sc = scores[archers[currentIdx]];
+  // Si la cellule active est déjà vide, on recule d'abord
+  if (sc[active.v][active.f] === null) {
+    retreat();
+  }
+  // On efface la cellule active (qui est maintenant la dernière saisie)
+  sc[active.v][active.f] = null;
+  save(); renderTable(); renderKeyboard();
+}
+function retreat() {
+  let {v, f} = active;
+  f--; if (f < 0) { f = FLECHES - 1; v--; }
+  if (v < 0) { v = 0; f = 0; }
+  active = {v, f};
+}
+function advance() {
+  let {v, f} = active;
+  f++; if (f >= FLECHES) { f = 0; v++; }
+  if (v >= VOLEES) { v = VOLEES - 1; f = FLECHES - 1; }
+  active = {v, f};
+}
+
+function renderKeyboard() {
+  const {v, f} = active;
+  const val = scores[archers[currentIdx]][v][f];
+  document.getElementById('kbd-hint').textContent =
+    `Volée ${v+1} · Flèche ${f+1}${val !== null ? ' — toucher pour modifier' : ''}`;
+  const keys = [
+    {label:'M',  val:0,     cls:'key key-zero'},
+    {label:'1',  val:1,     cls:'key key-white'},
+    {label:'2',  val:2,     cls:'key key-white'},
+    {label:'3',  val:3,     cls:'key key-black'},
+    {label:'4',  val:4,     cls:'key key-black'},
+    {label:'5',  val:5,     cls:'key key-blue'},
+    {label:'6',  val:6,     cls:'key key-blue'},
+    {label:'7',  val:7,     cls:'key key-red'},
+    {label:'8',  val:8,     cls:'key key-red'},
+    {label:'9',  val:9,     cls:'key key-yellow'},
+    {label:'10', val:10,    cls:'key key-yellow'},
+    {label:'⌫',  val:'del', cls:'key key-del'},
+  ];
+  document.getElementById('keyboard').innerHTML = keys.map(k =>
+    k.val === 'del'
+      ? `<div class="${k.cls}" onclick="deleteKey()">${k.label}</div>`
+      : `<div class="${k.cls}" onclick="pressKey(${k.val})">${k.label}</div>`
+  ).join('');
+}
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+load();
+if (archers.length > 0 && typeof active.v === 'number') {
+  show('screen-score'); renderScoreScreen();
+} else {
+  renderArcherList();
+}
+</script>
+</body>
+</html>
