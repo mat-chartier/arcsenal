@@ -28,9 +28,6 @@ export class ScoreKeyboardComponent {
 
   selectScore(value: number | 'X' | 'M') {
     this.scoreSelected.emit(value);
-    setTimeout(() => {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }, 100);
   }
 
   getScoreClass = getScoreClass;
