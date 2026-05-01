@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SortingArrowsGameComponent } from './pages/games/sorting-arrows/sorting-arrows.component';
 import { SimpleCountedShotGameComponent } from './pages/games/simple-counted-shot/simple-counted-shot.component';
 import { DynamicRefEndScoreComponent } from './pages/games/dynamic-ref-end-score/dynamic-ref-end-score.component';
+import { StaticRefEndScoreComponent } from './pages/games/static-ref-end-score/static-ref-end-score.component';
 import { ZoneGameComponent } from './pages/games/zone-game/zone-game.component';
 import { BigTenGameComponent } from './pages/games/big-ten/big-ten.component';
 
@@ -14,6 +15,7 @@ export const routes: Routes = [
   { path: 'tir-compte-double', component: DoubleCountedShotGameComponent },
   { path: 'accueil', component: HomeComponent },
   { path: 'tri-de-fleches', component: SortingArrowsGameComponent },
+  { path: 'volee-ref', component: StaticRefEndScoreComponent },
   { path: 'volee-ref-glissante', component: DynamicRefEndScoreComponent },
   { path: 'jeu-de-zone', component: ZoneGameComponent },
   { path: 'big-ten', component: BigTenGameComponent },
