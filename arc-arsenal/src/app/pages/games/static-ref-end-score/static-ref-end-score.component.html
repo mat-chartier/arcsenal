@@ -1,104 +1,105 @@
-<h1 class="title is-6">Volée de référence
-  &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"
-    style="color:#66d1ff;cursor:pointer;"></fa-icon>
-  <fa-icon class="is-pulled-right" [icon]="faInfo" (click)="helpModalOpen = true"
-    style="color:#3d7bec;cursor:pointer;"></fa-icon>
-</h1>
+<div class="game-body">
+  <h1 class="title is-6">Volée de référence
+    &nbsp;&nbsp;&nbsp;<fa-icon [icon]="faRotateLeft" *ngIf="gameStarted" (click)="resetGame()"
+      style="color:#66d1ff;cursor:pointer;"></fa-icon>
+    <fa-icon class="is-pulled-right" [icon]="faInfo" (click)="helpModalOpen = true"
+      style="color:#3d7bec;cursor:pointer;"></fa-icon>
+  </h1>
 
-<!-- Help -->
-<div class="modal content is-size-7" [ngClass]="{'is-active': helpModalOpen}">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head p-3 is-vcentered">
-      <p class="modal-card-title m-0 is-size-6">Description du jeu</p>
-      <button class="delete" aria-label="close" (click)="helpModalOpen=false"></button>
-    </header>
-    <section class="modal-card-body">
-      <p>
-        Paramétrez le nombre de flèches par volée, le nombre de volées et la valeur de la volée de référence.
-      </p>
-      <p>
-        La volée de référence reste fixe pendant tout le jeu. À chaque volée, un nombre de points est attribué selon l'écart avec la référence :
-      </p>
-      <ul>
-        <li>volée ≥ réf + 4 → <strong>+2 pts</strong></li>
-        <li>réf + 2 ≤ volée ≤ réf + 3 → <strong>+1 pt</strong></li>
-        <li>réf - 1 ≤ volée ≤ réf + 1 → <strong>0 pt</strong></li>
-        <li>réf - 3 ≤ volée ≤ réf - 2 → <strong>-1 pt</strong></li>
-        <li>volée ≤ réf - 4 → <strong>-2 pts</strong></li>
-      </ul>
-      <p>
-        Le but est de terminer avec le total de points le plus élevé possible.
-      </p>
-    </section>
-    <footer class="modal-card-foot">
-      <div class="buttons">
-        <button class="button" (click)="helpModalOpen=false">Fermer</button>
+  <!-- Help -->
+  <div class="modal content is-size-7" [ngClass]="{'is-active': helpModalOpen}">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head p-3 is-vcentered">
+        <p class="modal-card-title m-0 is-size-6">Description du jeu</p>
+        <button class="delete" aria-label="close" (click)="helpModalOpen=false"></button>
+      </header>
+      <section class="modal-card-body">
+        <p>
+          Paramétrez le nombre de flèches par volée, le nombre de volées et la valeur de la volée de référence.
+        </p>
+        <p>
+          La volée de référence reste fixe pendant tout le jeu. À chaque volée, un nombre de points est attribué selon l'écart avec la référence :
+        </p>
+        <ul>
+          <li>volée ≥ réf + 4 → <strong>+2 pts</strong></li>
+          <li>réf + 2 ≤ volée ≤ réf + 3 → <strong>+1 pt</strong></li>
+          <li>réf - 1 ≤ volée ≤ réf + 1 → <strong>0 pt</strong></li>
+          <li>réf - 3 ≤ volée ≤ réf - 2 → <strong>-1 pt</strong></li>
+          <li>volée ≤ réf - 4 → <strong>-2 pts</strong></li>
+        </ul>
+        <p>
+          Le but est de terminer avec le total de points le plus élevé possible.
+        </p>
+      </section>
+      <footer class="modal-card-foot">
+        <div class="buttons">
+          <button class="button" (click)="helpModalOpen=false">Fermer</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Settings -->
+  <app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" [endsCount]="endsCount"
+    [referenceScore]="referenceScore" (newSettings)="onNewSettings($event)"></app-game-settings>
+
+  <!-- Past games -->
+  <app-past-games *ngIf="!gameStarted" [localStorageItemName]="localStorageItemName" (viewGame)="loadGame($event)"
+    [reloadPastGamesTrigger]="reloadPastGamesEventEmitter"></app-past-games>
+
+  <!-- Results -->
+  <div *ngIf="gameStarted" class="box content">
+    <h2 class="subtitle is-7">Référence : <strong>{{ referenceScore }}</strong></h2>
+    <table class="table is-fullwidth is-bordered is-striped is-narrow">
+      <thead>
+        <tr>
+          <th><span class="is-7">Volée</span></th>
+          <th>Détails</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let end of pastEnds; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
+          </td>
+          <td>
+            <table>
+              <tr><td>V</td><td>{{ end.score }}</td></tr>
+              <tr>
+                <td>Pts</td>
+                <td [ngClass]="{'has-text-success has-text-weight-bold': end.points > 0, 'has-text-danger has-text-weight-bold': end.points < 0}">
+                  {{ end.points > 0 ? '+' + end.points : end.points }}
+                </td>
+              </tr>
+              <tr><td>Tot</td><td>{{ end.cumulativePoints }}</td></tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Current end -->
+    <div *ngIf="gameStarted && !gameFinished">
+      <h2 class="subtitle is-5">Volée {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>
+      <div>
+        <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
       </div>
-    </footer>
+      <div class="has-text-centered mt-2">
+        <button class="button is-danger is-light is-small" (click)="removeLastScore()"
+          [disabled]="currentEnd.length === 0">
+          Annuler dernière flèche
+        </button>
+      </div>
+    </div>
+
+    <!-- Final score -->
+    <div *ngIf="gameFinished" class="has-text-centered mt-4">
+      <p class="is-size-5">Partie terminée — Total : <strong>{{ totalPoints }}</strong> pts</p>
+    </div>
   </div>
 </div>
 
-<!-- Settings -->
-<app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" [endsCount]="endsCount"
-  [referenceScore]="referenceScore" (newSettings)="onNewSettings($event)"></app-game-settings>
-
-<!-- Past games -->
-<app-past-games *ngIf="!gameStarted" [localStorageItemName]="localStorageItemName" (viewGame)="loadGame($event)"
-  [reloadPastGamesTrigger]="reloadPastGamesEventEmitter"></app-past-games>
-
-<!-- Results -->
-<div *ngIf="gameStarted" class="box content">
-  <h2 class="subtitle is-7">Référence : <strong>{{ referenceScore }}</strong></h2>
-  <table class="table is-fullwidth is-bordered is-striped is-narrow">
-    <thead>
-      <tr>
-        <th><span class="is-7">Volée</span></th>
-        <th>Détails</th>
-        <th>Score</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let end of pastEnds; index as i">
-        <td>{{ i + 1 }}</td>
-        <td>
-          <span *ngFor="let s of end.details" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
-        </td>
-        <td>
-          <table>
-            <tr><td>V</td><td>{{ end.score }}</td></tr>
-            <tr>
-              <td>Pts</td>
-              <td [ngClass]="{'has-text-success has-text-weight-bold': end.points > 0, 'has-text-danger has-text-weight-bold': end.points < 0}">
-                {{ end.points > 0 ? '+' + end.points : end.points }}
-              </td>
-            </tr>
-            <tr><td>Tot</td><td>{{ end.cumulativePoints }}</td></tr>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Current end -->
-  <div *ngIf="gameStarted && !gameFinished">
-    <h2 class="subtitle is-5">Volée {{ currentEndIndex + 1 }} / {{ endsCount }}</h2>
-    <div>
-      <span *ngFor="let s of currentEnd" class="tag m-1" [ngClass]="getScoreClass(s)">{{ s }}</span>
-    </div>
-    <div class="has-text-centered mt-2">
-      <button class="button is-danger is-light is-small" (click)="removeLastScore()"
-        [disabled]="currentEnd.length === 0">
-        Annuler dernière flèche
-      </button>
-    </div>
-  </div>
-
-  <!-- Final score -->
-  <div *ngIf="gameFinished" class="has-text-centered mt-4">
-    <p class="is-size-5">Partie terminée — Total : <strong>{{ totalPoints }}</strong> pts</p>
-  </div>
-</div>
-
-<!-- Keyboard -->
 <app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>

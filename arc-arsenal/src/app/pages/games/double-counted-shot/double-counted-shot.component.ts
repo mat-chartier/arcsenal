@@ -79,6 +79,9 @@ export class DoubleCountedShotGameComponent {
       if (this.currentEnd.length === this.arrowsPerEndShotCount) {
         await this.saveCurrentEnd();
       }
+      setTimeout(() => {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      }, 50);
     }
   }
 

@@ -88,6 +88,9 @@ export class GoldGameComponent {
       if (this.currentEnd.length === this.arrowsPerEndCount) {
         this.saveCurrentEnd();
       }
+      setTimeout(() => {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      }, 50);
     }
   }
 

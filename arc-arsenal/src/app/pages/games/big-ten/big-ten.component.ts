@@ -78,6 +78,9 @@ export class BigTenGameComponent implements OnDestroy{
       if (this.currentEnd.length === this.arrowsPerEndShotCount) {
         this.saveCurrentEnd();
       }
+      setTimeout(() => {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      }, 50);
     }
   }
 
