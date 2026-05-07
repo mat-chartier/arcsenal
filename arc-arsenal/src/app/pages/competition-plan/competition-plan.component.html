@@ -1,0 +1,339 @@
+<!-- ═══════════════════════════════════════════════════════════ VUE LISTE -->
+<div *ngIf="view === 'list'" class="container p-4">
+
+  <div class="level mb-5">
+    <div class="level-left">
+      <div class="level-item">
+        <h1 class="title is-4">Plans de compétition</h1>
+      </div>
+    </div>
+    <div class="level-right">
+      <div class="level-item">
+        <button class="button is-primary" (click)="openNew()">
+          + Nouveau plan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- État vide -->
+  <div *ngIf="plans.length === 0" class="notification is-info is-light">
+    Aucun plan de compétition enregistré.
+    Cliquez sur <strong>+ Nouveau plan</strong> pour commencer.
+  </div>
+
+  <!-- Cartes des plans -->
+  <div *ngFor="let plan of plans" class="box plan-card mb-3" (click)="openEdit(plan)">
+    <div class="level is-mobile">
+      <div class="level-left">
+        <div class="level-item">
+          <div>
+            <p class="title is-5 mb-1">{{ formatDate(plan.date) }}</p>
+            <p class="subtitle is-6 has-text-grey mb-0">{{ plan.discipline }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <div class="buttons">
+            <button class="button is-info is-light is-small"
+              (click)="copyShareLink(plan, $event)">
+              🔗 Lien
+            </button>
+            <button class="button is-danger is-light is-small"
+              (click)="deletePlan(plan.id, $event)">
+              Supprimer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="is-size-7 has-text-grey-light mt-2">
+      Créé le {{ formatCreatedAt(plan.createdAt) }}
+    </p>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ VUE PARTAGÉE (lecture seule) -->
+<div *ngIf="view === 'shared' && sharedPlan" class="container p-4 shared-view">
+
+  <div class="notification is-info is-light mb-4 is-size-7">
+    👁 Vue en lecture seule — partagé par un archer
+  </div>
+
+  <!-- En-tête -->
+  <div class="box mb-4">
+    <h1 class="title is-4 mb-1">Plan de compétition</h1>
+    <p class="subtitle is-5 mb-1">
+      {{ formatDate(sharedPlan.date) }} — {{ sharedPlan.discipline }}
+    </p>
+    <p *ngIf="sharedPlan.archer" class="is-size-6 has-text-grey">
+      🏹 {{ sharedPlan.archer }}
+    </p>
+  </div>
+
+  <!-- Où en suis-je ? -->
+  <div class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-3">Où en suis-je ?</h2>
+    <div *ngFor="let criterion of criteria" class="rating-row mb-2">
+      <span class="rating-label">{{ criterion.label }}</span>
+      <div class="rating-dots">
+        <span *ngFor="let score of scores"
+          class="rating-dot"
+          [ngClass]="{'filled': score <= sharedPlan.ratings[criterion.key]}">
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Objectifs -->
+  <div class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-3">Quel(s) objectif(s) ?</h2>
+    <div class="obj-inline mb-2" *ngIf="sharedPlan.objectifs.contentSiPlusDe !== null">
+      <span>😊 si ≥</span>
+      <strong>{{ sharedPlan.objectifs.contentSiPlusDe }}</strong>
+      <span>pts</span>
+    </div>
+    <div class="obj-inline mb-2"
+      *ngIf="sharedPlan.objectifs.mitigeSiEntre.min !== null || sharedPlan.objectifs.mitigeSiEntre.max !== null">
+      <span>😐 si entre</span>
+      <strong>{{ sharedPlan.objectifs.mitigeSiEntre.min }}</strong>
+      <span>et</span>
+      <strong>{{ sharedPlan.objectifs.mitigeSiEntre.max }}</strong>
+      <span>pts</span>
+    </div>
+    <ul *ngIf="sharedPlan.objectifs.autresObjectifs.length > 0" class="mt-2">
+      <li *ngFor="let obj of sharedPlan.objectifs.autresObjectifs">{{ obj }}</li>
+    </ul>
+  </div>
+
+  <!-- Sections texte -->
+  <div class="box mb-4" *ngIf="sharedPlan.strategieTirFleche">
+    <h2 class="subtitle is-5 section-title mb-2">
+      Avec quelle stratégie vais-je tirer chaque flèche ?
+    </h2>
+    <p class="section-value">{{ sharedPlan.strategieTirFleche }}</p>
+  </div>
+
+  <div class="box mb-4" *ngIf="sharedPlan.attitudeAdopter">
+    <h2 class="subtitle is-5 section-title mb-2">Quelle attitude vais-je adopter ?</h2>
+    <p class="section-value">{{ sharedPlan.attitudeAdopter }}</p>
+  </div>
+
+  <div class="box mb-4" *ngIf="sharedPlan.jeuJouer">
+    <h2 class="subtitle is-5 section-title mb-2">À quel jeu vais-je jouer ?</h2>
+    <p class="section-value">{{ sharedPlan.jeuJouer }}</p>
+  </div>
+
+  <div class="box mb-6" *ngIf="sharedPlan.forcesSAppuyer">
+    <h2 class="subtitle is-5 section-title mb-2">Sur quelles forces puis-je m'appuyer ?</h2>
+    <p class="section-value">{{ sharedPlan.forcesSAppuyer }}</p>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ VUE FORMULAIRE -->
+<div *ngIf="view === 'form'" class="container p-4">
+
+  <div class="mb-4">
+    <button class="button is-light" (click)="view = 'list'">← Retour</button>
+  </div>
+
+  <h1 class="title is-4 mb-5">
+    {{ editingId ? 'Modifier le plan' : 'Nouveau plan de compétition' }}
+  </h1>
+
+  <!-- ── Informations générales ────────────────────────────────────────── -->
+  <div class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-3">Informations générales</h2>
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <label class="label">Date de la compétition</label>
+          <div class="field has-addons mb-0">
+            <div class="control is-expanded">
+              <input #dateInput class="input" type="date" [(ngModel)]="formData.date" />
+            </div>
+            <div class="control">
+              <button class="button" type="button" (click)="$any(dateInput).showPicker()">📅</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field">
+          <label class="label">Discipline / Lieu</label>
+          <div class="control">
+            <input class="input" type="text" [(ngModel)]="formData.discipline"
+              placeholder="ex : 18m salle, 70m extérieur…" />
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field">
+          <label class="label">Archer</label>
+          <div class="control">
+            <input class="input" type="text" [(ngModel)]="formData.archer"
+              placeholder="Prénom Nom" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 1 : Où en suis-je ? ──────────────────────────────────── -->
+  <div class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-1">Où en suis-je ?</h2>
+    <p class="is-size-7 has-text-grey mb-3">
+      Notez chaque critère de 1 (faible) à 5 (excellent). Recliquez pour annuler.
+    </p>
+
+    <div *ngFor="let criterion of criteria" class="rating-row mb-3">
+      <span class="rating-label">{{ criterion.label }}</span>
+      <div class="buttons has-addons mb-0">
+        <button *ngFor="let score of scores"
+          type="button"
+          class="button is-small rating-btn"
+          [ngClass]="{'is-warning': score <= formData.ratings[criterion.key]}"
+          (click)="setRating(criterion.key, score)">
+          {{ score }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 2 : Objectifs ─────────────────────────────────────────── -->
+  <div class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-3">
+      Quel(s) objectif(s) puis-je me donner ?
+    </h2>
+
+    <label class="label">Points</label>
+    <div class="columns">
+      <div class="column is-narrow">
+        <div class="obj-inline">
+          <span>😊 si &GreaterEqual;</span>
+          <input class="input obj-input" type="number"
+            [(ngModel)]="formData.objectifs.contentSiPlusDe"
+            placeholder="—" min="0" />
+          <span>pts</span>
+        </div>
+      </div>
+      <div class="column is-narrow">
+        <div class="obj-inline">
+          <span>😐 si entre</span>
+          <input class="input obj-input" type="number"
+            [(ngModel)]="formData.objectifs.mitigeSiEntre.min"
+            placeholder="—" min="0" />
+          <span>et</span>
+          <input class="input obj-input" type="number"
+            [(ngModel)]="formData.objectifs.mitigeSiEntre.max"
+            placeholder="—" min="0" />
+          <span>pts</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Autres objectifs (liste dynamique) -->
+    <div class="field">
+      <label class="label">Autres objectifs</label>
+      <div *ngFor="let obj of formData.objectifs.autresObjectifs;
+                  let i = index; trackBy: trackByIdx"
+        class="field has-addons mb-2">
+        <div class="control is-expanded">
+          <input class="input" type="text"
+            [value]="formData.objectifs.autresObjectifs[i]"
+            (input)="updateAutreObjectif(i, $any($event.target).value)"
+            placeholder="Objectif…" />
+        </div>
+        <div class="control">
+          <button class="button is-danger is-light" type="button"
+            (click)="removeAutreObjectif(i)">✕</button>
+        </div>
+      </div>
+      <button class="button is-link is-light is-small" type="button"
+        (click)="addAutreObjectif()">
+        + Ajouter un objectif
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Section 3 : Stratégie ─────────────────────────────────────────── -->
+  <div class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-2">
+      Avec quelle stratégie vais-je tirer chaque flèche ?
+    </h2>
+    <div class="field">
+      <div class="control">
+        <textarea class="textarea" rows="4"
+          [(ngModel)]="formData.strategieTirFleche"
+          placeholder="Routine de tir, points d'attention, ancrage, visée…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 4 : Attitude ──────────────────────────────────────────── -->
+  <div class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-2">
+      Quelle attitude vais-je adopter ?
+    </h2>
+    <div class="field">
+      <div class="control">
+        <textarea class="textarea" rows="4"
+          [(ngModel)]="formData.attitudeAdopter"
+          placeholder="Calme, concentré, détaché du résultat, souriant…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 5 : Jeu ────────────────────────────────────────────────── -->
+  <div class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-2">
+      À quel jeu vais-je jouer ?
+    </h2>
+    <div class="field">
+      <div class="control">
+        <textarea class="textarea" rows="4"
+          [(ngModel)]="formData.jeuJouer"
+          placeholder="Flèche par flèche, défensif, attaquant, jouer mon meilleur tir…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 6 : Forces ────────────────────────────────────────────── -->
+  <div class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-2">
+      Sur quelles forces puis-je m'appuyer ?
+    </h2>
+    <div class="field">
+      <div class="control">
+        <textarea class="textarea" rows="4"
+          [(ngModel)]="formData.forcesSAppuyer"
+          placeholder="Régularité, mental fort, bon ancrage, bonne forme physique…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Actions ────────────────────────────────────────────────────────── -->
+  <div class="buttons mb-6">
+    <button class="button is-primary is-medium" type="button" (click)="savePlan()">
+      Enregistrer
+    </button>
+    <button class="button is-info is-light is-medium" type="button"
+      (click)="copyShareLink(formData, $event)">
+      🔗 Copier le lien
+    </button>
+    <button class="button is-light is-medium" type="button" (click)="view = 'list'">
+      Annuler
+    </button>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ TOAST -->
+<div *ngIf="linkCopied" class="link-toast">
+  🔗 Lien copié dans le presse-papiers !
+</div>
