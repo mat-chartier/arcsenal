@@ -18,6 +18,14 @@ Actuellement, l'application propose :
    - Au besoin possibilité d'ajouter un guide fixe sur l'image, pour vérifier sa position
 - **Réglage du coupe tube**
   - Entrez toutes les caractéristique de taille de vos élements (tube, pointes, encoche, etc.) et la longueur flèche montée désirée pour savoir comment régler le coupe tube
+- **Passage de flèches**
+  - Gérez vos lots de flèches et les passages sur la presse
+- **Plans de compétition**
+  - Créez et consultez vos plans de compétition
+  - Auto-évaluation sur 5 critères (Technique, Physique, Mental, Tactique, Matériel)
+  - Définissez vos objectifs en points et vos intentions (stratégie, attitude, jeu, forces)
+  - Partagez un lien de lecture seule avec votre entraîneur
+  - Sauvegarde locale ou dans le cloud selon la connexion
 
 ### 🏹 Jeux disponibles :
 
@@ -49,6 +57,11 @@ Actuellement, l'application propose :
   - Visualisez les impacts et la moyenne pour chaque flèche
   - Visualisez les impacts et la moyenne pour l'ensemble des flèches
   - Effacement des impacts individuellement et relance possible
+
+- **Volée de référence**
+  - Paramétrez le nombre de flèches par volée, le nombre de volées et la valeur de la volée de référence
+  - Comparez chaque volée à la référence fixe
+  - Calcul automatique des scores, sauvegarde locale
 
 - **Volée de référence glissante**
   - Paramétrez le nombre de flèches par volée, le nombre de volées et la valeur initiale de la volée de référence
