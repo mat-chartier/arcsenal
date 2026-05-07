@@ -34,9 +34,9 @@ export class CompetitionPlanStorageService {
     }
   }
 
-  async createSharedPlan(plan: CompetitionPlan): Promise<string> {
-    const id = crypto.randomUUID();
-    await setDoc(doc(db, `sharedPlans/${id}`), { plan });
+  async upsertSharedPlan(plan: CompetitionPlan): Promise<string> {
+    const id = plan.shareId ?? crypto.randomUUID();
+    await setDoc(doc(db, `sharedPlans/${id}`), { plan: { ...plan, shareId: id } });
     return id;
   }
 

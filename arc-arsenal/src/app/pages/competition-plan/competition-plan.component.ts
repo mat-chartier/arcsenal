@@ -17,6 +17,7 @@ export interface CompetitionPlan {
   discipline: string;
   archer: string;
   createdAt: string;   // ISO 8601
+  shareId?: string;    // ID du document sharedPlans (stable)
   ratings: Record<RatingKey, number>;  // 0 = non noté, 1-5
   objectifs: {
     contentSiPlusDe: number | null;
@@ -145,8 +146,19 @@ export class CompetitionPlanComponent implements OnInit {
 
   async copyShareLink(plan: CompetitionPlan, event: Event): Promise<void> {
     event.stopPropagation();
-    const id = await this.planStorage.createSharedPlan(plan);
-    const url = `${window.location.origin}/plans-competition?view=${id}`;
+    const shareId = await this.planStorage.upsertSharedPlan(plan);
+
+    // Persiste le shareId sur le plan s'il vient d'être créé
+    if (!plan.shareId) {
+      plan.shareId = shareId;
+      const idx = this.plans.findIndex(p => p.id === plan.id);
+      if (idx !== -1) {
+        this.plans[idx] = { ...this.plans[idx], shareId };
+        await this.planStorage.savePlans(this.plans);
+      }
+    }
+
+    const url = `${window.location.origin}/plans-competition?view=${shareId}`;
     await navigator.clipboard.writeText(url);
     this.linkCopied = true;
     setTimeout(() => this.linkCopied = false, 3000);
