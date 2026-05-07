@@ -36,13 +36,13 @@
       <div class="level-right">
         <div class="level-item">
           <div class="buttons">
-            <button class="button is-info is-light is-small"
+            <button class="button is-info is-light is-small" title="Copier le lien de partage"
               (click)="copyShareLink(plan, $event)">
-              🔗 Lien
+              <fa-icon [icon]="faLink"></fa-icon>
             </button>
-            <button class="button is-danger is-light is-small"
+            <button class="button is-danger is-light is-small" title="Supprimer ce plan"
               (click)="deletePlan(plan.id, $event)">
-              Supprimer
+              <fa-icon [icon]="faTrash"></fa-icon>
             </button>
           </div>
         </div>

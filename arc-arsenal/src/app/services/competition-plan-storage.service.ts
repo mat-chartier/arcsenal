@@ -34,6 +34,22 @@ export class CompetitionPlanStorageService {
     }
   }
 
+  async createSharedPlan(plan: CompetitionPlan): Promise<string> {
+    const id = crypto.randomUUID();
+    await setDoc(doc(db, `sharedPlans/${id}`), { plan });
+    return id;
+  }
+
+  async getSharedPlan(id: string): Promise<CompetitionPlan | null> {
+    try {
+      const snap = await getDoc(doc(db, `sharedPlans/${id}`));
+      return snap.exists() ? snap.data()['plan'] : null;
+    } catch (e) {
+      console.error('Error loading shared plan:', e);
+      return null;
+    }
+  }
+
   async savePlans(plans: CompetitionPlan[]): Promise<void> {
     if (this.isConnected) {
       try {

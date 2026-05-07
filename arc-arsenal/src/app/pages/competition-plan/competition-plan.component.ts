@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faTrash, faLink } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '../../services/user-service';
 import { AuthService } from '../../services/auth.service';
 import { CompetitionPlanStorageService } from '../../services/competition-plan-storage.service';
@@ -62,7 +64,7 @@ function emptyPlan(): CompetitionPlan {
 @Component({
   selector: 'app-competition-plan',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FontAwesomeModule],
   templateUrl: './competition-plan.component.html',
   styleUrl: './competition-plan.component.scss',
 })
@@ -81,18 +83,19 @@ export class CompetitionPlanComponent implements OnInit {
   sharedPlan: CompetitionPlan | null = null;
   linkCopied = false;
 
+  readonly faTrash = faTrash;
+  readonly faLink = faLink;
   readonly criteria = RATING_CRITERIA;
   readonly scores = [1, 2, 3, 4, 5] as const;
 
   async ngOnInit(): Promise<void> {
     await this.auth.waitForAuth();
     this.plans = await this.planStorage.loadPlans();
-    const shareParam = new URLSearchParams(window.location.search).get('share');
-    if (shareParam) {
-      try {
-        this.sharedPlan = JSON.parse(decodeURIComponent(escape(atob(shareParam))));
-        this.view = 'shared';
-      } catch { /* lien invalide ou tronqué, on ignore */ }
+
+    const viewParam = new URLSearchParams(window.location.search).get('view');
+    if (viewParam) {
+      const plan = await this.planStorage.getSharedPlan(viewParam);
+      if (plan) { this.sharedPlan = plan; this.view = 'shared'; }
     }
   }
 
@@ -140,14 +143,13 @@ export class CompetitionPlanComponent implements OnInit {
     this.view = 'list';
   }
 
-  copyShareLink(plan: CompetitionPlan, event: Event): void {
+  async copyShareLink(plan: CompetitionPlan, event: Event): Promise<void> {
     event.stopPropagation();
-    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(plan))));
-    const url = `${window.location.origin}/plans-competition?share=${encoded}`;
-    navigator.clipboard.writeText(url).then(() => {
-      this.linkCopied = true;
-      setTimeout(() => this.linkCopied = false, 3000);
-    });
+    const id = await this.planStorage.createSharedPlan(plan);
+    const url = `${window.location.origin}/plans-competition?view=${id}`;
+    await navigator.clipboard.writeText(url);
+    this.linkCopied = true;
+    setTimeout(() => this.linkCopied = false, 3000);
   }
 
   async deletePlan(id: string, event: Event): Promise<void> {
