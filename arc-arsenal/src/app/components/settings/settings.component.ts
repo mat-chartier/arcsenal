@@ -76,6 +76,15 @@ export class SettingsComponent {
     }
   }
 
+  setReferenceScore(event: Event) {
+    const v = parseInt((event.target as HTMLInputElement).value, 10);
+    if (!isNaN(v) && v > 0) {
+      this.referenceScore = v;
+    } else {
+      (event.target as HTMLInputElement).value = String(this.referenceScore);
+    }
+  }
+
   saveSettings() {
     let settings: { arrowsPerEndShotCount?: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number, referenceScore?: number } = {
     };
