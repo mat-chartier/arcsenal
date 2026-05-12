@@ -146,9 +146,22 @@ export class CompetitionPlanComponent implements OnInit {
 
   async copyShareLink(plan: CompetitionPlan, event: Event): Promise<void> {
     event.stopPropagation();
-    const shareId = await this.planStorage.upsertSharedPlan(plan);
 
-    // Persiste le shareId sur le plan s'il vient d'être créé
+    // Synchrone : pas d'await avant → contexte de geste iOS préservé pour clipboard/share
+    const shareId = plan.shareId ?? crypto.randomUUID();
+    const url = `${window.location.origin}/plans-competition?view=${shareId}`;
+
+    if (navigator.share) {
+      // iOS/Android : feuille de partage native (pas de contrainte de geste sur clipboard)
+      navigator.share({ url }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(url).catch(() => {});
+      this.linkCopied = true;
+      setTimeout(() => this.linkCopied = false, 3000);
+    }
+
+    // Persistance Firestore après le share/copy
+    await this.planStorage.upsertSharedPlan({ ...plan, shareId });
     if (!plan.shareId) {
       plan.shareId = shareId;
       const idx = this.plans.findIndex(p => p.id === plan.id);
@@ -157,11 +170,6 @@ export class CompetitionPlanComponent implements OnInit {
         await this.planStorage.savePlans(this.plans);
       }
     }
-
-    const url = `${window.location.origin}/plans-competition?view=${shareId}`;
-    await navigator.clipboard.writeText(url);
-    this.linkCopied = true;
-    setTimeout(() => this.linkCopied = false, 3000);
   }
 
   async deletePlan(id: string, event: Event): Promise<void> {
