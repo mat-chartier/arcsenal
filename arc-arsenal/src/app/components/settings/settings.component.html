@@ -75,6 +75,18 @@
         </div>
     </div>
 
+    <div class="field mb-4" *ngIf="showBlasonToggle">
+        <label class="label">Type de blason :</label>
+        <div class="field has-addons is-justify-content-center">
+            <p class="control">
+                <button class="button is-small" [class.is-primary]="blasonType === 'anglais'" (click)="blasonType = 'anglais'">Anglais</button>
+            </p>
+            <p class="control">
+                <button class="button is-small" [class.is-primary]="blasonType === 'campagne'" (click)="blasonType = 'campagne'">Campagne</button>
+            </p>
+        </div>
+    </div>
+
     <div class="has-text-centered mt-4">
         <button class="button is-primary" (click)="saveSettings()">Démarrer</button>
     </div>

@@ -5,7 +5,7 @@ import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { SettingsComponent } from "../../../components/settings/settings.component";
-import { getScoreClass } from '../../../utils/score-utils';
+import { BlasonType, getScoreClass as scoreClassFn } from '../../../utils/score-utils';
 import { PastGamesComponent } from "../../../components/past-games/past-games.component";
 import { GameService } from '../../../services/game.service';
 import { AuthService } from '../../../services/auth.service';
@@ -28,6 +28,7 @@ export class BigTenGameComponent implements OnDestroy{
   endsCount: number = 6;
   gameStarted: boolean = false;
   gameFinished: boolean = false;
+  blasonType: BlasonType = 'anglais';
   currentEnd: (number | 'X' | 'M')[] = [];
   currentEndIndex: number = 0;
   pastEnds: {
@@ -48,6 +49,7 @@ export class BigTenGameComponent implements OnDestroy{
     if (settings) {
       this.arrowsPerEndShotCount = settings.arrowsPerEndShotCount;
       this.endsCount = settings.endsCount;
+      this.blasonType = settings.blasonType ?? 'anglais';
       this.startGame();
     } else {
       await this.resetGame();
@@ -108,7 +110,7 @@ export class BigTenGameComponent implements OnDestroy{
     }
   }
 
-  getScoreClass = getScoreClass;
+  getScoreClass = (v: number | 'X' | 'M') => scoreClassFn(v, this.blasonType);
 
   calculateScoreSum(scores: (number | 'X' | 'M')[]): number {
     return scores.reduce((total: number, s) => {
