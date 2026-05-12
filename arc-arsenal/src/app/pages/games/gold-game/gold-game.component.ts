@@ -8,7 +8,7 @@ import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard
 import { SettingsComponent } from "../../../components/settings/settings.component";
 import { AuthService } from '../../../services/auth.service';
 import { GameService } from '../../../services/game.service';
-import { getScoreClass } from '../../../utils/score-utils';
+import { BlasonType, getScoreClass as scoreClassFn } from '../../../utils/score-utils';
 
 @Component({
   selector: 'app-gold-game',
@@ -32,6 +32,7 @@ export class GoldGameComponent {
   successZone: number = 7;
   gameStarted: boolean = false;
   gameFinished: boolean = false;
+  blasonType: BlasonType = 'anglais';
   currentEnd: (number | 'X' | 'M')[] = [];
   currentEndIndex: number = 0;
   pastEnds: {
@@ -59,6 +60,7 @@ export class GoldGameComponent {
       this.arrowsPerEndCount = settings.arrowsPerEndShotCount;
       this.endsCount = settings.endsCount;
       this.successZone = settings.successZone;
+      this.blasonType = settings.blasonType ?? 'anglais';
       this.startGame();
     } else {
       await this.resetGame();
@@ -113,7 +115,7 @@ export class GoldGameComponent {
     }
   }
 
-  getScoreClass = getScoreClass;
+  getScoreClass = (v: number | 'X' | 'M') => scoreClassFn(v, this.blasonType);
 
   calculateScore(scores: (number | 'X' | 'M')[]): number {
     return scores.reduce((total: number, s) => {

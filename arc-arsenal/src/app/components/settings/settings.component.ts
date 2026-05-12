@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { BlasonType } from '../../utils/score-utils';
 
 @Component({
   selector: 'app-game-settings',
@@ -15,8 +16,11 @@ export class SettingsComponent {
   @Input() minimumArrowsPerEnd: number = 3; // Default value, can be overridden by input
   @Input() successZone?: number; // Default value, can be overridden by input
   @Input() referenceScore?: number; // Default value, can be overridden by input
+  @Input() showBlasonToggle: boolean = false;
 
-  @Output() newSettings = new EventEmitter<{ arrowsPerEndShotCount?: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number, referenceScore?: number } | null>();
+  blasonType: BlasonType = 'anglais';
+
+  @Output() newSettings = new EventEmitter<{ arrowsPerEndShotCount?: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number, referenceScore?: number, blasonType?: BlasonType } | null>();
 
   incrementArrowsShotCount() {
     if (this.arrowsPerEndShotCount) {
@@ -86,7 +90,7 @@ export class SettingsComponent {
   }
 
   saveSettings() {
-    let settings: { arrowsPerEndShotCount?: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number, referenceScore?: number } = {
+    let settings: { arrowsPerEndShotCount?: number, endsCount?: number, arrowsPerEndCount?: number, successZone?: number, referenceScore?: number, blasonType?: BlasonType } = {
     };
     if (this.arrowsPerEndShotCount) {
       settings.arrowsPerEndShotCount = this.arrowsPerEndShotCount;
@@ -103,6 +107,7 @@ export class SettingsComponent {
     if (this.referenceScore !== undefined) {
       settings.referenceScore = this.referenceScore;
     }
+    settings.blasonType = this.blasonType;
     this.newSettings.emit(settings);
   }
 }

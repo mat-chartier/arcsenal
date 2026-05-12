@@ -6,7 +6,7 @@ import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { PastGamesComponent } from "../../../components/past-games/past-games.component";
 import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard/keyboard.component';
 import { SettingsComponent } from "../../../components/settings/settings.component";
-import { getScoreClass } from '../../../utils/score-utils';
+import { BlasonType, getScoreClass as scoreClassFn } from '../../../utils/score-utils';
 import { GameService } from '../../../services/game.service';
 import { AuthService } from '../../../services/auth.service';
 
@@ -28,6 +28,7 @@ export class DoubleCountedShotGameComponent {
   endsCount: number = 6;
   gameStarted: boolean = false;
   gameFinished: boolean = false;
+  blasonType: BlasonType = 'anglais';
   currentEnd: (number | 'X' | 'M')[] = [];
   currentEndIndex: number = 0;
   pastEnds: {
@@ -50,6 +51,7 @@ export class DoubleCountedShotGameComponent {
       this.arrowsPerEndShotCount = settings.arrowsPerEndShotCount;
       this.arrowsPerEndCount = settings.arrowsPerEndCount!;
       this.endsCount = settings.endsCount;
+      this.blasonType = settings.blasonType ?? 'anglais';
       this.startGame();
     } else {
       await this.resetGame();
@@ -112,7 +114,7 @@ export class DoubleCountedShotGameComponent {
     }
   }
 
-  getScoreClass = getScoreClass;
+  getScoreClass = (v: number | 'X' | 'M') => scoreClassFn(v, this.blasonType);
 
   calculateScoreSum(scores: (number | 'X' | 'M')[]): number {
     return scores.reduce((total: number, s) => {

@@ -8,7 +8,7 @@ import { ScoreKeyboardComponent } from '../../../components/score-input/keyboard
 import { SettingsComponent } from "../../../components/settings/settings.component";
 import { AuthService } from '../../../services/auth.service';
 import { GameService } from '../../../services/game.service';
-import { getScoreClass } from '../../../utils/score-utils';
+import { BlasonType, getScoreClass as scoreClassFn } from '../../../utils/score-utils';
 
 @Component({
   standalone: true,
@@ -31,6 +31,7 @@ export class DynamicRefEndScoreComponent {
   referenceScore: number = 45; // Initial reference score for the first end
   gameStarted: boolean = false;
   gameFinished: boolean = false;
+  blasonType: BlasonType = 'anglais';
   currentEnd: (number | 'X' | 'M')[] = [];
   currentEndIndex: number = 0;
   pastEnds: {
@@ -76,6 +77,7 @@ export class DynamicRefEndScoreComponent {
       this.arrowsPerEndShotCount = settings.arrowsPerEndShotCount;
       this.endsCount = settings.endsCount;
       this.referenceScore = settings.referenceScore;
+      this.blasonType = settings.blasonType ?? 'anglais';
       this.startGame();
     } else {
       await this.resetGame();
@@ -108,7 +110,7 @@ export class DynamicRefEndScoreComponent {
     this.gameFinished = data.gameFinished || false;
   }
 
-  getScoreClass = getScoreClass;
+  getScoreClass = (v: number | 'X' | 'M') => scoreClassFn(v, this.blasonType);
 
 
   addScore(score: number | 'X' | 'M') {

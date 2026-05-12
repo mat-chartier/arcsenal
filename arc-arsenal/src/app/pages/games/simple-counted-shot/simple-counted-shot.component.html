@@ -5,7 +5,7 @@
 
 <!-- Settings-->
 <app-game-settings *ngIf="!gameStarted" [arrowsPerEndShotCount]="arrowsPerEndShotCount" [minimumArrowsPerEnd]="3"
-  [endsCount]="endsCount" (newSettings)="onNewSettings($event)"></app-game-settings>
+  [endsCount]="endsCount" [showBlasonToggle]="true" (newSettings)="onNewSettings($event)"></app-game-settings>
 
 <!-- Past games -->
 <app-past-games
@@ -59,4 +59,4 @@
 </div>
 
 <!-- Keyboard -->
-<app-score-keyboard *ngIf="gameStarted && !gameFinished" (scoreSelected)="addScore($event)"></app-score-keyboard>
+<app-score-keyboard *ngIf="gameStarted && !gameFinished" [blasonType]="blasonType" (scoreSelected)="addScore($event)"></app-score-keyboard>
