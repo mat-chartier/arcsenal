@@ -28,7 +28,11 @@
       <div class="level-left">
         <div class="level-item">
           <div>
-            <p class="title is-5 mb-1">{{ formatDate(plan.date) }}</p>
+            <p class="title is-5 mb-1">
+              {{ formatDate(plan.date) }}
+              <span *ngIf="plan.bilan" class="bilan-status" title="Bilan fait">✅</span>
+              <span *ngIf="isBilanPending(plan)" class="bilan-status" title="Bilan à faire">⏳</span>
+            </p>
             <p class="subtitle is-6 has-text-grey mb-0">{{ plan.discipline }}</p>
           </div>
         </div>
@@ -65,7 +69,10 @@
 
   <!-- En-tête -->
   <div class="box mb-4">
-    <h1 class="title is-4 mb-1">Plan de compétition</h1>
+    <h1 class="title is-4 mb-1">
+      Plan de compétition
+      <span *ngIf="sharedPlan.bilan" class="tag is-success is-light is-medium ml-2">Bilan fait</span>
+    </h1>
     <p class="subtitle is-5 mb-1">
       {{ formatDate(sharedPlan.date) }} — {{ sharedPlan.discipline }}
     </p>
@@ -77,12 +84,23 @@
   <!-- Où en suis-je ? -->
   <div class="box mb-4">
     <h2 class="subtitle is-5 section-title mb-3">Où en suis-je ?</h2>
+    <div *ngIf="sharedPlan.bilan" class="rating-row is-size-7 has-text-grey mb-1">
+      <span class="rating-label"></span>
+      <span class="rating-dots-legend">Prévu</span>
+      <span class="rating-dots-legend">Réel</span>
+    </div>
     <div *ngFor="let criterion of criteria" class="rating-row mb-2">
       <span class="rating-label">{{ criterion.label }}</span>
       <div class="rating-dots">
         <span *ngFor="let score of scores"
           class="rating-dot"
           [ngClass]="{'filled': score <= sharedPlan.ratings[criterion.key]}">
+        </span>
+      </div>
+      <div *ngIf="sharedPlan.bilan" class="rating-dots">
+        <span *ngFor="let score of scores"
+          class="rating-dot"
+          [ngClass]="{'filled-reel': score <= sharedPlan.bilan.ratings[criterion.key]}">
         </span>
       </div>
     </div>
@@ -105,32 +123,39 @@
       <span>pts</span>
     </div>
     <ul *ngIf="sharedPlan.objectifs.autresObjectifs.length > 0" class="mt-2">
-      <li *ngFor="let obj of sharedPlan.objectifs.autresObjectifs">{{ obj }}</li>
+      <li *ngFor="let obj of sharedPlan.objectifs.autresObjectifs; let i = index">
+        <ng-container *ngIf="sharedPlan.bilan">
+          {{ sharedPlan.bilan.autresObjectifs[i] === true ? '✅' : sharedPlan.bilan.autresObjectifs[i] === false ? '❌' : '•' }}
+        </ng-container>
+        {{ obj }}
+      </li>
     </ul>
+    <div *ngIf="sharedPlan.bilan?.scoreReel != null" class="obj-inline bilan-reel mt-3">
+      <span>Score réel :</span>
+      <strong>{{ sharedPlan.bilan?.scoreReel }}</strong>
+      <span>pts</span>
+      <span class="is-size-4">{{ scoreOutcome(sharedPlan) }}</span>
+    </div>
   </div>
 
   <!-- Sections texte -->
-  <div class="box mb-4" *ngIf="sharedPlan.strategieTirFleche">
-    <h2 class="subtitle is-5 section-title mb-2">
-      Avec quelle stratégie vais-je tirer chaque flèche ?
-    </h2>
-    <p class="section-value">{{ sharedPlan.strategieTirFleche }}</p>
+  <ng-container *ngFor="let section of textSections">
+    <div class="box mb-4" *ngIf="sharedPlan[section.key] || sharedPlan.bilan?.[section.key]">
+      <h2 class="subtitle is-5 section-title mb-2">{{ section.title }}</h2>
+      <p class="section-value">{{ sharedPlan[section.key] || '—' }}</p>
+      <div *ngIf="sharedPlan.bilan?.[section.key]" class="bilan-reel mt-3">
+        <p class="is-size-7 has-text-grey mb-1">Ce qui s'est passé</p>
+        <p class="section-value">{{ sharedPlan.bilan?.[section.key] }}</p>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="box mb-4" *ngIf="sharedPlan.bilan?.commentaire">
+    <h2 class="subtitle is-5 section-title mb-2">Commentaire</h2>
+    <p class="section-value">{{ sharedPlan.bilan?.commentaire }}</p>
   </div>
 
-  <div class="box mb-4" *ngIf="sharedPlan.attitudeAdopter">
-    <h2 class="subtitle is-5 section-title mb-2">Quelle attitude vais-je adopter ?</h2>
-    <p class="section-value">{{ sharedPlan.attitudeAdopter }}</p>
-  </div>
-
-  <div class="box mb-4" *ngIf="sharedPlan.jeuJouer">
-    <h2 class="subtitle is-5 section-title mb-2">À quel jeu vais-je jouer ?</h2>
-    <p class="section-value">{{ sharedPlan.jeuJouer }}</p>
-  </div>
-
-  <div class="box mb-6" *ngIf="sharedPlan.forcesSAppuyer">
-    <h2 class="subtitle is-5 section-title mb-2">Sur quelles forces puis-je m'appuyer ?</h2>
-    <p class="section-value">{{ sharedPlan.forcesSAppuyer }}</p>
-  </div>
+  <div class="mb-6"></div>
 
 </div>
 
@@ -143,8 +168,10 @@
   </div>
 
   <h1 class="title is-4 mb-5">
-    {{ editingId ? 'Modifier le plan' : 'Nouveau plan de compétition' }}
+    {{ bilanMode ? 'Bilan de compétition' : editingId ? 'Modifier le plan' : 'Nouveau plan de compétition' }}
   </h1>
+
+  <ng-container *ngIf="!bilanMode">
 
   <!-- ── Informations générales ────────────────────────────────────────── -->
   <div class="box mb-4">
@@ -198,7 +225,7 @@
           type="button"
           class="button is-small rating-btn"
           [ngClass]="{'is-warning': score <= formData.ratings[criterion.key]}"
-          (click)="setRating(criterion.key, score)">
+          (click)="setRating(formData.ratings, criterion.key, score)">
           {{ score }}
         </button>
       </div>
@@ -317,6 +344,116 @@
     </div>
   </div>
 
+  </ng-container>
+
+  <!-- ══════════════════════════════════════════ MODE BILAN (plan en lecture seule) -->
+  <ng-container *ngIf="bilanMode && formData.bilan as bilan">
+
+  <div class="notification is-warning is-light is-size-7 mb-4">
+    🔒 Le bilan est commencé : le plan n'est plus modifiable.
+    Supprimez le bilan pour pouvoir le modifier à nouveau.
+  </div>
+
+  <div class="box mb-4">
+    <p class="subtitle is-5 mb-1">{{ formatDate(formData.date) }} — {{ formData.discipline }}</p>
+    <p *ngIf="formData.archer" class="is-size-6 has-text-grey">🏹 {{ formData.archer }}</p>
+  </div>
+
+  <!-- ── Où en suis-je ? ───────────────────────────────────────────────── -->
+  <div class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-1">Où en suis-je ?</h2>
+    <p class="is-size-7 has-text-grey mb-3">
+      Points : prévu. Boutons : votre ressenti après la compétition (recliquez pour annuler).
+    </p>
+    <div *ngFor="let criterion of criteria" class="rating-row bilan-rating-row mb-3">
+      <span class="rating-label">{{ criterion.label }}</span>
+      <div class="rating-dots" title="Prévu">
+        <span *ngFor="let score of scores"
+          class="rating-dot rating-dot-small"
+          [ngClass]="{'filled': score <= formData.ratings[criterion.key]}">
+        </span>
+      </div>
+      <div class="buttons has-addons mb-0">
+        <button *ngFor="let score of scores"
+          type="button"
+          class="button is-small rating-btn"
+          [ngClass]="{'is-success': score <= bilan.ratings[criterion.key]}"
+          (click)="setRating(bilan.ratings, criterion.key, score)">
+          {{ score }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Objectifs ─────────────────────────────────────────────────────── -->
+  <div class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-3">Objectifs</h2>
+
+    <div class="obj-inline mb-2" *ngIf="formData.objectifs.contentSiPlusDe !== null">
+      <span>😊 si ≥</span>
+      <strong>{{ formData.objectifs.contentSiPlusDe }}</strong>
+      <span>pts</span>
+    </div>
+    <div class="obj-inline mb-2"
+      *ngIf="formData.objectifs.mitigeSiEntre.min !== null || formData.objectifs.mitigeSiEntre.max !== null">
+      <span>😐 si entre</span>
+      <strong>{{ formData.objectifs.mitigeSiEntre.min }}</strong>
+      <span>et</span>
+      <strong>{{ formData.objectifs.mitigeSiEntre.max }}</strong>
+      <span>pts</span>
+    </div>
+
+    <div class="obj-inline bilan-reel mt-3 mb-4">
+      <label class="label mb-0">Score réel</label>
+      <input class="input obj-input" type="number"
+        [(ngModel)]="bilan.scoreReel" placeholder="—" min="0" />
+      <span>pts</span>
+      <span class="is-size-4">{{ scoreOutcome(formData) }}</span>
+    </div>
+
+    <div *ngIf="formData.objectifs.autresObjectifs.length > 0">
+      <label class="label">Autres objectifs atteints ?</label>
+      <div *ngFor="let obj of formData.objectifs.autresObjectifs; let i = index"
+        class="obj-inline mb-2">
+        <div class="buttons has-addons mb-0">
+          <button type="button" class="button is-small"
+            [ngClass]="{'is-success': bilan.autresObjectifs[i] === true}"
+            (click)="setObjectifAtteint(bilan, i, true)">Oui</button>
+          <button type="button" class="button is-small"
+            [ngClass]="{'is-danger': bilan.autresObjectifs[i] === false}"
+            (click)="setObjectifAtteint(bilan, i, false)">Non</button>
+        </div>
+        <span>{{ obj }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Sections texte : prévu / ce qui s'est passé ──────────────────── -->
+  <div *ngFor="let section of textSections" class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-2">{{ section.title }}</h2>
+    <p class="is-size-7 has-text-grey mb-1">Prévu</p>
+    <p class="section-value mb-3">{{ formData[section.key] || '—' }}</p>
+    <div class="field">
+      <label class="label">Ce qui s'est passé</label>
+      <div class="control">
+        <textarea class="textarea" rows="3" [(ngModel)]="bilan[section.key]"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Commentaire ───────────────────────────────────────────────────── -->
+  <div class="box mb-4">
+    <h2 class="subtitle is-5 section-title mb-2">Commentaire</h2>
+    <div class="field">
+      <div class="control">
+        <textarea class="textarea" rows="4" [(ngModel)]="bilan.commentaire"
+          placeholder="Ressenti général, points à retravailler, enseignements…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  </ng-container>
+
   <!-- ── Actions ────────────────────────────────────────────────────────── -->
   <div class="buttons mb-6">
     <button class="button is-primary is-medium" type="button" (click)="savePlan()">
@@ -325,6 +462,14 @@
     <button class="button is-info is-light is-medium" type="button"
       (click)="copyShareLink(formData, $event)">
       🔗 Copier le lien
+    </button>
+    <button *ngIf="editingId && !formData.bilan" class="button is-success is-light is-medium" type="button"
+      (click)="startBilan()">
+      📝 Faire le bilan
+    </button>
+    <button *ngIf="formData.bilan" class="button is-danger is-light is-medium" type="button"
+      (click)="deleteBilan()">
+      Supprimer le bilan
     </button>
     <button class="button is-light is-medium" type="button" (click)="view = 'list'">
       Annuler
@@ -336,4 +481,7 @@
 <!-- ═══════════════════════════════════════════════════════════ TOAST -->
 <div *ngIf="linkCopied" class="link-toast">
   🔗 Lien copié dans le presse-papiers !
+</div>
+<div *ngIf="shareSyncFailed" class="link-toast is-error">
+  ⚠️ Le lien partagé n'a pas pu être mis à jour
 </div>

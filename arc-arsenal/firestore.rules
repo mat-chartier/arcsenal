@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+      // Par défaut, refuser toute lecture et écriture sur tous les documents
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    
+    // Profil utilisateur
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Chaque type de jeu sous /users/{userId}/games/{gameType}
+    match /users/{userId}/games/{gameType} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    match /users/{userId}/plans/{document} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+        }
+
+     match /sharedPlans/{shareId} {
+       allow read: if true;                      // lecture publique (coach sans compte)
+       // Seul un archer connecté peut créer, en son nom (ownerUid absent toléré pour les anciens clients)
+       allow create: if request.auth != null
+         && request.resource.data.get('ownerUid', request.auth.uid) == request.auth.uid;
+       // Mise à jour réservée au propriétaire ; un ancien document sans ownerUid
+       // est revendiqué par le premier archer connecté qui le met à jour
+       allow update: if request.auth != null
+         && request.resource.data.ownerUid == request.auth.uid
+         && resource.data.get('ownerUid', request.auth.uid) == request.auth.uid;
+     }
+    
+  }
+}
