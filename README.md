@@ -18,8 +18,6 @@ Actuellement, l'application propose :
    - Au besoin possibilité d'ajouter un guide fixe sur l'image, pour vérifier sa position
 - **Réglage du coupe tube**
   - Entrez toutes les caractéristique de taille de vos élements (tube, pointes, encoche, etc.) et la longueur flèche montée désirée pour savoir comment régler le coupe tube
-- **Passage de flèches**
-  - Gérez vos passages de flèches
 - **Plans de compétition**
   - Créez et consultez vos plans de compétition
   - Auto-évaluation sur 5 critères (Technique, Physique, Mental, Tactique, Matériel)
