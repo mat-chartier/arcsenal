@@ -10,6 +10,20 @@ import { CompetitionPlanStorageService } from '../../services/competition-plan-s
 // ── Types ──────────────────────────────────────────────────────────────────
 
 type RatingKey = 'technique' | 'physique' | 'mental' | 'tactique' | 'materiel';
+type TextKey = 'strategieTirFleche' | 'attitudeAdopter' | 'jeuJouer' | 'forcesSAppuyer';
+
+// Bilan post-compétition : sa présence verrouille le plan
+export interface CompetitionReview {
+  startedAt: string;   // ISO 8601
+  scoreReel: number | null;
+  ratings: Record<RatingKey, number>;  // 0 = non noté, 1-5
+  autresObjectifs: (boolean | null)[]; // atteint ? aligné sur plan.objectifs.autresObjectifs
+  strategieTirFleche: string;
+  attitudeAdopter: string;
+  jeuJouer: string;
+  forcesSAppuyer: string;
+  commentaire: string;
+}
 
 export interface CompetitionPlan {
   id: string;
@@ -28,6 +42,7 @@ export interface CompetitionPlan {
   attitudeAdopter: string;
   jeuJouer: string;
   forcesSAppuyer: string;
+  bilan?: CompetitionReview;
 }
 
 // ── Constantes ─────────────────────────────────────────────────────────────
@@ -39,6 +54,27 @@ const RATING_CRITERIA: { key: RatingKey; label: string }[] = [
   { key: 'tactique',  label: 'Tactique'  },
   { key: 'materiel',  label: 'Matériel'  },
 ];
+
+const TEXT_SECTIONS: { key: TextKey; title: string }[] = [
+  { key: 'strategieTirFleche', title: 'Avec quelle stratégie vais-je tirer chaque flèche ?' },
+  { key: 'attitudeAdopter',    title: 'Quelle attitude vais-je adopter ?' },
+  { key: 'jeuJouer',           title: 'À quel jeu vais-je jouer ?' },
+  { key: 'forcesSAppuyer',     title: "Sur quelles forces puis-je m'appuyer ?" },
+];
+
+function emptyReview(plan: CompetitionPlan): CompetitionReview {
+  return {
+    startedAt: new Date().toISOString(),
+    scoreReel: null,
+    ratings: { technique: 0, physique: 0, mental: 0, tactique: 0, materiel: 0 },
+    autresObjectifs: plan.objectifs.autresObjectifs.map(() => null),
+    strategieTirFleche: '',
+    attitudeAdopter: '',
+    jeuJouer: '',
+    forcesSAppuyer: '',
+    commentaire: '',
+  };
+}
 
 function emptyPlan(): CompetitionPlan {
   return {
@@ -83,10 +119,13 @@ export class CompetitionPlanComponent implements OnInit {
   editingId: string | null = null;
   sharedPlan: CompetitionPlan | null = null;
   linkCopied = false;
+  shareSyncFailed = false;
+  bilanMode = false;
 
   readonly faTrash = faTrash;
   readonly faLink = faLink;
   readonly criteria = RATING_CRITERIA;
+  readonly textSections = TEXT_SECTIONS;
   readonly scores = [1, 2, 3, 4, 5] as const;
 
   async ngOnInit(): Promise<void> {
@@ -108,12 +147,14 @@ export class CompetitionPlanComponent implements OnInit {
     }
     this.formData = plan;
     this.editingId = null;
+    this.bilanMode = false;
     this.view = 'form';
   }
 
   openEdit(plan: CompetitionPlan): void {
     this.formData = JSON.parse(JSON.stringify(plan));
     this.editingId = plan.id;
+    this.bilanMode = !!plan.bilan;
     this.view = 'form';
   }
 
@@ -126,11 +167,12 @@ export class CompetitionPlanComponent implements OnInit {
     if (this.editingId) {
       const idx = this.plans.findIndex(p => p.id === this.editingId);
       if (idx !== -1) {
-        this.plans[idx] = {
-          ...this.formData,
-          id: this.editingId,
-          createdAt: this.plans[idx].createdAt,
-        };
+        const stored = this.plans[idx];
+        // Plan verrouillé par un bilan existant : seul le bilan est modifiable
+        this.plans[idx] = stored.bilan
+          ? { ...stored, bilan: this.formData.bilan }
+          : { ...this.formData, id: stored.id, createdAt: stored.createdAt };
+        await this.syncSharedPlan(this.plans[idx]);
       }
     } else {
       this.plans.unshift({
@@ -142,6 +184,46 @@ export class CompetitionPlanComponent implements OnInit {
 
     await this.planStorage.savePlans(this.plans);
     this.view = 'list';
+  }
+
+  startBilan(): void {
+    if (!confirm('Une fois le bilan commencé et enregistré, le plan ne pourra plus être modifié. Continuer ?')) {
+      return;
+    }
+    this.formData.bilan = emptyReview(this.formData);
+    this.bilanMode = true;
+  }
+
+  async deleteBilan(): Promise<void> {
+    if (!confirm('Supprimer le bilan ? Le plan redeviendra modifiable.')) {
+      return;
+    }
+    delete this.formData.bilan;
+    this.bilanMode = false;
+
+    const idx = this.plans.findIndex(p => p.id === this.editingId);
+    if (idx !== -1 && this.plans[idx].bilan) {
+      const { bilan, ...plan } = this.plans[idx];
+      this.plans[idx] = plan;
+      await this.planStorage.savePlans(this.plans);
+      await this.syncSharedPlan(plan);
+    }
+  }
+
+  // Garde la vue entraîneur à jour si le plan a déjà été partagé
+  private async syncSharedPlan(plan: CompetitionPlan): Promise<void> {
+    if (!plan.shareId) return;
+    try {
+      await this.planStorage.upsertSharedPlan(plan);
+    } catch (e) {
+      console.error('Error syncing shared plan:', e);
+      this.showShareSyncError();
+    }
+  }
+
+  private showShareSyncError(): void {
+    this.shareSyncFailed = true;
+    setTimeout(() => this.shareSyncFailed = false, 5000);
   }
 
   async copyShareLink(plan: CompetitionPlan, event: Event): Promise<void> {
@@ -161,7 +243,13 @@ export class CompetitionPlanComponent implements OnInit {
     }
 
     // Persistance Firestore après le share/copy
-    await this.planStorage.upsertSharedPlan({ ...plan, shareId });
+    try {
+      await this.planStorage.upsertSharedPlan({ ...plan, shareId });
+    } catch (e) {
+      console.error('Error sharing plan:', e);
+      this.showShareSyncError();
+      return;
+    }
     if (!plan.shareId) {
       plan.shareId = shareId;
       const idx = this.plans.findIndex(p => p.id === plan.id);
@@ -181,8 +269,39 @@ export class CompetitionPlanComponent implements OnInit {
   }
 
   // Bascule la note : re-cliquer la même valeur la remet à 0
-  setRating(key: RatingKey, score: number): void {
-    this.formData.ratings[key] = this.formData.ratings[key] === score ? 0 : score;
+  setRating(ratings: Record<RatingKey, number>, key: RatingKey, score: number): void {
+    ratings[key] = ratings[key] === score ? 0 : score;
+  }
+
+  // Bascule atteint / pas atteint : re-cliquer la même valeur remet à null
+  setObjectifAtteint(bilan: CompetitionReview, idx: number, value: boolean): void {
+    bilan.autresObjectifs[idx] = bilan.autresObjectifs[idx] === value ? null : value;
+  }
+
+  // Compare le score réel aux objectifs en points du plan
+  scoreOutcome(plan: CompetitionPlan): string | null {
+    const score = plan.bilan?.scoreReel;
+    if (score === null || score === undefined) return null;
+    const { contentSiPlusDe, mitigeSiEntre: { min, max } } = plan.objectifs;
+    if (contentSiPlusDe === null && min === null && max === null) return null;
+    if (contentSiPlusDe !== null && score >= contentSiPlusDe) return '😊';
+    if (min !== null || max !== null) {
+      if ((min === null || score >= min) && (max === null || score <= max)) return '😐';
+      if (contentSiPlusDe === null && max !== null && score > max) return '😊';
+    }
+    return '😞';
+  }
+
+  // Compétition passée (ou du jour) sans bilan
+  isBilanPending(plan: CompetitionPlan): boolean {
+    if (plan.bilan || !plan.date) return false;
+    const now = new Date();
+    const today = [
+      now.getFullYear(),
+      String(now.getMonth() + 1).padStart(2, '0'),
+      String(now.getDate()).padStart(2, '0'),
+    ].join('-');
+    return plan.date <= today;
   }
 
   addAutreObjectif(): void {

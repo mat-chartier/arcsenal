@@ -23,6 +23,7 @@ Actuellement, l'application propose :
   - Auto-évaluation sur 5 critères (Technique, Physique, Mental, Tactique, Matériel)
   - Définissez vos objectifs en points et vos intentions (stratégie, attitude, jeu, forces)
   - Partagez un lien de lecture seule avec votre entraîneur
+  - Après la compétition, faites le bilan : score réel, ressenti, objectifs atteints et commentaire, face au prévu (le plan est alors verrouillé)
   - Sauvegarde locale ou dans le cloud selon la connexion
 
 ### 🏹 Jeux disponibles :

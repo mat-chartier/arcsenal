@@ -36,7 +36,11 @@ export class CompetitionPlanStorageService {
 
   async upsertSharedPlan(plan: CompetitionPlan): Promise<string> {
     const id = plan.shareId ?? crypto.randomUUID();
-    await setDoc(doc(db, `sharedPlans/${id}`), { plan: { ...plan, shareId: id } });
+    // ownerUid : seul le propriétaire peut mettre à jour le lien (cf. firestore.rules)
+    await setDoc(doc(db, `sharedPlans/${id}`), {
+      plan: { ...plan, shareId: id },
+      ownerUid: this.auth.user?.uid,
+    });
     return id;
   }
 

@@ -41,31 +41,60 @@
   text-align: center;
 }
 
-// ── Vue partagée (lecture seule) ──────────────────────────────────────────
+// ── Lecture seule (vue partagée, plan verrouillé en mode bilan) ───────────
 
-.shared-view {
-  .section-value {
-    white-space: pre-wrap;
+.section-value {
+  white-space: pre-wrap;
+}
+
+.rating-dots {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.rating-dots-legend {
+  width: calc(5 * 1.1rem + 4 * 0.35rem);
+  text-align: center;
+}
+
+.rating-dot {
+  display: inline-block;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  background: #f5f5f5;
+
+  &.filled {
+    background: #f5a623;
+    border-color: #e09500;
   }
 
-  .rating-dots {
-    display: flex;
-    gap: 0.35rem;
+  &.filled-reel {
+    background: #48c78e;
+    border-color: #3aa876;
   }
+}
 
-  .rating-dot {
-    display: inline-block;
-    width: 1.1rem;
-    height: 1.1rem;
-    border-radius: 50%;
-    border: 2px solid #ddd;
-    background: #f5f5f5;
+.rating-dot-small {
+  width: 0.8rem;
+  height: 0.8rem;
+}
 
-    &.filled {
-      background: #f5a623;
-      border-color: #e09500;
-    }
-  }
+// ── Bilan ─────────────────────────────────────────────────────────────────
+
+.bilan-rating-row {
+  flex-wrap: wrap;
+}
+
+.bilan-reel {
+  border-left: 3px solid #48c78e;
+  padding-left: 0.6rem;
+}
+
+.bilan-status {
+  font-size: 1rem;
+  margin-left: 0.3rem;
 }
 
 .gap-2 {
@@ -88,6 +117,11 @@
   z-index: 9999;
   pointer-events: none;
   animation: toast-fade 3s ease forwards;
+
+  &.is-error {
+    background: #c0392b;
+    animation-duration: 5s;
+  }
 }
 
 @keyframes toast-fade {
